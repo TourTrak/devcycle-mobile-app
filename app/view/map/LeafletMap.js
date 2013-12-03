@@ -7,6 +7,7 @@ Ext.define('DevCycleMobile.view.map.LeafletMap', {
 	constructor: function() {
 		this.callParent(arguments);
 		this.element.setVisibilityMode(Ext.Element.OFFSETS);
+		window.currPosMarker = null;
 		this.on('painted', this.renderMap, this);
 	
 	},

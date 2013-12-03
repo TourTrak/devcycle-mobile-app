@@ -45,6 +45,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 						riderId: rider_id
 					});
 					alert("adding rider " + rider_id)
+
+					// Save the rider info (id)
 					riderInfo.add(newRider);
 					riderInfo.sync();
 				},

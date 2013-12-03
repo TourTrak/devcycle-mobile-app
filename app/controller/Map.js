@@ -14,25 +14,27 @@ Ext.define('DevCycleMobile.controller.Map', {
 	},
 
 	update: function(){
-		alert("In update");
+
 		window.currPosMarker = null;
 		setInterval( function() {
 			var getCurrentPos = function(position) {
-					if(this.currPosMarker === null){
+	
+				if(window.currPosMarker === null){
 
-				 		var personIcon = L.AwesomeMarkers.icon({
-							icon: 'user',
-							color: 'dark red'
-						});
+				 	var personIcon = L.AwesomeMarkers.icon({
+						icon: 'user',
+						color: 'dark red'
+					});
 
-						window.currPosMarker = L.marker([position.coords.latitude, 
-														 position.coords.longitude]);
-						window.currPosMarker.addTo(window.map);
-					} else {
-						var currPos = new L.LatLng(position.coords.latitude, position.coords.longitude);
-						window.currPosMarker.setLatLng(currPos);
-						window.map.panTo(currPos);
-					}
+					window.currPosMarker = L.marker([position.coords.latitude, 
+													 position.coords.longitude], {icon: personIcon});
+				
+					window.currPosMarker.addTo(window.map);
+				} else {
+					var currPos = new L.LatLng(position.coords.latitude, position.coords.longitude);
+					window.currPosMarker.setLatLng(currPos);
+					window.map.panTo(currPos);
+				}
 			}
 
 			var failBoat = function(e){

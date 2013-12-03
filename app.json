@@ -72,7 +72,9 @@
 		"config.xml",
         "resources/images",
         "resources/icons",
-        "resources/startup"
+        "resources/startup",
+        "third_party_libraries/Awesome-markers/dist/images",
+        "third_party_libraries/Leaflet/dist/images"
     ],
 
     "archivePath": "archive",
