@@ -63,6 +63,11 @@ Ext.application({
         // Initialize the main view
         var homeView = Ext.create('DevCycleMobile.view.Home');
         Ext.Viewport.add(homeView);
+
+         // Adjust toolbar height when running in iOS to fit with new iOS 7 style
+        if (Ext.os.is.iOS && Ext.os.version.major >= 7) {
+            Ext.select(".x-toolbar").applyStyles("height: 62px; padding-top: 15px;");
+        }
     },
 
     onUpdated: function() {
