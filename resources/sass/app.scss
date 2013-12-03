@@ -1,0 +1,40 @@
+$base-color: #2E2E2E;
+$neutral-color: #FAFAFA; 
+$page-bg-color: #eee !default;
+$active-color: #7DF9FF;
+$toolbar-base-color: #2E2E2E;
+
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+
+// Custom code goes here..
+
+// Examples of using the icon mixin:
+// @include icon('user');
+
+.start_btn {
+	background-color:#2E2E2E !important;
+	background-image: none;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+.start_btn_label {
+	color:white;
+	font-size: 100%;
+	margin: auto;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.my-toolbar .x-title{
+  color:white;
+  border: none !important; 
+}

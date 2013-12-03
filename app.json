@@ -1,0 +1,85 @@
+{
+    
+    "name": "DevCycleMobile",
+    "indexHtmlPath": "index.html",
+    "url": null,
+
+    "js": [
+		{
+			"path": "cordova.js",
+			"remote": true
+		},
+        {
+            "path": "resources/js/sencha-touch.js",
+            "x-bootstrap": true
+        },
+        {
+            "path": "bootstrap.js",
+            "x-bootstrap": true
+        },
+        {
+            "path": "app.js",
+            "bundle": true,  
+            "update": "delta"
+        },
+        {
+            "path": "third_party_libraries/Leaflet/dist/leaflet.js"
+        },
+        {
+            "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
+        }
+    ],
+
+   
+    "css": [
+        {
+            "path": "resources/css/app.css",
+            "platform": ["desktop", "chrome", "safari", "firefox"],
+            "update": "delta"
+        },
+        {
+            "path": "third_party_libraries/Leaflet/dist/leaflet.css"
+        },
+        {
+            "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.css"
+        },
+        {
+            "path": "resources/css/cupertino.css",
+            "platform": ["ios"],
+            "update": "delta"
+        },
+        {
+            "path": "resources/css/mountainview.css",
+            "platform": ["android"],
+            "update": "delta"
+        }
+    ],
+
+    "appCache": {
+       
+        "cache": [
+            "index.html"
+        ],
+       
+        "network": [
+            "*"
+        ],
+        
+        "fallback": []
+    },
+
+    "resources": [
+		"config.xml",
+        "resources/images",
+        "resources/icons",
+        "resources/startup"
+    ],
+
+    "archivePath": "archive",
+
+    "requires": [
+    ],
+
+    "id": "42ea6f30-26e6-441a-af9a-cfc8682251c2"
+}
+
