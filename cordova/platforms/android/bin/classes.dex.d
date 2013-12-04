@@ -6,4 +6,9 @@
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/foo/bar/DevCycleMobile/R$string.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/foo/bar/DevCycleMobile/R$xml.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/foo/bar/DevCycleMobile/R.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener$LocationTimeoutTask.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/CordovaLocationListener.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/GeoBroker.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/dexedLibs/cordova-3.1.0-c9677dffb33ed0e4e1ec626a2c91b4a0.jar \
