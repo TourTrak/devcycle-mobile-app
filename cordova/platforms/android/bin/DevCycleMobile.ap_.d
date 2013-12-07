@@ -30,13 +30,7 @@
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/css/index.css \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/img/logo.png \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/js/index.js \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.geolocation \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/Coordinates.js \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/geolocation.js \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/Position.js \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.geolocation/www/PositionError.js \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www/Connection.js \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www/network.js \
