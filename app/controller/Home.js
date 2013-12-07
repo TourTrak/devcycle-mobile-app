@@ -15,6 +15,20 @@ Ext.define('DevCycleMobile.controller.Home', {
 		}
 	},
 
+	startTracking: function(){
+		cordova.exec(
+			function() {
+				alert("success");
+			},
+			function(message){
+				alert("Error: " + message);
+			},
+			'CDVInterface',
+			'startUpdatingLocation',
+			[]
+		);
+	},
+
 	/**
 	* If rider is not already registered, register him or her
 	* @private
@@ -24,6 +38,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		riderInfo.load();
 
 		console.log(riderInfo.getCount());
+		this.startTracking();
 
 		// If we haven't registered yet, get rider id from server
 		if(riderInfo.getCount() == 0){

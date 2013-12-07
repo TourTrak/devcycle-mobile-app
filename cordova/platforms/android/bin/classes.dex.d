@@ -1,4 +1,8 @@
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes.dex : \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/com/plugin/gcm/CordovaGCMBroadcastReceiver.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/com/plugin/gcm/GCMIntentService.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/com/plugin/gcm/PushHandlerActivity.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/com/plugin/gcm/PushPlugin.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/foo/bar/DevCycleMobile/BuildConfig.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/foo/bar/DevCycleMobile/DevCycleMobile.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/foo/bar/DevCycleMobile/R$attr.class \
@@ -12,3 +16,5 @@
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/dexedLibs/cordova-3.1.0-c9677dffb33ed0e4e1ec626a2c91b4a0.jar \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/dexedLibs/gcm-907ba985318f98925ed293a536bcef68.jar \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/dexedLibs/android-support-v13-563df4c52841ba77ef5d75890c355817.jar \
