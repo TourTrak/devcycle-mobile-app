@@ -25,6 +25,9 @@ Ext.define('DevCycleMobile.controller.Home', {
 			},
 			'CDVInterface',
 			'startUpdatingLocation',
+
+			// JSON object w/ arguments passed into
+			// the plugin
 			[]
 		);
 	},
