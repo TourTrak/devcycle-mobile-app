@@ -19,6 +19,7 @@
 
     <!-- ios -->
     <platform name="ios">
+    
         <config-file target="config.xml" parent="/*">
             <feature name="CDVInterface">
                 <param name="ios-package" value="CDVInterface" />
@@ -50,6 +51,14 @@
 	<!-- System Framework Files -->
         <framework src="CoreData.framework"/>
 	<framework src="Foundation.framework"/>
+	
+	<!-- -->
+	<config-file target="geolocation-plugin-Info.plist" parent="/*"></config-file>
+	
+        <!-- The Plist file for the geolocation plugin -->
+        <resource-file src="geolocation-plugin-Info.plist" />
+	
+	
 	
     </platform>
 
