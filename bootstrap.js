@@ -6,17 +6,17 @@
  */
 Ext.Loader.addClassPathMappings({
   "DevCycleMobile": "app",
-  "Ext": "../../../../../touch/src",
-  "Ext.device.Purchases.Product": "../../../../../touch/src/device/purchases/Sencha.js",
-  "Ext.device.filesystem.DirectoryEntry": "../../../../../touch/src/device/filesystem/HTML5.js",
-  "Ext.device.filesystem.Entry": "../../../../../touch/src/device/filesystem/HTML5.js",
-  "Ext.device.filesystem.FileEntry": "../../../../../touch/src/device/filesystem/HTML5.js",
-  "Ext.device.filesystem.FileSystem": "../../../../../touch/src/device/filesystem/HTML5.js",
-  "Ext.device.purchases.Purchase": "../../../../../touch/src/device/purchases/Sencha.js",
-  "Ext.device.sqlite.Database": "../../../../../touch/src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLResultSet": "../../../../../touch/src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLResultSetRowList": "../../../../../touch/src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLTransaction": "../../../../../touch/src/device/sqlite/Sencha.js"
+  "Ext": "touch/src",
+  "Ext.device.Purchases.Product": "touch/src/device/purchases/Sencha.js",
+  "Ext.device.filesystem.DirectoryEntry": "touch/src/device/filesystem/HTML5.js",
+  "Ext.device.filesystem.Entry": "touch/src/device/filesystem/HTML5.js",
+  "Ext.device.filesystem.FileEntry": "touch/src/device/filesystem/HTML5.js",
+  "Ext.device.filesystem.FileSystem": "touch/src/device/filesystem/HTML5.js",
+  "Ext.device.purchases.Purchase": "touch/src/device/purchases/Sencha.js",
+  "Ext.device.sqlite.Database": "touch/src/device/sqlite/Sencha.js",
+  "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
+  "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
+  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Home": [],
@@ -592,9 +592,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.Grouper": [],
   "Ext.util.HashMap": [],
   "Ext.util.Inflector": [],
-  "Ext.util.InputBlocker": [
-    "InputBlocker"
-  ],
+  "Ext.util.InputBlocker": [],
   "Ext.util.LineSegment": [],
   "Ext.util.MixedCollection": [],
   "Ext.util.Offset": [],
