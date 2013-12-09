@@ -16,20 +16,35 @@ Ext.define('DevCycleMobile.controller.Home', {
 	},
 
 	startTracking: function(){
-		cordova.exec(
-			function() {
-				alert("success");
-			},
-			function(message){
-				alert("Error: " + message);
-			},
-			'CDVInterface',
-			'startUpdatingLocation',
 
-			// JSON object w/ arguments passed into
-			// the plugin
-			[]
-		);
+		if (Ext.os.is.iOS) {
+			cordova.exec(
+				function() {
+					alert("success");
+				},
+				function(message){
+					alert("Error: " + message);
+				},
+				'CDVInterface',
+				'startUpdatingLocation',
+
+				// JSON object w/ arguments passed into
+				// the plugin
+				[]
+			);
+		} else {
+			cordova.exec(
+				function() {
+					alert("success");
+				},
+				function(message){
+					alert("Error: " + message);
+				},
+				'myService',
+				'startService',
+				[]
+			);
+		}
 	},
 
 	/**
@@ -63,6 +78,25 @@ Ext.define('DevCycleMobile.controller.Home', {
 						riderId: rider_id
 					});
 					alert("adding rider " + rider_id)
+
+					Ext.Ajax.request({
+						url: 'http://devcycle.se.rit.edu/location_update/',
+						method: 'POST',
+						params: {
+							riderId: rider_id,
+							locations: "",
+							battery: "0.5"
+						},
+						success: function(response){
+							console.log(response);
+							alert(success);
+						},
+						failure: function(response){
+							console.log(response);
+							alert("Sending Failure");
+							return;
+						}
+					});
 
 					// Save the rider info (id)
 					riderInfo.add(newRider);

@@ -21,7 +21,6 @@
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/img \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/index.html \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/js \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/res \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/resources \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/spec \
@@ -30,10 +29,6 @@
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/css/index.css \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/img/logo.png \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/js/index.js \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www/Connection.js \
-/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/plugins/org.apache.cordova.network-information/www/network.js \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/res/icon \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/res/screen \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/assets/www/res/icon/android \

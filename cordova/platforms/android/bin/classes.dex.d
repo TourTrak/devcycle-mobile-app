@@ -15,6 +15,8 @@
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/GeoBroker.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/GPSListener.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/geolocation/NetworkListener.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/networkinformation/NetworkManager$1.class \
+/Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/classes/org/apache/cordova/networkinformation/NetworkManager.class \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/dexedLibs/cordova-3.1.0-c9677dffb33ed0e4e1ec626a2c91b4a0.jar \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/dexedLibs/gcm-907ba985318f98925ed293a536bcef68.jar \
 /Applications/XAMPP/xamppfiles/htdocs/devcycle-app/cordova/platforms/android/bin/dexedLibs/android-support-v13-563df4c52841ba77ef5d75890c355817.jar \

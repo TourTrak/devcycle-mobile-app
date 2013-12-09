@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FE4DB81A-B1DE-4322-B7A1-35C93E9F1712</string>
+	<string>D18D6DC0-6538-48A5-9A77-F57F930D96D6</string>
 	<key>IDESourceControlProjectName</key>
 	<string>DevCycleMobile</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>14F86346-96FB-48D7-80F3-A8086C34E71C</key>
+		<key>2FEBB9E1-D2BA-4E1E-AE3E-76FF88A3F9A3</key>
 		<string>https://github.com/tofferrosen/devcycle-mobile-app.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>cordova/platforms/ios/DevCycleMobile.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>14F86346-96FB-48D7-80F3-A8086C34E71C</key>
+		<key>2FEBB9E1-D2BA-4E1E-AE3E-76FF88A3F9A3</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>14F86346-96FB-48D7-80F3-A8086C34E71C</string>
+	<string>2FEBB9E1-D2BA-4E1E-AE3E-76FF88A3F9A3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>14F86346-96FB-48D7-80F3-A8086C34E71C</string>
+			<string>2FEBB9E1-D2BA-4E1E-AE3E-76FF88A3F9A3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>devcycle-app</string>
 		</dict>
