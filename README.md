@@ -3,7 +3,7 @@ devcycle-mobile-app
 
 The totally rad HTML5 'native' application built using Sencha Touch and Cordova for the TourTrak system.
 
-###Dependencies
+###Dependencies Required for Contributing 
 * Ruby 1.9.3
 * Java Runtime Environment > 1.7
 * Cordova > 3.0.0
