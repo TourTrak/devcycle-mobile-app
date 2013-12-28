@@ -146,12 +146,13 @@
                 existing_platforms = existing_platforms.substring(0, available);
             }
             
-            var missing_platforms = [];
-            target_platforms.forEach(function(platform){
+            var missing_platforms = [], platformIndex, platform;
+            for (platformIndex in target_platforms) {
+                platform = target_platforms[platformIndex];
                 if(existing_platforms.indexOf(platform) === -1){
                     missing_platforms.push(platform);
                 }
-            });
+            }
 
             if(missing_platforms.length > 0) {
                 self.log("Cordova: Missing platforms " + missing_platforms.toString() + ". Attempting add.");

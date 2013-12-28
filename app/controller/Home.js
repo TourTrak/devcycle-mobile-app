@@ -17,7 +17,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 	startTracking: function(){
 
-		alert("calling echo!");
+		alert("calling start!");
 
 		if (Ext.os.is.iOS) {
 			cordova.exec(
@@ -43,8 +43,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 					alert("Error: " + message);
 				},
 				'CDVInterface',
-				'echo',
-				[{"message": "toffer rocks"}]
+				'start',
+				[]
 			);
 		}
 	},
@@ -56,6 +56,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 	registerRider: function(){
 		var riderInfo = Ext.getStore("RiderInfo");
 		riderInfo.load();
+
+		alert("start tracking to be called...");
 
 		console.log(riderInfo.getCount());
 		this.startTracking();

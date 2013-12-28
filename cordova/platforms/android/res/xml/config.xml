@@ -11,12 +11,15 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
+    </feature>
+    <feature name="CDVInterface">
+        <param name="android-package" value="edu.rit.se.CDVInterface" />
+    </feature>
     <access origin="*" />
     <preference name="useBrowserHistory" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
-    <feature name="CDVInterface">
-        <param name="android-package" value="edu.rit.se.CDVInterface" />
-    </feature>
 </widget>
