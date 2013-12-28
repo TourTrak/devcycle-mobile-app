@@ -17,7 +17,7 @@
        under the License.
  */
 
-package edu.rit.se.TourTrak;
+package edu.rit.se.tourtrak;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

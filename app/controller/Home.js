@@ -17,6 +17,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 	startTracking: function(){
 
+		alert("calling echo!");
+
 		if (Ext.os.is.iOS) {
 			cordova.exec(
 				function() {
@@ -40,9 +42,9 @@ Ext.define('DevCycleMobile.controller.Home', {
 				function(message){
 					alert("Error: " + message);
 				},
-				'myService',
-				'startService',
-				[]
+				'CDVInterface',
+				'echo',
+				[{"message": "toffer rocks"}]
 			);
 		}
 	},
