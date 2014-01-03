@@ -15,6 +15,12 @@ Ext.define('DevCycleMobile.controller.Home', {
 		}
 	},
 
+	/**
+	* Calls start on the phonegap/cordova abstraction layer
+	* Expects the CDVInterface plugin with method start implemented,
+	* which will start initalize everything to properly track the rider
+	* @private 
+	**/
 	startTracking: function(rider_id){
 
 	//	alert("start tracking called with rider id: " + rider_id);
@@ -58,8 +64,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 				method: 'POST',
 				scope: this, // set scope of ajax call to this
 				params: {
-					os: "tofferOS",
-					device: "tofferDevice",
+					os: Ext.os.name + " " + Ext.os.version,
+					device: Ext.os.name,
 					tourId: "toffer"
 				},
 				success: function(response){
