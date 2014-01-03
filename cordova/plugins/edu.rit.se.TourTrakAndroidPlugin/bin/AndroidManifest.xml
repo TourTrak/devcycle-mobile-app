@@ -8,8 +8,8 @@
     <permission android:name="edu.rit.se.se561.trafficanalysis.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="edu.rit.se.se561.trafficanalysis.permission.C2D_MESSAGE" /> 
 	-->
-	<permission android:name="edu.rit.se.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-	<uses-permission android:name="edu.rit.se.permission.C2D_MESSAGE" /> 
+	<permission android:name="edu.rit.se.tourtrak.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="edu.rit.se.tourtrak.permission.C2D_MESSAGE" /> 
 	<!-- App receives GCM messages. -->
 	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 	<!-- GCM connects to Google Services. -->
@@ -48,7 +48,7 @@
 		  <intent-filter>
 		    <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 		    <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-		    <category android:name="edu.rit.se.se561.trafficanalysis" />
+		    <category android:name="edu.rit.se.trafficanalysis" />
 		  </intent-filter>
 		</receiver>
 		<!--
@@ -59,27 +59,27 @@
 		</receiver>    -->
 		<receiver  android:exported="false" android:name="edu.rit.se.trafficanalysis.tracking.StartTrackingAlarm">
 		    <intent-filter>
-        		<action android:name="edu.rit.se.se561.trafficanalysis.startTracking"></action>
+        		<action android:name="edu.rit.se.trafficanalysis.startTracking"></action>
     		</intent-filter>
 		</receiver>
 		<receiver  android:exported="false" android:name="edu.rit.se.trafficanalysis.tracking.EndTrackingAlarm">
 		    <intent-filter>
-        		<action android:name="edu.rit.se.se561.trafficanalysis.endTracking"></action>
+        		<action android:name="edu.rit.se.trafficanalysis.endTracking"></action>
     		</intent-filter>
 		</receiver>
 		<receiver  android:exported="false" android:name="edu.rit.se.trafficanalysis.reminders.TourReminderAlarm">
 		    <intent-filter>
-        		<action android:name="edu.rit.se.se561.trafficanalysis.remindRace"></action>
+        		<action android:name="edu.rit.se.trafficanalysis.remindRace"></action>
     		</intent-filter>
 		</receiver>
 		<receiver  android:exported="false" android:name="edu.rit.se.trafficanalysis.reminders.TourFinishReminderAlarm">
 		    <intent-filter>
-        		<action android:name="edu.rit.se.se561.trafficanalysis.raceEndingAlarm"></action>
+        		<action android:name="edu.rit.se.trafficanalysis.raceEndingAlarm"></action>
     		</intent-filter>
 		</receiver>
 		<receiver  android:exported="false" android:name="edu.rit.se.trafficanalysis.tracking.LocationDeliverAlarm">
 		    <intent-filter>
-        		<action android:name="edu.rit.se.se561.trafficanalysis.deliverLocationUpdate"></action>
+        		<action android:name="edu.rit.se.trafficanalysis.deliverLocationUpdate"></action>
     		</intent-filter>
 		</receiver>
     </application>

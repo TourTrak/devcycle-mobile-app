@@ -51,75 +51,50 @@ public final class R {
         public static final int tourReminderNotifDelayMs=0x7f04000a;
     }
     public static final class string {
-        public static final int app_name=0x7f05001d;
-        public static final int battery_notification_message=0x7f050018;
+        public static final int app_name=0x7f050015;
+        public static final int battery_notification_message=0x7f050010;
         /**  Shown if tracking is stopped because it reached minimum battery level. 
          */
-        public static final int battery_notification_title=0x7f050017;
+        public static final int battery_notification_title=0x7f05000f;
         /**  Google Cloud Messaging Sender ID (from Developer API Console)  741343817629
          */
-        public static final int defaultConfigGcmSenderId=0x7f050006;
-        /**  All values are strings in order to be able to store times in ms. 
- A unique persistent ID for the tour. These should not be reused across tours. 
-         */
-        public static final int defaultConfigRaceId=0x7f050000;
-        /**  Maximum time from the start time to track users. (ms) 
-         */
-        public static final int defaultConfigRaceMaxTime=0x7f050008;
-        /**  The name of the tour. 
-         */
-        public static final int defaultConfigRaceName=0x7f050001;
-        /**  Tour Start Time (ms since epoch) 
-         */
-        public static final int defaultConfigRaceStartTime=0x7f050007;
-        /**  DCS base installation path without trailing slash. 
-         */
-        public static final int defaultConfigServerUrl=0x7f050005;
-        /**  Logo to show while tracking. 
-         */
-        public static final int defaultConfigTourLogo=0x7f050004;
-        /**  Official Organizer/Sponsor of the tour. 
-         */
-        public static final int defaultConfigTourOwner=0x7f050002;
-        /**  Url to open if they click the tour logo. 
-         */
-        public static final int defaultConfigTourUrl=0x7f050003;
-        public static final int no_location_notification_message=0x7f05000d;
+        public static final int defaultConfigGcmSenderId=0x7f050000;
+        public static final int no_location_notification_message=0x7f050005;
         /**  Shown if the user does not have either the GPS or network location services enabled. 
          */
-        public static final int no_location_notification_title=0x7f05000c;
-        public static final int no_network_notification_message=0x7f050016;
+        public static final int no_location_notification_title=0x7f050004;
+        public static final int no_network_notification_message=0x7f05000e;
         /**  Shown when tracking is in progress but there is no data connection. 
          */
-        public static final int no_network_notification_title=0x7f050015;
-        public static final int notification_tour_cancelled_message=0x7f05001c;
+        public static final int no_network_notification_title=0x7f05000d;
+        public static final int notification_tour_cancelled_message=0x7f050014;
         /**  Shown when tour has been cancelled 
          */
-        public static final int notification_tour_cancelled_title=0x7f05001b;
-        public static final int notification_updated_times_message=0x7f05000b;
+        public static final int notification_tour_cancelled_title=0x7f050013;
+        public static final int notification_updated_times_message=0x7f050003;
         /**  Shown when the race times have changed and user needs to set their start time. 
          */
-        public static final int notification_updated_times_title=0x7f05000a;
+        public static final int notification_updated_times_title=0x7f050002;
         /**  Title for custom messages from the server. 
          */
-        public static final int push_message_title=0x7f050009;
-        public static final int race_finish_reminder_message=0x7f05001a;
+        public static final int push_message_title=0x7f050001;
+        public static final int race_finish_reminder_message=0x7f050012;
         /**  Shown partway through the tour (configurable in config.xml). 
          */
-        public static final int race_finish_reminder_title=0x7f050019;
-        public static final int race_ongoing_notification_message=0x7f050014;
+        public static final int race_finish_reminder_title=0x7f050011;
+        public static final int race_ongoing_notification_message=0x7f05000c;
         /**  Shown when the race is occuring but the user has not started tracking yet. 
          */
-        public static final int race_ongoing_notification_title=0x7f050013;
-        public static final int race_reminder_notification__gps_message=0x7f05000f;
-        public static final int race_reminder_notification_message=0x7f050010;
+        public static final int race_ongoing_notification_title=0x7f05000b;
+        public static final int race_reminder_notification__gps_message=0x7f050007;
+        public static final int race_reminder_notification_message=0x7f050008;
         /**  Shown a predetermined amount of time before the start of the tour. 
          */
-        public static final int race_reminder_notification_title=0x7f05000e;
-        public static final int race_tracking_notification_message=0x7f050012;
+        public static final int race_reminder_notification_title=0x7f050006;
+        public static final int race_tracking_notification_message=0x7f05000a;
         /**  Shown when the user is being tracked. 
          */
-        public static final int race_tracking_notification_title=0x7f050011;
+        public static final int race_tracking_notification_title=0x7f050009;
     }
     public static final class xml {
         public static final int config=0x7f030000;

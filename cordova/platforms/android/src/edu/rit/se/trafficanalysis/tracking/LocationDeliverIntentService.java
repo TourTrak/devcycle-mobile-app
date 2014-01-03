@@ -36,14 +36,11 @@ public class LocationDeliverIntentService extends WakefulIntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		try {
-
 			deliverLocations();
-
 		} finally {
 			resetDeliveryAlarm();
 			super.onHandleIntent(intent);
 		}
-
 	}
 
 	/**
@@ -55,6 +52,7 @@ public class LocationDeliverIntentService extends WakefulIntentService {
 	private void deliverLocations() {
 
 		if (!Util.isNetworkConnected(this)) {
+			Log.d(TAG, "Network not connected");
 			return;
 		}
 
@@ -108,6 +106,7 @@ public class LocationDeliverIntentService extends WakefulIntentService {
 				&& db.getLocations(
 						getResources().getInteger(
 								R.integer.locationDeliveryBatchSize)).size() > 0) {
+			
 			LocationDeliverAlarm.setAlarm(this,
 					TimingController.getLocationDeliveryDelay(this));
 		}

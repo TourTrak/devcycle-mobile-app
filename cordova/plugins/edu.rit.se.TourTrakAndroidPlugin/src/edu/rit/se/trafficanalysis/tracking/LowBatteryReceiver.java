@@ -10,7 +10,7 @@ public class LowBatteryReceiver extends BroadcastReceiver {
 
 	private final static String TAG = LowBatteryReceiver.class
 			.getSimpleName();
-	public static final String ACTION_BATTERY_WATCHDOG_BASELINE = "edu.rit.se.se561.trafficanalysis.batteryWatchdog";
+	public static final String ACTION_BATTERY_WATCHDOG_BASELINE = "edu.rit.se.trafficanalysis.batteryWatchdog";
 
 	@Override
 	public void onReceive(Context context, Intent i) {

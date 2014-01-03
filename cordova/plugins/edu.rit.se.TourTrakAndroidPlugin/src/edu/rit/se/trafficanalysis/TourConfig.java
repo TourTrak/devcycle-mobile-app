@@ -18,10 +18,6 @@ public class TourConfig {
 	 * Global tour values
 	 */
 	public static final String KEY_TOUR_ID = "TourId";
-	public static final String KEY_TOUR_NAME = "TourName";
-	public static final String KEY_TOUR_OWNER = "TourOwner";
-	public static final String KEY_TOUR_LOGO = "TourLogo";
-	public static final String KEY_TOUR_URL = "TourUrl";
 	public static final String KEY_TOUR_SERVER_URL = "ServerUrl";
 	public static final String KEY_TOUR_GCM_SENDER_ID = "GcmSenderId";
 	public static final String KEY_TOUR_START_TIME = "TourDate";
@@ -119,12 +115,6 @@ public class TourConfig {
 			editor.putString(KEY_TOUR_GCM_SENDER_ID, tour.gcm_sender_id);
 		}
 		
-		// Fields that can be changed anytime.
-		editor.putString(KEY_TOUR_NAME, tour.tour_name);
-		editor.putString(KEY_TOUR_OWNER, tour.tour_organization);
-		editor.putString(KEY_TOUR_LOGO, tour.tour_logo);
-		editor.putString(KEY_TOUR_URL, tour.tour_url);
-		
 		// We can't change these during the tour, but we can do it before/after.
 		boolean allowTimeUpdate = !isTourConfigured() || !isCurrentTour || !isTourStarted() || isTourOver();
 		if (allowTimeUpdate) {
@@ -150,43 +140,6 @@ public class TourConfig {
 	 */
 	public String getTourId() {
 		return mSharedPrefs.getString(KEY_TOUR_ID, "*");
-	}
-
-	/**
-	 * The human readable name of the tour.
-	 * 
-	 * @return
-	 */
-	public String getTourName() {
-		return mSharedPrefs.getString(KEY_TOUR_NAME, "*");
-	}
-
-	/**
-	 * The organization sponsoring/organizing the tour.
-	 * 
-	 * @return
-	 */
-	public String getTourOwner() {
-		return mSharedPrefs.getString(KEY_TOUR_OWNER, "*");
-	}
-
-	/**
-	 * The tour logo url.
-	 * 
-	 * @return
-	 */
-	public String getTourLogo() {
-		return mSharedPrefs.getString(KEY_TOUR_LOGO, null);
-	}
-
-	/**
-	 * The tour URL. This is a user visible URL that has tour information.
-	 * Alternatively, this can be a sponsor/organizer URL.
-	 * 
-	 * @return
-	 */
-	public String getTourUrl() {
-		return mSharedPrefs.getString(KEY_TOUR_URL, null);
 	}
 	
 	/**
@@ -244,10 +197,6 @@ public class TourConfig {
 	 * The rider id provided by the DCS.
 	 */
 	public String getRiderId() {
-		//Begin Ian's Hardcoding time.
-//		return HARDCODED_RIDER_ID;
-		//End Ian's Hardcoding time.
-		
 		return mSharedPrefs.getString(KEY_RIDER_ID, null);
 	}
 
@@ -384,10 +333,6 @@ public class TourConfig {
 	 */
 	public static class TourConfigData {
 		public String tour_id;
-		public String tour_name;
-		public String tour_url;
-		public String tour_logo;
-		public String tour_organization;
 		public String dcs_url;
 		public String gcm_sender_id;
 		public long start_time;

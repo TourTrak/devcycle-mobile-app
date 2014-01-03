@@ -16,7 +16,7 @@ public class LocationRequestAlarm extends BroadcastReceiver {
 	private final static String TAG = LocationRequestAlarm.class
 			.getSimpleName();
 	
-	public static final String REQUEST_LOCATION_UPDATE_ACTION = "edu.rit.se.se561.trafficanalysis.requestLocationUpdate";
+	public static final String REQUEST_LOCATION_UPDATE_ACTION = "edu.rit.se.trafficanalysis.requestLocationUpdate";
 	
 	/**
 	 * Set an alarm that signifies when to request a

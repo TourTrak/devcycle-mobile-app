@@ -18,7 +18,7 @@ import android.content.Intent;
  */
 public class TourFinishReminderAlarm extends BroadcastReceiver {
 
-	private static final String RACE_FINISH_ACTION = "edu.rit.se.se561.trafficanalysis.raceEndingAlarm";
+	private static final String RACE_FINISH_ACTION = "edu.rit.se.trafficanalysis.raceEndingAlarm";
 
 	/**
 	 * Schedules an alarm at specified percentage of the time between when the

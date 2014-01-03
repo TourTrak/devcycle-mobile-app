@@ -23,7 +23,7 @@ public class LocationDeliverAlarm extends BroadcastReceiver {
 	 * 
 	 * @param context Application context.
 	 */
-	public static final String DELIVER_LOCATION_UPDATE_ACTION = "edu.rit.se.se561.trafficanalysis.deliverLocationUpdate";
+	public static final String DELIVER_LOCATION_UPDATE_ACTION = "edu.rit.se.trafficanalysis.deliverLocationUpdate";
 
 	public static void setAlarm(Context context, long delay) {
 		AlarmUtil.setAlarm(context, DELIVER_LOCATION_UPDATE_ACTION,

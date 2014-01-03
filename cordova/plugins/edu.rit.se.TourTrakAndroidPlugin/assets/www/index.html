@@ -38,26 +38,55 @@
                 <p class="event received">Device is Ready</p>
             </div>
         </div>
+        
+        <div class="testing-field">
+        	  <button style="height: 100px; width: 100%" onclick="pauseTracking()">Pause Tracking</button>
+           	  <button style="height: 100px; width: 100%" onclick="resumeTracking()">Resume Tracking</button>
+        </div>
+        
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-        
+             
         function success(message){
         	alert("YAY " + message);
         }
         function failure(message){
         	alert("ERROR: " + message);
         }
-        function echo(msg){
-        	cordova.exec(success, failure, "CDVInterface", "echo", [{"message": msg}]);
-        	cordova.exec(success, failure, "CDVInterface", "start", []);
+        
+        function pauseTracking(){
+        	cordova.exec(success, failure, "CDVInterface", "pauseTracking", []);
+        }
+        
+        function resumeTracking(){
+        	cordova.exec(success, failure, "CDVInterface", "resumeTracking", []);
+        }
+        
+        function testApp(msg){
+          
+	        // JSON tourConfig object
+	        var tourConfig = {
+	        	"dcsUrl": "http://devcycle.se.rit.edu",
+	        	"startTime": 1386525600,
+	        	"endTime": 1389114000,
+	        	"tourId": "toffer",
+	        	"riderId": "TcH4FR09ROSA4b42WJX6iw+ggkhJqTXDmlcBPiOpQ0k="
+	        };
+	        
+	        /* Test echo function */
+        	//cordova.exec(success, failure, "CDVInterface", "echo", [{"message": msg}]);
+        	
+        	/* Test start */
+        	cordova.exec(success, failure, "CDVInterface", "start", [tourConfig]);
         }
         
        document.addEventListener("deviceready", function() {
-   		 echo("Toffer")
+   		 testApp("Toffer")
 	   }, false)
         app.initialize();
         
         </script>
     </body>
+    
 </html>

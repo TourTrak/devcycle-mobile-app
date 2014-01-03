@@ -17,7 +17,7 @@ import android.location.LocationManager;
  * 
  */
 public class TourReminderAlarm extends BroadcastReceiver {
-	private static final String RACE_REMINDER_ACTION = "edu.rit.se.se561.trafficanalysis.remindRace";
+	private static final String RACE_REMINDER_ACTION = "edu.rit.se.trafficanalysis.remindRace";
 
 	/**
 	 * Schedules an alarm to send a notification to the participant that the

@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- All values are strings in order to be able to store times in ms. -->
-    <!-- A unique persistent ID for the tour. These should not be reused across tours. -->
-    <string name="defaultConfigRaceId">toffer</string>
-    <!-- The name of the tour. -->
-    <string name="defaultConfigRaceName">toffer</string>
-    <!-- Official Organizer/Sponsor of the tour. -->
-    <string name="defaultConfigTourOwner">toffer</string>
-    <!-- Url to open if they click the tour logo. -->
-    <string name="defaultConfigTourUrl">null</string>
-    <!-- Logo to show while tracking. -->
-    <string name="defaultConfigTourLogo">http://www.google.com/</string>
-    <!-- DCS base installation path without trailing slash. -->
-    <string name="defaultConfigServerUrl">http://devcycle.se.rit.edu/</string>
     <!-- Google Cloud Messaging Sender ID (from Developer API Console)  741343817629-->
     <string name="defaultConfigGcmSenderId">"741343817629"</string>
-    <!-- Tour Start Time (ms since epoch) --> 
-    <string name="defaultConfigRaceStartTime">1386525274000</string>
-    <!-- Maximum time from the start time to track users. (ms) -->
-    <string name="defaultConfigRaceMaxTime">86400000</string>
 </resources>

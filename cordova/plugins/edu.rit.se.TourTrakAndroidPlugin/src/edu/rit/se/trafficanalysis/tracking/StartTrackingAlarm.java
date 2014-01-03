@@ -16,7 +16,7 @@ import android.util.Log;
 public class StartTrackingAlarm extends BroadcastReceiver {
 	
 	private final static String TAG = StartTrackingAlarm.class.getSimpleName();
-	private static final String START_TRACKING_ACTION = "edu.rit.se.se561.trafficanalysis.startTracking";
+	private static final String START_TRACKING_ACTION = "edu.rit.se.trafficanalysis.startTracking";
 	
 	/**
 	 * Set an alarm that signals when to start

@@ -15,36 +15,27 @@ Ext.define('DevCycleMobile.controller.Home', {
 		}
 	},
 
-	startTracking: function(){
+	startTracking: function(rider_id){
 
-		if (Ext.os.is.iOS) {
-			cordova.exec(
-				function() {
-					alert("success");
-				},
-				function(message){
-					alert("Error: " + message);
-				},
-				'CDVInterface',
-				'startUpdatingLocation',
+	//	alert("start tracking called with rider id: " + rider_id);
 
-				// JSON object w/ arguments passed into
-				// the plugin
-				[]
-			);
-		} else {
-			cordova.exec(
-				function() {
-					alert("success");
-				},
-				function(message){
-					alert("Error: " + message);
-				},
-				'CDVInterface',
-				'start',
-				[]
-			);
-		} 
+		cordova.exec(
+			function() {
+				// do nothing success
+			},
+			function(message) {
+				alert( "Error: " + message );
+			},
+			'CDVInterface',
+			'start',
+			[{
+        		"dcsUrl": "http://devcycle.se.rit.edu",
+        		"startTime": 1386525600,
+        		"endTime": 1389114000,
+        		"tourId": "toffer", 
+        		"riderId": rider_id
+       		 }]
+		);
 	},
 
 	/**
@@ -52,11 +43,11 @@ Ext.define('DevCycleMobile.controller.Home', {
 	* @private
 	**/
 	registerRider: function(){
+
 		var riderInfo = Ext.getStore("RiderInfo");
 		riderInfo.load();
 
 		console.log(riderInfo.getCount());
-		this.startTracking();
 
 		// If we haven't registered yet, get rider id from server
 		if(riderInfo.getCount() == 0){
@@ -65,42 +56,26 @@ Ext.define('DevCycleMobile.controller.Home', {
 			Ext.Ajax.request({
 				url: 'http://devcycle.se.rit.edu/register/',
 				method: 'POST',
+				scope: this, // set scope of ajax call to this
 				params: {
 					os: "tofferOS",
 					device: "tofferDevice",
 					tourId: "toffer"
 				},
 				success: function(response){
-					console.log(response);
+
 					var decodedResponse = Ext.JSON.decode(response.responseText);
 					rider_id = decodedResponse.rider_id;
 					var newRider = new DevCycleMobile.model.Rider({
 						riderId: rider_id
 					});
-					alert("adding rider " + rider_id)
-
-					Ext.Ajax.request({
-						url: 'http://devcycle.se.rit.edu/location_update/',
-						method: 'POST',
-						params: {
-							riderId: rider_id,
-							locations: "",
-							battery: "0.5"
-						},
-						success: function(response){
-							console.log(response);
-							alert(success);
-						},
-						failure: function(response){
-							console.log(response);
-							alert("Sending Failure");
-							return;
-						}
-					});
 
 					// Save the rider info (id)
 					riderInfo.add(newRider);
 					riderInfo.sync();
+
+					// start tracking
+					this.startTracking(rider_id);
 				},
 				failure: function(response){
 					console.log(response);
@@ -108,6 +83,9 @@ Ext.define('DevCycleMobile.controller.Home', {
 					return;
 				}
 			});
+		} else {
+			// already registered so no need to re-register.
+			this.startTracking(riderInfo.getAt(0).data.riderId);
 		}
 	},
 
