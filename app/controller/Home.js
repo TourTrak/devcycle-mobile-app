@@ -121,6 +121,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		component.setActiveItem(1); 
 
 		this.registerRider();
+        
 	},
 
 	// Base Class functions

@@ -35,5 +35,12 @@ module.exports = [
             "window.CDVAndroidInterface"
         ]
     }
-]
+];
+module.exports.metadata = 
+// TOP OF METADATA
+{
+    "org.apache.cordova.geolocation": "0.3.4",
+    "edu.rit.se.TourTrakAndroidPlugin": "0.1.0"
+}
+// BOTTOM OF METADATA
 });
