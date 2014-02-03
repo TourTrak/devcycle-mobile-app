@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Google Cloud Messaging Sender ID (from Developer API Console)  741343817629-->
-    <string name="defaultConfigGcmSenderId">"741343817629"</string>
-</resources>
