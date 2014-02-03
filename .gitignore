@@ -3,7 +3,7 @@ archive/
 build/
 
 # sass cache folder
-resources/sass/.sass-cach
+resources/sass/.sass-cache
 
 # Cordova
 cordova/
