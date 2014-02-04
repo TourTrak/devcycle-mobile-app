@@ -27,6 +27,9 @@
         },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
+        },
+        {
+            "path": "cordova/plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js"
         }
     ],
 

@@ -57,6 +57,7 @@ Ext.application({
     },
 
     launch: function() {
+        console.log(this);
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
@@ -68,6 +69,34 @@ Ext.application({
         if (Ext.os.is.iOS && Ext.os.version.major >= 7) {
             Ext.select(".x-toolbar").applyStyles("height: 62px; padding-top: 15px;");
         }
+
+        if (Ext.os.is('Android')) {
+            // Hardware Back Button Listener
+            document.addEventListener("backbutton", Ext.bind(this.onBackKeyDown, this), false);
+        }
+
+        // Janky - must do this or the exit notification title may not fit properly.
+        // Sencha bug?
+        Ext.Msg.add({ maxHeight: 100 });
+        Ext.Msg.doLayout();
+    },
+
+    /** 
+    * Captures the back key press on Android.
+    * Doing this from home screen of app will kill the activity.
+    **/
+    onBackKeyDown: function (e) {
+    
+        Ext.Msg.confirm(
+            "Confirmation",
+            "Are you sure you want to exit? This will stop all tracking. Consider pressing the home button instead.",
+            function(buttonId) {
+                if (buttonId === 'yes') {
+                    navigator.app.exitApp(); 
+                }
+            }
+        );
+        e.preventDefault();
     },
 
     onUpdated: function() {
@@ -76,9 +105,75 @@ Ext.application({
             "This application has just successfully been updated to the latest version. Reload now?",
             function(buttonId) {
                 if (buttonId === 'yes') {
+                    pushNotification.unregister(successHandler, errorHandler);
                     window.location.reload();
                 }
             }
         );
-    }
+    },
+
+    // Android Push Notification Handler 
+    onNotificationGCM: function(e){
+    
+        switch ( e.event ) {
+            case 'registered':
+                if (e.regid.length > 0) {
+
+                    // make sure rider is registered
+                    var riderInfo = Ext.getStore("RiderInfo");
+                    riderInfo.load();
+
+                    if(riderInfo.getCount() > 0){
+
+                        try {
+                            // register push notification to GCM server
+                            Ext.Ajax.request({
+                                url: 'http://devcycle.se.rit.edu/register_push/',
+                                method: 'POST',
+                                scope: this, // set scope of ajax call to this
+                                params: {
+                                    rider_id: riderInfo.getAt(0).data.riderId,
+                                    push_id: e.regid
+                                },
+                                success: function(response){
+                                    // TODO
+                                },
+                                failure: function(response){
+                                    // TODO
+                                }
+                            });
+                        } catch (error){
+                            // TODO
+                        }
+                    }
+                }
+            break;
+
+            case 'message':
+                // notification happened while in foreground
+                if ( e.foreground ) {
+                    // play noise? TODO
+                   
+                } else {
+                    // launched from touching notification in tray
+                    if ( e.coldstart ){
+                        // TODO
+                    }
+                }
+
+                // Janky - must do this or first notification the title doesn't fit.
+                // Sencha bug?
+                Ext.Msg.add({ maxHeight: 100 });
+                Ext.Msg.alert('Message', e.payload.message, Ext.emptyFn).doLayout();
+            break;
+
+            case 'error':
+                // log or something!
+            break;
+
+            default:
+                alert("Unknown event");
+            break;
+        }
+    },
 });
