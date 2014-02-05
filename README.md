@@ -21,7 +21,7 @@ The totally rad HTML5 'native' application built using Sencha Touch and Cordova 
 
 ###Set up
 1. Ensure you meet all the dependencies above in the Dependencies Required for Contributing.
-2. Clone this repository.
+2. Clone this repository and move into this folder.
 3. Run the command `sencha cordova init edu.rit.se.tourtrak TourTrak`
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
 4. Go into your cordova folder
