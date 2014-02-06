@@ -1,9 +1,9 @@
+
 Ext.define('DevCycleMobile.view.map.LeafletMap', {
 
 	extend: 'Ext.Container',
 	xtype: 'leafletMap',
  	requires: ['Ext.util.Geolocation'],
-	
 	constructor: function() {
 		this.callParent(arguments);
 		this.element.setVisibilityMode(Ext.Element.OFFSETS);
