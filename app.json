@@ -11,6 +11,10 @@
     "url": null,
 
     "js": [
+		{
+			"path": "cordova.js",
+			"remote": true
+		},
         {
             "path": "resources/js/sencha-touch.js",
             "x-bootstrap": true
@@ -31,7 +35,7 @@
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
         },
         {
-            "path": "cordova/plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js"
+            "path": "third_party_libraries/PushNotification.js"
         }
     ],
 
@@ -74,6 +78,7 @@
     },
 
     "resources": [
+		"config.xml",
         "resources/images",
         "resources/icons",
         "resources/startup",
