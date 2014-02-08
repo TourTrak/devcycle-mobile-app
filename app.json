@@ -1,14 +1,16 @@
 {
-    
+    /**
+     * The application's namespace, used by Sencha Command to generate classes
+     */
     "name": "DevCycleMobile",
+
+    /**
+     * The file path to this application's front HTML document, relative to this app.json file
+     */
     "indexHtmlPath": "index.html",
     "url": null,
 
     "js": [
-		{
-			"path": "cordova.js",
-			"remote": true
-		},
         {
             "path": "resources/js/sencha-touch.js",
             "x-bootstrap": true
@@ -27,6 +29,9 @@
         },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
+        },
+        {
+            "path": "cordova/plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js"
         }
     ],
 
@@ -69,7 +74,6 @@
     },
 
     "resources": [
-		"config.xml",
         "resources/images",
         "resources/icons",
         "resources/startup",
@@ -82,6 +86,10 @@
     "requires": [
     ],
 
+    /**
+     * Uniquely generated id for this application, used as prefix for localStorage keys.
+     * Normally you should never change this value.
+     */
     "id": "42ea6f30-26e6-441a-af9a-cfc8682251c2"
 }
 

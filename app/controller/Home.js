@@ -10,8 +10,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 	config: {
 		control: {
 			'#home':{
-				initialize: 'onTabpanelInitialize'
-			}
+				initialize: 'onTabpanelInitialize',
+			},
 		}
 	},
 
@@ -66,7 +66,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 				params: {
 					os: Ext.os.name + " " + Ext.os.version,
 					device: Ext.os.name,
-					tourId: "toffer"
+					tourId: "sussex"
 				},
 				success: function(response){
 
@@ -82,6 +82,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 					// start tracking
 					this.startTracking(rider_id);
+					this.registerPushNotification(rider_id);
 				},
 				failure: function(response){
 					console.log(response);
@@ -90,8 +91,38 @@ Ext.define('DevCycleMobile.controller.Home', {
 				}
 			});
 		} else {
-			// already registered so no need to re-register.
+			// already registered so no need to re-register
 			this.startTracking(riderInfo.getAt(0).data.riderId);
+
+			// Good idea to update the push notification ID; however, as GCM can change this at any time.
+			this.registerPushNotification(riderInfo.getAt(0).data.riderId);
+		}
+	},
+
+	/**
+	* Register for push notifications 
+	* @private
+	**/
+	registerPushNotification: function(riderId) {
+		var pushNotification;
+
+		var successHandler = function() {
+			// success!
+			// TODO
+		};
+
+		var failureHandler = function(msg) {
+			// failure!
+			// TODO
+		};
+
+		try {
+			pushNotification = window.plugins.pushNotification;
+			if(device.platform == 'android' || device.platform == 'Android') {
+				pushNotification.register(successHandler, failureHandler, {"senderID": "741343817629", "ecb":"DevCycleMobile.app.onNotificationGCM"});
+			}
+		} catch(err) {
+			alert(err.message);
 		}
 	},
 
@@ -120,7 +151,12 @@ Ext.define('DevCycleMobile.controller.Home', {
 		// Set active item to the map view
 		component.setActiveItem(1); 
 
-		this.registerRider();
+		try{
+			this.registerRider();
+		} catch (error) {
+			alert("Registration failed!");
+			alert(error.message);
+		}
         
 	},
 
