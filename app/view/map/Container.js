@@ -32,8 +32,22 @@ Ext.define('DevCycleMobile.view.map.Container', {
                 text: 'Resume Tracking',
                 id: 'btnResume',
                 handler: function() {
-                    Ext.get('btnPause').setVisible(true);
-                    Ext.get('btnResume').setVisible(false);
+                    // call resumeTracking on the cordova abstraction layer
+                    cordova.exec(
+                        function() {
+                            // do nothing on success
+                        },
+                        function(message) {
+                            alert( "Error: " + message );
+                        },
+                        'CDVInterface',
+                        'resumeTracking',
+                        []
+                    );
+                    // show pause button
+                    Ext.get('btnPause').show();
+                    // hide this button
+                    Ext.get('btnResume').hide();
                 }
             },
             {
@@ -44,8 +58,22 @@ Ext.define('DevCycleMobile.view.map.Container', {
                 text: 'Pause Tracking',
                 id: 'btnPause',
                 handler: function() {
-                    Ext.get('btnResume').setVisible(true);
-                    Ext.get('btnPause').setVisible(false);
+                    // call pauseTracking on the cordova abstraction layer
+                    cordova.exec(
+                        function() {
+                            // do nothing on success
+                        },
+                        function(message) {
+                            alert( "Error: " + message );
+                        },
+                        'CDVInterface',
+                        'pauseTracking',
+                        []
+                    );
+                    // show resume button
+                    Ext.get('btnResume').show();
+                    //hide this button
+                    Ext.get('btnPause').hide();
                 }
             }
             
