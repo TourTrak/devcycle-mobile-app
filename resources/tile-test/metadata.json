@@ -1,0 +1,9 @@
+{
+    "description": "", 
+    "bounds": "-80.6451,40.4637,-71.8781,45.0347", 
+    "minzoom": "0", 
+    "version": "1.0.0", 
+    "template": "", 
+    "maxzoom": "12", 
+    "name": "bikeny-tour"
+}

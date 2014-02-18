@@ -156,7 +156,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		} catch (error) {
 			alert("Registration failed!");
 			alert(error.message);
-		}
+		} 
         
 	},
 

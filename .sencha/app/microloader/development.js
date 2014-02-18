@@ -162,7 +162,7 @@
             }
             if(!Ext.theme.name) {
                 Ext.theme.name = theme || 'Default';
-            }
+            } 
         }
 
         write('<link rel="stylesheet" href="'+path+'">');

@@ -1,0 +1,11 @@
+{
+    "attribution": "Data \u00a9 OpenStreetMap (and) contributors, CC-BY-SA", 
+    "description": "", 
+    "bounds": "-77.7099,43.0587,-77.5495,43.1711", 
+    "name": "RIT-Area", 
+    "minzoom": "0", 
+    "version": "1.0.0", 
+    "template": "", 
+    "maxzoom": "17", 
+    "center": "-77.6798,43.0839,17"
+}

@@ -20,7 +20,6 @@ Ext.application({
     views: [
         'Home',
         'map.Container',
-        'map.LeafletMap',
         'faq.Container',
         'tourguide.Container'
     ],
@@ -31,11 +30,13 @@ Ext.application({
     ],
 
     models: [
-        'Rider'
+        'Rider',
+        'MapData'
     ],
 
     stores: [
-        'RiderInfo'
+        'RiderInfo',
+        'MapInfo'
     ],
 
     icon: {
@@ -57,9 +58,12 @@ Ext.application({
     },
 
     launch: function() {
-        console.log(this);
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
+
+        // Read in the map metadata information
+        var mapInfo = Ext.getStore("MapInfo");
+        mapInfo.load();
 
         // Initialize the main view
         var homeView = Ext.create('DevCycleMobile.view.Home');

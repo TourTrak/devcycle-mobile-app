@@ -1,3 +1,10 @@
+Ext.Loader.setConfig({  
+    enabled:true,   
+    paths:{'Ext.ux.touch':'touch/src'}}
+);
+
+Ext.require(['Ext.Leaflet']);
+
 /**
 * Defines the custom map container component for holding
 * everything necessary in the map tab view. 
@@ -5,6 +12,7 @@
 Ext.define('DevCycleMobile.view.map.Container', {
 	extend: 'Ext.Container',
 	xtype: 'mapContainer',
+    id: 'mapContainer',
 
 
 	config: {
@@ -17,11 +25,12 @@ Ext.define('DevCycleMobile.view.map.Container', {
 				xtype: 'toolbar',
 				docked: 'top',
 				id: 'mapTitleBar',
-				title: 'Mile 12 of 40',
+				title: 'Tour Trak',
 				cls: 'my-toolbar'
 			},
 			{
-                xtype: 'leafletMap'
+                xtype: 'leaflet',
+                useCurrentLocation: true
 			},
             {
                 xtype: 'button',

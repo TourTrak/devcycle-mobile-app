@@ -21,7 +21,9 @@ Ext.Loader.addClassPathMappings({
 Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+  "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.store.MapInfo": [],
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.faq.Container": [],
@@ -55,6 +57,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.Img": [],
   "Ext.ItemCollection": [],
   "Ext.Label": [],
+  "Ext.Leaflet": [],
   "Ext.LoadMask": [],
   "Ext.Map": [],
   "Ext.Mask": [],
@@ -651,7 +654,9 @@ Ext.ClassManager.addNameAlternateMappings({
 Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+  "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.store.MapInfo": [],
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.view.Home": [
     "widget.home"
@@ -703,6 +708,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ItemCollection": [],
   "Ext.Label": [
     "widget.label"
+  ],
+  "Ext.Leaflet": [
+    "widget.leaflet"
   ],
   "Ext.LoadMask": [
     "widget.loadmask"

@@ -4,47 +4,50 @@ Ext.define('DevCycleMobile.view.map.LeafletMap', {
 	extend: 'Ext.Container',
 	xtype: 'leafletMap',
  	requires: ['Ext.util.Geolocation'],
+
 	constructor: function() {
 		this.callParent(arguments);
 		this.element.setVisibilityMode(Ext.Element.OFFSETS);
 		window.currPosMarker = null;
-		this.on('painted', this.renderMap, this);
-	
+		this.on('painted', this.setup, this);
 	},
-	
-	renderMap: function() {
-		if(window.map){
-			return true;
-		}
-		
-		window.map = new L.Map(this.element.dom, {
-			zoomControl: true,
-			trackResize: false
-		});
-		
-		var cloudmade = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-            maxZoom: 18
-        });
-	
-		window.map.addLayer(cloudmade); //.setView(new L.LatLng(37.381592, -122.135672), 10);
-		window.map.locate({setView: true, maxZoom: 16});
-		
-		window.map.on('locationfound', this.onLocationFound);
 
-		if(!Ext.browser.is.PhoneGap){
-			window.map.on('locationfound',this.onLocationFound);
-		} else{ 
-			this.fireEvent('update',this);
-		}
+	setup: function(){
+	
+		alert("Launch");
 
-		
-	/*	if(Ext.browser.is.PhoneGap) {
-			navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
-		} else { */
-			//html5
-		//	window.map.on('locationfound', this.onLocationFound);
-	//	}
+		locationSuccess = function(position){
+			alert("Success");
+
+			if (window.map){
+				return true;
+			}
+
+			window.map = new L.Map(this.element.dom, {
+				zoomControl: true,
+			});
+
+			var customTiles = new L.TileLayer('resources/map_tiles/{z}/{x}/{y}.png', {
+	        	attribution: 'Map data: OpenStreetMap',
+	        	maxZoom: 17,
+	        	errorTileUrl: 'resources/images/error_tile.png'
+        	});
+
+			window.map.addLayer(customTiles);
+			window.map.setView(new L.LatLng(position.coords.latitude, position.coords.longitude),17);
+
+			window.map.locate({setView: true, maxZoom: 16});
+
+			window.map.on('locationfound', this.onLocationFound);
+			this.fireEvent('update', this);
+		};
+
+		locationFail = function(error){
+			alert(error.message);
+		};
+
+		navigator.geolocation.getCurrentPosition(locationSuccess, locationFail);
+
 	},
 
 	onUpdate: function (map, e, options) {

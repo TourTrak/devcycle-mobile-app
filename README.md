@@ -14,10 +14,11 @@ The totally rad HTML5 'native' application built using Sencha Touch and Cordova 
 * iOS SDK (if building native iOS)
 
 ###Required Cordova Plugins
-* Cordova device plugin (https://github.com/apache/cordova-plugin-device.git)
+* Cordova Device Plugin (https://github.com/apache/cordova-plugin-device.git)
 * Cordova Push Notification Plugin for Android and iOS (https://github.com/phonegap-build/PushPlugin)
 * The TourTrak iOS cordova plugin (https://github.com/cck9672/geolocation-ios-noapp.git)
 * The TourTrak Android cordova plugin (https://github.com/tofferrosen/tourtrak-android-plugin.git)
+* Cordova Geolocation Plugin (https://github.com/apache/cordova-plugin-geolocation.git)
 
 ###Set up
 1. Ensure you meet all the dependencies above in the Dependencies Required for Contributing.
