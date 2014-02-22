@@ -23,8 +23,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Map": [],
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.model.Tour": [],
   "DevCycleMobile.store.MapInfo": [],
   "DevCycleMobile.store.RiderInfo": [],
+  "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.faq.Container": [],
   "DevCycleMobile.view.map.Container": [],
@@ -656,8 +658,10 @@ Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.controller.Map": [],
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.model.Tour": [],
   "DevCycleMobile.store.MapInfo": [],
   "DevCycleMobile.store.RiderInfo": [],
+  "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],

@@ -84,7 +84,8 @@
         "resources/startup",
         "third_party_libraries/Awesome-markers/dist/images",
         "third_party_libraries/Leaflet/dist/images",
-        "resources/map_tiles"
+        "resources/map_tiles",
+        "config.json"
     ],
 
     "archivePath": "archive",

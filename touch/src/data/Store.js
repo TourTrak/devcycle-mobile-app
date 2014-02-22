@@ -441,6 +441,7 @@ Ext.define('Ext.data.Store', {
     },
 
     isStore: true,
+    isLoaded: false,
 
     config: {
         /**

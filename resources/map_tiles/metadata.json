@@ -1,11 +1,11 @@
 {
     "attribution": "Data \u00a9 OpenStreetMap (and) contributors, CC-BY-SA", 
     "description": "", 
-    "bounds": "-77.7099,43.0587,-77.5495,43.1711", 
-    "name": "RIT-Area", 
+    "bounds": "-74.0891,40.5932,-73.9202,40.7931", 
+    "name": "5-boro-bike-tour", 
     "minzoom": "0", 
     "version": "1.0.0", 
     "template": "", 
     "maxzoom": "17", 
-    "center": "-77.6798,43.0839,17"
+    "center": "-74.0156,40.7021,15"
 }

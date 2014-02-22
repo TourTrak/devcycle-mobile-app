@@ -1,7 +1,6 @@
 /**
 * Controller for the Home View (tab panel).
-* Initalizes with the correct tabs, with all
-* views properly initalized 
+* Initalizes with the correct tabs, with all views properly initalized 
 **/
 
 Ext.define('DevCycleMobile.controller.Home', {
@@ -23,11 +22,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 	**/
 	startTracking: function(rider_id){
 
-	//	alert("start tracking called with rider id: " + rider_id);
-
+		// Call the native plugins to begin tracking
 		cordova.exec(
 			function() {
-				// do nothing success
+				// do nothing: successful. 
 			},
 			function(message) {
 				alert( "Error: " + message );
@@ -35,38 +33,39 @@ Ext.define('DevCycleMobile.controller.Home', {
 			'CDVInterface',
 			'start',
 			[{
-        		"dcsUrl": "http://devcycle.se.rit.edu",
-        		"startTime": 1386525600,
-        		"endTime": 1389114000,
-        		"tourId": "toffer", 
-        		"riderId": rider_id
-       		 }]
-		);
+	    		"dcsUrl": this.tourInfo.data.dcs_url,
+	    		"startTime": this.tourInfo.data.start_tour_time,
+	    		"endTime": this.tourInfo.data.end_tour_time,
+	    		"tourId": this.tourInfo.data.tour_id, 
+	    		"riderId": rider_id
+	   		}]
+	    	);
 	},
 
 	/**
-	* If rider is not already registered, register him or her
+	* If rider is not already registered, register him or her.
+	*
+	* Note: registeration only works on mobile browsers due to AJAX calls; 
+	* not a priority fix.
 	* @private
 	**/
 	registerRider: function(){
 
-		var riderInfo = Ext.getStore("RiderInfo");
-		riderInfo.load();
-
-		console.log(riderInfo.getCount());
+		var self = this; // reference to myself
 
 		// If we haven't registered yet, get rider id from server
-		if(riderInfo.getCount() == 0){
+		if(this.riderInfo === undefined & Ext.browser.is.PhoneGap){ 
 			var rider_id = null;
-
-			Ext.Ajax.request({
-				url: 'http://devcycle.se.rit.edu/register/',
+    
+    		// Register rider
+    		Ext.Ajax.request({
+				url: self.tourInfo.data.dcs_url + '/register/',
 				method: 'POST',
 				scope: this, // set scope of ajax call to this
 				params: {
 					os: Ext.os.name + " " + Ext.os.version,
 					device: Ext.os.name,
-					tourId: "sussex"
+					tourId: self.tourInfo.data.tour_id
 				},
 				success: function(response){
 
@@ -77,12 +76,12 @@ Ext.define('DevCycleMobile.controller.Home', {
 					});
 
 					// Save the rider info (id)
-					riderInfo.add(newRider);
-					riderInfo.sync();
+					self.riderInfo.add(newRider);
+					self.riderInfo.sync();
 
 					// start tracking
-					this.startTracking(rider_id);
-					this.registerPushNotification(rider_id);
+					self.startTracking(rider_id);
+					self.registerPushNotification(rider_id);
 				},
 				failure: function(response){
 					console.log(response);
@@ -90,12 +89,20 @@ Ext.define('DevCycleMobile.controller.Home', {
 					return;
 				}
 			});
-		} else {
-			// already registered so no need to re-register
-			this.startTracking(riderInfo.getAt(0).data.riderId);
+	
 
-			// Good idea to update the push notification ID; however, as GCM can change this at any time.
-			this.registerPushNotification(riderInfo.getAt(0).data.riderId);
+		} else {
+
+			if (!Ext.browser.is.PhoneGap){
+
+			}
+			else{	
+				// already registered so no need to re-register
+				this.startTracking(this.riderInfo.data.riderId);
+
+				// Good idea to update the push notification ID; however, as GCM can change this at any time.
+				this.registerPushNotification(this.riderInfo.data.riderId);
+			}
 		}
 	},
 
@@ -150,13 +157,13 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		// Set active item to the map view
 		component.setActiveItem(1); 
-
+		
 		try{
 			this.registerRider();
 		} catch (error) {
 			alert("Registration failed!");
 			alert(error.message);
-		} 
+		}  
         
 	},
 
@@ -165,7 +172,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 		this.callParent(arguments);
 	},
 
+	// init and set variables.
 	init:function(){
 		this.callParent(arguments);
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+		this.riderInfo = Ext.getStore("RiderInfo").first(); // rider info
 	},
 });
