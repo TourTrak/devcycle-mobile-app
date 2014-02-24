@@ -4,6 +4,3 @@ build/
 
 # sass cache folder
 resources/sass/.sass-cache
-
-# Cordova
-cordova/
