@@ -9,6 +9,11 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
 */
+Ext.Loader.setPath({
+    'Ext': 'touch/src',
+    'MyApp': 'app',
+    'Ext.ux': './ux'
+});
 
 Ext.application({
     name: 'DevCycleMobile',

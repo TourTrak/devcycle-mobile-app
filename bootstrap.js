@@ -19,12 +19,16 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
+  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+  "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.store.Answer": [],
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.faq.Container": [],
+  "DevCycleMobile.view.faq.Question": [],
   "DevCycleMobile.view.map.Container": [],
   "DevCycleMobile.view.map.LeafletMap": [],
   "DevCycleMobile.view.tourguide.Container": [],
@@ -620,6 +624,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.translatable.CssTransform": [],
   "Ext.util.translatable.Dom": [],
   "Ext.util.translatable.ScrollPosition": [],
+  "Ext.ux.AccordionList": [
+    "Ext.AccordionList"
+  ],
+  "Ext.ux.AccordionListItem": [],
   "Ext.ux.ActionOverFlowMenuButton": [],
   "Ext.ux.ApplicationMenu": [],
   "Ext.ux.ContextMenu": [],
@@ -649,15 +657,21 @@ Ext.ClassManager.addNameAlternateMappings({
   ]
 });
 Ext.ClassManager.addNameAliasMappings({
+  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+  "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.Rider": [],
+  "DevCycleMobile.store.Answer": [],
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
   "DevCycleMobile.view.faq.Container": [
     "widget.faqContainer"
+  ],
+  "DevCycleMobile.view.faq.Question": [
+    "widget.examplelistitem"
   ],
   "DevCycleMobile.view.map.Container": [
     "widget.mapContainer"
@@ -1351,6 +1365,12 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.util.translatable.CssTransform": [],
   "Ext.util.translatable.Dom": [],
   "Ext.util.translatable.ScrollPosition": [],
+  "Ext.ux.AccordionList": [
+    "widget.accordionlist"
+  ],
+  "Ext.ux.AccordionListItem": [
+    "widget.accordionlistitem"
+  ],
   "Ext.ux.ActionOverFlowMenuButton": [],
   "Ext.ux.ApplicationMenu": [],
   "Ext.ux.ContextMenu": [],
