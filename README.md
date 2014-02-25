@@ -30,5 +30,10 @@ The totally rad HTML5 'native' application built using Sencha Touch and Cordova 
 6. Go back to the application folder and run `sencha app build native` to build the native applications.
 7. The native apps will be in the cordova/platform/{ios or android} folder. Run and enjoy!
 
+###Adding custom splashscreen for Android to app
+1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin.
+2. In the TourTrak.java file, insert the following line of code between super.OnCreate() and super.init():
+  super.setIntegerProperty("splashscreen", R.drawable.splash);
+
 ###Application Status
 Still in development; no stable versions yet.
