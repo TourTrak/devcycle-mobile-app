@@ -90,6 +90,7 @@ Ext.application({
         var riderInfo = Ext.getStore("RiderInfo"); // rider info
 
         var self = this; // reference to self
+        console.log(tourInfo);
 
         // load all the stores before proceeding 
         var handler = setInterval(function(){
@@ -99,12 +100,14 @@ Ext.application({
                 // cancel interval
                 clearInterval(handler);
                 handler = 0;
+                
+                console.log("all stores are loaded.. ");
+                console.log(tourInfo);
+                // init the main view and add it to view
+                var homeView = Ext.create('DevCycleMobile.view.Home'); 
+                Ext.Viewport.add(homeView);
            }
         }, 100);
-
-        // init the main view and add it to view
-        var homeView = Ext.create('DevCycleMobile.view.Home'); 
-        Ext.Viewport.add(homeView);
 
         // Adjust toolbar height when running in iOS to fit with new iOS 7 style
         if (Ext.os.is.iOS && Ext.os.version.major >= 7) {
