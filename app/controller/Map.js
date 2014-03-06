@@ -11,14 +11,9 @@ Ext.define('DevCycleMobile.controller.Map', {
 		control: {
 			// Reference to the Leaflet Custom Component
 			'#mapview': {
-				maprender: 'onMapRender',
-				activate: 'onActivate'
+				maprender: 'onMapRender'
 			}
 		}
-	},
-
-	onActivate: function() {
-		console.log("ROCK'N'ROLL");
 	},
 
 	/**

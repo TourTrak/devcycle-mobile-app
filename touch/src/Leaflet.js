@@ -181,31 +181,38 @@ Ext.define('Ext.Leaflet', {
             maxBounds : L.latLngBounds(southWest, northEast)
         }, mapOptions);
 
-        this.map = new L.Map(element.id, mapOptions);
+        console.log("IS NULL????");
+        console.log(this.map);
 
-        // Remove the prepending leaflet link, as clicking will hijack the app!
-        this.map.attributionControl.setPrefix("");
-        this.map.addLayer(this.tileLayer);
+        if (this.map === undefined){
+          this.map = new L.Map(element.id, mapOptions);
 
-        // load the data layer from the KML file downloaded from Mapbox.
-        var data = new L.KML("resources/data.kml");
+          // Remove the prepending leaflet link, as clicking will hijack the app!
+          this.map.attributionControl.setPrefix("");
+          this.map.addLayer(this.tileLayer);
 
-        self = this; // reference to self in handler
+          // load the data layer from the KML file downloaded from Mapbox.
+          var data = new L.KML("resources/data.kml");
 
-        // Wait until data layer has been loaded, then add it to the map
-        var handler = setInterval(function(){
-           loaded = data.isLoaded();
-           if (loaded){
+          self = this; // reference to self in handler
 
-                // cancel interval
-                clearInterval(handler);
-                handler = 0;
+          // Wait until data layer has been loaded, then add it to the map
+          var handler = setInterval(function(){
+             loaded = data.isLoaded();
+             if (loaded){
 
-                // add data layer to the map
-                self.map.addLayer(data);
-                me.fireEvent('maprender', me, self.map);
-           }
-        }, 100);
+                  // cancel interval
+                  clearInterval(handler);
+                  handler = 0;
+
+                  // add data layer to the map
+                  self.map.addLayer(data);
+                  me.fireEvent('maprender', me, self.map);
+             }
+          }, 100);
+        } else {
+          me.fireEvent('maprender', me, self.map);
+        }
 
     },
 
