@@ -1,6 +1,6 @@
 /**
 * Controller for the Home View (tab panel).
-* Initalizes with the correct tabs, with all views properly initalized 
+* Initalizes with the correct tabs, with all views properly initalized
 **/
 
 Ext.define('DevCycleMobile.controller.Home', {
@@ -18,25 +18,26 @@ Ext.define('DevCycleMobile.controller.Home', {
 	* Calls start on the phonegap/cordova abstraction layer
 	* Expects the CDVInterface plugin with method start implemented,
 	* which will start initalize everything to properly track the rider
-	* @private 
+	* @private
 	**/
 	startTracking: function(rider_id){
 
 		// Call the native plugins to begin tracking
 		cordova.exec(
 			function() {
-				// do nothing: successful. 
+				// do nothing: successful.
 			},
 			function(message) {
-				alert( "Error: " + message );
+			//	alert( "Start tracking Error: " + message );
+					console.error("start tracking error " + message );
 			},
 			'CDVInterface',
 			'start',
 			[{
 	    		"dcsUrl": this.tourInfo.data.dcs_url,
-	    		"startTime": this.tourInfo.data.start_tour_time,
-	    		"endTime": this.tourInfo.data.end_tour_time,
-	    		"tourId": this.tourInfo.data.tour_id, 
+	    		"startTime": this.tourInfo.data.tour_start_time,
+	    		"endTime": this.tourInfo.data.tour_end_time,
+	    		"tourId": this.tourInfo.data.tour_id,
 	    		"riderId": rider_id
 	   		}]
 	    	);
@@ -45,16 +46,16 @@ Ext.define('DevCycleMobile.controller.Home', {
 	/**
 	* If rider is not already registered, register him or her.
 	*
-	* Note: registeration only works on mobile browsers due to AJAX calls; 
+	* Note: registeration only works on mobile browsers due to AJAX calls;
 	* not a priority fix.
 	* @private
 	**/
 	registerRider: function(){
 
 		// If we haven't registered yet, get rider id from server
-		if(this.riderStore.getCount() == 0){ //& Ext.browser.is.PhoneGap){ 
+		if(this.riderStore.getCount() == 0){ //& Ext.browser.is.PhoneGap){
 			var rider_id = null; // rider_id to get from ajax response
-    
+
     		// Register rider
     		Ext.Ajax.request({
 				url: this.tourInfo.data.dcs_url + '/register/',
@@ -87,14 +88,14 @@ Ext.define('DevCycleMobile.controller.Home', {
 					return;
 				}
 			});
-	
+
 
 		} else {
 
 			if (!Ext.browser.is.PhoneGap){
 
 			}
-			else{	
+			else{
 				var riderInfo = this.riderStore.first();
 
 				// already registered so no need to re-register
@@ -107,7 +108,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 	},
 
 	/**
-	* Register for push notifications 
+	* Register for push notifications
 	* @private
 	**/
 	registerPushNotification: function(riderId) {
@@ -123,6 +124,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 			// TODO
 		};
 
+/*
 		try {
 			pushNotification = window.plugins.pushNotification;
 			if(device.platform == 'android' || device.platform == 'Android') {
@@ -130,13 +132,13 @@ Ext.define('DevCycleMobile.controller.Home', {
 			}
 		} catch(err) {
 			alert(err.message);
-		}
+		} */
 	},
 
 	/**
 	* Called when the tab is initalized, sets up all the tabs
 	* in the home view.
-	* @private 
+	* @private
 	**/
 	onTabpanelInitialize: function(component, options){
 
@@ -159,15 +161,15 @@ Ext.define('DevCycleMobile.controller.Home', {
 		component.add(tabPanel);
 
 		// Set active item to the map view
-		component.setActiveItem(1); 
-		
+		component.setActiveItem(1);
+
 		try{
 			this.registerRider();
 		} catch (error) {
-			alert("Registration failed!");
+			alert("Registration failed");
 			alert(error.message);
-		}  
-        
+		}
+
 	},
 
 	// Base Class functions
