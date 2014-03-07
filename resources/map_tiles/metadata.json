@@ -1,11 +1,11 @@
 {
     "attribution": "Data \u00a9 OpenStreetMap (and) contributors, CC-BY-SA", 
     "description": "", 
-    "bounds": "-74.1357,40.5284,-73.6633,41.3211", 
+    "bounds": "-74.1972,40.4566,-73.4528,41.4028", 
     "name": "5-boro-bike-tour2", 
-    "minzoom": "0", 
+    "minzoom": "12", 
     "version": "1.0.0", 
     "template": "", 
-    "maxzoom": "15", 
-    "center": "-74.0157,40.7042,15"
+    "maxzoom": "13", 
+    "center": "-74.0152,40.7017,12"
 }
