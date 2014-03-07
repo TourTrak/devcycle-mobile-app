@@ -4,3 +4,6 @@ build/
 
 # sass cache folder
 resources/sass/.sass-cache
+
+# PURGE THE DS STORE WITH FIRE
+.DS_Store
