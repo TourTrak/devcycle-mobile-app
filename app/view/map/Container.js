@@ -29,9 +29,10 @@ Ext.define('DevCycleMobile.view.map.Container', {
 				cls: 'my-toolbar'
 			},
 			{
-                xtype: 'leaflet',
-                useCurrentLocation: true,
-			},
+        xtype: 'leaflet',
+        useCurrentLocation: true
+      },
+
             {
                 xtype: 'button',
                 docked: 'bottom',
@@ -87,5 +88,6 @@ Ext.define('DevCycleMobile.view.map.Container', {
             }
 
 		], // End items
-	}, // End config
+	} // End config
+
 });
