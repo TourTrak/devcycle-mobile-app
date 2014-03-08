@@ -88,6 +88,7 @@
         "resources/images",
         "resources/icons",
         "resources/startup",
+        "resources/data",
         "third_party_libraries/Awesome-markers/dist/images",
         "third_party_libraries/Leaflet/dist/images",
         "resources/map_tiles",

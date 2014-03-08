@@ -16,21 +16,27 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.Database": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
-  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js"
+  "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
+  "Override.dataview.List": "app/view/Main.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
+  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+  "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.GettingReady": [],
   "DevCycleMobile.store.MapInfo": [],
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.view.Home": [],
-  "DevCycleMobile.view.faq.Container": [],
+  "DevCycleMobile.view.Main": [],
+  "DevCycleMobile.view.guide.Container": [],
+  "DevCycleMobile.view.guide.ListItem": [],
   "DevCycleMobile.view.map.Container": [],
-  "DevCycleMobile.view.tourguide.Container": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -624,6 +630,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.util.translatable.CssTransform": [],
   "Ext.util.translatable.Dom": [],
   "Ext.util.translatable.ScrollPosition": [],
+  "Ext.ux.AccordionList": [
+    "Ext.AccordionList"
+  ],
+  "Ext.ux.AccordionListItem": [],
   "Ext.ux.ActionOverFlowMenuButton": [],
   "Ext.ux.ApplicationMenu": [],
   "Ext.ux.ContextMenu": [],
@@ -650,28 +660,36 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
-  ]
+  ],
+  "Override.dataview.List": []
 });
 Ext.ClassManager.addNameAliasMappings({
+  "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
+  "DevCycleMobile.model.Answer": [],
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.GettingReady": [],
   "DevCycleMobile.store.MapInfo": [],
   "DevCycleMobile.store.RiderInfo": [],
   "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
-  "DevCycleMobile.view.faq.Container": [
+  "DevCycleMobile.view.Main": [
+    "widget.main"
+  ],
+  "DevCycleMobile.view.guide.Container": [
     "widget.faqContainer"
+  ],
+  "DevCycleMobile.view.guide.ListItem": [
+    "widget.examplelistitem"
   ],
   "DevCycleMobile.view.map.Container": [
     "widget.mapContainer"
-  ],
-  "DevCycleMobile.view.tourguide.Container": [
-    "widget.tourContainer"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -1359,6 +1377,12 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.util.translatable.CssTransform": [],
   "Ext.util.translatable.Dom": [],
   "Ext.util.translatable.ScrollPosition": [],
+  "Ext.ux.AccordionList": [
+    "widget.accordionlist"
+  ],
+  "Ext.ux.AccordionListItem": [
+    "widget.accordionlistitem"
+  ],
   "Ext.ux.ActionOverFlowMenuButton": [],
   "Ext.ux.ApplicationMenu": [],
   "Ext.ux.ContextMenu": [],
@@ -1391,5 +1415,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
-  "Ext.viewport.WindowsPhone": []
+  "Ext.viewport.WindowsPhone": [],
+  "Override.dataview.List": []
 });

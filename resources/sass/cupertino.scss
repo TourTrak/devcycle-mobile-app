@@ -1,6 +1,21 @@
 @import 'sencha-touch/cupertino';
 @import 'sencha-touch/cupertino/all';
 
+@import 'stylesheets/accordionlist';
+@include accordionlist;
+
+
+.x-accordion-list-header.x-list-item.x-item-selected, .x-accordion-list-content.x-list-item.x-item-selected {
+    background-color: $ios7-blue !important;
+}
+
+
+
+.x-accordion-list .x-scroll-container
+{
+    background-color: #000;
+}
+
 .start_btn {
 	background-color:#2E2E2E !important;
 	background-image: none;

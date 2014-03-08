@@ -1,6 +1,8 @@
 @import 'sencha-touch/mountainview';
 @import 'sencha-touch/mountainview/all';
 
+@import 'stylesheets/accordionlist';
+@include accordionlist;
 h1 {
     font-family:Verdana, Arial, Helvetica, sans-serif;
     font-size:14px;

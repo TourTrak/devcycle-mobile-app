@@ -147,12 +147,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		// Initalize all necessary views for tabs
 		var mapContainerView = Ext.create('DevCycleMobile.view.map.Container');
-		var faqContainerView = Ext.create('DevCycleMobile.view.faq.Container');
-		var tourContainerView = Ext.create('DevCycleMobile.view.tourguide.Container');
+		var faqContainerView = Ext.create('DevCycleMobile.view.guide.Container');
 
 		// define the dynamic tab panel and then add it to the component
 		var tabPanel = [
-			tourContainerView,
 			mapContainerView,
 			faqContainerView,
 		] // End tab panel items
@@ -161,7 +159,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 		component.add(tabPanel);
 
 		// Set active item to the map view
-		component.setActiveItem(1);
+		
+		component.setActiveItem(0); 
 
 		try{
 			this.registerRider();

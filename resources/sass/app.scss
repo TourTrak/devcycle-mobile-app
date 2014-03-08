@@ -9,6 +9,5 @@
 
 // Examples of using the icon mixin:
 // @include icon('user');
-.x-scroll-container {
-    background: url('carbon_fibre.png') !important;
-}
+@import 'stylesheets/accordionlist';
+@include accordionlist;
