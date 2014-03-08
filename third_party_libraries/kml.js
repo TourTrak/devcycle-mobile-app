@@ -202,8 +202,6 @@ L.Util.extend(L.KML, {
 	parsePlacemark: function (place, xml, style) {
 		var i, j, el, options = {};
 		el = place.getElementsByTagName('styleUrl');
-		console.log("Parsing placemark");
-		console.log(el);
 
 		for (i = 0; i < el.length; i++) {
 			var url = el[i].childNodes[0].nodeValue;
@@ -212,7 +210,6 @@ L.Util.extend(L.KML, {
 				// for jshint
 				if (true)
 				{
-					console.log(style[url][a]);
 					options[a] = style[url][a];
 				}
 			}
@@ -226,10 +223,8 @@ L.Util.extend(L.KML, {
 			{
 				var tag = parse[j];
 				el = place.getElementsByTagName(tag);
-				console.log("Parsing tag: " + tag);
 
 				for (i = 0; i < el.length; i++) {
-					console.log(el);
 					var l = this["parse" + tag](el[i], xml, options);
 					if (l) { layers.push(l); }
 				}
@@ -245,12 +240,11 @@ L.Util.extend(L.KML, {
 		}
 
 		var name, descr = "";
-		console.log("Parsing the name");
 		el = place.getElementsByTagName('name');
 		if (el.length && el[0].childNodes.length) {
 			name = el[0].childNodes[0].nodeValue;
 		}
-		console.log("Parsing the description");
+
 		el = place.getElementsByTagName('description');
 		for (i = 0; i < el.length; i++) {
 			for (j = 0; j < el[i].childNodes.length; j++) {
@@ -280,11 +274,9 @@ L.Util.extend(L.KML, {
 	},
 
 	parsePoint: function (line, xml, options) {
-		console.log("--- \n Parsing Point");
-
 
 		var el = line.getElementsByTagName('coordinates');
-		console.log(el);
+
 		if (!el.length) {
 			return;
 		}
