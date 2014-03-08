@@ -110,17 +110,14 @@ Ext.application({
                 clearInterval(handler);
                 handler = 0;
 
+                console.log("All stores have been loaded");
+
                 // init the main view and add it to view
                 var homeView = Ext.create('DevCycleMobile.view.Home');
                 Ext.Viewport.add(homeView);
            }
         }, 100);
 
-        // Adjust toolbar height when running in iOS to fit with new iOS 7 style
-        // Initialize the main view
-        var homeView = Ext.create('DevCycleMobile.view.Home');
-        Ext.Viewport.add(homeView);
-        
          // Adjust toolbar height when running in iOS to fit with new iOS 7 style
         if (Ext.os.is.iOS && Ext.os.version.major >= 7) {
             Ext.select(".x-toolbar").applyStyles("height: 62px; padding-top: 15px;");

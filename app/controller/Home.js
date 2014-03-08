@@ -58,35 +58,35 @@ Ext.define('DevCycleMobile.controller.Home', {
 
     		// Register rider
     		Ext.Ajax.request({
-				url: this.tourInfo.data.dcs_url + '/register/',
-				method: 'POST',
-				scope: this, // set scope of ajax call to this
-				params: {
-					os: Ext.os.name + " " + Ext.os.version,
-					device: Ext.os.name,
-					tourId: this.tourInfo.data.tour_id
-				},
-				success: function(response){
+					url: this.tourInfo.data.dcs_url + '/register/',
+					method: 'POST',
+					scope: this, // set scope of ajax call to this
+					params: {
+						os: Ext.os.name + " " + Ext.os.version,
+						device: Ext.os.name,
+						tourId: this.tourInfo.data.tour_id
+					},
+					success: function(response){
 
-					var decodedResponse = Ext.JSON.decode(response.responseText);
-					rider_id = decodedResponse.rider_id;
-					var newRider = new DevCycleMobile.model.Rider({
-						riderId: rider_id
-					});
+						var decodedResponse = Ext.JSON.decode(response.responseText);
+						rider_id = decodedResponse.rider_id;
+						var newRider = new DevCycleMobile.model.Rider({
+							riderId: rider_id
+						});
 
-					// Save the rider info (id)
-					this.riderStore.add(newRider);
-					this.riderStore.sync();
+						// Save the rider info (id)
+						this.riderStore.add(newRider);
+						this.riderStore.sync();
 
-					// start tracking
-					this.startTracking(rider_id);
-					this.registerPushNotification(rider_id);
-				},
-				failure: function(response){
+						// start tracking
+						this.startTracking(rider_id);
+						this.registerPushNotification(rider_id);
+					},
+					failure: function(response){
 
-					alert("Registration Failure");
-					return;
-				}
+						alert("Registration Failure");
+						return;
+					}
 			});
 
 
@@ -143,6 +143,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 	onTabpanelInitialize: function(component, options){
 
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+		console.log(this.tourInfo);
 		this.riderStore = Ext.getStore("RiderInfo"); // reference to the rider store
 
 		// Initalize all necessary views for tabs
@@ -159,8 +160,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 		component.add(tabPanel);
 
 		// Set active item to the map view
-		
-		component.setActiveItem(0); 
+
+		component.setActiveItem(0);
 
 		try{
 			this.registerRider();
