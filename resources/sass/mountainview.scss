@@ -3,6 +3,17 @@
 
 @import 'stylesheets/accordionlist';
 @include accordionlist;
+
+.x-accordion-list-header.x-list-item.x-item-selected, .x-accordion-list-content.x-list-item.x-item-selected {
+    background-color: $background-color !important;
+}
+
+
+.x-accordion-list .x-scroll-container
+{
+    background-color: #000;
+}
+
 h1 {
     font-family:Verdana, Arial, Helvetica, sans-serif;
     font-size:14px;
