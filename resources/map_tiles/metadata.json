@@ -3,7 +3,7 @@
     "description": "", 
     "bounds": "-74.1972,40.4566,-73.4528,41.4028", 
     "name": "5-boro-bike-tour2", 
-    "minzoom": "12", 
+    "minzoom": "11", 
     "version": "1.0.0", 
     "template": "", 
     "maxzoom": "13", 
