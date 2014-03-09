@@ -1,6 +1,6 @@
 Ext.require(['Ext.Leaflet']);
 
-/* 
+/*
 * Controller for the Leaflet Custom Component
 */
 
@@ -11,20 +11,19 @@ Ext.define('DevCycleMobile.controller.Map', {
 		control: {
 			// Reference to the Leaflet Custom Component
 			'#mapview': {
-				maprender: 'onMapRender'
-			}
+				maprender: 'onMapRender',
+			},
 		}
 	},
 
 	/**
-	Called when controller is initalize - setup all 
-	'private' variables 
+	Called when controller is initalize - setup all
+	'private' variables
 	**/
 	init: function() {
-		console.log("Map controller initalized");
 		this.riderPosMarker = null; // user's position marker
 	},
-	
+
 	/**
 	* When map is initalize, search for users location and put it on the map
 	**/
@@ -39,7 +38,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			// First, make sure that rider is within bounds of the tour
 			if (map.options.maxBounds.contains(riderPos)) {
-			
+
 				// Make sure that rider icon is not already set
 				if(this.riderPosMarker === null || this.riderPosMarker === undefined){
 
@@ -62,6 +61,11 @@ Ext.define('DevCycleMobile.controller.Map', {
 				}
 
 			} // End of if - rider not in tour area so do not add to map
+
+			// refresh the map
+			if (map != undefined){
+				map._onResize();
+			}
 		}
 
 		// can't get the lock on map

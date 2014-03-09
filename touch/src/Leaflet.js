@@ -9,6 +9,7 @@
  *     });
  *
  */
+
 Ext.define('Ext.Leaflet', {
     extend: 'Ext.Component',
     xtype : 'leaflet',
@@ -151,7 +152,7 @@ Ext.define('Ext.Leaflet', {
             event;
 
         var mapInfo = Ext.getStore("MapInfo").getAt(0).data;
-      
+
         // Get map center info
         var centerInfo = mapInfo.center.split(",");
         var centerLat = centerInfo[1];
@@ -166,25 +167,52 @@ Ext.define('Ext.Leaflet', {
             attribution: mapInfo.attribution,
             maxZoom: mapInfo.maxzoom,
             minZoom: mapInfo.minzoom,
-            errorTileUrl: 'resources/images/error_tile.png'
+            errorTileUrl: 'resources/images/error_tile.png',
+            updateWhenIdle: true
         });
 
         mapOptions = Ext.merge({
             layers : [this.tileLayer],
-            zoom : this.zoomLevel || 15,
-            maxZoom : 18,
+            zoom : this.zoomLevel || mapInfo.maxzoom,
+            maxZoom : mapInfo.maxzoom,
+            minZoom : mapInfo.minzoom,
             zoomControl : true,
             attributionControl : true,
             center : this.center || new L.LatLng(centerLat, centerLong),
-            maxBounds : L.latLngBounds(southWest, northEast) 
+            maxBounds : L.latLngBounds(southWest, northEast)
         }, mapOptions);
 
-        this.map = new L.Map(element.id, mapOptions);
-        
-        // Remove the prepending leaflet link, as clicking will hijack the app!
-        this.map.attributionControl.setPrefix(""); 
-        this.map.addLayer(this.tileLayer);
-        me.fireEvent('maprender', me, this.map);
+
+        if (this.map === undefined){
+          this.map = new L.Map(element.id, mapOptions);
+
+          // Remove the prepending leaflet link, as clicking will hijack the app!
+          this.map.attributionControl.setPrefix("");
+          this.map.addLayer(this.tileLayer);
+
+          // load the data layer from the KML file downloaded from Mapbox.
+          var data = new L.KML("resources/data.kml");
+
+          self = this; // reference to self in handler
+
+          // Wait until data layer has been loaded, then add it to the map
+          var handler = setInterval(function(){
+             loaded = data.isLoaded();
+             if (loaded){
+
+                  // cancel interval
+                  clearInterval(handler);
+                  handler = 0;
+
+                  // add data layer to the map
+                  self.map.addLayer(data);
+                  me.fireEvent('maprender', me, self.map);
+             }
+          }, 100);
+        } else {
+          me.fireEvent('maprender', me, self.map);
+        }
+
     },
 
     // @private

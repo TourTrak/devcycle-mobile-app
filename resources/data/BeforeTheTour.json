@@ -1,0 +1,47 @@
+{
+    "items" : [{
+                "text" : "When can I order the Tour registration jersey?",
+                "items" : [{
+                            "text" : "The Tour registration jersey is available exclusively during the online registration process.  It will not be available at any point after they have completed registration.",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "What forms of identification are considered valid?",
+                "items" : [{
+                            "text" : "Residents of the United States and Puerto Rico must show state or federal government-issued photo identification, such as a driver’s license, DMV photo ID, or passport. Non-US residents, including Canadian residents, are required to show a valid passport (except residents of Puerto Rico, see above).",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "My friends and I linked together to ride as a group.  Can I pick up their packets at the Expo?",
+                "items" : [{
+                            "text" : "Yes. Registered friends and family can pick up packets for all linked group members. Whoever is picking up the packages for the group must bring the signed proxy packet pickup form along with the confirmation e-mails containing the unique barcodes and rider numbers, as well as a photocopy of valid photo identification for all group members.",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "Can I pick up someone else’s rider packet for them?",
+                "items" : [{
+                            "text" : "Yes, anyone picking up a Tour packet and Rider Identification Kit for someone else must come to the Expo with the proxy packet pickup form (click here) as well as a copy of the participant’s confirmation e-mail and a photocopy of valid photo identification. Individuals picking up for a group must bring the signed proxy form along with the confirmation e-mails containing a barcode for each group member.",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "My child is riding with me, but cannot attend the Expo. Can I pick up his/her packet?",
+                "items" : [{
+                            "text" : "In order to pick up the child’s rider packet without the child present, the registered guardian must bring his/her valid photo identification and the confirmation e-mail containing both registration numbers and barcodes. You do not need to provide identification for the registered youth. Note that adults may only pick up the rider packet for the youth(s) registered under their name.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What sort of travel and accommodation options does Bike New York offer to riders?",
+                "items" : [{
+                            "text" : "Bike New York has partnered with onPeak to provide you with hotel options for your trip to New York. Through this partnership, Bike New York and onPeak are able to offer discounted nightly rates at hotels throughout the city. Visit our lodging page for more information.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I pick up the TD Five Boro Bike Tour registration jersey at Bike Expo New York? ",
+                "items" : [{
+                            "text" : "Tour registration jerseys are only available during the online registration process, and will be mailed to participants before the Tour.",
+                            "leaf" : true
+                        }]
+            }]
+}

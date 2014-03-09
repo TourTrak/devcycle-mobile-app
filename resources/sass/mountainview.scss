@@ -1,2 +1,34 @@
 @import 'sencha-touch/mountainview';
 @import 'sencha-touch/mountainview/all';
+
+@import 'stylesheets/accordionlist';
+@include accordionlist;
+
+.x-accordion-list-header.x-list-item.x-item-selected, .x-accordion-list-content.x-list-item.x-item-selected {
+    background-color: $background-color !important;
+}
+
+
+.x-accordion-list .x-scroll-container
+{
+    background-color: #000;
+}
+
+h1 {
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    color: #033649;
+    text-align:center;
+    width:100%;
+    padding-top:5px;
+}
+
+b1 {
+   font-family:Verdana, Arial, Helvetica, sans-serif;
+   color: #031634;
+   text-align:left;
+   font-size:12px;
+   padding-top:12px;
+   width:100%;
+}

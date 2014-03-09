@@ -1,6 +1,6 @@
 /**
 * Controller for the Home View (tab panel).
-* Initalizes with the correct tabs, with all views properly initalized 
+* Initalizes with the correct tabs, with all views properly initalized
 **/
 
 Ext.define('DevCycleMobile.controller.Home', {
@@ -18,25 +18,26 @@ Ext.define('DevCycleMobile.controller.Home', {
 	* Calls start on the phonegap/cordova abstraction layer
 	* Expects the CDVInterface plugin with method start implemented,
 	* which will start initalize everything to properly track the rider
-	* @private 
+	* @private
 	**/
 	startTracking: function(rider_id){
 
 		// Call the native plugins to begin tracking
 		cordova.exec(
 			function() {
-				// do nothing: successful. 
+				// do nothing: successful.
 			},
 			function(message) {
-				alert( "Error: " + message );
+			//	alert( "Start tracking Error: " + message );
+					console.error("start tracking error " + message );
 			},
 			'CDVInterface',
 			'start',
 			[{
 	    		"dcsUrl": this.tourInfo.data.dcs_url,
-	    		"startTime": this.tourInfo.data.start_tour_time,
-	    		"endTime": this.tourInfo.data.end_tour_time,
-	    		"tourId": this.tourInfo.data.tour_id, 
+	    		"startTime": this.tourInfo.data.tour_start_time,
+	    		"endTime": this.tourInfo.data.tour_end_time,
+	    		"tourId": this.tourInfo.data.tour_id,
 	    		"riderId": rider_id
 	   		}]
 	    	);
@@ -45,69 +46,69 @@ Ext.define('DevCycleMobile.controller.Home', {
 	/**
 	* If rider is not already registered, register him or her.
 	*
-	* Note: registeration only works on mobile browsers due to AJAX calls; 
+	* Note: registeration only works on mobile browsers due to AJAX calls;
 	* not a priority fix.
 	* @private
 	**/
 	registerRider: function(){
 
-		var self = this; // reference to myself
-
 		// If we haven't registered yet, get rider id from server
-		if(this.riderInfo === undefined & Ext.browser.is.PhoneGap){ 
-			var rider_id = null;
-    
+		if(this.riderStore.getCount() == 0){ //& Ext.browser.is.PhoneGap){
+			var rider_id = null; // rider_id to get from ajax response
+
     		// Register rider
     		Ext.Ajax.request({
-				url: self.tourInfo.data.dcs_url + '/register/',
-				method: 'POST',
-				scope: this, // set scope of ajax call to this
-				params: {
-					os: Ext.os.name + " " + Ext.os.version,
-					device: Ext.os.name,
-					tourId: self.tourInfo.data.tour_id
-				},
-				success: function(response){
+					url: this.tourInfo.data.dcs_url + '/register/',
+					method: 'POST',
+					scope: this, // set scope of ajax call to this
+					params: {
+						os: Ext.os.name + " " + Ext.os.version,
+						device: Ext.os.name,
+						tourId: this.tourInfo.data.tour_id
+					},
+					success: function(response){
 
-					var decodedResponse = Ext.JSON.decode(response.responseText);
-					rider_id = decodedResponse.rider_id;
-					var newRider = new DevCycleMobile.model.Rider({
-						riderId: rider_id
-					});
+						var decodedResponse = Ext.JSON.decode(response.responseText);
+						rider_id = decodedResponse.rider_id;
+						var newRider = new DevCycleMobile.model.Rider({
+							riderId: rider_id
+						});
 
-					// Save the rider info (id)
-					self.riderInfo.add(newRider);
-					self.riderInfo.sync();
+						// Save the rider info (id)
+						this.riderStore.add(newRider);
+						this.riderStore.sync();
 
-					// start tracking
-					self.startTracking(rider_id);
-					self.registerPushNotification(rider_id);
-				},
-				failure: function(response){
-					console.log(response);
-					alert("Registration Failure");
-					return;
-				}
+						// start tracking
+						this.startTracking(rider_id);
+						this.registerPushNotification(rider_id);
+					},
+					failure: function(response){
+
+						alert("Registration Failure");
+						return;
+					}
 			});
-	
+
 
 		} else {
 
 			if (!Ext.browser.is.PhoneGap){
 
 			}
-			else{	
+			else{
+				var riderInfo = this.riderStore.first();
+
 				// already registered so no need to re-register
-				this.startTracking(this.riderInfo.data.riderId);
+				this.startTracking(riderInfo.data.riderId);
 
 				// Good idea to update the push notification ID; however, as GCM can change this at any time.
-				this.registerPushNotification(this.riderInfo.data.riderId);
+				this.registerPushNotification(riderInfo.data.riderId);
 			}
 		}
 	},
 
 	/**
-	* Register for push notifications 
+	* Register for push notifications
 	* @private
 	**/
 	registerPushNotification: function(riderId) {
@@ -123,6 +124,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 			// TODO
 		};
 
+/*
 		try {
 			pushNotification = window.plugins.pushNotification;
 			if(device.platform == 'android' || device.platform == 'Android') {
@@ -130,24 +132,26 @@ Ext.define('DevCycleMobile.controller.Home', {
 			}
 		} catch(err) {
 			alert(err.message);
-		}
+		} */
 	},
 
 	/**
 	* Called when the tab is initalized, sets up all the tabs
 	* in the home view.
-	* @private 
+	* @private
 	**/
 	onTabpanelInitialize: function(component, options){
 
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+		console.log(this.tourInfo);
+		this.riderStore = Ext.getStore("RiderInfo"); // reference to the rider store
+
 		// Initalize all necessary views for tabs
 		var mapContainerView = Ext.create('DevCycleMobile.view.map.Container');
-		var faqContainerView = Ext.create('DevCycleMobile.view.faq.Container');
-		var tourContainerView = Ext.create('DevCycleMobile.view.tourguide.Container');
+		var faqContainerView = Ext.create('DevCycleMobile.view.guide.Container');
 
 		// define the dynamic tab panel and then add it to the component
 		var tabPanel = [
-			tourContainerView,
 			mapContainerView,
 			faqContainerView,
 		] // End tab panel items
@@ -156,15 +160,16 @@ Ext.define('DevCycleMobile.controller.Home', {
 		component.add(tabPanel);
 
 		// Set active item to the map view
-		component.setActiveItem(1); 
-		
+
+		component.setActiveItem(0);
+
 		try{
 			this.registerRider();
 		} catch (error) {
-			alert("Registration failed!");
+			alert("Registration failed");
 			alert(error.message);
-		}  
-        
+		}
+
 	},
 
 	// Base Class functions
@@ -175,7 +180,5 @@ Ext.define('DevCycleMobile.controller.Home', {
 	// init and set variables.
 	init:function(){
 		this.callParent(arguments);
-		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
-		this.riderInfo = Ext.getStore("RiderInfo").first(); // rider info
 	},
 });

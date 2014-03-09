@@ -1,5 +1,5 @@
 .x-tabbar {
-	min-height: 3em;
+	min-height: 6em;
 	background-color: $background-color;
 
 	&.x-docked-bottom {
@@ -27,13 +27,14 @@
 
 		.x-button-icon:before, .x-button-label {
 			color: $ios7-blue;
+            -webkit-text-stroke-color: $ios7-blue;
 		}
 	}
 
 	.x-button-label {
 		font-size: .65em;
 		font-weight: 400;
-		color: #929292;
+		color: #fff;
 		line-height: 3em;
 	}
 
@@ -43,14 +44,14 @@
 		height: 1.5em;
 		margin: 0 auto;
 		-webkit-text-stroke-width: .35px;
-		-webkit-text-stroke-color: $ios7-blue;
+		-webkit-text-stroke-color: #fff;
 
 		.x-button-icon.x-hidden {
 			display: none;
 		}
 
 		&:before {
-			color: transparent;
+			color: #fff;
 			font-size: 1.8em;
 			line-height: 1.35em;
 		}
@@ -73,19 +74,17 @@ $tabbar-tab-radius: 4px;
 		@include border-radius(0);
 		@include st-box-flex(1);
 		min-width: 3.3em;
-		height: inherit;
+		/* height: inherit; */
 		background-color: transparent;
 		border: 0;
 		padding: 3px;
 		margin: 0;
 		border: 1px solid darken($ios7-blue, 1);
 		color: #fff;
-		padding: 7px;
 
 		.x-button-label {
 			color: $ios7-blue;
-			font-size: .8em;
-			line-height: 1;
+			font-size: .7em;
 		}
 
 		&.x-tab-active {
@@ -95,19 +94,10 @@ $tabbar-tab-radius: 4px;
 			}
 		}
 
-		.x-button-icon::before {
+		.x-button-icon {
 			display: none;
 		}
 
-		&:first-child {
-			border-radius: $tabbar-tab-radius 0px 0px $tabbar-tab-radius;
-			border-right: 0;
-		}
-
-		&:last-child {
-			border-radius: 0px $tabbar-tab-radius $tabbar-tab-radius 0px;
-			border-left: 0;
-		}
 
 		.x-button-icon.x-hidden {
 			display: none !important;

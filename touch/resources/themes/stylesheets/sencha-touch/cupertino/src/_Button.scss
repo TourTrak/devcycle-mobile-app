@@ -70,10 +70,11 @@
 .x-button-decline,
 .x-button-decline-round,
 .x-button-decline-small {
-	border-color: $ios7-red;
+    background-color: $ios7-red;
+	border-color: #fff;
 
 	.x-button-label {
-		color: $ios7-red;
+		color: #fff;
 	}
 
 	&.x-button-pressing,
@@ -89,10 +90,11 @@
 .x-button-confirm,
 .x-button-confirm-round,
 .x-button-confirm-small {
-	border-color: $ios7-green;
+	background-color: $ios7-green;
+	border-color: #fff;
 
 	.x-button-label {
-		color: $ios7-green;
+		color: #fff;
 	}
 
 	&.x-button-pressing,

@@ -1,5 +1,5 @@
-Ext.Loader.setConfig({  
-    enabled:true,   
+Ext.Loader.setConfig({
+    enabled:true,
     paths:{'Ext.ux.touch':'touch/src'}}
 );
 
@@ -7,7 +7,7 @@ Ext.require(['Ext.Leaflet']);
 
 /**
 * Defines the custom map container component for holding
-* everything necessary in the map tab view. 
+* everything necessary in the map tab view.
 **/
 Ext.define('DevCycleMobile.view.map.Container', {
 	extend: 'Ext.Container',
@@ -29,9 +29,10 @@ Ext.define('DevCycleMobile.view.map.Container', {
 				cls: 'my-toolbar'
 			},
 			{
-                xtype: 'leaflet',
-                useCurrentLocation: true
-			},
+        xtype: 'leaflet',
+        useCurrentLocation: true
+      },
+
             {
                 xtype: 'button',
                 docked: 'bottom',
@@ -85,7 +86,8 @@ Ext.define('DevCycleMobile.view.map.Container', {
                     Ext.get('btnPause').hide();
                 }
             }
-            
+
 		], // End items
-	}, // End config
+	} // End config
+
 });

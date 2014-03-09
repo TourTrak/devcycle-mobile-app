@@ -25,7 +25,7 @@
         },
         {
             "path": "app.js",
-            "bundle": true,  
+            "bundle": true,
             "update": "delta"
         },
         {
@@ -36,10 +36,13 @@
         },
         {
             "path": "third_party_libraries/PushNotification.js"
+        },
+        {
+            "path": "third_party_libraries/kml.js"
         }
     ],
 
-   
+
     "css": [
         {
             "path": "resources/css/app.css",
@@ -47,7 +50,9 @@
             "update": "delta"
         },
         {
-            "path": "third_party_libraries/Leaflet/dist/leaflet.css"
+            "path": "third_party_libraries/Leaflet/dist/leaflet.css",
+            "platform": ["desktop", "chrome", "safari", "firefox", "android", "ios"],
+            "update": "delta"
         },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.css"
@@ -58,34 +63,37 @@
             "update": "delta"
         },
         {
-            "path": "resources/css/mountainview.css",
-            "platform": ["android"],
-            "update": "delta"
+          "path": "resources/css/mountainview.css",
+          "platform": ["android"],
+          "update": "delta"
         }
     ],
 
     "appCache": {
-       
+
         "cache": [
             "index.html"
         ],
-       
+
         "network": [
             "*"
         ],
-        
+
         "fallback": []
     },
 
     "resources": [
 		"config.xml",
+		    "config.xml",
         "resources/images",
         "resources/icons",
         "resources/startup",
+        "resources/data",
         "third_party_libraries/Awesome-markers/dist/images",
         "third_party_libraries/Leaflet/dist/images",
         "resources/map_tiles",
-        "config.json"
+        "config.json",
+        "resources/data.kml"
     ],
 
     "archivePath": "archive",
@@ -99,4 +107,3 @@
      */
     "id": "42ea6f30-26e6-441a-af9a-cfc8682251c2"
 }
-

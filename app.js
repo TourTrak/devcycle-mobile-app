@@ -9,30 +9,40 @@
     changes and its generated code, it will produce a "merge conflict" that you
     will need to resolve manually.
 */
+Ext.Loader.setPath({
+    'Ext': 'touch/src',
+    'Ext.ux': 'touch/src/ux',
+    'DevCycleMobile': 'app'
+});
 
 Ext.application({
     name: 'DevCycleMobile',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'DevCycleMobile.store.BeforeTheTour',
+        'DevCycleMobile.store.GettingReady'
     ],
 
     views: [
         'Home',
+        'Main',
         'map.Container',
-        'faq.Container',
-        'tourguide.Container'
+        'guide.Container',
+        'guide.ListItem'
     ],
 
     controllers: [
         'Map',
-        'Home'
+        'Home',
+        'Answer'
     ],
 
     models: [
         'Rider',
         'MapData',
-        'Tour'
+        'Tour',
+        'Answer'
     ],
 
     stores: [
@@ -63,7 +73,7 @@ Ext.application({
     * areStoresLoaded()
     * Returns true if all stores in given array are loaded,
     * otherwise immediately returns false.
-    * 
+    *
     * @param stores - an array of Sencha stores (see store.js in SDK or documentation
     **/
     areStoresLoaded: function(stores) {
@@ -74,9 +84,9 @@ Ext.application({
             if (store.isLoaded() == false){
                 return false;
             }
-        }  
+        }
 
-        // All stores have been successfully loaded     
+        // All stores have been successfully loaded
         return true;
     },
 
@@ -91,7 +101,7 @@ Ext.application({
 
         var self = this; // reference to self
 
-        // load all the stores before proceeding 
+        // load all the stores before proceeding
         var handler = setInterval(function(){
            loaded = self.areStoresLoaded([tourInfo, mapInfo, riderInfo]);
 
@@ -99,14 +109,16 @@ Ext.application({
                 // cancel interval
                 clearInterval(handler);
                 handler = 0;
+
+                console.log("All stores have been loaded");
+
+                // init the main view and add it to view
+                var homeView = Ext.create('DevCycleMobile.view.Home');
+                Ext.Viewport.add(homeView);
            }
         }, 100);
 
-        // init the main view and add it to view
-        var homeView = Ext.create('DevCycleMobile.view.Home'); 
-        Ext.Viewport.add(homeView);
-
-        // Adjust toolbar height when running in iOS to fit with new iOS 7 style
+         // Adjust toolbar height when running in iOS to fit with new iOS 7 style
         if (Ext.os.is.iOS && Ext.os.version.major >= 7) {
             Ext.select(".x-toolbar").applyStyles("height: 62px; padding-top: 15px;");
         }
@@ -121,18 +133,18 @@ Ext.application({
         Ext.Msg.doLayout();
     },
 
-    /** 
+    /**
     * Captures the back key press on Android.
     * Doing this from home screen of app will kill the activity.
     **/
     onBackKeyDown: function (e) {
-    
+
         Ext.Msg.confirm(
             "Confirmation",
             "Are you sure you want to exit? This will stop all tracking. Consider pressing the home button instead.",
             function(buttonId) {
                 if (buttonId === 'yes') {
-                    navigator.app.exitApp(); 
+                    navigator.app.exitApp();
                 }
             }
         );
@@ -152,9 +164,9 @@ Ext.application({
         );
     },
 
-    // Android Push Notification Handler 
+    // Android Push Notification Handler
     onNotificationGCM: function(e){
-    
+
         switch ( e.event ) {
             case 'registered':
                 if (e.regid.length > 0) {
@@ -193,7 +205,7 @@ Ext.application({
                 // notification happened while in foreground
                 if ( e.foreground ) {
                     // play noise? TODO
-                   
+
                 } else {
                     // launched from touching notification in tray
                     if ( e.coldstart ){

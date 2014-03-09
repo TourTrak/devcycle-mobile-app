@@ -9,12 +9,10 @@ Ext.define('DevCycleMobile.store.TourInfo', {
 	config: {
 		model: 'DevCycleMobile.model.Tour',
 		autoLoad: true,
-		async: false,
 
 		proxy: {
 			type: 'ajax',
 			url: 'config.json',
-			async: false
 		},
 		
 		listeners: {
