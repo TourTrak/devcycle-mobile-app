@@ -16,7 +16,7 @@ os.chdir("cordova")
 os.system("sudo cordova -d plugin add https://github.com/apache/cordova-plugin-device.git")
 
 # Add the cordova push notification plugin
-os.system("sudo cordova -d plugin add https://github.com/phonegap-build/PushPlugin")
+#os.system("sudo cordova -d plugin add https://github.com/phonegap-build/PushPlugin")
 
 # Add the tourtrak iOS plugin
 os.system("sudo cordova -d plugin add https://github.com/cck9672/geolocation-ios-noapp.git")
