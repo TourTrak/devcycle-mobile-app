@@ -208,42 +208,74 @@ Ext.define('Ext.Leaflet', {
                   self.map.addLayer(data);
                   me.fireEvent('maprender', me, self.map);
 
+
+
                     // Creates a red marker with the coffee icon
                   var userMarker = L.AwesomeMarkers.icon({
-                    icon: 'location-arrow',
-                    markerColor: 'red',
-                    prefix: 'fa'
+                    icon: 'man41',
+                    markerColor: '#6b1d5c',
+                    prefix: 'flaticon'
                   });
 
                   // Creates a red marker with the coffee icon
                   var coffeeMarker = L.AwesomeMarkers.icon({
-                    icon: 'coffee',
+                    icon: 'portable',
                     markerColor: 'blue',
-                    prefix: 'fa'
+                    prefix: 'flaticon'
                   });
 
                   var raceMarker = L.AwesomeMarkers.icon({
-                    icon: 'flag-checkered',
+                    icon: 'rest',
                     markerColor: 'green',
-                    prefix: 'fa'
+                    prefix: 'flaticon'
                   });
 
                   var musicMarker = L.AwesomeMarkers.icon({
-                    icon: 'music',
+                    icon: 'standing25',
                     markerColor: 'purple',
-                    prefix: 'fa'
+                    prefix: 'flaticon'
                   });
 
                   var foodMarker = L.AwesomeMarkers.icon({
-                    icon: 'cutlery',
+                    icon: 'train5',
                     markerColor: 'orange',
-                    prefix: 'fa'
+                    prefix: 'flaticon'
                   });
 
-                var drinkMarker = L.AwesomeMarkers.icon({
-                  icon: 'rest',
-                  markerColor: 'orange',
-                  prefix: 'flaticon'
+                var medicalMarker = L.AwesomeMarkers.icon({
+                  icon: 'medkit',
+                  markerColor: 'red',
+                  prefix: 'fa'
+                });
+
+                var food2Marker = L.AwesomeMarkers.icon({
+                  icon: 'cutlery',
+                  markerColor: 'blue',
+                  prefix: 'fa'
+                });
+
+                var music2Marker = L.AwesomeMarkers.icon({
+                  icon: 'music',
+                  markerColor: 'cadetblue',
+                  prefix: 'fa'
+                });
+
+                var truckMarker = L.AwesomeMarkers.icon({
+                  icon: 'truck',
+                  markerColor: 'purple',
+                  prefix: 'fa'
+                });
+
+                var warningMarker = L.AwesomeMarkers.icon({
+                  icon: 'warning',
+                  markerColor: 'red',
+                  prefix: 'fa'
+                });
+
+                var mechanicsMarker = L.AwesomeMarkers.icon({
+                  icon: 'wrench',
+                  markerColor: 'black',
+                  prefix: 'fa'
                 });
 
                   L.marker([40.7746431,-73.97019], {icon: coffeeMarker}).bindPopup("TEST").addTo(self.map);
@@ -251,7 +283,13 @@ Ext.define('Ext.Leaflet', {
                   L.marker([40.7846431,-73.96019], {icon: raceMarker}).bindPopup("TEST").addTo(self.map);
                   L.marker([40.7646431,-73.96019], {icon: musicMarker}).bindPopup("TEST").addTo(self.map);
                   L.marker([40.7646431,-73.97019], {icon: foodMarker}).bindPopup("TEST").addTo(self.map);
-                  L.marker([40.7846431,-73.98019], {icon: drinkMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7846431,-73.98019], {icon: medicalMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7746431,-73.97019], {icon: food2Marker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7966431,-73.95019], {icon: music2Marker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.77,-73.98019], {icon: truckMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.77,-73.95019], {icon: warningMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.78,-73.95019], {icon: mechanicsMarker}).bindPopup("TEST").addTo(self.map);
+
              }
           }, 100);
         } else {

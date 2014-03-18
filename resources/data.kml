@@ -1,1 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document><Style id="star-strokeda3e46blarge"><IconStyle><Icon><href>https://api.tiles.mapbox.com/v3/marker/pin-l-star-stroked+a3e46b.png</href></Icon></IconStyle><hotSpot xunits="fraction" yunits="fraction" x="0.5" y="0.5"></hotSpot></Style><Placemark><name>Start line</name><description>Hi there!</description><Point><coordinates>-74.01587963104248,40.70318792998515</coordinates></Point><ExtendedData><Data name="id">marker-hsay96bh0</Data><Data name="title">Start line</Data><Data name="description">Hi there!</Data><Data name="marker-size">large</Data><Data name="marker-color">#a3e46b</Data><Data name="marker-symbol">star-stroked</Data></ExtendedData><styleUrl>#star-strokeda3e46blarge</styleUrl></Placemark><Placemark><LineString><coordinates>-74.01278972625732,40.71698093396767 -74.01673793792725,40.704749545544296</coordinates></LineString><ExtendedData><Data name="title"></Data><Data name="description"></Data><Data name="id">marker-hsaydlrb1</Data><Data name="stroke">#1087bf</Data><Data name="stroke-width">6</Data><Data name="stroke-opacity">1</Data></ExtendedData></Placemark><Placemark><LineString><coordinates>-74.01283264160156,40.71698093396767 -74.00922775268555,40.715387077160194 -74.00467872619627,40.721502075213955 -73.9990997314453,40.71746884168838 -73.99575233459473,40.71642796756138 -73.99433612823486,40.7139883550567 -73.9905595779419,40.707384688773566 -73.99062395095825,40.70748228466856 -73.99068832397461,40.70757988042052</coordinates></LineString><ExtendedData><Data name="title"></Data><Data name="description"></Data><Data name="id">marker-hsaye1sg2</Data><Data name="stroke">#1087bf</Data><Data name="stroke-width">6</Data><Data name="stroke-opacity">1</Data></ExtendedData></Placemark><Style id="soccer9c89cclarge"><IconStyle><Icon><href>https://api.tiles.mapbox.com/v3/marker/pin-l-soccer+9c89cc.png</href></Icon></IconStyle><hotSpot xunits="fraction" yunits="fraction" x="0.5" y="0.5"></hotSpot></Style><Placemark><name>Test</name><description>This marker is a test marker.</description><Point><coordinates>-74.00961399078368,40.71597258001334</coordinates></Point><ExtendedData><Data name="id">marker-hsayhqic3</Data><Data name="title">Test</Data><Data name="description">This marker is a test marker.</Data><Data name="marker-size">large</Data><Data name="marker-color">#9c89cc</Data><Data name="marker-symbol">soccer</Data></ExtendedData><styleUrl>#soccer9c89cclarge</styleUrl></Placemark></Document></kml>
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Test2.kml</name>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Placemark>
+		<name>Test</name>
+		<description>This is a test marker. Yadadayada
+Blah
+
+[AREA]Test[/AREA]</description>
+		<LookAt>
+			<longitude>-73.96599184466947</longitude>
+			<latitude>40.76455253903615</latitude>
+			<altitude>0</altitude>
+			<heading>14.96685792206074</heading>
+			<tilt>7.408939275457</tilt>
+			<range>4141.270540728366</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>-73.97495812683349,40.7697915509091,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

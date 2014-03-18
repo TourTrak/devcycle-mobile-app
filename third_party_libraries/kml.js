@@ -1,5 +1,13 @@
 /*global L: true */
 
+/***
+Plugin by shramov
+http://psha.org.ru/b/leaflet-plugins.html
+
+Modifications to work w/ Sencha and custom parsing
+of KML files by @tofferrosen
+***/
+
 L.KML = L.FeatureGroup.extend({
 
 	options: {
@@ -25,6 +33,7 @@ L.KML = L.FeatureGroup.extend({
 		if (async == undefined) async = this.options.async;
 		if (options == undefined) options = this.options;
 
+		// Load in the KML file
 		Ext.Ajax.request({
 	        url : url ,
 	        method: 'GET',
@@ -32,6 +41,8 @@ L.KML = L.FeatureGroup.extend({
 	        {
 
 							var responseXML = result.responseXML;
+
+							// Android doesn't support this, so use the DOMParser
 							if(result.responseXML == null) {
 								 responseXML = (new DOMParser()).parseFromString(result.responseText, "text/xml");
 							}
@@ -246,8 +257,26 @@ L.Util.extend(L.KML, {
 		}
 
 		el = place.getElementsByTagName('description');
+
+		/*
+		In the description, look for the [AREA][/AREA] tags to determine
+		which type of icon to use. icon type is chosen based on the marker area.
+		*/
+		var area = null;
 		for (i = 0; i < el.length; i++) {
 			for (j = 0; j < el[i].childNodes.length; j++) {
+
+				console.log("descr: " + el[i].childNodes[j].nodeValue);
+
+				/*
+				Check to see if we have an AREA tag
+				*/
+				var areaStartIndex = el[i].childNodes[j].nodeValue.indexOf('[AREA]');
+				if (areaStartIndex != -1) // we have an AREA tag here..
+				{
+					var areaEndIndex = el[i].childNodes[j].nodeValue.indexOf('[/AREA]');
+					area = el[i].childNodes[j].nodeValue.substring(areaStartIndex+6,areaEndIndex);
+				}
 				descr = descr + el[i].childNodes[j].nodeValue;
 			}
 		}
