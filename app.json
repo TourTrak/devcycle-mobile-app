@@ -54,6 +54,17 @@
             "platform": ["desktop", "chrome", "safari", "firefox", "android", "ios"],
             "update": "delta"
         },
+
+        /* CSS for the font awesome typefont */
+        {
+          "path": "resources/css/font-awesome.min.css"
+        },
+
+        /* CSS for the custom icons from the flaticon typefont */
+        {
+          "path": "resources/css/flaticon.css"
+        },
+
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.css"
         },
@@ -93,7 +104,8 @@
         "third_party_libraries/Leaflet/dist/images",
         "resources/map_tiles",
         "config.json",
-        "resources/data.kml"
+        "resources/data.kml",
+        "resources/fonts"
     ],
 
     "archivePath": "archive",

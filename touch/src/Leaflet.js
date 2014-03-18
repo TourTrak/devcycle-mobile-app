@@ -207,6 +207,51 @@ Ext.define('Ext.Leaflet', {
                   // add data layer to the map
                   self.map.addLayer(data);
                   me.fireEvent('maprender', me, self.map);
+
+                    // Creates a red marker with the coffee icon
+                  var userMarker = L.AwesomeMarkers.icon({
+                    icon: 'location-arrow',
+                    markerColor: 'red',
+                    prefix: 'fa'
+                  });
+
+                  // Creates a red marker with the coffee icon
+                  var coffeeMarker = L.AwesomeMarkers.icon({
+                    icon: 'coffee',
+                    markerColor: 'blue',
+                    prefix: 'fa'
+                  });
+
+                  var raceMarker = L.AwesomeMarkers.icon({
+                    icon: 'flag-checkered',
+                    markerColor: 'green',
+                    prefix: 'fa'
+                  });
+
+                  var musicMarker = L.AwesomeMarkers.icon({
+                    icon: 'music',
+                    markerColor: 'purple',
+                    prefix: 'fa'
+                  });
+
+                  var foodMarker = L.AwesomeMarkers.icon({
+                    icon: 'cutlery',
+                    markerColor: 'orange',
+                    prefix: 'fa'
+                  });
+
+                var drinkMarker = L.AwesomeMarkers.icon({
+                  icon: 'rest',
+                  markerColor: 'orange',
+                  prefix: 'flaticon'
+                });
+
+                  L.marker([40.7746431,-73.97019], {icon: coffeeMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7846431,-73.97019], {icon: userMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7846431,-73.96019], {icon: raceMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7646431,-73.96019], {icon: musicMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7646431,-73.97019], {icon: foodMarker}).bindPopup("TEST").addTo(self.map);
+                  L.marker([40.7846431,-73.98019], {icon: drinkMarker}).bindPopup("TEST").addTo(self.map);
              }
           }, 100);
         } else {
