@@ -219,21 +219,21 @@ Ext.define('Ext.Leaflet', {
 
                   // Creates a red marker with the coffee icon
                   var coffeeMarker = L.AwesomeMarkers.icon({
-                    icon: 'portable',
+                    icon: 'trash',
                     markerColor: 'blue',
-                    prefix: 'flaticon'
+                    prefix: 'icon'
                   });
 
                   var raceMarker = L.AwesomeMarkers.icon({
-                    icon: 'rest',
+                    icon: 'picture',
                     markerColor: 'green',
-                    prefix: 'flaticon'
+                    prefix: 'bikeny'
                   });
 
                   var musicMarker = L.AwesomeMarkers.icon({
-                    icon: 'standing25',
+                    icon: 'trash',
                     markerColor: 'purple',
-                    prefix: 'flaticon'
+                    prefix: 'bikeny'
                   });
 
                   var foodMarker = L.AwesomeMarkers.icon({

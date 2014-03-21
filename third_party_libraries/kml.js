@@ -210,6 +210,50 @@ L.Util.extend(L.KML, {
 		return new L.FeatureGroup(layers);
 	},
 
+
+	/*
+	given an area tag, returns the custom marker using awesome markers and the appropriate icon.
+	possible areas include:
+
+	- medical
+	- food
+	- music
+	- sagtruck
+	- warning
+	- mechanics
+	- bathrooms
+	- rest_area
+	- rendesvous_spot
+	- lost_child
+	- subway
+	- timed_ride
+	*/
+	createCustomMarker: function(area) {
+		if (area == "medical") {
+			return L.AwesomeMarkers.icon({
+					icon: 'medkit',
+					markerColor: 'red',
+					prefix: 'fa'
+			});
+		}
+
+		else if (area == "food") {
+			return L.AwesomeMarkers.icon({
+					icon: 'cutlery',
+					markerColor: 'blue',
+					prefix: 'fa'
+			});
+		}
+
+		else if (area == "music") {
+			return L.AwesomeMarkers.icon({
+					icon: 'music',
+					markerColor: 'cadetblue',
+					prefix: 'fa'
+			});
+		}
+	},
+
 	parsePlacemark: function (place, xml, style) {
 		var i, j, el, options = {};
 		el = place.getElementsByTagName('styleUrl');
@@ -280,6 +324,7 @@ L.Util.extend(L.KML, {
 				descr = descr + el[i].childNodes[j].nodeValue;
 			}
 		}
+
 
 		if (name) {
 			layer.bindPopup("<h1>" + name + "</h1><b1>" + descr + "</b1>", {offset: new L.Point(0,-20)});

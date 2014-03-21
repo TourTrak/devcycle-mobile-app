@@ -57,14 +57,17 @@
 
         /* CSS for the font awesome typefont */
         {
-          "path": "resources/css/font-awesome.min.css"
+          "path": "resources/css/font-awesome.css"
         },
 
         /* CSS for the custom icons from the flaticon typefont */
         {
           "path": "resources/css/flaticon.css"
         },
-
+        /* CSS for the custom icons from the bike NY designers */
+        {
+          "path": "resources/css/bikeNYIcons.css"
+        },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.css"
         },

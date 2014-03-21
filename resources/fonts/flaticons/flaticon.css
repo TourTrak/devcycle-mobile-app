@@ -1,25 +1,19 @@
 @font-face {
-
 	font-family: "Flaticon";
-	src: url("../fonts/flaticons/flaticon.eot");
-	src: url("../fonts/flaticons/flaticon.eot#iefix") format("embedded-opentype"),
-	url("../fonts/flaticons/flaticon.ttf") format("truetype"),
-	url("../fonts/flaticons/flaticon.svg") format("svg");
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
 	font-weight: normal;
 	font-style: normal;
 }
-
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
 	font-family: Flaticon;
         font-size: 20px;
 font-style: normal;
-margin-left: 0px;
-line-height: 1;
-font-weight: normal;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-display: inline-block;
+margin-left: 20px;
 }.flaticon-finish1:before {
 	content: "\e000";
 }

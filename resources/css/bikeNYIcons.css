@@ -1,0 +1,81 @@
+@font-face {
+	font-family: 'bikeNYIcons';
+	src:url('../fonts/bikeNYIcons/bikeNYIcons.eot?-5d5x6j');
+	src:url('../fonts/bikeNYIcons/bikeNYIcons.eot?#iefix-5d5x6j') format('embedded-opentype'),
+		url('../fonts/bikeNYIcons/bikeNYIcons.woff?-5d5x6j') format('woff'),
+		url('../fonts/bikeNYIcons/bikeNYIcons.ttf?-5d5x6j') format('truetype'),
+		url('../fonts/bikeNYIcons/bikeNYIcons.svg?-5d5x6j#bikeNYIcons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="bikeny-"]:before, [class*=" bikeny-"]:before,
+[class^="bikeny-"]:after, [class*=" bikeny-"]:after {
+	font-family: 'bikeNYIcons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	font-size: 20px;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.bikeny-vest:before {
+	content: "\e600";
+}
+.bikeny-medkit2:before {
+	content: "\e601";
+}
+.bikeny-trash:before {
+	content: "\e602";
+}
+.bikeny-picture:before {
+	content: "\e603";
+}
+.bikeny-victory:before {
+	content: "\e604";
+}
+.bikeny-ferry:before {
+	content: "\e605";
+}
+.bikeny-car:before {
+	content: "\e606";
+}
+.bikeny-food:before {
+	content: "\e607";
+}
+.bikeny-tshirt:before {
+	content: "\e608";
+}
+.bikeny-ribbon:before {
+	content: "\e609";
+}
+.bikeny-mechanic:before {
+	content: "\e60a";
+}
+.bikeny-recycle:before {
+	content: "\e60b";
+}
+.bikeny-train:before {
+	content: "\e60c";
+}
+.bikeny-search:before {
+	content: "\e60d";
+}
+.bikeny-tshirt2:before {
+	content: "\e60e";
+}
+.bikeny-helmet:before {
+	content: "\e60f";
+}
+.bikeny-license:before {
+	content: "\e610";
+}
+.bikeny-info-tent:before {
+	content: "\e611";
+}
