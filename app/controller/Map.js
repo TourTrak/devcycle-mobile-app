@@ -45,7 +45,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 					// Create rider icon
 				 	var personIcon = L.AwesomeMarkers.icon({
 						icon: 'user',
-						color: 'dark red'
+						markerColor: 'darkred',
+						prefix: 'fa'
 					});
 
 					this.riderPosMarker = L.marker(riderPos, {icon: personIcon});

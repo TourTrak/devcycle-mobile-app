@@ -213,22 +213,14 @@ L.Util.extend(L.KML, {
 
 	/*
 	given an area tag, returns the custom marker using awesome markers and the appropriate icon.
-	possible areas include:
+	look at the map marker icon area tags documentation.
 
-	- medical
-	- food
-	- music
-	- sagtruck
-	- warning
-	- mechanics
-	- bathrooms
-	- rest_area
-	- rendesvous_spot
-	- lost_child
-	- subway
-	- timed_ride
+	for areas not found, simply places a plain blue marker.
 	*/
 	createCustomMarker: function(area) {
+
+		area = area.toLowerCase(); // change so that the casing doesn't matter
+
 		if (area == "medical") {
 			return L.AwesomeMarkers.icon({
 					icon: 'medkit',
@@ -252,7 +244,235 @@ L.Util.extend(L.KML, {
 					prefix: 'fa'
 			});
 		}
+
+		else if (area == "sagtruck") {
+			return L.AwesomeMarkers.icon({
+				icon: 'truck',
+				markerColor: 'red',
+				prefix: 'fa'
+			});
+		}
+
+		else if (area == "warning") {
+			return L.AwesomeMarkers.icon({
+				icon: 'warning',
+				markerColor: 'red',
+				prefix: 'fa'
+			});
+		}
+
+		else if (area == "mechanics") {
+			return L.AwesomeMarkers.icon({
+				icon: 'wrench',
+				markerColor: 'orange',
+				prefix: 'fa'
+			});
+		}
+
+		else if (area == 'bathrooms') {
+			return L.AwesomeMarkers.icon({
+				icon: 'portable',
+				prefix: 'flaticon',
+				markerColor: 'blue'
+			});
+		}
+
+		else if (area == 'rest_area') {
+			return L.AwesomeMarkers.icon({
+				icon: 'rest',
+				prefix: 'flaticon',
+				markerColor: 'green'
+			});
+		}
+
+		else if (area == 'rendesvous_spot') {
+			return L.AwesomeMarkers.icon({
+				icon: 'man41',
+				prefix: 'flaticon',
+				markerColor: 'orange'
+			});
+		}
+
+		else if (area == 'lost_child') {
+			return L.AwesomeMarkers.icon({
+				icon: 'standing25',
+				prefix: 'flaticon',
+				markerColor: 'red'
+			});
+		}
+
+		else if (area == 'subway') {
+			return L.AwesomeMarkers.icon({
+				icon: 'train5',
+				prefix: 'flaticon',
+				markerColor: 'cardetblue'
+			});
+		}
+
+		else if (area == 'timed_ride') {
+			return L.AwesomeMarkers.icon({
+				icon: 'finish1',
+				prefix: 'flaticon',
+				markerColor: 'green'
+			});
+		}
+
+		else if (area == 'vest') {
+			return L.AwesomeMarkers.icon({
+				icon: 'vest',
+				prefix: 'bikeny',
+				markerColor: 'orange'
+			});
+		}
+
+		else if (area == 'trash') {
+			return L.AwesomeMarkers.icon({
+				icon: 'trash',
+				prefix: 'bikeny',
+				markerColor: 'green'
+			});
+		}
+
+		else if (area == 'picture') {
+			return L.AwesomeMarkers.icon({
+				icon: 'picture',
+				prefix: 'bikeny',
+				markerColor: 'purple'
+			});
+		}
+
+		else if (area == 'award') {
+			return L.AwesomeMarkers.icon({
+				icon: 'victory',
+				markerColor: 'blue',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'ferry') {
+			return L.AwesomeMarkers.icon({
+				icon: 'ferry',
+				markerColor: 'cadetblue',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'car') {
+			return L.AwesomeMarkers.icon({
+				icon: 'car',
+				markerColor: 'blue',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'food2') {
+			return L.AwesomeMarkers.icon({
+				icon: 'food',
+				markerColor: 'blue',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'tshirt') {
+			return L.AwesomeMarkers.icon({
+				icon: 'tshirt',
+				markerColor: 'orange',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'mechanics2') {
+			return L.AwesomeMarkers.icon({
+				icon: 'mechanic',
+				markerColor: 'orange',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'ribbon') {
+			return L.AwesomeMarkers.icon({
+				icon: 'ribbon',
+				markerColor: 'blue',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'recycle') {
+			return L.AwesomeMarkers.icon({
+				icon: 'recycle',
+				markerColor: 'green',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'tshirt2') {
+			return L.AwesomeMarkers.icon({
+				icon: 'tshirt2',
+				markerColor: 'orange',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'search') {
+			return L.AwesomeMarkers.icon({
+				icon: 'search',
+				markerColor: 'orange',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'license') {
+			return L.AwesomeMarkers.icon({
+				icon: 'license',
+				markerColor: 'green',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'info-tent') {
+			return L.AwesomeMarkers.icon({
+				icon: 'info-tent',
+				markerColor: 'green',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'info_tent') {
+			return L.AwesomeMarkers.icon({
+				icon: 'info-tent',
+				markerColor: 'green',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'helmet') {
+			return L.AwesomeMarkers.icon({
+				icon: 'helmet',
+				markerColor: 'orange',
+				prefix: 'bikeny'
+			});
+		}
+
+		else if (area == 'train2') {
+			return L.AwesomeMarkers.icon({
+				icon: 'train',
+				markerColor: 'cadetblue',
+				prefix: 'bikeny'
+			});
+		}
+
+		// Area not found...
+
+		else {
+			console.log("ELSE!! " + area)
+			return L.AwesomeMarkers.icon({
+				markerColor: 'blue'
+			});
+		}
+
+
 	},
+
 
 	parsePlacemark: function (place, xml, style) {
 		var i, j, el, options = {};
@@ -309,22 +529,23 @@ L.Util.extend(L.KML, {
 		var area = null;
 		for (i = 0; i < el.length; i++) {
 			for (j = 0; j < el[i].childNodes.length; j++) {
-
-				console.log("descr: " + el[i].childNodes[j].nodeValue);
-
 				/*
 				Check to see if we have an AREA tag
 				*/
-				var areaStartIndex = el[i].childNodes[j].nodeValue.indexOf('[AREA]');
+				var areaStartIndex = el[i].childNodes[j].nodeValue.indexOf('<AREA>');
 				if (areaStartIndex != -1) // we have an AREA tag here..
 				{
-					var areaEndIndex = el[i].childNodes[j].nodeValue.indexOf('[/AREA]');
+					var areaEndIndex = el[i].childNodes[j].nodeValue.indexOf('</AREA>');
 					area = el[i].childNodes[j].nodeValue.substring(areaStartIndex+6,areaEndIndex);
+				} else {
+					descr = descr + el[i].childNodes[j].nodeValue;
 				}
-				descr = descr + el[i].childNodes[j].nodeValue;
 			}
 		}
 
+		if (area != null) {
+			layer.options.icon = this.createCustomMarker(area);
+		}
 
 		if (name) {
 			layer.bindPopup("<h1>" + name + "</h1><b1>" + descr + "</b1>", {offset: new L.Point(0,-20)});
@@ -355,9 +576,6 @@ L.Util.extend(L.KML, {
 			return;
 		}
 		var ll = el[0].childNodes[0].nodeValue.split(',');
-
-		options.icon.options.iconSize = [35,90]; // need to define the icon size; hardcoded
-		options.icon.options.iconAnchor = [17.5,45]; // center the icon
 
 		return new L.KMLMarker(new L.LatLng(ll[1], ll[0]), options);
 	},

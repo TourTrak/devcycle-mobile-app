@@ -25,57 +25,57 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.bikeny-vest:before {
+.bikeny-info-tent:before {
 	content: "\e600";
 }
-.bikeny-medkit2:before {
+.bikeny-vest:before {
 	content: "\e601";
 }
-.bikeny-trash:before {
+.bikeny-medkit2:before {
 	content: "\e602";
 }
-.bikeny-picture:before {
+.bikeny-trash:before {
 	content: "\e603";
 }
-.bikeny-victory:before {
+.bikeny-picture:before {
 	content: "\e604";
 }
-.bikeny-ferry:before {
+.bikeny-victory:before {
 	content: "\e605";
 }
-.bikeny-car:before {
+.bikeny-ferry:before {
 	content: "\e606";
 }
-.bikeny-food:before {
+.bikeny-car:before {
 	content: "\e607";
 }
-.bikeny-tshirt:before {
+.bikeny-food:before {
 	content: "\e608";
 }
-.bikeny-ribbon:before {
+.bikeny-tshirt:before {
 	content: "\e609";
 }
-.bikeny-mechanic:before {
+.bikeny-ribbon:before {
 	content: "\e60a";
 }
-.bikeny-recycle:before {
+.bikeny-mechanic:before {
 	content: "\e60b";
 }
-.bikeny-train:before {
+.bikeny-recycle:before {
 	content: "\e60c";
 }
-.bikeny-search:before {
+.bikeny-train:before {
 	content: "\e60d";
 }
-.bikeny-tshirt2:before {
+.bikeny-search:before {
 	content: "\e60e";
 }
-.bikeny-helmet:before {
+.bikeny-tshirt2:before {
 	content: "\e60f";
 }
-.bikeny-license:before {
+.bikeny-helmet:before {
 	content: "\e610";
 }
-.bikeny-info-tent:before {
+.bikeny-license:before {
 	content: "\e611";
 }

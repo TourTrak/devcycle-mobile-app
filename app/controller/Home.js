@@ -22,8 +22,6 @@ Ext.define('DevCycleMobile.controller.Home', {
 	**/
 	startTracking: function(rider_id){
 
-		alert(rider_id);
-
 		// Call the native plugins to begin tracking
 		cordova.exec(
 			function() {
