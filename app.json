@@ -35,10 +35,10 @@
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
         },
         {
-            "path": "third_party_libraries/PushNotification.js"
+            "path": "third_party_libraries/kml.js"
         },
         {
-            "path": "third_party_libraries/kml.js"
+          "path": "third_party_libraries/leaflet-usermarker/src/leaflet.usermarker.js"
         }
     ],
 
@@ -64,9 +64,15 @@
         {
           "path": "resources/css/flaticon.css"
         },
+
         /* CSS for the custom icons from the bike NY designers */
         {
           "path": "resources/css/bikeNYIcons.css"
+        },
+
+        /* CSS for the user marker */
+        {
+          "path": "third_party_libraries/leaflet-usermarker/src/leaflet.usermarker.css"
         },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.css"

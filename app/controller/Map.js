@@ -31,7 +31,6 @@ Ext.define('DevCycleMobile.controller.Map', {
 		console.log("On map rendered!");
 
 		var locSuccess = function(position) {
-			console.log("success");
 
 			var map = Ext.getCmp('mapview').map;
 			var riderPos = new L.latLng(position.coords.latitude, position.coords.longitude);
@@ -42,15 +41,13 @@ Ext.define('DevCycleMobile.controller.Map', {
 				// Make sure that rider icon is not already set
 				if(this.riderPosMarker === null || this.riderPosMarker === undefined){
 
-					// Create rider icon
-				 	var personIcon = L.AwesomeMarkers.icon({
-						icon: 'user',
-						markerColor: 'darkred',
-						prefix: 'fa'
+					// Create rider marker
+					this.riderPosMarker = L.userMarker(riderPos, {
+						accuracy: position.coords.accuracy,
+						pulsing: true
 					});
 
-					this.riderPosMarker = L.marker(riderPos, {icon: personIcon});
-					this.riderPosMarker.addTo(map); // add rider marker to map
+					this.riderPosMarker.addTo(map); // add to map
 
 					// center map on rider's location
 					map.panTo([position.coords.latitude, position.coords.longitude], {duration: 3});
@@ -58,6 +55,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 				} else {
 					var currPos = new L.LatLng(position.coords.latitude, position.coords.longitude);
 					this.riderPosMarker.setLatLng(currPos);
+					this.riderPosMarker.setAccuracy(position.coords.accuracy);
 					this.riderPosMarker.panTo(currPos);
 				}
 
