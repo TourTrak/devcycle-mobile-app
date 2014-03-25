@@ -1,9 +1,15 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url(../fonts/open-sans/OpenSans-Regular.ttf);
+}
+// use custom web font as default
+$font-family: 'Open Sans' !default;
+
 @import 'sencha-touch/cupertino';
 @import 'sencha-touch/cupertino/all';
 
 @import 'stylesheets/accordionlist';
 @include accordionlist;
-
 
 .x-accordion-list-header.x-list-item.x-item-selected, .x-accordion-list-content.x-list-item.x-item-selected {
     background-color: $ios7-blue !important;
@@ -35,7 +41,7 @@ body {
 }
 
 h1 {
-		font-family:Verdana, Arial, Helvetica, sans-serif;
+		font-family: 'Open Sans';
 		font-size:14px;
 		font-weight:bold;
 		color: #033649;
@@ -45,7 +51,7 @@ h1 {
 }
 
 b1 {
-	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans';
 	color: #031634;
 	text-align:left;
 	font-size:12px;

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url(../fonts/open-sans/OpenSans-Regular.ttf);
+}
+// use custom web font as default
+$font-family: 'Open Sans' !default;
+
 @import 'sencha-touch/mountainview';
 @import 'sencha-touch/mountainview/all';
 
@@ -15,7 +22,7 @@
 }
 
 h1 {
-    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans';
     font-size:14px;
     font-weight:bold;
     color: #033649;
@@ -25,7 +32,7 @@ h1 {
 }
 
 b1 {
-   font-family:Verdana, Arial, Helvetica, sans-serif;
+   font-family: 'Open Sans';
    color: #031634;
    text-align:left;
    font-size:12px;
