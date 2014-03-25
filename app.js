@@ -143,7 +143,6 @@ Ext.application({
 
         // Janky - must do this or the exit notification title may not fit properly. Possible issue in sdk.
         Ext.Msg.add({ maxHeight: 100 });
-        Ext.Msg.doLayout();
     },
 
     /**
@@ -175,70 +174,5 @@ Ext.application({
                 }
             }
         );
-    },
-
-    // Android Push Notification Handler
-    onNotificationGCM: function(e){
-
-        switch ( e.event ) {
-            case 'registered':
-                if (e.regid.length > 0) {
-
-                    // make sure rider is registered
-                    var riderInfo = Ext.getStore("RiderInfo");
-                    riderInfo.load();
-
-                    if(riderInfo.getCount() > 0){
-
-                        try {
-                            // register push notification to GCM server
-                            Ext.Ajax.request({
-                                url: 'http://devcycle.se.rit.edu/register_push/',
-                                method: 'POST',
-                                scope: this, // set scope of ajax call to this
-                                params: {
-                                    rider_id: riderInfo.getAt(0).data.riderId,
-                                    push_id: e.regid
-                                },
-                                success: function(response){
-                                    // TODO
-                                },
-                                failure: function(response){
-                                    // TODO
-                                }
-                            });
-                        } catch (error){
-                            // TODO
-                        }
-                    }
-                }
-            break;
-
-            case 'message':
-                // notification happened while in foreground
-                if ( e.foreground ) {
-                    // play noise? TODO
-
-                } else {
-                    // launched from touching notification in tray
-                    if ( e.coldstart ){
-                        // TODO
-                    }
-                }
-
-                // Janky - must do this or first notification the title doesn't fit.
-                // Sencha bug?
-                Ext.Msg.add({ maxHeight: 100 });
-                Ext.Msg.alert('Message', e.payload.message, Ext.emptyFn).doLayout();
-            break;
-
-            case 'error':
-                // log or something!
-            break;
-
-            default:
-                alert("Unknown event");
-            break;
-        }
-    },
+    }
 });
