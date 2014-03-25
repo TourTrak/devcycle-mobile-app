@@ -54,12 +54,8 @@ Ext.define('DevCycleMobile.view.AboutMain', {
             {
                 title: 'Tracking',
                 layout: 'vbox',
-                items: [{
-                    xtype: 'panel',
-                    layout: 'fit'
-                }
-                ],
-                control: { }
+                html: 'Contact Screen'
+
             }
         ],
         listeners: {
