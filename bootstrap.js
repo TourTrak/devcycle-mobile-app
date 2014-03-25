@@ -17,7 +17,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "Override.dataview.List": "app/view/Main.js"
+  "Override.dataview.List": "app/view/AboutMain.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Answer": [],
@@ -29,6 +29,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.model.Tour": [],
   "DevCycleMobile.store.AboutTheTour": [],
   "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.Credits": [],
   "DevCycleMobile.store.DosAndDonts": [],
   "DevCycleMobile.store.Equipment": [],
   "DevCycleMobile.store.FriendsAndFamily": [],
@@ -45,8 +46,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.store.UhOh": [],
   "DevCycleMobile.store.WhatToTake": [],
+  "DevCycleMobile.view.AboutMain": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.Main": [],
+  "DevCycleMobile.view.about.Container": [],
   "DevCycleMobile.view.guide.Container": [],
   "DevCycleMobile.view.guide.ListItem": [],
   "DevCycleMobile.view.map.Container": [],
@@ -686,6 +689,7 @@ Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.model.Tour": [],
   "DevCycleMobile.store.AboutTheTour": [],
   "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.Credits": [],
   "DevCycleMobile.store.DosAndDonts": [],
   "DevCycleMobile.store.Equipment": [],
   "DevCycleMobile.store.FriendsAndFamily": [],
@@ -702,11 +706,17 @@ Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.store.TourInfo": [],
   "DevCycleMobile.store.UhOh": [],
   "DevCycleMobile.store.WhatToTake": [],
+  "DevCycleMobile.view.AboutMain": [
+    "widget.aboutMain"
+  ],
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
   "DevCycleMobile.view.Main": [
     "widget.main"
+  ],
+  "DevCycleMobile.view.about.Container": [
+    "widget.aboutContainer"
   ],
   "DevCycleMobile.view.guide.Container": [
     "widget.faqContainer"

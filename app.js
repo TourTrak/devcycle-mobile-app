@@ -34,15 +34,18 @@ Ext.application({
         'DevCycleMobile.store.AboutTheTour',
         'DevCycleMobile.store.Purchases',
         'DevCycleMobile.store.Equipment',
-        'DevCycleMobile.store.Misc'
+        'DevCycleMobile.store.Misc',
+        'DevCycleMobile.store.Credits'
     ],
 
     views: [
         'Home',
         'Main',
+        'AboutMain',
         'map.Container',
         'guide.Container',
-        'guide.ListItem'
+        'guide.ListItem',
+        'about.Container'
     ],
 
     controllers: [
