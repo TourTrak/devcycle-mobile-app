@@ -5,19 +5,19 @@
 	 * This is the name of your application, which is displayed on the device when the app is installed. On IOS, this should match
 	 * the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationName":"DevCycleMobile",
+	"applicationName":"GalorathTourTrak",
 
 	/**
 	 * @cfg  applicationId
 	 * This is the name namespace for your application. On IOS, this should match the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationId":"DevCycleMobile",
+	"applicationId":"TourTrak",
 
 	/**
 	 * @cfg  bundleSeedId
 	 * A ten character string which stands before aplication ID in Apple Provisioning Portal
 	 */
-	"bundleSeedId":"KPXFEPZ6EF",
+	"bundleSeedId":"5B3HBXK7P6",
 
 	/**
 	 * @cfg  versionString
@@ -63,7 +63,7 @@
 	 * @required
 	 * This is where the built application file with be saved. Make sure that output path is not in your input path, you may get into endless recursive copying
 	 */
-	"outputPath":"../build/",
+	"outputPath":"../build/Payload",
 
 	/**
 	 * @cfg  configuration
@@ -71,7 +71,7 @@
 	 * This is configuration for your application. `Debug` should always be used unless you are submitting your app to an online
 	 * store - in which case `Release` should be specified.
 	 */
-	"configuration":"Debug",
+	"configuration":"Release",
 
 	/**
 	 * @cfg  platform
@@ -82,7 +82,7 @@
 	 *  - Android
 	 *  - AndroidEmulator
 	 */
-	"platform":"iOSSimulator",
+	"platform":"iOS",
 
 	/**
 	 * @cfg  deviceType
@@ -103,7 +103,7 @@
 	 * This is the location of your certificate.
 	 * This is required when you are developing for Android or you are developing on Windows.
 	 */
-	"certificatePath":"/path/to/certificate.file",
+	"certificatePath":"/resources/cert/Certificates.p12",
 
 	/**
 	 * @cfg  certificateAlias
@@ -116,7 +116,7 @@
 	 *
 	 * When using a certificatePath on Windows, you do not need to specify this.
 	 */
-	"certificateAlias":"",
+	"certificateAlias":"iPhone Developer: Robert Culp III (J2WDY34Q88)",
 	/**
 	 * @cfg  certificatePassword
 	 * The password which was specified during certificate export
@@ -126,12 +126,12 @@
 	 * @cfg  provisionProfile
 	 * The path to the provision profile (APP_NAME.mobileprovision) which you can create and then download from Apple's provisioning portal
 	 */
-	"provisionProfile":"",
+	"provisionProfile":"embedded.mobileprovision",
 	/**
 	 * @cfg  notificationConfiguration
 	 * Notification configuration for push notifications, can be "debug", "release" or empty if you don't use push notifications in your project.
 	 */
-	"notificationConfiguration":"",
+	"notificationConfiguration":"release",
 	/**
 	 * @cfg  sdkPath
 	 * This is the path to the Android SDK, if you are developing an Android application.
@@ -147,7 +147,7 @@
 
         /**
 	 * @cfg {Array[String]} permissions
-	 * Array of permissions that is used by an application (Android only) 
+	 * Array of permissions that is used by an application (Android only)
 	 * Full list of permissions for Android application can be found here: http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_CHECKIN_PROPERTIES
 	 */
 	"permissions":[

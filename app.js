@@ -21,7 +21,20 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'DevCycleMobile.store.BeforeTheTour',
-        'DevCycleMobile.store.GettingReady'
+        'DevCycleMobile.store.GettingReady',
+        'DevCycleMobile.store.FriendsAndFamily',
+        'DevCycleMobile.store.Registration',
+        'DevCycleMobile.store.DosAndDonts',
+        'DevCycleMobile.store.HumanNeeds',
+        'DevCycleMobile.store.TourFeatures',
+        'DevCycleMobile.store.OnTheTour',
+        'DevCycleMobile.store.LostAndFound',
+        'DevCycleMobile.store.UhOh',
+        'DevCycleMobile.store.WhatToTake',
+        'DevCycleMobile.store.AboutTheTour',
+        'DevCycleMobile.store.Purchases',
+        'DevCycleMobile.store.Equipment',
+        'DevCycleMobile.store.Misc'
     ],
 
     views: [

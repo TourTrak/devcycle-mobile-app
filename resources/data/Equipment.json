@@ -1,0 +1,58 @@
+{
+    "items" : [{
+                "text" : "What forms of identification are considered valid?",
+                "items" : [{
+                            "text" : "Residents of the United States and Puerto Rico must show state or federal government-issued photo identification, such as a driver’s license, DMV photo ID, or passport. Non-US residents, including Canadian residents, are required to show a valid passport (except residents of Puerto Rico, see above).",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Will I be allowed to bring a bag on the Tour?",
+                "items" : [{
+                            "text" : "Details regarding bag permissions & restrictions are TBD.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I wear headphones/earbuds while I ride?",
+                "items" : [{
+                            "text" : "In accordance with New York State law, cyclists may ride with only one earbud in.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I don’t have a bike?",
+                "items" : [{
+                            "text" : "We’ve partnered with Bike and Roll to arrange for bike rental pick-up right at the start of the ride and drop-off at the finish.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Do I need a helmet for the ride?",
+                "items" : [{
+                            "text" : "Yes. Helmets are required to participate in all Bike New York rides. For the TD Five Boro Bike Tour, you must also wear all three components of the Rider Identification Kit, a.k.a. RIK (helmet cover, bib, and bike plate), for the duration of the ride.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Is bike repair offered along the Tour route?",
+                "items" : [{
+                            "text" : "Each rest area will have a bicycle mechanic station for minor repairs. Rider Assist marshals should be able to offer some assistance for minor repairs while on the route. We strongly recommend bringing an extra bike tube on the route. If your bike needs maintenance, stop at a repair tent. Labor is free, but there is a charge for parts. Be sure to bring a spare tube. Flat tires are the most common problem, and marshals are more likely to be able to help you if you have a tube.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What should I bring on the ride?",
+                "items" : [{
+                            "text" : "While the Tour provides snacks and hydration at the rest areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if my bike breaks down and I need support?",
+                "items" : [{
+                            "text" : "Trucks and buses provide transportation to the Finish Festival for cyclists who, for whatever reason, are unable to complete the Tour. If you need assistance, simply pull off the road and wait for the SAG buses and trucks that follow the Tour.  Make sure your bike plate is attached to the handlebars so that we can reunite you with your bike at the Finish Festival. Your bib will serve as your bike-retrieval ticket. If you do not pick up your bicycle on Staten Island, you may claim it by contacting Bike New York. After May 8, unclaimed bicycles will be donated to Recycle-A-Bicycle. Call 212-870-2080 for more information.",
+                            "leaf" : true
+                        }]
+            }]
+}
