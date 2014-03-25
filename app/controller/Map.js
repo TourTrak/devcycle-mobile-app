@@ -68,9 +68,6 @@ Ext.define('DevCycleMobile.controller.Map', {
 			}
 
 		} // End of if - rider not in tour area so do not add to map
-
-		// reset number of tries as we have a success!
-		this.tries = 0;
 	},
 
 	/**

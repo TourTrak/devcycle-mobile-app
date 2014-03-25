@@ -56,6 +56,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 		if(this.riderStore.getCount() == 0){ //& Ext.browser.is.PhoneGap){
 			var rider_id = null; // rider_id to get from ajax response
 
+			console.log(this.tourInfo.data.tour_id);
+
     		// Register rider
     		Ext.Ajax.request({
 					url: this.tourInfo.data.dcs_url + '/register/',
@@ -85,6 +87,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 					failure: function(response){
 
 						alert("Registration Failure");
+						console.log(response.responseText);
+						alert(response.resposeText);
 						return;
 					}
 			});
@@ -149,11 +153,13 @@ Ext.define('DevCycleMobile.controller.Home', {
 		// Initalize all necessary views for tabs
 		var mapContainerView = Ext.create('DevCycleMobile.view.map.Container');
 		var faqContainerView = Ext.create('DevCycleMobile.view.guide.Container');
+        var aboutContainerView = Ext.create('DevCycleMobile.view.about.Container');
 
 		// define the dynamic tab panel and then add it to the component
 		var tabPanel = [
 			mapContainerView,
 			faqContainerView,
+            aboutContainerView
 		] // End tab panel items
 
 		// Add tab panel to component

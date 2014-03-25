@@ -1,0 +1,30 @@
+{
+    "items" : [{
+                "text" : "When can I order the Tour registration jersey?",
+                "items" : [{
+                            "text" : "The Tour registration jersey is available exclusively during the online registration process.  It will not be available at any point after they have completed registration.",
+                            "leaf" : true
+                        }]
+            }, 
+            {
+                "text" : "Where can I find sizing information for the Tour registration jersey?",
+                "items" : [{
+                            "text" : "Sizing information for the Tour registration jersey can be found on the Bike New York website.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I return/exchange my Tour registration jersey?",
+                "items" : [{
+                            "text" : "All jersey sales are nonrefundable and nontransferable. Be sure to consult the sizing charts before ordering a jersey.",
+                            "leaf" : true
+                        }]
+            }, 
+            {
+                "text" : "How many Tour registration jerseys can I purchase?",
+                "items" : [{
+                            "text" : "Participants may purchase up to five (5) Tour registration jerseys of any size.",
+                            "leaf" : true
+                        }]
+            }]
+}

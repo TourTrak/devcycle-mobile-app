@@ -25,13 +25,16 @@ Ext.define('DevCycleMobile.view.map.Container', {
 				xtype: 'toolbar',
 				docked: 'top',
 				id: 'mapTitleBar',
-				title: 'Tour Trak',
-				cls: 'my-toolbar'
+				title: 'TourTrak TD Five Boro Bike Tour',
+				cls: 'my-toolbar',
+                style: {
+                    backgroundImage: 'url(resources/images/carbon_fibre.png)'
+                }
 			},
 			{
-        xtype: 'leaflet',
-        useCurrentLocation: true
-      },
+                xtype: 'leaflet',
+                useCurrentLocation: true
+            }/*,
 
             {
                 xtype: 'button',
@@ -85,7 +88,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
                     //hide this button
                     Ext.get('btnPause').hide();
                 }
-            }
+            }*/
 
 		], // End items
 	} // End config

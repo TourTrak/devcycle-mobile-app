@@ -33,14 +33,84 @@
             {
                 "text" : "What sort of travel and accommodation options does Bike New York offer to riders?",
                 "items" : [{
-                            "text" : "Bike New York has partnered with onPeak to provide you with hotel options for your trip to New York. Through this partnership, Bike New York and onPeak are able to offer discounted nightly rates at hotels throughout the city. Visit our lodging page for more information.",
+                            "text" : "Bike New York has partnered with onPeak to provide you with hotel options for your trip to New York. Through this partnership, Bike New York and onPeak are able to offer discounted nightly rates at hotels throughout the city.",
                             "leaf" : true
                         }]
             },
             {
-                "text" : "Can I pick up the TD Five Boro Bike Tour registration jersey at Bike Expo New York? ",
+                "text" : "Can I pick up the TD Five Boro Bike Tour registration jersey at Bike Expo New York?",
                 "items" : [{
                             "text" : "Tour registration jerseys are only available during the online registration process, and will be mailed to participants before the Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I am late to my designated staggered start time?",
+                "items" : [{
+                            "text" : "Simply depart at the following start time. Please let a marshal know that you have entered at a different time.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Will I be allowed to bring a bag on the Tour?",
+                "items" : [{
+                            "text" : "Details regarding bag permissions & restrictions are TBD.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I wear headphones/earbuds while I ride?",
+                "items" : [{
+                            "text" : "In accordance with New York State law, cyclists may ride with only one earbud in.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if the weather looks bad?",
+                "items" : [{
+                            "text" : "This is a rain or shine event. Be sure to dress appropriately.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I bring a pet on my bike?",
+                "items" : [{
+                            "text" : "No. Pets are not permitted on the Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I don’t have a bike?",
+                "items" : [{
+                            "text" : "We’ve partnered with Bike and Roll to arrange for bike rental pick-up right at the start of the ride and drop-off at the finish.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I start at an earlier start time?",
+                "items" : [{
+                            "text" : "No, you can only fall back into a later start time.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Do I need a helmet for the ride?",
+                "items" : [{
+                            "text" : "Yes. Helmets are required to participate in all Bike New York rides. For the TD Five Boro Bike Tour, you must also wear all three components of the Rider Identification Kit, a.k.a. RIK (helmet cover, bib, and bike plate), for the duration of the ride.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What happens if I start the ride, but cannot finish it due to unforeseen circumstances?",
+                "items" : [{
+                            "text" : "You can leave the ride at any time. Note that if you leave the Tour, you will be riding in traffic and will have to watch for cars and road hazards.  Once you leave the Tour route you will no longer have access to Tour services including rest areas and SAG. If you need to depart, we recommend the following locations: Mile 14, York Avenue and 63rd Street, Manhattan: This is your last chance to exit the Tour in Manhattan. If you don’t want to go to Queens, travel straight on 63rd Street after the Tour exits FDR Drive. Do not take the left-hand turn onto the ramp of the Queensboro (59th Street) Bridge. Mile 27, Brooklyn Bridge: Just before the Tour enters the Brooklyn-Queens Expressway (BQE), you can leave the Tour and take the Brooklyn Bridge bike path into downtown Manhattan. Marshals on the Brooklyn side will direct you. (This exit is recommended for those traveling with children.) Note: You can also take a SAG vehicle to the Finish Festival.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What should I bring on the ride?",
+                "items" : [{
+                            "text" : "While the Tour provides snacks and hydration at the rest areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
                             "leaf" : true
                         }]
             }]

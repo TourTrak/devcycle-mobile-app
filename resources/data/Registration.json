@@ -1,17 +1,5 @@
 {
     "items" : [{
-                "text" : "When can I order the Tour registration jersey?",
-                "items" : [{
-                            "text" : "The Tour registration jersey is available exclusively during the online registration process.  It will not be available at any point after they have completed registration.",
-                            "leaf" : true
-                        }]
-            }, {
-                "text" : "What forms of identification are considered valid?",
-                "items" : [{
-                            "text" : "Residents of the United States and Puerto Rico must show state or federal government-issued photo identification, such as a driver’s license, DMV photo ID, or passport. Non-US residents, including Canadian residents, are required to show a valid passport (except residents of Puerto Rico, see above).",
-                            "leaf" : true
-                        }]
-            }, {
                 "text" : "My friends and I linked together to ride as a group.  Can I pick up their packets at the Expo?",
                 "items" : [{
                             "text" : "Yes. Registered friends and family can pick up packets for all linked group members. Whoever is picking up the packages for the group must bring the signed proxy packet pickup form along with the confirmation e-mails containing the unique barcodes and rider numbers, as well as a photocopy of valid photo identification for all group members.",
@@ -31,13 +19,6 @@
                         }]
             },
             {
-                "text" : "What sort of travel and accommodation options does Bike New York offer to riders?",
-                "items" : [{
-                            "text" : "Bike New York has partnered with onPeak to provide you with hotel options for your trip to New York. Through this partnership, Bike New York and onPeak are able to offer discounted nightly rates at hotels throughout the city. Visit our lodging page for more information.",
-                            "leaf" : true
-                        }]
-            },
-            {
                 "text" : "Can I pick up the TD Five Boro Bike Tour registration jersey at Bike Expo New York? ",
                 "items" : [{
                             "text" : "Tour registration jerseys are only available during the online registration process, and will be mailed to participants before the Tour.",
@@ -52,30 +33,9 @@
                         }]
             },
             {
-                "text" : "Where does the money go?",
-                "items" : [{
-                            "text" : "Proceeds go directly to fund our free bicycle education program. Last year alone, we taught more than 15,000 New Yorkers how to ride a bike, and how to do so safely and confidently.",
-                            "leaf" : true
-                        }]
-            },
-            {
-                "text" : "When is the next TD Five Boro Bike Tour?",
-                "items" : [{
-                            "text" : "The 37th Annual TD Five Boro Bike Tour is on Sunday, May 4, 2014.",
-                            "leaf" : true
-                        }]
-            },
-            {
                 "text" : "How do I group together with my friends/family to ensure that we are assigned the same start time?",
                 "items" : [{
                             "text" : "After registration closes, each rider will receive a follow-up email with instructions on how to link up with friends and family.",
-                            "leaf" : true
-                        }]
-            },
-            {
-                "text" : "How do I book a hotel room in New York City?",
-                "items" : [{
-                            "text" : "Bike New York has once again teamed up with onPeak to make your TD Five Boro Bike Tour experience better than ever.  A portion of the proceeds from each reservation booked through onPeak goes directly to supporting Bike New York’s free bike education programs.",
                             "leaf" : true
                         }]
             },
@@ -101,13 +61,6 @@
                         }]
             },
             {
-                "text" : "Can I start the ride farther along the Tour route and avoid the start line?",
-                "items" : [{
-                            "text" : "No. Riders ­must depart during the designated start time from the designated start area.",
-                            "leaf" : true
-                        }]
-            },
-            {
                 "text" : "I registered for the Tour. Can I sell or give away my entry?",
                 "items" : [{
                             "text" : "No. Registration is nonrefundable, non-deferrable, and nontransferable. If you decide not to ride, we can convert your full registration fee into a charitable contribution. Please email Bike New York as soon as possible if you want to explore this option.",
@@ -115,9 +68,16 @@
                         }]
             },
             {
-                "text" : "I plan on riding a tandem with my spouse/friend/child. Do we both need to register?",
+                "text" : "Can I return/exchange my Tour registration jersey?",
                 "items" : [{
-                            "text" : "Yes. All participants must register individually. Minors must be registered by a parent or guardian.",
+                            "text" : "All jersey sales are nonrefundable and nontransferable. Be sure to consult the sizing charts before ordering a jersey.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How many Tour registration jerseys can I purchase?",
+                "items" : [{
+                            "text" : "Participants may purchase up to five (5) Tour registration jerseys of any size.",
                             "leaf" : true
                         }]
             }]
