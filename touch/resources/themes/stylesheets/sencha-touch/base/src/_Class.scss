@@ -1,5 +1,13 @@
+/**
+ * @var {font-family} $font-family
+ * The font-family to be used throughout the theme.
+ *
+ * See background-gradient mixin.
+ */
+$font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif !default;
+
 html, body {
-    font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
+    font-family: $font-family;
     font-weight: normal;
     -webkit-text-size-adjust: none;
     margin: 0;
@@ -12,6 +20,7 @@ h4, h5, h6, pre, code, form, fieldset, legend,
 input, textarea, p, blockquote, th, td {
     margin: 0;
     padding: 0;
+    font-family: "Open Sans";
 }
 
 table {
@@ -60,7 +69,7 @@ sub {
 }
 
 input, textarea, select {
-    font-family: inherit;
+    font-family: $font-family;
     font-size: inherit;
     font-weight: inherit;
 }

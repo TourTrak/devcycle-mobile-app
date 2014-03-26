@@ -4,4 +4,6 @@
 	"tour_id": "toffer",
 	"tour_start_time": 1395464400,
 	"tour_end_time": 1395532500,
+	"reg_retry_init": 10,
+	"reg_retry_after": 300
 }
