@@ -3,7 +3,7 @@
   src: url(../fonts/open-sans/OpenSans-Regular.ttf);
 }
 // use custom web font as default
-$font-family: 'Open Sans' !default;
+$font-family: 'Open Sans', sans-serif !default;
 
 @import 'sencha-touch/mountainview';
 @import 'sencha-touch/mountainview/all';
@@ -15,10 +15,15 @@ $font-family: 'Open Sans' !default;
     background-color: $background-color !important;
 }
 
-
 .x-accordion-list .x-scroll-container
 {
     background-color: #000;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: $font-family;
 }
 
 h1 {
@@ -38,4 +43,9 @@ b1 {
    font-size:12px;
    padding-top:12px;
    width:100%;
+}
+
+.x-button-label {
+  font-weight: 400;
+  font-family: "Open Sans" !important;
 }

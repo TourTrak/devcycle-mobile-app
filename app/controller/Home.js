@@ -119,6 +119,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		} else {
 
+			// can't start a plugin on an non mobile device - annoying for testing
+			// quickly on browser.
 			if (!Ext.browser.is.PhoneGap){
 
 			}

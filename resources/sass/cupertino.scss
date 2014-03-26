@@ -3,7 +3,7 @@
   src: url(../fonts/open-sans/OpenSans-Regular.ttf);
 }
 // use custom web font as default
-$font-family: 'Open Sans' !default;
+$font-family: 'Open Sans', sans-serif !default;
 
 @import 'sencha-touch/cupertino';
 @import 'sencha-touch/cupertino/all';
@@ -38,10 +38,11 @@ $font-family: 'Open Sans' !default;
 body {
     padding: 0;
     margin: 0;
+    font-family: $font-family;
 }
 
 h1 {
-		font-family: 'Open Sans';
+		font-family: $font-family;
 		font-size:14px;
 		font-weight:bold;
 		color: #033649;
@@ -51,7 +52,7 @@ h1 {
 }
 
 b1 {
-	font-family: 'Open Sans';
+	font-family: $font-family;
 	color: #031634;
 	text-align:left;
 	font-size:12px;
