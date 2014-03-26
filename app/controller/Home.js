@@ -82,17 +82,18 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 					var decodedResponse = Ext.JSON.decode(response.responseText);
 					rider_id = decodedResponse.rider_id;
+
 					var newRider = new DevCycleMobile.model.Rider({
 						riderId: rider_id
 					});
 
 					// Save the rider info (id)
-					this.riderStore.add(newRider);
-					this.riderStore.sync();
+					self.riderStore.add(newRider);
+					self.riderStore.sync();
 
 					// start tracking
-					this.startTracking(rider_id);
-					this.registerPushNotification(rider_id);
+					self.startTracking(rider_id);
+
 				},
 				failure: function(response, options){
 
@@ -119,17 +120,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		} else {
 
-			// can't start a plugin on an non mobile device - annoying for testing
-			// quickly on browser.
-			if (!Ext.browser.is.PhoneGap){
+			var riderInfo = this.riderStore.first();
 
-			}
-			else{
-				var riderInfo = this.riderStore.first();
-
-				// already registered so no need to re-register
-				this.startTracking(riderInfo.data.riderId);
-			}
+			// already registered so no need to re-register
+			this.startTracking(riderInfo.data.riderId);
 		}
 	},
 

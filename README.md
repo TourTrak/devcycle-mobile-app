@@ -35,15 +35,16 @@ The totally rad HTML5 'native' application built using Sencha Touch and Cordova 
   super.setIntegerProperty("splashscreen", R.drawable.splash);
 
 ###Config File
-In the config.json, you can specify the following parameters:
+In the config.json, you can specify the following parameters shown below. Please note that all timestamps are in unix time (seconds since epoch) for the GMT timezone, as we are timezone agnostic. Make sure you convert your tour time to GMT time, before converting that to the unix timestamp.
 
 * app name : name of the app
 * dcs_url : the url to the data collection server
 * tour_id : the tour id
-* tour_start_time : the unix timestamp of the tour start time ( when automatic tracking starts: secs since epoch)
-* tour_end_time : the unix timestamp of the tour end time ( when tracking should end: secs since epoch)
+* tour_start_time : the unix timestamp of the tour start time ( when automatic tracking starts: secs since epoch GMT time)
+* tour_end_time : the unix timestamp of the tour end time ( when tracking should end: secs since epoch GMT time)
 * reg_retry_init : if registration fails, how often it should retry for the next 10 tries (in seconds)
 * reg_retry_after : if registration is still failing after 10 tries, how often it should retry (in seconds)
 
 ###Application Status
-Still in development; no stable versions yet.
+
+In BETA testing. Currently, tracking automatically slated to start Thursday, April the 3rd starting at 6am and going to 6pm EASTERN.
