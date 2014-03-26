@@ -35,7 +35,8 @@ Ext.application({
         'DevCycleMobile.store.Purchases',
         'DevCycleMobile.store.Equipment',
         'DevCycleMobile.store.Misc',
-        'DevCycleMobile.store.Credits'
+        'DevCycleMobile.store.Credits',
+        'DevCycleMobile.store.AboutTracking'
     ],
 
     views: [

@@ -1,20 +1,5 @@
 {
     "items" : [{
-                "text" : "Team Cycl-ops (2012-2013)",
-                "items" : [{
-                            "text" : "James Dudish",
-                            "leaf" : true
-                        }, {
-                            "text" : "Michael Lopez",
-                            "leaf" : true
-                        }, {
-                            "text" : "Evan J. Moreshead",
-                            "leaf" : true
-                        }, {
-                            "text" : "Alexander Zlatin",
-                            "leaf" : true
-                        }]
-            }, {
                 "text" : "Team DevCycle (2013-2014)",
                 "items" : [{
                             "text" : "Rob Culp",
@@ -29,7 +14,24 @@
                             "text" : "Christoffer Rosen",
                             "leaf" : true
                         }]
-            }, {
+            }, 
+            {
+                "text" : "Team Cycl-ops (2012-2013)",
+                "items" : [{
+                            "text" : "James Dudish",
+                            "leaf" : true
+                        }, {
+                            "text" : "Michael Lopez",
+                            "leaf" : true
+                        }, {
+                            "text" : "Evan J. Moreshead",
+                            "leaf" : true
+                        }, {
+                            "text" : "Alexander Zlatin",
+                            "leaf" : true
+                        }]
+            },
+            {
                 "text" : "Project Executive",
                 "items" : [{
                             "text" : "Lee Fischman, Galorath Inc.",

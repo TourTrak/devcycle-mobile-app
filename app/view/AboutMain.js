@@ -54,8 +54,69 @@ Ext.define('DevCycleMobile.view.AboutMain', {
             {
                 title: 'Tracking',
                 layout: 'vbox',
-                html: 'Contact Screen'
-
+                items: [
+                    {
+                        xtype: 'accordionlist',
+                        store: Ext.create('DevCycleMobile.store.AboutTracking'),
+                        flex: 1,
+                        itemId: 'basic',
+                        listeners: {
+                            initialize: function() {
+                                this.load();
+                            }
+                        }
+                    },
+                    {
+                        xtype: 'button',
+                        hidden: 'true',
+                        ui: 'confirm',
+                        text: 'Resume Tracking',
+                        id: 'btnResume',
+                        handler: function() {
+                            // call resumeTracking on the cordova abstraction layer
+                            cordova.exec(
+                                function() {
+                                    // do nothing on success
+                                },
+                                function(message) {
+                                    alert( "Error: " + message );
+                                },
+                                'CDVInterface',
+                                'resumeTracking',
+                                []
+                            );
+                            // show pause button
+                            Ext.get('btnPause').show();
+                            // hide this button
+                            Ext.get('btnResume').hide();
+                        }
+                    },
+                    {
+                        xtype: 'button',
+                        ui: 'decline',
+                        text: 'Pause Tracking',
+                        id: 'btnPause',
+                        handler: function() {
+                            // call pauseTracking on the cordova abstraction layer
+                            cordova.exec(
+                                function() {
+                                    // do nothing on success
+                                },
+                                function(message) {
+                                    alert( "Error: " + message );
+                                },
+                                'CDVInterface',
+                                'pauseTracking',
+                                []
+                            );
+                            // show resume button
+                            Ext.get('btnResume').show();
+                            //hide this button
+                            Ext.get('btnPause').hide();
+                        }
+                    }
+                ],
+                control: {}
             }
         ],
         listeners: {
