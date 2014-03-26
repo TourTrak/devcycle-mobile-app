@@ -43,5 +43,82 @@
                             "text" : "Tour registration jerseys are only available during the online registration process, and will be mailed to participants before the Tour.",
                             "leaf" : true
                         }]
+            },
+            {
+                "text" : "How much does it cost to ride in the Tour?",
+                "items" : [{
+                            "text" : "The price for Standard Registration is $90, $22 of which is a tax-deductible charitable donation. VIP Registration is $325, $100 of which is a tax-deductible charitable donation, and includes the following: a Priority VIP Pass, which allows you start at the front of the pack; a commemorative TD Five Boro Bike Tour jersey that’s only available to riders upon registration; breakfast at the start; a chip that’ll time your climb up the Verrazano Narrows Bridge; and a gourmet lunch at the finish festival. Ride for a Reason participants individually fundraise for one of our many Charity Partners. All Tour fees are nonrefundable and nontransferable. Note: Everyone over the age of 18 must register individually; after registration is closed, each rider will receive an email with instructions on how to link up and ride with friends and family.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Where does the money go?",
+                "items" : [{
+                            "text" : "Proceeds go directly to fund our free bicycle education program. Last year alone, we taught more than 15,000 New Yorkers how to ride a bike, and how to do so safely and confidently.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "When is the next TD Five Boro Bike Tour?",
+                "items" : [{
+                            "text" : "The 37th Annual TD Five Boro Bike Tour is on Sunday, May 4, 2014.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How do I group together with my friends/family to ensure that we are assigned the same start time?",
+                "items" : [{
+                            "text" : "After registration closes, each rider will receive a follow-up email with instructions on how to link up with friends and family.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How do I book a hotel room in New York City?",
+                "items" : [{
+                            "text" : "Bike New York has once again teamed up with onPeak to make your TD Five Boro Bike Tour experience better than ever.  A portion of the proceeds from each reservation booked through onPeak goes directly to supporting Bike New York’s free bike education programs.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can you mail me my rider packet and Rider Identification Kit?",
+                "items" : [{
+                            "text" : "No. All participants must pick up their packet and Rider Identification Kit (helmet cover, bib, & bike plate) at Bike Expo New York on May 2nd and 3rd (the days preceding the Tour).  You must show valid photo identification and your registration e-mail to receive your Tour packet. If you cannot attend the Expo for any reason, you may have a friend or family member pick up your packet by using a proxy packet pickup form.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Are there age restrictions for the Tour?",
+                "items" : [{
+                            "text" : "Children younger than 3 years old may not participate. Youth ages 3-9 years must ride with an adult over the age of 18 on a tandem bike, tagalong bike, in a child’s bike seat, or in a bike trailer. Youth ages 10-13 can ride their own bicycles and must stay in close proximity to their adult guardian. Youth ages 14-17 can ride their own bicycles, but must be linked to a registered adult riding in the Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Do I need to register my child?",
+                "items" : [{
+                            "text" : "Yes. All participants must be registered, including children, even if they are not riding their own bike. All children must be at least 3 years old on the day of the Tour to participate. An adult must register and sign the waiver on behalf of any minors.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I start the ride farther along the Tour route and avoid the start line?",
+                "items" : [{
+                            "text" : "No. Riders ­must depart during the designated start time from the designated start area.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "I registered for the Tour. Can I sell or give away my entry?",
+                "items" : [{
+                            "text" : "No. Registration is nonrefundable, non-deferrable, and nontransferable. If you decide not to ride, we can convert your full registration fee into a charitable contribution. Please email Bike New York as soon as possible if you want to explore this option.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "I plan on riding a tandem with my spouse/friend/child. Do we both need to register?",
+                "items" : [{
+                            "text" : "Yes. All participants must register individually. Minors must be registered by a parent or guardian.",
+                            "leaf" : true
+                        }]
             }]
 }

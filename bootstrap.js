@@ -17,7 +17,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "Override.dataview.List": "app/view/Main.js"
+  "Override.dataview.List": "app/view/AboutMain.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Answer": [],
@@ -27,13 +27,30 @@ Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.AboutTheTour": [],
+  "DevCycleMobile.store.AboutTracking": [],
   "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.Credits": [],
+  "DevCycleMobile.store.DosAndDonts": [],
+  "DevCycleMobile.store.Equipment": [],
+  "DevCycleMobile.store.FriendsAndFamily": [],
   "DevCycleMobile.store.GettingReady": [],
+  "DevCycleMobile.store.HumanNeeds": [],
+  "DevCycleMobile.store.LostAndFound": [],
   "DevCycleMobile.store.MapInfo": [],
+  "DevCycleMobile.store.Misc": [],
+  "DevCycleMobile.store.OnTheTour": [],
+  "DevCycleMobile.store.Purchases": [],
+  "DevCycleMobile.store.Registration": [],
   "DevCycleMobile.store.RiderInfo": [],
+  "DevCycleMobile.store.TourFeatures": [],
   "DevCycleMobile.store.TourInfo": [],
+  "DevCycleMobile.store.UhOh": [],
+  "DevCycleMobile.store.WhatToTake": [],
+  "DevCycleMobile.view.AboutMain": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.Main": [],
+  "DevCycleMobile.view.about.Container": [],
   "DevCycleMobile.view.guide.Container": [],
   "DevCycleMobile.view.guide.ListItem": [],
   "DevCycleMobile.view.map.Container": [],
@@ -671,16 +688,37 @@ Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.model.MapData": [],
   "DevCycleMobile.model.Rider": [],
   "DevCycleMobile.model.Tour": [],
+  "DevCycleMobile.store.AboutTheTour": [],
+  "DevCycleMobile.store.AboutTracking": [],
   "DevCycleMobile.store.BeforeTheTour": [],
+  "DevCycleMobile.store.Credits": [],
+  "DevCycleMobile.store.DosAndDonts": [],
+  "DevCycleMobile.store.Equipment": [],
+  "DevCycleMobile.store.FriendsAndFamily": [],
   "DevCycleMobile.store.GettingReady": [],
+  "DevCycleMobile.store.HumanNeeds": [],
+  "DevCycleMobile.store.LostAndFound": [],
   "DevCycleMobile.store.MapInfo": [],
+  "DevCycleMobile.store.Misc": [],
+  "DevCycleMobile.store.OnTheTour": [],
+  "DevCycleMobile.store.Purchases": [],
+  "DevCycleMobile.store.Registration": [],
   "DevCycleMobile.store.RiderInfo": [],
+  "DevCycleMobile.store.TourFeatures": [],
   "DevCycleMobile.store.TourInfo": [],
+  "DevCycleMobile.store.UhOh": [],
+  "DevCycleMobile.store.WhatToTake": [],
+  "DevCycleMobile.view.AboutMain": [
+    "widget.aboutMain"
+  ],
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
   "DevCycleMobile.view.Main": [
     "widget.main"
+  ],
+  "DevCycleMobile.view.about.Container": [
+    "widget.aboutContainer"
   ],
   "DevCycleMobile.view.guide.Container": [
     "widget.faqContainer"

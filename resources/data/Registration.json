@@ -1,0 +1,84 @@
+{
+    "items" : [{
+                "text" : "My friends and I linked together to ride as a group.  Can I pick up their packets at the Expo?",
+                "items" : [{
+                            "text" : "Yes. Registered friends and family can pick up packets for all linked group members. Whoever is picking up the packages for the group must bring the signed proxy packet pickup form along with the confirmation e-mails containing the unique barcodes and rider numbers, as well as a photocopy of valid photo identification for all group members.",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "Can I pick up someone else’s rider packet for them?",
+                "items" : [{
+                            "text" : "Yes, anyone picking up a Tour packet and Rider Identification Kit for someone else must come to the Expo with the proxy packet pickup form (click here) as well as a copy of the participant’s confirmation e-mail and a photocopy of valid photo identification. Individuals picking up for a group must bring the signed proxy form along with the confirmation e-mails containing a barcode for each group member.",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "My child is riding with me, but cannot attend the Expo. Can I pick up his/her packet?",
+                "items" : [{
+                            "text" : "In order to pick up the child’s rider packet without the child present, the registered guardian must bring his/her valid photo identification and the confirmation e-mail containing both registration numbers and barcodes. You do not need to provide identification for the registered youth. Note that adults may only pick up the rider packet for the youth(s) registered under their name.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I pick up the TD Five Boro Bike Tour registration jersey at Bike Expo New York? ",
+                "items" : [{
+                            "text" : "Tour registration jerseys are only available during the online registration process, and will be mailed to participants before the Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How much does it cost to ride in the Tour?",
+                "items" : [{
+                            "text" : "The price for Standard Registration is $90, $22 of which is a tax-deductible charitable donation. VIP Registration is $325, $100 of which is a tax-deductible charitable donation, and includes the following: a Priority VIP Pass, which allows you start at the front of the pack; a commemorative TD Five Boro Bike Tour jersey that’s only available to riders upon registration; breakfast at the start; a chip that’ll time your climb up the Verrazano Narrows Bridge; and a gourmet lunch at the finish festival. Ride for a Reason participants individually fundraise for one of our many Charity Partners. All Tour fees are nonrefundable and nontransferable. Note: Everyone over the age of 18 must register individually; after registration is closed, each rider will receive an email with instructions on how to link up and ride with friends and family.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How do I group together with my friends/family to ensure that we are assigned the same start time?",
+                "items" : [{
+                            "text" : "After registration closes, each rider will receive a follow-up email with instructions on how to link up with friends and family.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can you mail me my rider packet and Rider Identification Kit?",
+                "items" : [{
+                            "text" : "No. All participants must pick up their packet and Rider Identification Kit (helmet cover, bib, & bike plate) at Bike Expo New York on May 2nd and 3rd (the days preceding the Tour).  You must show valid photo identification and your registration e-mail to receive your Tour packet. If you cannot attend the Expo for any reason, you may have a friend or family member pick up your packet by using a proxy packet pickup form.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Are there age restrictions for the Tour?",
+                "items" : [{
+                            "text" : "Children younger than 3 years old may not participate. Youth ages 3-9 years must ride with an adult over the age of 18 on a tandem bike, tagalong bike, in a child’s bike seat, or in a bike trailer. Youth ages 10-13 can ride their own bicycles and must stay in close proximity to their adult guardian. Youth ages 14-17 can ride their own bicycles, but must be linked to a registered adult riding in the Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Do I need to register my child?",
+                "items" : [{
+                            "text" : "Yes. All participants must be registered, including children, even if they are not riding their own bike. All children must be at least 3 years old on the day of the Tour to participate. An adult must register and sign the waiver on behalf of any minors.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "I registered for the Tour. Can I sell or give away my entry?",
+                "items" : [{
+                            "text" : "No. Registration is nonrefundable, non-deferrable, and nontransferable. If you decide not to ride, we can convert your full registration fee into a charitable contribution. Please email Bike New York as soon as possible if you want to explore this option.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I return/exchange my Tour registration jersey?",
+                "items" : [{
+                            "text" : "All jersey sales are nonrefundable and nontransferable. Be sure to consult the sizing charts before ordering a jersey.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How many Tour registration jerseys can I purchase?",
+                "items" : [{
+                            "text" : "Participants may purchase up to five (5) Tour registration jerseys of any size.",
+                            "leaf" : true
+                        }]
+            }]
+}

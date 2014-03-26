@@ -1,0 +1,9 @@
+{
+    "items" : [{
+                "text" : "About Tracking",
+                "items" : [{
+                            "text" : "This app tracks your device's general location for the duration of your ride. Your identity is not recorded. Tracking is used to help ride organizers in monitoring and improving the ride, nothing more. If your battery or if for any reason you wish to opt out of tracking, press the button below.",
+                            "leaf" : true
+                        }]
+            }]
+}

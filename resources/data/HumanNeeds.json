@@ -1,0 +1,51 @@
+{
+    "items" : [{
+                "text" : "Is lunch provided for riders at the Finish Festival?",
+                "items" : [{
+                            "text" : "Riders can purchase food from a variety of vendors at the Finish Festival. Rest Areas along the route will provide water, bananas, energy bars, and more.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Will there be refreshments along the Tour route?",
+                "items" : [{
+                            "text" : "Yes, each rest stop will have all sorts of nutritious snacks and goodies to keep you going until the end.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How can I find out where rest stops, water stations, and bike maintenance hubs are located along the Tour route?",
+                "items" : [{
+                            "text" : "Rest stops are designated on the tour map. Each rest stop will have water and bike maintenance hubs.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I lose track of my friends/family during the Tour?",
+                "items" : [{
+                            "text" : "Make a plan in advance with your friends/family in case you get split up. Rest areas are a good place to meet up with friends. Do not stop in the following locations: Central Park, on any of the bridges, or on the Brooklyn-Queens Expressway (BQE). Out of courtesy for other riders, do not stop in the middle of the roadway; always pull over to the right side of the road if you need to stop for any reason. There will also be an Information Center at the Finish Festival where riders can rendezvous.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What should I bring on the ride?",
+                "items" : [{
+                            "text" : "While the Tour provides snacks and hydration at the rest areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What emergency medical services are available?",
+                "items" : [{
+                            "text" : "Emergency medical technicians and paramedics from the Jamaica Hospital Medical Center Medical Bike Unit are available to attend to medical needs, as are ambulances from the Fire Department of New York’s Emergency Medical Service. Ask any Tour Marshal or police officer to get you medical assistance if you need it. There are also EMTs at each rest area.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Where can I find toilets when on the Tour?",
+                "items" : [{
+                            "text" : "Hundreds of toilets are available throughout the Tour, including wheelchair-accessible ones at all rest areas, water stations, and the Finish Festival.",
+                            "leaf" : true
+                        }]
+            }]
+}

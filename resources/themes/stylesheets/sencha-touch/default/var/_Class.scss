@@ -70,7 +70,7 @@ $base-gradient: if($include-highlights, matte, null) !default;
  *
  * See background-gradient mixin.
  */
-$font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif !default;
+$font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif default;
 
 /**
  * @var {color} $alert-color

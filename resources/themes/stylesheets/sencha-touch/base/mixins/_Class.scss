@@ -262,7 +262,7 @@
                 text-align: center;
 
                 @if $font-family != null {
-                    font-family: $font-family;
+                    font-family: $font-family default;
                 }
 
                 @if $character != null {
@@ -281,7 +281,7 @@
   &:before {
       @include absolute-position;
       text-align: center;
-      font-family: $font-family;
+      font-family: $font-family default;
 
       @if $character {
           content: "#{$character}";
