@@ -10,7 +10,9 @@ Ext.define('DevCycleMobile.model.Tour', {
 			'dcs_url',
 			'tour_id',
 			'tour_start_time',
-			'tour_end_time'
+			'tour_end_time',
+			'reg_retry_init',
+			'reg_retry_after'
 		],
 	}
 });
