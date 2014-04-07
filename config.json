@@ -2,7 +2,7 @@
 	"app_name": "TD Five Boro Bike Tour",
 	"dcs_url": "http://devcycle.se.rit.edu",
 	"tour_id": "toffer",
-	"tour_start_time": 1396519200,
+	"tour_start_time": 1396314000,
 	"tour_end_time": 1396562400,
 	"reg_retry_init": 10,
 	"reg_retry_after": 300
