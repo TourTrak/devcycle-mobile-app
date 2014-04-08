@@ -26,22 +26,16 @@ app.cordova.dir=${app.dir}/cordova
 
 
 
-<<<<<<<=HEAD
-=\=\=\=\=\=\=
-
-
-
-
-
-
->>>>>>>=81a9e04df62e6fe735fbac7f07f621945af02096
-
-
-
 
 <<<<<<< HEAD
 
 
+
+
+
+
+
+
 =======
->>>>>>> 4c0644b5fcc60f7100b7dd235cc1db2c16ba968c
+>>>>>>> 1d1945bf615e862e7223c9aeb85c283515e361d4
 app.cordova.www.dir=${app.cordova.dir}/www

@@ -529,6 +529,7 @@ L.Util.extend(L.KML, {
 		var area = null;
 		for (i = 0; i < el.length; i++) {
 			for (j = 0; j < el[i].childNodes.length; j++) {
+
 				/*
 				Check to see if we have an AREA tag
 				*/
@@ -537,8 +538,10 @@ L.Util.extend(L.KML, {
 				{
 					var areaEndIndex = el[i].childNodes[j].nodeValue.indexOf('</AREA>');
 					area = el[i].childNodes[j].nodeValue.substring(areaStartIndex+6,areaEndIndex);
+					descr = descr + el[i].childNodes[j].nodeValue.substring(0, areaStartIndex+6);
 				} else {
 					descr = descr + el[i].childNodes[j].nodeValue;
+					console.log(descr);
 				}
 			}
 		}
