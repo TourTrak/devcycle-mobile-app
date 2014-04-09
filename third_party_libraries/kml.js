@@ -541,7 +541,6 @@ L.Util.extend(L.KML, {
 					descr = descr + el[i].childNodes[j].nodeValue.substring(0, areaStartIndex+6);
 				} else {
 					descr = descr + el[i].childNodes[j].nodeValue;
-					console.log(descr);
 				}
 			}
 		}

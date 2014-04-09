@@ -42,7 +42,9 @@ Ext.define('DevCycleMobile.controller.Home', {
 			'start',
 			[{
 	    		"dcsUrl": this.tourInfo.data.dcs_url,
+	    		"startBetaTime": this.tourInfo.data.tour_start_beta_time,
 	    		"startTime": this.tourInfo.data.tour_start_time,
+	    		"endBetaTime": this.tourInfo.data.tour_end_beta_time,
 	    		"endTime": this.tourInfo.data.tour_end_time,
 	    		"tourId": this.tourInfo.data.tour_id,
 	    		"riderId": rider_id
