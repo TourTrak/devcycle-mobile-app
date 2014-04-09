@@ -540,7 +540,17 @@ L.Util.extend(L.KML, {
 					area = el[i].childNodes[j].nodeValue.substring(areaStartIndex+6,areaEndIndex);
 					descr = descr + el[i].childNodes[j].nodeValue.substring(0, areaStartIndex+6);
 				} else {
-					descr = descr + el[i].childNodes[j].nodeValue;
+					// check for the alternative [AREA][/AREA] tag
+					var areaStartIndex2 = el[i].childNodes[j].nodeValue.indexOf('[AREA]');
+
+					if (areaStartIndex2 != -1){
+						var areaEndIndex = el[i].childNodes[j].nodeValue.indexOf('[/AREA]');
+						area = el[i].childNodes[j].nodeValue.substring(areaStartIndex2+6,areaEndIndex);
+						descr = descr + el[i].childNodes[j].nodeValue.substring(0, areaStartIndex2);
+					}
+					else{
+						descr = descr + el[i].childNodes[j].nodeValue;
+					}
 				}
 			}
 		}
@@ -565,7 +575,7 @@ L.Util.extend(L.KML, {
 		var coords = this.parseCoords(line);
 		options.opacity = 1; // set so that the line is completely solid as in mapbox.
 		options.weight = 6; // set width to be a bit bigger
-	//	options.color = "#0099CC";
+		options.color = "#0099CC";
 		if (!coords.length) { return; }
 		return new L.Polyline(coords, options);
 	},
