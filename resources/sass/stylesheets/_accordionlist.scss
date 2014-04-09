@@ -4,6 +4,7 @@
 
         .x-list-item .x-innerhtml {
             display: -webkit-box;
+            width: 90%;
         }
 
         .down {
@@ -13,6 +14,7 @@
             border: 8px solid transparent;
             border-top-color: #999;
             top: 4px;
+            margin-right: 0.2em;
         }
 
         .right {
@@ -22,6 +24,7 @@
             border: 8px solid transparent;
             border-left-color: #999;
             top: 2px;
+            margin-right: 0.2em;
         }
 
         .x-list-item.x-item-selected .down {
