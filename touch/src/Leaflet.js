@@ -175,7 +175,7 @@ Ext.define('Ext.Leaflet', {
 
         mapOptions = Ext.merge({
             layers : [this.tileLayer],
-            zoom : this.zoomLevel || mapInfo.maxzoom,
+            zoom : this.zoomLevel || mapInfo.minzoom,
             zoomControl : true,
             attributionControl : true,
             center : this.center || new L.LatLng(centerLat, centerLong),
