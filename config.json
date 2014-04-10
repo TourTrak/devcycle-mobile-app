@@ -1,11 +1,11 @@
 {
 	"app_name": "TD Five Boro Bike Tour",
-	"dcs_url": "http://devcycle.se.rit.edu",
+	"dcs_url": "http://54.243.61.92",
 	"tour_id": "5borobiketour",
-	"tour_start_beta_time": 1397086499,
-	"tour_end_beta_time": 1397174399,
-	"tour_start_time": 1396906782,
-	"tour_end_time": 1396906782,
+	"tour_start_beta_time": 1397566800,
+	"tour_end_beta_time": 1397588400,
+	"tour_start_time": 1399207500,
+	"tour_end_time": 1399237200,
 	"reg_retry_init": 10,
 	"reg_retry_after": 300
 }

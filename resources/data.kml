@@ -4477,7 +4477,7 @@ Back of ride: 3:42 AM
 		</Placemark>
 		<Placemark>
 			<name>Reunion Area</name>
-			<description>[AREA]Rendezvous_spot[/AREA]</description>
+			<description>[AREA]rendesvous_spot[/AREA]</description>
 			<LookAt>
 				<gx:TimeSpan>
 					<begin>2014-03-31T20:02:29.780136028Z</begin>
@@ -4504,7 +4504,7 @@ Back of ride: 3:42 AM
 		</Placemark>
 		<Placemark>
 			<name>Performance Stage</name>
-			<description>[AREA]Band[/AREA]</description>
+			<description>[AREA]music[/AREA]</description>
 			<LookAt>
 				<gx:TimeSpan>
 					<begin>2014-03-31T20:02:29.780136028Z</begin>
