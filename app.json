@@ -29,7 +29,7 @@
             "update": "delta"
         },
         {
-            "path": "third_party_libraries/Leaflet/dist/leaflet.js"
+            "path": "http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"
         },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
@@ -39,6 +39,9 @@
         },
         {
           "path": "third_party_libraries/leaflet-usermarker/src/leaflet.usermarker.js"
+        },
+        {
+            "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/leaflet.markercluster-src.js"
         }
     ],
 
@@ -49,8 +52,9 @@
             "platform": ["desktop", "chrome", "safari", "firefox"],
             "update": "delta"
         },
+
         {
-            "path": "third_party_libraries/Leaflet/dist/leaflet.css",
+            "path": "http://cdn.leafletjs.com/leaflet-0.7/leaflet.css",
             "platform": ["desktop", "chrome", "safari", "firefox", "android", "ios"],
             "update": "delta"
         },
@@ -76,6 +80,12 @@
         },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.css"
+        },
+        {
+            "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/MarkerCluster.css"
+        },
+        {
+            "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css"
         },
         {
             "path": "resources/css/cupertino.css",

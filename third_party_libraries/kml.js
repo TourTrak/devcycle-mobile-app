@@ -18,6 +18,7 @@ L.KML = L.FeatureGroup.extend({
 		L.Util.setOptions(this, options);
 		this._kml = kml;
 		this._layers = {};
+		this._markers = [];
 		this.loaded= false;
 
 		if (kml) {
@@ -60,6 +61,7 @@ L.KML = L.FeatureGroup.extend({
 
 	_addKML: function(xml, options) {
 		var layers = L.KML.parseKML(xml);
+
 		if (!layers || !layers.length) return;
 		for (var i = 0; i < layers.length; i++)
 		{
@@ -83,6 +85,7 @@ L.Util.extend(L.KML, {
 		this.parseStyleMap(xml, style);
 		var el = xml.getElementsByTagName("Folder");
 		var layers = [], l;
+
 		for (var i = 0; i < el.length; i++) {
 			if (!this._check_folder(el[i])) { continue; }
 			l = this.parseFolder(el[i], style);
@@ -92,8 +95,11 @@ L.Util.extend(L.KML, {
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j])) { continue; }
 			l = this.parsePlacemark(el[j], xml, style);
-			if (l) { layers.push(l); }
+			if (l) { 
+				layers.push(l); 
+			}
 		}
+		//console.log(layers);
 		return layers;
 	},
 
@@ -203,11 +209,13 @@ L.Util.extend(L.KML, {
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j], xml)) { continue; }
 			l = this.parsePlacemark(el[j], xml, style);
+
 			if (l) { layers.push(l); }
 		}
 		if (!layers.length) { return; }
 		if (layers.length === 1) { return layers[0]; }
 		return new L.FeatureGroup(layers);
+		//return layers;
 	},
 
 
@@ -286,6 +294,14 @@ L.Util.extend(L.KML, {
 		}
 
 		else if (area == 'rendesvous_spot') {
+			return L.AwesomeMarkers.icon({
+				icon: 'man41',
+				prefix: 'flaticon',
+				markerColor: 'orange'
+			});
+		}
+
+		else if (area == 'Rendezvous_spot'){
 			return L.AwesomeMarkers.icon({
 				icon: 'man41',
 				prefix: 'flaticon',
@@ -389,6 +405,14 @@ L.Util.extend(L.KML, {
 			});
 		}
 
+		else if (area == 'mechanic2') {
+			return L.AwesomeMarkers.icon({
+				icon: 'mechanic',
+				markerColor: 'orange',
+				prefix: 'bikeny'
+			});
+		}
+
 		else if (area == 'ribbon') {
 			return L.AwesomeMarkers.icon({
 				icon: 'ribbon',
@@ -464,7 +488,7 @@ L.Util.extend(L.KML, {
 		// Area not found...
 
 		else {
-			console.log("ELSE!! " + area)
+			
 			return L.AwesomeMarkers.icon({
 				markerColor: 'blue'
 			});

@@ -152,6 +152,8 @@ Ext.define('Ext.Leaflet', {
             event;
 
         var mapInfo = Ext.getStore("MapInfo").getAt(0).data;
+        console.log("Map info.. ");
+        console.log(mapInfo);
 
         // Get map center info
         var centerInfo = mapInfo.center.split(",");
@@ -174,8 +176,6 @@ Ext.define('Ext.Leaflet', {
         mapOptions = Ext.merge({
             layers : [this.tileLayer],
             zoom : this.zoomLevel || mapInfo.maxzoom,
-            maxZoom : mapInfo.maxzoom,
-            minZoom : mapInfo.minzoom,
             zoomControl : true,
             attributionControl : true,
             center : this.center || new L.LatLng(centerLat, centerLong),
@@ -199,13 +199,21 @@ Ext.define('Ext.Leaflet', {
           var handler = setInterval(function(){
              loaded = data.isLoaded();
              if (loaded){
+                  console.log("LOADED");
 
                   // cancel interval
                   clearInterval(handler);
                   handler = 0;
 
-                  // add data layer to the map
-                  self.map.addLayer(data);
+                  // we cluster for performance reasons and spidering for usability!
+                  var markers = new L.MarkerClusterGroup({maxClusterRadius: 50});
+              
+                  // iterate through all markers 
+                  data.eachLayer(function (layer) {
+                    markers.addLayer(layer);
+                  });
+
+                  self.map.addLayer(markers);
                   me.fireEvent('maprender', me, self.map);
              }
           }, 100);
