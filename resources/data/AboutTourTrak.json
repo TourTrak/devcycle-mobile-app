@@ -1,0 +1,185 @@
+{
+    "items" : [{
+                "text" : "About The TourTrak Project",
+                "items" : [{
+                            "text" : "TourTrak is slated towards release as an open source project.",
+                            "leaf" : true
+                        },
+                        {
+                            "text" : "Comment or contribute, but either way, get in touch! lee.fischman.public@galorath.com",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Contributing Projects",
+                "items" : [{
+                            "text" : "TourTrak relies on these open source projects, with licenses given for each:",
+                            "leaf" : true
+                        },
+                        {
+                            "text" : "Accordion List",
+                            "items": [{
+                                "text": "https://github.com/kawanoshinobu/Ext.ux.AccordionList",
+                                "leaf": true
+                            },
+                            {
+                                "text": "MIT license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Apache Cordova",
+                            "items": [{
+                                "text": "https://cordova.apache.org/",
+                                "leaf": true
+                            },
+                            {
+                                "text": "Apache license, Version 2.0",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Django",
+                            "items": [{
+                                "text": "https://www.djangoproject.com/",
+                                "leaf": true
+                            },
+                            {
+                                "text": "BSD License",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "ExtJS Touch Leaflet",
+                            "items": [{
+                                "text": "https://github.com/VinylFox/Ext.ux.touch.Leaflet",
+                                "leaf": true
+                            },
+                            {
+                                "text": "MIT license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Font Awesome",
+                            "items": [{
+                                "text": "https://github.com/FortAwesome/Font-Awesome",
+                                "leaf": true
+                            },
+                            {
+                                "text": "GPL license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Leaflet",
+                            "items": [{
+                                "text": "http://leafletjs.com",
+                                "leaf": true
+                            },
+                            {
+                                "text": "BSD license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Leaflet Awesome Markers",
+                            "items": [{
+                                "text": "https://github.com/lvoogdt/Leaflet.awesome-markers",
+                                "leaf": true
+                            },
+                            {
+                                "text": "MIT license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Leaflet Markercluster",
+                            "items": [{
+                                "text": "https://github.com/Leaflet/Leaflet.markercluster",
+                                "leaf": true
+                            },
+                            {
+                                "text": "MIT license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Leaflet Plugins",
+                            "items": [{
+                                "text": "https://github.com/shramov/leaflet-plugins",
+                                "leaf": true
+                            },
+                            {
+                                "text": "MIT license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Leaflet UserMarker",
+                            "items": [{
+                                "text": "https://github.com/heyman/leaflet-usermarker",
+                                "leaf": true
+                            },
+                            {
+                                "text": "MIT license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Mapbox Tilemill",
+                            "items": [{
+                                "text": "https://www.mapbox.com/tilemill/",
+                                "leaf": true
+                            },
+                            {
+                                "text": "BSD license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Open Sans typeface",
+                            "items": [{
+                                "text": "http://www.google.com/fonts/specimen/Open+Sans",
+                                "leaf": true
+                            },
+                            {
+                                "text": "Apache License, Version 2.0",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Open Street Map",
+                            "items": [{
+                                "text": "http://www.openstreetmap.org",
+                                "leaf": true
+                            },
+                            {
+                                "text": "Creative Commons Attribution-ShareAlike 2.0 license",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Phonegap",
+                            "items": [{
+                                "text": "http://phonegap.com/",
+                                "leaf": true
+                            },
+                            {
+                                "text": "Apache License, Version 2.0",
+                                "leaf": true
+                            }]
+                        },
+                        {
+                            "text" : "Sencha",
+                            "items": [{
+                                "text": "http://www.sencha.com/products/touch/",
+                                "leaf": true
+                            },
+                            {
+                                "text": "GNU GPL v3 license",
+                                "leaf": true
+                            }]
+                        }]
+            }]
+}
