@@ -11,10 +11,6 @@
     "url": null,
 
     "js": [
-		{
-			"path": "cordova.js",
-			"remote": true
-		},
         {
             "path": "resources/js/sencha-touch.js",
             "x-bootstrap": true
@@ -29,7 +25,7 @@
             "update": "delta"
         },
         {
-            "path": "http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"
+            "path": "third_party_libraries/Leaflet/dist/leaflet.js"
         },
         {
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
@@ -54,7 +50,7 @@
         },
 
         {
-            "path": "http://cdn.leafletjs.com/leaflet-0.7/leaflet.css",
+            "path": "third_party_libraries/Leaflet/dist/leaflet.css",
             "platform": ["desktop", "chrome", "safari", "firefox", "android", "ios"],
             "update": "delta"
         },
@@ -113,7 +109,6 @@
     },
 
     "resources": [
-		"config.xml",
 		    "config.xml",
         "resources/images",
         "resources/icons",
