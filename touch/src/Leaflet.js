@@ -205,7 +205,7 @@ Ext.define('Ext.Leaflet', {
                   handler = 0;
 
                   // we cluster for performance reasons and spidering for usability!
-                  var markers = new L.MarkerClusterGroup({maxClusterRadius:50});
+                  var markers = new L.MarkerClusterGroup({maxClusterRadius:40});
               
                   // iterate through all markers 
                   data.eachLayer(function (layer) {
