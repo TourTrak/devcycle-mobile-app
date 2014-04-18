@@ -1,3 +1,6 @@
+var hackRemember = L.DomUtil.TRANSITION;
+L.DomUtil.TRANSITION = false;
+
 /*
  Leaflet.markercluster, Provides Beautiful Animated Marker Clustering functionality for Leaflet, a JS library for interactive maps.
  https://github.com/Leaflet/Leaflet.markercluster

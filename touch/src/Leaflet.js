@@ -10,6 +10,7 @@
  *
  */
 
+
 Ext.define('Ext.Leaflet', {
     extend: 'Ext.Component',
     xtype : 'leaflet',
@@ -165,25 +166,33 @@ Ext.define('Ext.Leaflet', {
         var southWest = L.latLng(boundInfo[1], boundInfo[0]);
         var northEast = L.latLng(boundInfo[3], boundInfo[2]);
 
+        /*
+            var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
+      cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+      cloudmade = L.tileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution}),
+      latlng = L.latLng(50.5, 30.51);
+
+    var map = L.map('map', {center: latlng, zoom: 15, layers: [cloudmade]});
+    */
+
         this.tileLayer = new L.TileLayer('resources/map_tiles/{z}/{x}/{y}.png', {
             attribution: mapInfo.attribution,
             maxZoom: mapInfo.maxzoom,
-            minZoom: mapInfo.minzoom,
-            errorTileUrl: 'resources/images/error_tile.png',
-            updateWhenIdle: true
+            minZoom: mapInfo.minzoom
         });
 
         mapOptions = Ext.merge({
             layers : [this.tileLayer],
-            zoom : this.zoomLevel || mapInfo.minzoom,
+            zoom : mapInfo.minzoom,
             zoomControl : true,
             attributionControl : true,
-            center : this.center || new L.LatLng(centerLat, centerLong),
+            center : new L.LatLng(centerLat, centerLong),
             maxBounds : L.latLngBounds(southWest, northEast)
         }, mapOptions);
 
 
         if (this.map === undefined){
+          L.DomUtil.TRANSITION = hackRemember;
           this.map = new L.Map(element.id, mapOptions);
 
           // Remove the prepending leaflet link, as clicking will hijack the app!
@@ -206,7 +215,7 @@ Ext.define('Ext.Leaflet', {
                   handler = 0;
 
                   // we cluster for performance reasons and spidering for usability!
-                  var markers = new L.MarkerClusterGroup({maxClusterRadius: 50});
+                  var markers = new L.MarkerClusterGroup({maxClusterRadius:50});
               
                   // iterate through all markers 
                   data.eachLayer(function (layer) {
