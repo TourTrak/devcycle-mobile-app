@@ -117,6 +117,35 @@ Ext.define('DevCycleMobile.view.AboutMain', {
                     }
                 ],
                 control: {}
+            },
+            {
+                title: 'TourTrak',
+                layout: 'vbox',
+                items: [
+                    {
+                        xtype: 'accordionlist',
+                        store: Ext.create('DevCycleMobile.store.AboutTourTrak'),
+                        flex: 1,
+                        itemId: 'paging',
+                        listeners: {
+                            initialize: function() {
+                                this.load();
+                            }
+                        }
+                    }
+                ],
+                control: {
+                    'button[action=expand]': {
+                        tap: function() {
+                            this.down('accordionlist').doAllExpand();
+                        }
+                    },
+                     'button[action=collapse]': {
+                        tap: function() {
+                            this.down('accordionlist').doAllCollapse();
+                        }
+                    }
+                }
             }
         ],
         listeners: {
