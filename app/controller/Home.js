@@ -54,10 +54,13 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 	/**
 	* If rider is not already registered, register him or her.
-	* If registraiton doesn't work, it retries in intervals defined in the
+	* If registration doesn't work, it retries in intervals defined in the
 	* json.config file. The first 10 tries are using the reg_retry_init value
 	* in seconds, and after this it uses the value of the reg_retry_after value
 	* to determine how long to wait until attempting to register again.
+	*
+	* If rider IS registered, check if prod flag has been set. This would not be set for the BETA riders.
+	* They need to reregister and get a new rider id, we then update the rider info.
 	*
 	* Note: registeration only works on mobile browsers due to AJAX calls;
 	* not a priority fix.
@@ -70,63 +73,115 @@ Ext.define('DevCycleMobile.controller.Home', {
 		if(this.riderStore.getCount() == 0){ //& Ext.browser.is.PhoneGap){
 			var rider_id = null; // rider_id to get from ajax response
 
-  		// Register rider
-  		Ext.Ajax.request({
-				url: this.tourInfo.data.dcs_url + '/register/',
-				method: 'POST',
-				scope: this, // set scope of ajax call to this
-				params: {
-					os: Ext.os.name + " " + Ext.os.version,
-					device: Ext.os.name,
-					tourId: this.tourInfo.data.tour_id
-				},
-				success: function(response){
+	  		// Register rider
+	  		Ext.Ajax.request({
+					url: this.tourInfo.data.dcs_url + '/register/',
+					method: 'POST',
+					scope: this, // set scope of ajax call to this
+					params: {
+						os: Ext.os.name + " " + Ext.os.version,
+						device: Ext.os.name,
+						tourId: this.tourInfo.data.tour_id
+					},
+					success: function(response){
 
-					var decodedResponse = Ext.JSON.decode(response.responseText);
-					rider_id = decodedResponse.rider_id;
+						var decodedResponse = Ext.JSON.decode(response.responseText);
+						rider_id = decodedResponse.rider_id;
 
-					var newRider = new DevCycleMobile.model.Rider({
-						riderId: rider_id
-					});
+						var newRider = new DevCycleMobile.model.Rider({
+							riderId: rider_id,
+							prod: 'true'
+						});
 
-					// Save the rider info (id)
-					self.riderStore.add(newRider);
-					self.riderStore.sync();
+						// Save the rider info (id)
+						self.riderStore.add(newRider);
+						self.riderStore.sync();
 
-					// start tracking
-					self.startTracking(rider_id);
+						// start tracking
+						self.startTracking(rider_id);
 
-				},
-				failure: function(response, options){
+					},
+					failure: function(response, options){
 
-					console.error("Registration Failure");
-					console.error(response);
-					console.error("retry attempts: " + self.regAttempts);
+						console.error("Registration Failure");
+						console.error(response);
+						console.error("retry attempts: " + self.regAttempts);
 
-					// if less than 10 attempts at made, use the reg retry init limit
-					if ( self.regAttempts < 10 ) {
-						setTimeout(function() {
-							self.registerRider(); }, self.tourInfo.data.reg_retry_init * 1000);
+						// if less than 10 attempts at made, use the reg retry init limit
+						if ( self.regAttempts < 10 ) {
+							setTimeout(function() {
+								self.registerRider(); }, self.tourInfo.data.reg_retry_init * 1000);
+						}
+
+						// otherwise, use the reg retry after limit
+						else {
+							setTimeout(function() {
+								self.registerRider();}, self.tourInfo.data.reg_retry_after * 1000);
+						}
+
+						self.regAttempts++;
 					}
+				});
 
-					// otherwise, use the reg retry after limit
-					else {
-						setTimeout(function() {
-							self.registerRider();}, self.tourInfo.data.reg_retry_after * 1000);
-					}
+			} else {
 
-					self.regAttempts++;
+				var riderInfo = this.riderStore.first();
+
+				// check if this was a beta registration - need to register again to the production
+				if (riderInfo.get('prod') == null) {
+
+					// Get a new rider ID/ new registration!
+			  		Ext.Ajax.request({
+							url: this.tourInfo.data.dcs_url + '/register/',
+							method: 'POST',
+							scope: this, // set scope of ajax call to this
+							params: {
+								os: Ext.os.name + " " + Ext.os.version,
+								device: Ext.os.name,
+								tourId: this.tourInfo.data.tour_id
+							},
+							success: function(response){
+								var riderInfo = self.riderStore.first();
+								var decodedResponse = Ext.JSON.decode(response.responseText);
+								rider_id = decodedResponse.rider_id;
+
+								// Update the rider info (id) from the production server
+								riderInfo.set('riderId', rider_id);
+								riderInfo.set('prod', true); // update to signify this is a prod rider id
+								riderInfo.dirty = true; // signify to sencha that this object has been modified and need to be updated
+								self.riderStore.sync(); // sync the store
+
+								// start tracking w/ new rider id!
+								self.startTracking(rider_id);
+
+							},
+							failure: function(response, options){
+
+								console.error("Registration Failure");
+								console.error(response);
+								console.error("retry attempts: " + self.regAttempts);
+
+								// if less than 10 attempts at made, use the reg retry init limit
+								if ( self.regAttempts < 10 ) {
+									setTimeout(function() {
+										self.registerRider(); }, self.tourInfo.data.reg_retry_init * 1000);
+								}
+
+								// otherwise, use the reg retry after limit
+								else {
+									setTimeout(function() {
+										self.registerRider();}, self.tourInfo.data.reg_retry_after * 1000);
+								}
+
+								self.regAttempts++;
+							}
+						});
+
+				} else {
+					// already registered so no need to re-register
+					this.startTracking(riderInfo.data.riderId);
 				}
-			});
-
-
-		} else {
-
-			var riderInfo = this.riderStore.first();
-
-			// already registered so no need to re-register
-			this.startTracking(riderInfo.data.riderId);
-		}
+			}
 	},
 
 	/**
@@ -143,13 +198,13 @@ Ext.define('DevCycleMobile.controller.Home', {
 		// Initalize all necessary views for tabs
 		var mapContainerView = Ext.create('DevCycleMobile.view.map.Container');
 		var faqContainerView = Ext.create('DevCycleMobile.view.guide.Container');
-    var aboutContainerView = Ext.create('DevCycleMobile.view.about.Container');
+    	var aboutContainerView = Ext.create('DevCycleMobile.view.about.Container');
 
 		// define the dynamic tab panel and then add it to the component
 		var tabPanel = [
 			mapContainerView,
 			faqContainerView,
-      aboutContainerView
+     		aboutContainerView
 		] // End tab panel items
 
 		// Add tab panel to component
