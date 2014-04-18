@@ -1,50 +1,43 @@
 {
     "items" : [{
-                "text" : "What sort of travel and accommodation options does Bike New York offer to riders?",
-                "items" : [{
-                            "text" : "Bike New York has partnered with onPeak to provide you with hotel options for your trip to New York. Through this partnership, Bike New York and onPeak are able to offer discounted nightly rates at hotels throughout the city.",
-                            "leaf" : true
-                        }]
-            },
-            {
                 "text" : "Will there be a Finish Festival?",
                 "items" : [{
-                            "text" : "There will be a Finish Festival at Fort Wadsworth on Staten Island featuring bike demos, giveaways, a wonderful food concession, product samples, stretching, massage, a photo booth, and official merchandise for sale.",
+                            "text" : "There will be a Finish Festival at Fort Wadsworth on Staten Island featuring bike demos, giveaways, a wonderful food concession, product samples, stretching, massage, a photo booth, and official merchandise for sale. The Finish Festival is closed to the public.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "Is lunch provided for riders at the Finish Festival?",
                 "items" : [{
-                            "text" : "Riders can purchase food from a variety of vendors at the Finish Festival. Rest Areas along the route will provide water, bananas, energy bars, and more.",
+                            "text" : "Riders can purchase food from a variety of vendors at the Finish Festival. Water provided by NYC Water, Del Monte bananas, KIND Bars, and--at Brooklyn Bridge Park--tacos from Chipotle, will be available at Rest Areas along the Route.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "Is bike repair offered along the Tour route?",
                 "items" : [{
-                            "text" : "Each rest area will have a bicycle mechanic station for minor repairs. Rider Assist marshals should be able to offer some assistance for minor repairs while on the route. We strongly recommend bringing an extra bike tube on the route. If your bike needs maintenance, stop at a repair tent. Labor is free, but there is a charge for parts. Be sure to bring a spare tube. Flat tires are the most common problem, and marshals are more likely to be able to help you if you have a tube.",
+                            "text" : "Each rest area will have a bicycle mechanic station for minor repairs. Rider Assist marshals should be able to offer some assistance for minor repairs while on the route. If your bike needs maintenance, stop at a repair tent. Labor is free, but there is a charge for parts. Be sure to bring a spare tube. Flat tires are the most common problem, and marshals are more likely to be able to help you if you have a tube. Repair services can be found in these locations: Near the start area, in Bowling Green and Zuccotti Park, Manhattan; 110th Street and Adam Clayton Powell Jr. Boulevard, just north of Central Park, Manhattan; All rest areas (FDR Drive at 116th Street in Manhattan, Astoria Park in Queens, the Con Ed Learning Center in Queens, and Brooklyn Bridge Park); Finish Festival - Fort Wadsworth, Staten Island.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "Will there be refreshments along the Tour route?",
                 "items" : [{
-                            "text" : "Yes, each rest stop will have all sorts of nutritious snacks and goodies to keep you going until the end.",
+                            "text" : "Yes. Each Rest Area will have all sorts of nutritious snacks and refreshments to keep you going strong.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "How can I find out where rest stops, water stations, and bike maintenance hubs are located along the Tour route?",
                 "items" : [{
-                            "text" : "Rest stops are designated on the tour map. Each rest stop will have water and bike maintenance hubs.",
+                            "text" : "Rest Areas are located at the FDR Drive and 116th Street in Manhattan, Astoria Park in Queens, the Con Ed Learning Center in Queens, and Brooklyn Bridge Park. Water and bike repair is available at all Rest Areas, and at other locations as well. Visit www.bikenewyork.org to download the Ride Guide for more detailed information, or simply check out the map on this app.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "What is a 'rest area'?",
                 "items" : [{
-                            "text" : "Replenish your energy at four rest areas along the route (plus the Finish Festival in Staten Island). Complimentary snacks at each stop include Del Monte bananas, water, and KIND bars. Signs and Marshals along the route will direct you to rest areas–or to bypass lanes.",
+                            "text" : "Replenish your energy at four Rest Areas along the route (plus the Finish Festival in Staten Island). Complimentary snacks at Rest Areas include Del Monte bananas, water, KIND bars, and tacos from Chipotle at Brooklyn Bridge Park. Signs and Marshals along the route will direct you to Rest Areas or to bypass lanes. Rest stops can be found at: FDR Drive and 116th Street (Manhattan); Astoria Park* (Queens); Con Edison Learning Center (Queens); Brooklyn Bridge Park (Brooklyn); Fort Wadsworth - Finish Festival (Staten Island). *All cyclists near the head of the Tour will be held here for about 20 minutes while the NYPD ensures that the remainder of the route is devoid of traffic. Cyclists near the tail of the Tour will be directed to a mandatory shortcut that bypasses this stop and leads to the next one.",
                             "leaf" : true
                         }]
             },
@@ -58,7 +51,7 @@
             {
                 "text" : "Where should I go if need more information during the Tour?",
                 "items" : [{
-                            "text" : "Stop by one of the information tents at rest areas and the Finish Festival, and we’ll do our best to answer it. Information Centers are also great rendezvous points for folks riding in groups. Note: Do not stop in Central Park, on any of the bridges, or in the middle of the road to wait for friends. This is unsafe and impedes the flow of the Tour.",
+                            "text" : "Got a question? Stop by one of the information tents at Rest Areas and the Finish Festival, and we’ll do our best to answer it. Information Centers are also great rendezvous points for folks riding in groups. Note: Do not stop in Central Park, on any of the bridges, or in the middle of the road to wait for friends. This is unsafe and impedes the flow of the Tour.",
                             "leaf" : true
                         }]
             }]

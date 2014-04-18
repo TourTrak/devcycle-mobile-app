@@ -2,14 +2,14 @@
     "items" : [{
                 "text" : "What do I do if I lose one of my possessions while riding?",
                 "items" : [{
-                            "text" : "We ask all riders who find lost possessions on the route to hand them in to a staff member and let him/her know where the item was found. If you lost something, ask a representative at the Information Center at the Finish Festival if anybody turned it in. You can also email Bike New York with a description of the item and a note about where you think you lost it. When all items are turned in, we will contact you if we find it. The TD Five Boro Bike Tour and Bike New York are not responsible for lost or stolen items. Check at Information Tents for items lost along the way.  After May 4th, call 212-870-2080 or email info@bikenewyork.org in case your lost items were brought to the Tour office.",
+                            "text" : "We ask all riders who find lost possessions on the route to hand them in to a staff member and let him/her know where the item was found. If you lost something, ask a representative at the Information Center at the Finish Festival if anybody turned it in. You can also email Bike New York with a description of the item and a note about where you think you lost it. When all items are turned in, we will contact you if we find it. The TD Five Boro Bike Tour and Bike New York are not responsible for lost or stolen items. Check at Information Tents at Rest Areas for items lost along the way.  After May 4th, call 212-870-2080 or email info@bikenewyork.org in case your lost items were brought to the Tour office.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "What if I lose track of my friends/family during the Tour?",
                 "items" : [{
-                            "text" : "Make a plan in advance with your friends/family in case you get split up. Rest areas are a good place to meet up with friends. Do not stop in the following locations: Central Park, on any of the bridges, or on the Brooklyn-Queens Expressway (BQE). Out of courtesy for other riders, do not stop in the middle of the roadway; always pull over to the right side of the road if you need to stop for any reason. There will also be an Information Center at the Finish Festival where riders can rendezvous.",
+                            "text" : "Make a plan in advance with your friends/family in case you get split up. Rest Areas are a good place to meet up with friends. Do not stop in the following locations: Central Park, on any of the bridges, or on the Brooklyn-Queens Expressway (BQE). Out of courtesy for other riders, do not stop in the middle of the roadway; always signal and pull over to the right side of the road if you need to stop for any reason. There will also be an Information Center at the Finish Festival where riders can rendezvous.",
                             "leaf" : true
                         }]
             }]

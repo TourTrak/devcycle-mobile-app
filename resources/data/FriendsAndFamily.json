@@ -2,26 +2,26 @@
     "items" : [{
                 "text" : "My friends and I linked together to ride as a group.  Can I pick up their packets at the Expo?",
                 "items" : [{
-                            "text" : "Yes. Registered friends and family can pick up packets for all linked group members. Whoever is picking up the packages for the group must bring the signed proxy packet pickup form along with the confirmation e-mails containing the unique barcodes and rider numbers, as well as a photocopy of valid photo identification for all group members.",
+                            "text" : "Yes. Registered friends and family can pick up Rider Packets for all linked group members. Whoever is picking up the packets for the group must bring the signed Proxy Packet Pickup form along with each group member's confirmation e-mail, rider number/barcode email, and a photocopy of each group member's photo ID. Visit www.bikenewyork.org for the Proxy Packet Pickup form.",
                             "leaf" : true
                         }]
             }, {
                 "text" : "Can I pick up someone else’s rider packet for them?",
                 "items" : [{
-                            "text" : "Yes, anyone picking up a Tour packet and Rider Identification Kit for someone else must come to the Expo with the proxy packet pickup form (click here) as well as a copy of the participant’s confirmation e-mail and a photocopy of valid photo identification. Individuals picking up for a group must bring the signed proxy form along with the confirmation e-mails containing a barcode for each group member.",
+                            "text" : "Yes. Anyone picking up a Rider Packet for someone else must come to the Expo with the signed Proxy Packet Pickup form (available at www.bikenewyork.org) as well as a copy of the participant’s confirmation e-mail and a photocopy of his/her valid photo ID. Individuals picking up for a group must bring the signed Proxy form along with each group member's rider number/barcode email and photocopies of each member's photo ID.",
                             "leaf" : true
                         }]
             }, {
                 "text" : "My child is riding with me, but cannot attend the Expo. Can I pick up his/her packet?",
                 "items" : [{
-                            "text" : "In order to pick up the child’s rider packet without the child present, the registered guardian must bring his/her valid photo identification and the confirmation e-mail containing both registration numbers and barcodes. You do not need to provide identification for the registered youth. Note that adults may only pick up the rider packet for the youth(s) registered under their name.",
+                            "text" : "In order to pick up a child’s Rider Packet without the child present, the registered guardian must bring his/her valid photo identification and the child's rider number/barcode email. You do not need to provide identification for the registered child. Note that adults may only pick up the Rider Packet for the child registered under their name.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "How do I group together with my friends/family to ensure that we are assigned the same start time?",
                 "items" : [{
-                            "text" : "After registration closes, each rider will receive a follow-up email with instructions on how to link up with friends and family.",
+                            "text" : "Grouping is now closed. If you would like to ride with friends and family who have been assigned to a different start time than you, please fall back together to the third start wave.",
                             "leaf" : true
                         }]
             },
@@ -42,7 +42,7 @@
             {
                 "text" : "What if I lose track of my friends/family during the Tour?",
                 "items" : [{
-                            "text" : "Make a plan in advance with your friends/family in case you get split up. Rest areas are a good place to meet up with friends. Do not stop in the following locations: Central Park, on any of the bridges, or on the Brooklyn-Queens Expressway (BQE). Out of courtesy for other riders, do not stop in the middle of the roadway; always pull over to the right side of the road if you need to stop for any reason. There will also be an Information Center at the Finish Festival where riders can rendezvous.",
+                            "text" : "Make a plan in advance with your friends/family in case you get split up. Rest Areas are a good place to meet up with friends. Do not stop in the following locations: Central Park, on any of the bridges, or on the Brooklyn-Queens Expressway (BQE). Out of courtesy for other riders, do not stop in the middle of the roadway; always signal and pull over to the right side of the road if you need to stop for any reason. There will also be an Information Center at the Finish Festival where riders can rendezvous.",
                             "leaf" : true
                         }]
             },

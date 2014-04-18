@@ -9,7 +9,7 @@
             {
                 "text" : "Will I be allowed to bring a bag on the Tour?",
                 "items" : [{
-                            "text" : "Details regarding bag permissions & restrictions are TBD.",
+                            "text" : "Backpacks, hydration packs, panniers, and bags over 420 cubic inches are PROHIBITED. Fanny packs, water bottles, saddle bags, bike baskets, and bags under 420 cubic inches are PERMITTED. Visit www.bikenewyork.org to learn more.",
                             "leaf" : true
                         }]
             },
@@ -37,7 +37,7 @@
             {
                 "text" : "What should I bring on the ride?",
                 "items" : [{
-                            "text" : "While the Tour provides snacks and hydration at the rest areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
+                            "text" : "While the Tour provides snacks and water at all Rest Areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
                             "leaf" : true
                         }]
             }]

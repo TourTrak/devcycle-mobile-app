@@ -2,42 +2,42 @@
     "items" : [{
                 "text" : "Where does the money go?",
                 "items" : [{
-                            "text" : "Proceeds go directly to fund our free bicycle education program. Last year alone, we taught more than 15,000 New Yorkers how to ride a bike, and how to do so safely and confidently.",
+                            "text" : "Proceeds fund our free bicycle education programs. Last year alone, we taught bike skills to more than 16,000 kids and adults. Visit www.bikenewyork.org to learn more.",
                             "leaf" : true
                         }]
             }, 
             {
                 "text" : "What is the Tour's route, in a nutshell?",
                 "items" : [{
-                            "text" : "The Tour's route is 40 miles, and enters all five boroughs: Manhattan, the Bronx, Queens, Brooklyn, and Staten Island. It has 5 bridge crossings: Madison Avenue Bridge, Third Avenue Bridge, Queensboro Bridge, Pulaski Bridge, and the Verrazano-Narrows Bridge. The Tour offers the only opportunity to cycle across the Verrazano. The best part? Zero traffic. It’s a beautiful thing.",
+                            "text" :"The Tour's route is 40 miles, and enters all five boroughs: Manhattan, the Bronx, Queens, Brooklyn, and Staten Island. It has 5 bridge crossings: Madison Avenue Bridge, Third Avenue Bridge, Queensboro Bridge, Pulaski Bridge, and the Verrazano-Narrows Bridge. (This is the one day of the year when you can ride across the Verrazano!) The best part? Zero traffic. It’s a beautiful thing.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "What is a 'rest area'?",
                 "items" : [{
-                            "text" : "Replenish your energy at four rest areas along the route (plus the Finish Festival in Staten Island). Complimentary snacks at each stop include Del Monte bananas, water, and KIND bars. Signs and Marshals along the route will direct you to rest areas–or to bypass lanes.",
+                            "text" : "Replenish your energy at four Rest Areas along the route (plus the Finish Festival in Staten Island). Complimentary snacks at Rest Areas include Del Monte bananas, water, KIND bars, and tacos from Chipotle at Brooklyn Bridge Park. Signs and Marshals along the route will direct you to Rest Areas or to bypass lanes. Rest stops can be found at: FDR Drive and 116th Street (Manhattan); Astoria Park* (Queens); Con Edison Learning Center (Queens); Brooklyn Bridge Park (Brooklyn); Fort Wadsworth - Finish Festival (Staten Island). *All cyclists near the head of the Tour will be held here for about 20 minutes while the NYPD ensures that the remainder of the route is devoid of traffic. Cyclists near the tail of the Tour will be directed to a mandatory shortcut that bypasses this stop and leads to the next one.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "Are there any shortcuts on the Tour?",
                 "items" : [{
-                            "text" : "Riders in the rear of the Tour may be directed to a shortened route that bypasses the Astoria Park rest area and leads directly to the Con Ed Learning Center rest area, a shortcut of 4 miles. Due to the street closure schedule, all riders must be on the Brooklyn-Queens Expressway (BQE) by 2:10PM, otherwise, your Tour will end in Brooklyn at approximately mile 27.5. Please be mindful of your time spent in the rest areas.",
+                            "text" : "Riders in the rear of the Tour may be directed to a shortened route that bypasses the Astoria Park Rest Area and leads directly to the Con Ed Learning Center Rest Area, a shortcut of 4 miles. Due to the street closure schedule, all riders must be on the Brooklyn-Queens Expressway (BQE) by 2:10PM, otherwise, your Tour will end in Brooklyn at approximately mile 27.5. Please be mindful of the amount of time you spend at Rest Areas.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "Where should I go if need more information during the Tour?",
                 "items" : [{
-                            "text" : "Stop by one of the information tents at rest areas and the Finish Festival, and we’ll do our best to answer it. Information Centers are also great rendezvous points for folks riding in groups. Note: Do not stop in Central Park, on any of the bridges, or in the middle of the road to wait for friends. This is unsafe and impedes the flow of the Tour.",
+                            "text" : "Got a question? Stop by one of the information tents at Rest Areas and the Finish Festival, and we’ll do our best to answer it. Information Centers are also great rendezvous points for folks riding in groups. Note: Do not stop in Central Park, on any of the bridges, or in the middle of the road to wait for friends. This is unsafe and impedes the flow of the Tour.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "Will I be able to take the Staten Island Ferry back to Manhattan after the Tour?",
                 "items" : [{
-                            "text" : "At the end of the Tour, ferries will return riders to Manhattan on a first-come, first-served basis.  Four ferries will run per hour, but lines will likely be long.  Please take the time to enjoy free snacks and entertainment while you wait. Toilets and water will be available while waiting for the ferry back to Manhattan.",
+                            "text" : "At the end of the Tour, ferries will return riders to Manhattan on a first-come, first-served basis. Four ferries will run per hour, but lines will likely be long. Please take the time to enjoy free snacks and entertainment while you wait. Toilets and water will be available while waiting for the ferry back to Manhattan.",
                             "leaf" : true
                         }]
             }]

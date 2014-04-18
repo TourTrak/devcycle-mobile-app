@@ -2,14 +2,14 @@
     "items" : [{
                 "text" : "Can I start the ride farther along the Tour route and avoid the start line?",
                 "items" : [{
-                            "text" : "No. Riders ­must depart during the designated start time from the designated start area.",
+                            "text" : "No. Riders must depart during the designated start time from the designated start area.",
                             "leaf" : true
                         }]
             },
             {
                 "text" : "Will I be allowed to bring a bag on the Tour?",
                 "items" : [{
-                            "text" : "Details regarding bag permissions & restrictions are TBD.",
+                            "text" : "Backpacks, hydration packs, panniers, and bags over 420 cubic inches are PROHIBITED. Fanny packs, water bottles, saddle bags, bike baskets, and bags under 420 cubic inches are PERMITTED. Visit www.bikenewyork.org to learn more.",
                             "leaf" : true
                         }]
             },
@@ -37,14 +37,7 @@
             {
                 "text" : "What happens if I start the ride, but cannot finish it due to unforeseen circumstances?",
                 "items" : [{
-                            "text" : "You can leave the ride at any time. Note that if you leave the Tour, you will be riding in traffic and will have to watch for cars and road hazards.  Once you leave the Tour route you will no longer have access to Tour services including rest areas and SAG. If you need to depart, we recommend the following locations: Mile 14, York Avenue and 63rd Street, Manhattan: This is your last chance to exit the Tour in Manhattan. If you don’t want to go to Queens, travel straight on 63rd Street after the Tour exits FDR Drive. Do not take the left-hand turn onto the ramp of the Queensboro (59th Street) Bridge. Mile 27, Brooklyn Bridge: Just before the Tour enters the Brooklyn-Queens Expressway (BQE), you can leave the Tour and take the Brooklyn Bridge bike path into downtown Manhattan. Marshals on the Brooklyn side will direct you. (This exit is recommended for those traveling with children.) Note: You can also take a SAG vehicle to the Finish Festival.",
-                            "leaf" : true
-                        }]
-            },
-            {
-                "text" : "What should I bring on the ride?",
-                "items" : [{
-                            "text" : "While the Tour provides snacks and hydration at the rest areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
+                            "text" : "You can leave the ride at any time. Note that if you leave the Tour, you will be riding in traffic and will have to watch for cars and road hazards. Once you leave the Tour route you will no longer have access to Tour services, including rest areas and SAG. If you need to depart, we recommend the following locations: mile 14, York Avenue and 63rd Street, Manhattan. This is your last chance to exit the Tour in Manhattan. If you don’t want to go to Queens, travel straight on 63rd Street after the Tour exits the FDR Drive. Do not take the left-hand turn onto the ramp of the Queensboro (59th Street) Bridge. You can also exit the Tour at approximately mile 27, at the Brooklyn Bridge. Just before the Tour enters the Brooklyn-Queens Expressway (BQE), you can leave the Tour and take the Brooklyn Bridge bike path into downtown Manhattan. Marshals on the Brooklyn side will direct you. (This exit is recommended for those traveling with children.) Note: You can also take a SAG vehicle to the Finish Festival.",
                             "leaf" : true
                         }]
             }]
