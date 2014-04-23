@@ -198,7 +198,6 @@ Ext.define('Ext.Leaflet', {
           var handler = setInterval(function(){
              loaded = data.isLoaded();
              if (loaded){
-                  console.log("LOADED");
 
                   // cancel interval
                   clearInterval(handler);

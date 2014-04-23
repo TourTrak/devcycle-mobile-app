@@ -429,10 +429,15 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 
 		if (layer._icon && this._map.getBounds().contains(layer.getLatLng())) {
 			callback();
-		} else if (layer.__parent._zoom < this._map.getZoom()) {
-			//Layer should be visible now but isn't on screen, just pan over to it
-			this._map.on('moveend', showMarker, this);
-			this._map.panTo(layer.getLatLng());
+		} else if (layer.__parent._zoom === this._map.getZoom() && this._map.getBounds().contains(layer.getLatLng())) {
+			//Layer is visible and clustered, show it immediately
+			var afterSpiderfy = function () {
+				this.off('spiderfied', afterSpiderfy, this);
+				callback();
+			};
+
+			this.on('spiderfied', afterSpiderfy, this);
+			layer.__parent.spiderfy();
 		} else {
 			this._map.on('moveend', showMarker, this);
 			this.on('animationend', showMarker, this);
@@ -648,7 +653,9 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 	},
 
 	_zoomOrSpiderfy: function (e) {
+
 		var map = this._map;
+
 		if (map.getMaxZoom() === map.getZoom()) {
 			if (this.options.spiderfyOnMaxZoom) {
 				e.layer.spiderfy();
@@ -846,7 +853,7 @@ L.MarkerClusterGroup = L.FeatureGroup.extend({
 		//Incase we are starting to split before the animation finished
 		this._processQueue();
 
-		if (this._zoom < this._map._zoom && this._currentShownBounds.contains(this._getExpandedVisibleBounds())) { //Zoom in, split
+		if (this._zoom < this._map._zoom && this._currentShownBounds.intersects(this._getExpandedVisibleBounds())) { //Zoom in, split
 			this._animationStart();
 			//Remove clusters now off screen
 			this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds, this._zoom, this._getExpandedVisibleBounds());
@@ -1128,6 +1135,7 @@ L.MarkerCluster = L.Marker.extend({
 
 	//Zoom to the minimum of showing all of the child markers, or the extents of this cluster
 	zoomToBounds: function () {
+
 		var childClusters = this._childClusters.slice(),
 			map = this._group._map,
 			boundsZoom = map.getBoundsZoom(this._bounds),
