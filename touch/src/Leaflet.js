@@ -213,6 +213,7 @@ Ext.define('Ext.Leaflet', {
 
                   self.map.addLayer(markers);
                   me.fireEvent('maprender', me, self.map);
+
              }
           }, 100);
         } else {

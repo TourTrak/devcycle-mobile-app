@@ -88,6 +88,9 @@ Ext.define('DevCycleMobile.controller.Map', {
 	**/
 	onMapRender: function() {
 		console.log("On map rendered!");
+	
+		// Destroy the #appLoadingIndicator element
+        Ext.fly('appLoadingIndicator').destroy();
 		var map = Ext.getCmp('mapview').map;
 
 			// refresh the map

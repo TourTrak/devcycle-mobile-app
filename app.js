@@ -110,7 +110,6 @@ Ext.application({
     launch: function() {
 
         // Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
 
         var mapInfo = Ext.getStore("MapInfo"); // map metadata info
         var tourInfo = Ext.getStore("TourInfo"); //tour info
