@@ -72,15 +72,20 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 	/**
 	* Called when a user's location was not found.
-	* Retries to get the user's location.
+	* Retries to get the user's location after 10 seconds.
 	**/
 	locationFailure: function(e) {
+
+		var controller = DevCycleMobile.app.getController('DevCycleMobile.controller.Map');
+
 		console.warn('Error(' + e.code + '): ' + e.message);
 		console.warn("Trying to find user's position again.");
 
-		// try to get the user's location again
-		navigator.geolocation.getCurrentPosition(this.locationSuccess,
-			this.locationFailure, {timeout: 5000});
+		// try to get the user's location again in 10 seconds
+		setTimeout(function() {
+			navigator.geolocation.getCurrentPosition(controller.locationSuccess,
+			controller.locationFailure, {timeout: 120});
+		}, 10000);
 	},
 
 	/**
@@ -89,8 +94,6 @@ Ext.define('DevCycleMobile.controller.Map', {
 	onMapRender: function() {
 		console.log("On map rendered!");
 	
-		// Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
 		var map = Ext.getCmp('mapview').map;
 
 			// refresh the map
@@ -100,7 +103,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 		// try to get the user's location
 		navigator.geolocation.getCurrentPosition(this.locationSuccess,
-			this.locationFailure, {timeout: 5000});
+			this.locationFailure, {timeout: 120});
 	}
 
 });
