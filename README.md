@@ -3,9 +3,7 @@ devcycle-mobile-app
 
 devcycle-mobile-app is a hybrid iOS/Android applicatiion built using Sencha Touch and Cordova for the TD Five Boro Bike Tour. To setup the dashboard/server that is used alongside this application, please refer first to our [TourTrak server repository].
 
-![screenshot](https://raw.githubusercontent.com/tofferrosen/devcycle-mobile-app/master/preview1.png)
-
-![screenshot](https://raw.githubusercontent.com/tofferrosen/devcycle-mobile-app/master/preview2.png)
+![screenshot](https://raw.githubusercontent.com/tofferrosen/devcycle-mobile-app/master/preview.png)
 
 [TourTrak server repository]: https://github.com/tofferrosen/devcycle-server.git
 
