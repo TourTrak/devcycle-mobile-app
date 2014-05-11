@@ -61,6 +61,13 @@ To generate a new set of tiles, please refer to our [BikeNY-red] repository whic
 
 [BikeNY-red]: https://github.com/tofferrosen/bikeNY-red.git
 
+###Modifying the Points of Interests
+All points of interested are parsed from a KML file located under resources/data.kml. To modify this file in a GUI-like way, you can open it directly in Google Earth where you are free to add new markers or modify any existing markers. Re-extract the KML file, saving it as data.kml, and replace the previous one. 
+
+To get the appropriate marker icons, please refer to our [Map Marker Icon Area Tags] document under the reference directory, In the description for each marker, one signifies the icon of marker by including an `[AREA][/AREA]` tag. Instructions are included in the aformentioned document.
+
+[Map Marker Icon Area Tags]: https://github.com/tofferrosen/devcycle-mobile-app/raw/master/reference/Map%20Marker%20Icon%20Area%20Tags.docx
+
 ### More
 We have inlucded some system diagrams and the offline map architecture under the references folder.
 
