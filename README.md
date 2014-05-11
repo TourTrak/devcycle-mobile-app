@@ -1,9 +1,15 @@
 devcycle-mobile-app
 ===================
 
-The totally rad HTML5 'native' application built using Sencha Touch and Cordova for the TourTrak system.
+![screenshot](https://raw.githubusercontent.com/tofferrosen/devcycle-mobile-app/master/preview.png)
 
-###Dependencies Required for Contributing
+![screenshot](https://raw.githubusercontent.com/tofferrosen/devcycle-mobile-app/master/preview2.png)
+
+devcycle-mobile-app is a hybrid iOS/Android applicatiion built using Sencha Touch and Cordova for the TD Five Boro Bike Tour. To setup the dashboard/server that is used alongside this application, please refer first to [server]: here.
+
+[server]: https://github.com/tofferrosen/devcycle-server.git
+
+###Dependencies Required for Building Project
 * Ruby 1.9.3
 * Java Runtime Environment > 1.7
 * Cordova > 3.2.0
@@ -14,10 +20,17 @@ The totally rad HTML5 'native' application built using Sencha Touch and Cordova 
 * iOS SDK (if building native iOS)
 
 ###Required Cordova Plugins
-* Cordova Device Plugin (https://github.com/apache/cordova-plugin-device.git)
-* The TourTrak iOS cordova plugin (https://github.com/cck9672/geolocation-ios-noapp.git)
-* The TourTrak Android cordova plugin (https://github.com/tofferrosen/tourtrak-android-plugin.git)
-* Cordova Geolocation Plugin (https://github.com/apache/cordova-plugin-geolocation.git)
+Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py`. This assumes that the locations of these repos are still as written below.
+
+* [Cordova Device Plugin]
+* [The TourTrak iOS Plugin]
+* [The TourTrak Android Plugin]
+* [Cordova Geolocation Plugin]
+
+[Cordova Device Plugin]: https://github.com/apache/cordova-plugin-device.git
+[The TourTrak iOS Plugin]: https://github.com/cck9672/geolocation-ios-noapp.git
+[The TourTrak Android Plugin]: https://github.com/tofferrosen/tourtrak-android-plugin.git
+[Cordova Geolocation Plugin]: https://github.com/apache/cordova-plugin-geolocation.git
 
 ###Set up
 1. Ensure you meet all the dependencies above in the Dependencies Required for Contributing.
@@ -25,12 +38,12 @@ The totally rad HTML5 'native' application built using Sencha Touch and Cordova 
 3. Run the command `sencha cordova init edu.rit.se.tourtrak TourTrak`
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
 4. Go into your cordova folder
-5. Add all the required plugins in the order specified above by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. We have also included a handy script to automate this for you if you have Python installed. Just run `python fetchPlugins.py`!
-6. Go back to the application folder and run `sencha app build native` to build the native applications.
-7. The native apps will be in the cordova/platform/{ios or android} folder. Run and enjoy!
+5. If you did not run our script, add all the required plugins in the order specified above by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. We have also included a handy script to automate this for you if you have Python installed. Just run `python fetchPlugins.py`!
+6. Go back to the application root folder and run `sencha app build native` to build the native applications.
+7. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 
 ###Adding custom splashscreen for Android to app
-1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin.
+1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin. Please see Android plugin repository.
 2. In the TourTrak.java file, insert the following line of code between super.OnCreate() and super.init():
   super.setIntegerProperty("splashscreen", R.drawable.splash);
 
@@ -45,6 +58,11 @@ In the config.json, you can specify the following parameters shown below. Please
 * reg_retry_init : if registration fails, how often it should retry for the next 10 tries (in seconds)
 * reg_retry_after : if registration is still failing after 10 tries, how often it should retry (in seconds)
 
-###Application Status
+###Adding new slippery map tiles
+To generate a new set of tiles, please refer to our [BikeNY-red] repository which includes instructions for setup.
 
-In BETA testing. Currently, tracking automatically slated to start Thursday, April the 3rd starting at 6am and going to 6pm EASTERN.
+[BikeNY-red]: https://github.com/tofferrosen/bikeNY-red.git
+
+### More
+We have inlucded some system diagrams and the offline map architecture under the references folder.
+
