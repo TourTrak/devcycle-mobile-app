@@ -66,6 +66,8 @@ All points of interested are parsed from a KML file located under resources/data
 
 To get the appropriate marker icons, please refer to our [Map Marker Icon Area Tags] document under the reference directory, In the description for each marker, one signifies the icon of marker by including an `[AREA][/AREA]` tag. Instructions are included in the aformentioned document.
 
+The locations themselves are parsed in the kml.js file inside third_party_libraries folder, which needs to be modified if new types of icons are desired. 
+
 [Map Marker Icon Area Tags]: https://github.com/tofferrosen/devcycle-mobile-app/raw/master/reference/Map%20Marker%20Icon%20Area%20Tags.docx
 
 [Google Earth]: http://www.google.com/earth/
