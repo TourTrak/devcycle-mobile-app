@@ -10,3 +10,6 @@ resources/sass/.sass-cache
 
 # Cordova folder
 cordova/
+.sencha/app/cordova-impl.xml
+config.xml
+cordova.local.properties
