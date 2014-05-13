@@ -18,7 +18,7 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 * iOS SDK (if building native iOS)
 
 ###Required Cordova Plugins
-Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py`. This assumes that the locations of these repos are still as written below.
+Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py` for mac, or `python fetchPluginsWindows.py` for Windows. This assumes that the locations of these repos are still as written below.
 
 * [Cordova Device Plugin]
 * [The TourTrak iOS Plugin]
@@ -36,7 +36,7 @@ Below is a list of the required plugins. We have included a script that will fet
 3. Run the command `sencha cordova init edu.rit.se.tourtrak TourTrak`
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
 4. Go into your cordova folder
-5. If you did not run our script, add all the required plugins in the order specified above by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. We have also included a handy script to automate this for you if you have Python installed. Just run `python fetchPlugins.py`!
+5. If you did not run our script, add all the required plugins in the order specified above by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. We have also included a handy script to automate this for you if you have Python installed. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows!
 6. Go back to the application root folder and run `sencha app build native` to build the native applications.
 7. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 
