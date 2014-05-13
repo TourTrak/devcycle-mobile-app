@@ -46,40 +46,35 @@ Below is a list of the required plugins. We have included a script that will fet
   super.setIntegerProperty("splashscreen", R.drawable.splash);
 
 ###Adding/Modifying FAQ tags and questions
-Adding/modifying  questions for a tag
+####Adding/modifying  questions for a tag
 1. Find the json file for the tag. All FAQ data is stored in json files that can be found in the resources/data/ folder. These json files are named for the tags they represent.
-2. Open the tag's json file in the text editor of your choice. All json files used by the AccordionList that powers the FAQ follow the same format, seen below:
-'{
+2. Open the tag's json file in the text editor of your choice. All json files used by the AccordionList that powers the FAQ follow the same format, seen below: 
+```
+{
     "items" : [{
                 "text" : "<question a>?",
                 "items" : [{
                             "text" : "<answer a>",
                             "leaf" : true
                         }]
-            }, 
-            {
-                "text" : "<question b>",
-                "items" : [{
-                            "text" :"<answer b>",
-                            "leaf" : true
-                        }]
             },
             {
-                "text" : "<question c>?",
+                "text" : "<question b>?",
                 "items" : [{
-                            "text" : "<answer c>",
+                            "text" : "<answer b>",
                             "leaf" : true
                         }]
             }]
-}'
-
+}
+```
 Each question is contained within a set of curly brackets, with a "text" declared that represents the question, and a list of "items" with only a "text" that represents the answer and a "leaf" that is always set to true.
-3. Modify as needed. If you need to modify an existing question, simply change the text for the question or answer. If you need to delete a question, simply remove the curly brackets that contains the "text" and "items" declarations, all its contents, and the comma that precedes them. To add a question, add new text that follows the above format, ensuring that each item is seperated by a comma.
+3. Modify as needed. If you need to modify an existing question, simply change the text for the question or answer. If you need to delete a question, simply remove the curly brackets that contains the "text" and "items" declarations, all its contents, and the comma that precedes them. To add a question, add new text that follows the above format, ensuring that each item is separated by a comma.
 
-Adding a new tag
+####Adding a new tag
 1. Create a new json file for the tag. The file should be <tag name>.json, and should be placed in the resources/data/ folder.
 2. Create a new store js file. The file should be <tag name>.js, and should be placed in the app/store/ folder. The contents of the store js file should be as follows:
-'Ext.define('DevCycleMobile.store.<tag name>', {
+```
+Ext.define('DevCycleMobile.store.<tag name>', {
     extend: 'Ext.data.TreeStore',
     requires: [
         'DevCycleMobile.model.Answer'
@@ -96,9 +91,11 @@ Adding a new tag
         }
     }
 
-});'
+});
+```
 3. Add a new item to the Main.js view file. In the app/view/ folder, there is a file named AboutMain.js. This is the view file that defines the tab panel seen in the FAQ page of the application. Each tab is a tag in the FAQ, and the panel displays the questions and answers for the tag as an AccordionList. To add a new tag, add the following block of code to the comma-delimited array for items, making sure to do so after the titlebar item:
-            '{
+```
+            {
                 title: '<tag title>',
                 layout: 'vbox',
                 items: [
@@ -126,7 +123,8 @@ Adding a new tag
                         }
                     }
                 }
-            },'
+            }
+```
 
 ###Config File
 In the config.json, you can specify the following parameters shown below. Please note that all timestamps are in unix time (seconds since epoch) for the GMT timezone, as we are timezone agnostic. Make sure you convert your tour time to GMT time, before converting that to the unix timestamp.
