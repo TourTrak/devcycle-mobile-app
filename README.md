@@ -93,7 +93,7 @@ Ext.define('DevCycleMobile.store.<tag name>', {
 
 });
 ```
-3. Add a new item to the Main.js view file. In the app/view/ folder, there is a file named AboutMain.js. This is the view file that defines the tab panel seen in the FAQ page of the application. Each tab is a tag in the FAQ, and the panel displays the questions and answers for the tag as an AccordionList. To add a new tag, add the following block of code to the comma-delimited array for items, making sure to do so after the titlebar item:
+3. Add a new item to the Main.js view file. In the app/view/ folder, there is a file named Main.js. This is the view file that defines the tab panel seen in the FAQ page of the application. Each tab is a tag in the FAQ, and the panel displays the questions and answers for the tag as an AccordionList. To add a new tag, add the following block of code to the comma-delimited array for items, making sure to do so after the titlebar item:
 ```
             {
                 title: '<tag title>',
