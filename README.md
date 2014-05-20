@@ -153,6 +153,71 @@ The locations themselves are parsed in the kml.js file inside third_party_librar
 
 [Google Earth]: http://www.google.com/earth/
 
+### Adding new Map Marker Icons using IcoMoon
+Without a doubt, there will come a day where you want more map marker icons and below I have written a guide on how  on how to do it! All icons are scalable vector icons that can easily though CSS be customize in nearly any way imaginable. It's completely scalable and look great on even retina displays. Below I'll go through how to create new, custom icon font using your very own vector images. 
+
+I used and recommend [IcoMoon] for creating your own icon font. This is an awesome service someone has made, and subject to change and may make the following instructions obsolete in the future - but, a Google search should set your straight if you get lost! Let's start, so please visit the website and hit the IcoMoon App. Click the big purple "Import Icons" button on the very top left to upload your custom vector images. Once you have uploaded all your custom vectors, select them in your Set and click on blue Font button on the very bottom of the page. Here, note the names of the icons (and note that the colors of them does not matter as we can customize them later with CSS!), and if you'd like to change the name go ahead! Then, hit the blue Download button on the very bottom of the screen.
+
+##### NOTE
+If you have codes that conflict, you need to reset them. Before you downloaded the icon font, you can click on the letter+number combination below the name of the icon, an arrow will appear on its right -> clicking this will give you an option to reset the code to start with something new. 
+
+Extract the downloaded zip files and you should have a style.css and a fonts folder. Rename the style folder to something unique, such as "MyRadNewIcons.css". Rename the font folder as well, such as "MyRadNewIcons". Copy the "MyRadNewIcons" (previously known as the font folder) to the resources/fonts folder of the mobile application. Next, copy the "MyRadNewIcons.css" (previously known as style.css) file to resources/css. You need to slight modify this file, so open it up in your text editor. The first thing you should see is something akin to.. 
+`
+@font-face {
+	font-family: 'bikeNYIcons';
+	src:url('fonts/bikeNYIcons.eot?-nhiwvm');
+	src:url('fonts/bikeNYIcons.eot?#iefix-nhiwvm') format('embedded-opentype'),
+		url('fonts/bikeNYIcons.woff?-nhiwvm') format('woff'),
+		url('fonts/bikeNYIcons.ttf?-nhiwvm') format('truetype'),
+		url('fonts/bikeNYIcons.svg?-nhiwvm#bikeNYIcons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+`
+
+You need to change the src:url for all of them by removing fonts/ and then prepending "../fonts/MyRadNewIcons(previously known as fonts)/". The above now looks something like this.. 
+
+`
+@font-face {
+	font-family: 'bikeNYIcons';
+	src:url('../fonts/bikeNYIcons/bikeNYIcons.eot?-5d5x6j');
+	src:url('../fonts/bikeNYIcons/bikeNYIcons.eot?#iefix-5d5x6j') format('embedded-opentype'),
+		url('../fonts/bikeNYIcons/bikeNYIcons.woff?-5d5x6j') format('woff'),
+		url('../fonts/bikeNYIcons/bikeNYIcons.ttf?-5d5x6j') format('truetype'),
+		url('../fonts/bikeNYIcons/bikeNYIcons.svg?-5d5x6j#bikeNYIcons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+`
+
+Please ignore that there are some slight more differences in the endings as it's a simply copy and paste of two differnt things. 
+
+[IcoMoon]: http://icomoon.io/
+
+Now, you are reading to use your new icon font. In the KML parser under third_party_libraries/kml.js, find the function createCustomMarker. Create a new if block with the name of the area tag you want to associate this icon with when parsing the kml file. The format is the following:
+
+`
+	else if (area == 'helmet') {
+			return L.AwesomeMarkers.icon({
+				icon: 'helmet',
+				markerColor: 'orange',
+				prefix: 'bikeny'
+			});
+		}
+`
+
+Icon is the name you gave your custom icon. MarkerColor is which color you want this marker to be - you may be limited in choices as we use [leaflet awesome-markers] to create the markers - so refer to their documentation. The prefix will be the name of the set - you can find this if you open the MyRadNewIcons.css file and see something similar to:
+
+`.bikeny-info-tent:before {
+	content: "\e600";
+}
+`
+
+Here, the prefix we use is bikeny. 
+Please keep the documentation up to date with the new icons in this document: [Map Marker Icon Area Tags] if you contribute more marker icons. Thanks!
+
+[leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
+
 ### More
 We have included some system diagrams and the offline map architecture under the references folder.
 
