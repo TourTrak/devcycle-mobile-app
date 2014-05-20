@@ -162,7 +162,8 @@ I used and recommend [IcoMoon] for creating your own icon font. This is an aweso
 If you have codes that conflict, you need to reset them. Before you downloaded the icon font, you can click on the letter+number combination below the name of the icon, an arrow will appear on its right -> clicking this will give you an option to reset the code to start with something new. 
 
 Extract the downloaded zip files and you should have a style.css and a fonts folder. Rename the style folder to something unique, such as "MyRadNewIcons.css". Rename the font folder as well, such as "MyRadNewIcons". Copy the "MyRadNewIcons" (previously known as the font folder) to the resources/fonts folder of the mobile application. Next, copy the "MyRadNewIcons.css" (previously known as style.css) file to resources/css. You need to slight modify this file, so open it up in your text editor. The first thing you should see is something akin to.. 
-`
+
+```
 @font-face {
 	font-family: 'bikeNYIcons';
 	src:url('fonts/bikeNYIcons.eot?-nhiwvm');
@@ -173,11 +174,11 @@ Extract the downloaded zip files and you should have a style.css and a fonts fol
 	font-weight: normal;
 	font-style: normal;
 }
-`
+```
 
 You need to change the src:url for all of them by removing fonts/ and then prepending "../fonts/MyRadNewIcons(previously known as fonts)/". The above now looks something like this.. 
 
-`
+```
 @font-face {
 	font-family: 'bikeNYIcons';
 	src:url('../fonts/bikeNYIcons/bikeNYIcons.eot?-5d5x6j');
@@ -188,7 +189,7 @@ You need to change the src:url for all of them by removing fonts/ and then prepe
 	font-weight: normal;
 	font-style: normal;
 }
-`
+```
 
 Please ignore that there are some slight more differences in the endings as it's a simply copy and paste of two differnt things. 
 
@@ -196,7 +197,7 @@ Please ignore that there are some slight more differences in the endings as it's
 
 Now, you are reading to use your new icon font. In the KML parser under third_party_libraries/kml.js, find the function createCustomMarker. Create a new if block with the name of the area tag you want to associate this icon with when parsing the kml file. The format is the following:
 
-`
+```
 	else if (area == 'helmet') {
 			return L.AwesomeMarkers.icon({
 				icon: 'helmet',
@@ -204,14 +205,15 @@ Now, you are reading to use your new icon font. In the KML parser under third_pa
 				prefix: 'bikeny'
 			});
 		}
-`
+```
 
 Icon is the name you gave your custom icon. MarkerColor is which color you want this marker to be - you may be limited in choices as we use [leaflet awesome-markers] to create the markers - so refer to their documentation. The prefix will be the name of the set - you can find this if you open the MyRadNewIcons.css file and see something similar to:
 
-`.bikeny-info-tent:before {
+```
+.bikeny-info-tent:before {
 	content: "\e600";
 }
-`
+```
 
 Here, the prefix we use is bikeny. 
 Please keep the documentation up to date with the new icons in this document: [Map Marker Icon Area Tags] if you contribute more marker icons. Thanks!
