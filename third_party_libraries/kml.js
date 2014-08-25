@@ -1,11 +1,15 @@
 /*global L: true */
 
 /***
-Plugin by shramov
-http://psha.org.ru/b/leaflet-plugins.html
-
-Modifications to work w/ Sencha and custom parsing
-of KML files by @tofferrosen
+* Plugin by shramov
+* http://psha.org.ru/b/leaflet-plugins.html
+* 
+* Modifications to work w/ Sencha and custom parsing
+* of KML files by @tofferrosen
+*
+* 2014 Modification to add markerType to layers since each marker
+* is it's own unique layer that is added to a markerCluster
+* usage: layer.options.markerType (which will be a String) by @eklundjoshua
 ***/
 
 L.KML = L.FeatureGroup.extend({
@@ -92,12 +96,12 @@ L.Util.extend(L.KML, {
 			if (l) { layers.push(l); }
 		}
 		el = xml.getElementsByTagName('Placemark');
+		console.log("Number of Placemarks: " + el.length); 
+		var counter = 0;
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j])) { continue; }
 			l = this.parsePlacemark(el[j], xml, style);
-			if (l) { 
-				layers.push(l); 
-			}
+			if (l) { layers.push(l); }
 		}
 		//console.log(layers);
 		return layers;
@@ -581,8 +585,10 @@ L.Util.extend(L.KML, {
 
 		if (area != null) {
 			layer.options.icon = this.createCustomMarker(area);
+			//use the [AREA] tag found in resources/data.kml to different layer types
+			layer.options.markerType = area.toLowerCase(); 
 		}
-
+ 
 		if (name) {
 			layer.bindPopup("<h1>" + name + "</h1><b1>" + descr + "</b1>", {offset: new L.Point(0,-20)});
 		}
@@ -703,6 +709,12 @@ L.KMLIcon = L.Icon.extend({
 
 L.KMLMarker = L.Marker.extend({
 	options: {
-		icon: new L.KMLIcon.Default()
+		icon: new L.KMLIcon.Default(),
+		/*
+		* Marker type for each marker is a string
+		* which can be found in the [AREA] tags
+		* in the data.kml file
+		*/
+		markerType: String 
 	}
 });

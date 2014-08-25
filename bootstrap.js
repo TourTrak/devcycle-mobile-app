@@ -7,20 +7,32 @@
 Ext.Loader.addClassPathMappings({
   "DevCycleMobile": "app",
   "Ext": "touch/src",
+  "Ext-more": "touch/src/core/Ext-more.js",
+  "Ext.DomHelper": "touch/src/dom/Helper.js",
+  "Ext.DomQuery": "touch/src/dom/Query.js",
+  "Ext.Element-alignment": "touch/src/dom/Element.alignment.js",
+  "Ext.Element-all": "touch/src/dom/Element.traversal.js",
+  "Ext.Element-insertion": "touch/src/dom/Element.insertion.js",
+  "Ext.Element-position": "touch/src/dom/Element.position.js",
+  "Ext.Element-static": "touch/src/dom/Element.static.js",
+  "Ext.Element-style": "touch/src/dom/Element.style.js",
+  "Ext.Element-traversal": "touch/src/dom/Element.traversal.js",
+  "Ext.core.DomQuery": "touch/src/dom/Query.js",
   "Ext.device.Purchases.Product": "touch/src/device/purchases/Sencha.js",
-  "Ext.device.filesystem.DirectoryEntry": "touch/src/device/filesystem/HTML5.js",
-  "Ext.device.filesystem.Entry": "touch/src/device/filesystem/HTML5.js",
-  "Ext.device.filesystem.FileEntry": "touch/src/device/filesystem/HTML5.js",
-  "Ext.device.filesystem.FileSystem": "touch/src/device/filesystem/HTML5.js",
+  "Ext.device.filesystem.DirectoryEntry": "touch/src/device/filesystem/Sencha.js",
+  "Ext.device.filesystem.Entry": "touch/src/device/filesystem/Sencha.js",
+  "Ext.device.filesystem.FileEntry": "touch/src/device/filesystem/Sencha.js",
+  "Ext.device.filesystem.FileSystem": "touch/src/device/filesystem/Sencha.js",
   "Ext.device.purchases.Purchase": "touch/src/device/purchases/Sencha.js",
   "Ext.device.sqlite.Database": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "Override.dataview.List": "app/view/AboutMain.js"
+  "Override.dataview.List": "app/view/Main.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Answer": [],
+  "DevCycleMobile.controller.FilterMarkers": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
   "DevCycleMobile.model.Answer": [],
@@ -683,6 +695,7 @@ Ext.ClassManager.addNameAlternateMappings({
 });
 Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.controller.Answer": [],
+  "DevCycleMobile.controller.FilterMarkers": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
   "DevCycleMobile.model.Answer": [],

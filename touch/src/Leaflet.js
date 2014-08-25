@@ -193,7 +193,7 @@ Ext.define('Ext.Leaflet', {
           var data = new L.KML("resources/data.kml");
 
           self = this; // reference to self in handler
-
+                
           // Wait until data layer has been loaded, then add it to the map
           var handler = setInterval(function(){
              loaded = data.isLoaded();
@@ -204,14 +204,14 @@ Ext.define('Ext.Leaflet', {
                   handler = 0;
 
                   // we cluster for performance reasons and spidering for usability!
-                  var markers = new L.MarkerClusterGroup({maxClusterRadius:40});
-              
+                  markerCluster = new L.MarkerClusterGroup({maxClusterRadius:40});
+
                   // iterate through all markers 
                   data.eachLayer(function (layer) {
-                    markers.addLayer(layer);
+                    markerCluster.addLayer(layer);
                   });
 
-                  self.map.addLayer(markers);
+                  self.map.addLayer(markerCluster);
                   me.fireEvent('maprender', me, self.map);
 
              }

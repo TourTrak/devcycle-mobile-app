@@ -1,4 +1,4 @@
-devcycle-mobile-app
+TourTrak (devcycle-mobile-app)
 ===================
 
 devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch and Cordova for the TD Five Boro Bike Tour. To setup the dashboard/server that is used alongside this application, please refer first to our [TourTrak server repository].
@@ -8,14 +8,42 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 [TourTrak server repository]: https://github.com/tofferrosen/devcycle-server.git
 
 ###Dependencies Required for Building Project
+* Git 
+* NodeJS (Current Version)
+	* [http://nodejs.org/](http://nodejs.org/ "NodeJS Site")
 * Ruby 1.9.3
+	* (Windows) During installation, Ensure to select "Add Ruby Executables to your PATH"
 * Java Runtime Environment > 1.7
-* Cordova > 3.2.0
-* Sencha Command Line Tools > 4.0.1.45
+* Java Development Kit 7
+* Ant
+	* (Windows) [https://code.google.com/p/winant/](https://code.google.com/p/winant/)
+	* (Mac/Linux/Unix) See [http://ant.apache.org/manual/install.html](http://ant.apache.org/manual/install.html)
+* Cordova 3.3.1-0.1.2
+	* Install this version by typing in the terminal 
+		* (Windows) `npm install -g cordova@3.3.1-0.1.2`
+		* (Mac/Linux/Unix) `sudo npm install -g cordova@3.3.1-0.1.2`
+* Sencha Command Line Tools (Current Version)
 * SASS (Ruby Gem)
+	* Type `gem install sass` after ruby has been installed
 * Compass (Ruby Gem)
+	* Type `gem install compass` after ruby has been installed
+	*
 * Android SDK (if building native Android)
+	* Ensure that you add the Android SDK to the PATH with access to the following directories:
+		* platform-tools
+		* tools
 * iOS SDK (if building native iOS)
+
+###Debugging Development Environment Issues (Tips)
+1. Check that all tool dependencies can be ran from the command line (Environment variables set correctly)
+  Ex: cordova, ant, sencha, etc.
+2. Upon running sencha commands like `sencha app build native`, use the -d debug flag: `sencha -d app build native`. If your command prompt buffer overflows, redirect the ouput to a text file: `sencha -d app build native > Debug.txt`
+3. If you feel that Cordova is not working properly, you can remove the current version and try it with a different one with the following steps:
+	1. `npm remove -g cordova`
+	2. To view a list of cordova versions: `npm view cordova versions`
+	3. From the project root directory: `sencha cordova remove`
+	4. `npm install -g cordova@VERSION_HERE`
+	5. Reinitialize the project with `sencha cordova init edu.rit.se.tourtrak TourTrak` and follow the "Set up" instructions again.
 
 ###Required Cordova Plugins
 Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py` for mac, or `python fetchPluginsWindows.py` for Windows. This assumes that the locations of these repos are still as written below.
