@@ -63,8 +63,8 @@ Below is a list of the required plugins. We have included a script that will fet
 2. Clone this repository and move into this folder.
 3. Run the command `sencha cordova init edu.rit.se.tourtrak TourTrak`
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
-4. Go into your cordova folder
-5. If you did not run our script, add all the required plugins in the order specified above by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. We have also included a handy script to automate this for you if you have Python installed. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows!
+5. Add all the required plugins for this project by going into the application root folder and running the plugin script. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows.
+5. If you need to add in any other plugins you can do so by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. 
 6. Go back to the application root folder and run `sencha app build native` to build the native applications.
 7. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 

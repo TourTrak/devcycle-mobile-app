@@ -50,10 +50,10 @@ Ext.application({
     ],
 
     controllers: [
-		'FilterMarkers',
         'Map',
         'Home',
-        'Answer'
+        'Answer',
+		'FilterMarkers'
     ],
 
     models: [

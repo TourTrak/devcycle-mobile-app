@@ -15,6 +15,9 @@ Ext.define('DevCycleMobile.view.about.Container', {
 			title: 'About',
 			iconCls: 'settings',
 			action: 'faqTab',
+			handler: function(){
+			Ext.Viewport.hideMenu('left');
+			}
 		},
 
 		items: [

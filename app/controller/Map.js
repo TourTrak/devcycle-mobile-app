@@ -10,6 +10,8 @@ Ext.require(['Ext.Leaflet']);
 * @tofferrosen
 */
 
+var filter = [];
+
 Ext.define('DevCycleMobile.controller.Map', {
 	extend: 'Ext.app.Controller',
 
@@ -19,7 +21,23 @@ Ext.define('DevCycleMobile.controller.Map', {
 			'#mapview': {
 				maprender: 'onMapRender',
 			},
+			'button[action=toggleMapFilter]': {
+				tap: 'toggleFilter',
+			},
 		}
+	},
+
+	toggleFilter: function(filterType) {	
+		if (filter.indexOf(filterType.id) == -1) {
+			filter.push(filterType.id);
+			filterType.setText('<img src="resources/icons/filters/enabled/'+filterType.id+'.png"/>');
+			DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
+		}
+		else {
+			filter.splice(filter.indexOf(filterType.id), 1);
+			filterType.setText('<img src="resources/icons/filters/disabled/'+filterType.id+'.png"/>');
+			DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
+		}				
 	},
 
 	/**

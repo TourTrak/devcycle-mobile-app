@@ -15,6 +15,9 @@ Ext.define('DevCycleMobile.view.guide.Container', {
 			title: 'Guide',
 			iconCls: 'info',
 			action: 'faqTab',
+			handler: function(){
+			Ext.Viewport.hideMenu('left');
+			}
 		},
 
 		items: [

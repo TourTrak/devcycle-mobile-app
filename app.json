@@ -58,6 +58,11 @@
             "platform": ["desktop", "chrome", "safari", "firefox", "android", "ios"],
             "update": "delta"
         },
+		
+		/* CSS for filter menu */
+		{
+		  "path": "resources/css/filter-menu.css"
+		},
 
         /* CSS for the font awesome typefont */
         {
