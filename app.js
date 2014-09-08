@@ -46,7 +46,9 @@ Ext.application({
         'map.Container',
         'guide.Container',
         'guide.ListItem',
-        'about.Container'
+        'about.Container',
+		'Groups',
+		'groups.Container'
     ],
 
     controllers: [
