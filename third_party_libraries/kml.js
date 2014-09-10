@@ -283,7 +283,7 @@ L.Util.extend(L.KML, {
 
 		else if (area == 'bathrooms') {
 			return L.AwesomeMarkers.icon({
-				icon: 'portable',
+				icon: 'service',
 				prefix: 'flaticon',
 				markerColor: 'blue'
 			});
@@ -459,9 +459,9 @@ L.Util.extend(L.KML, {
 
 		else if (area == 'info-tent') {
 			return L.AwesomeMarkers.icon({
-				icon: 'info-tent',
+				icon: 'info4',
 				markerColor: 'green',
-				prefix: 'bikeny'
+				prefix: 'flaticon'
 			});
 		}
 

@@ -61,9 +61,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.store.UhOh": [],
   "DevCycleMobile.store.WhatToTake": [],
   "DevCycleMobile.view.AboutMain": [],
+  "DevCycleMobile.view.Groups": [],
   "DevCycleMobile.view.Home": [],
   "DevCycleMobile.view.Main": [],
   "DevCycleMobile.view.about.Container": [],
+  "DevCycleMobile.view.groups.Container": [],
   "DevCycleMobile.view.guide.Container": [],
   "DevCycleMobile.view.guide.ListItem": [],
   "DevCycleMobile.view.map.Container": [],
@@ -726,6 +728,9 @@ Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.view.AboutMain": [
     "widget.aboutMain"
   ],
+  "DevCycleMobile.view.Groups": [
+    "widget.groups"
+  ],
   "DevCycleMobile.view.Home": [
     "widget.home"
   ],
@@ -734,6 +739,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "DevCycleMobile.view.about.Container": [
     "widget.aboutContainer"
+  ],
+  "DevCycleMobile.view.groups.Container": [
+    "widget.faqContainer"
   ],
   "DevCycleMobile.view.guide.Container": [
     "widget.faqContainer"

@@ -13,21 +13,24 @@
 	font-family: Flaticon;
         font-size: 20px;
 font-style: normal;
-margin-left: 20px;
+margin-left: 0px;
 }.flaticon-finish1:before {
 	content: "\e000";
 }
-.flaticon-man41:before {
+.flaticon-info4:before {
 	content: "\e001";
 }
-.flaticon-portable:before {
+.flaticon-man41:before {
 	content: "\e002";
 }
 .flaticon-rest:before {
 	content: "\e003";
 }
-.flaticon-standing25:before {
+.flaticon-service:before {
 	content: "\e004";
+}
+.flaticon-standing25:before {
+	content: "\e006";
 }
 .flaticon-train5:before {
 	content: "\e005";
