@@ -1,0 +1,9 @@
+{
+    "items" : [{
+                "text" : "Can I return/exchange my Tour registration jersey?",
+                "items" : [{
+                            "text" : "All jersey sales are nonrefundable and nontransferable. Be sure to consult the sizing charts before ordering a jersey.",
+                            "leaf" : true
+                        }]
+            }]
+}

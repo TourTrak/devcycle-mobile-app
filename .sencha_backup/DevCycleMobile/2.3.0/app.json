@@ -1,0 +1,145 @@
+{
+    /**
+     * The application's namespace, used by Sencha Command to generate classes
+     */
+    "name": "DevCycleMobile",
+
+    /**
+     * The file path to this application's front HTML document, relative to this app.json file
+     */
+    "indexHtmlPath": "index.html",
+    "url": null,
+
+    "js": [
+		{
+			"path": "cordova.js",
+			"remote": true
+		},
+        {
+            "path": "resources/js/sencha-touch.js",
+            "x-bootstrap": true
+        },
+        {
+            "path": "bootstrap.js",
+            "x-bootstrap": true
+        },
+        {
+            "path": "app.js",
+            "bundle": true,
+            "update": "delta"
+        },
+        {
+            "path": "third_party_libraries/Leaflet/dist/leaflet.js"
+        },
+        {
+            "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
+        },
+        {
+            "path": "third_party_libraries/kml.js"
+        },
+        {
+          "path": "third_party_libraries/leaflet-usermarker/src/leaflet.usermarker.js"
+        },
+        {
+            "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/leaflet.markercluster-src.js"
+        }
+    ],
+
+
+    "css": [
+        {
+            "path": "resources/css/app.css",
+            "platform": ["desktop", "chrome", "safari", "firefox"],
+            "update": "delta"
+        },
+
+        {
+            "path": "third_party_libraries/Leaflet/dist/leaflet.css",
+            "platform": ["desktop", "chrome", "safari", "firefox", "android", "ios"],
+            "update": "delta"
+        },
+		
+		/* CSS for filter menu */
+		{
+		  "path": "resources/css/filter-menu.css"
+		},
+
+        /* CSS for the font awesome typefont */
+        {
+          "path": "resources/css/font-awesome.css"
+        },
+
+        /* CSS for the custom icons from the flaticon typefont */
+        {
+          "path": "resources/css/flaticon.css"
+        },
+
+        /* CSS for the custom icons from the bike NY designers */
+        {
+          "path": "resources/css/bikeNYIcons.css"
+        },
+
+        /* CSS for the user marker */
+        {
+          "path": "third_party_libraries/leaflet-usermarker/src/leaflet.usermarker.css"
+        },
+        {
+            "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.css"
+        },
+        {
+            "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/MarkerCluster.css"
+        },
+        {
+            "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css"
+        },
+        {
+            "path": "resources/css/cupertino.css",
+            "platform": ["ios"],
+            "update": "delta"
+        },
+        {
+          "path": "resources/css/mountainview.css",
+          "platform": ["android"],
+          "update": "delta"
+        }
+    ],
+
+    "appCache": {
+
+        "cache": [
+            "index.html"
+        ],
+
+        "network": [
+            "*"
+        ],
+
+        "fallback": []
+    },
+
+    "resources": [
+		"config.xml",
+		    "config.xml",
+        "resources/images",
+        "resources/icons",
+        "resources/startup",
+        "resources/data",
+        "third_party_libraries/Awesome-markers/dist/images",
+        "third_party_libraries/Leaflet/dist/images",
+        "resources/map_tiles",
+        "config.json",
+        "resources/data.kml",
+        "resources/fonts"
+    ],
+
+    "archivePath": "archive",
+
+    "requires": [
+    ],
+
+    /**
+     * Uniquely generated id for this application, used as prefix for localStorage keys.
+     * Normally you should never change this value.
+     */
+    "id": "42ea6f30-26e6-441a-af9a-cfc8682251c2"
+}

@@ -1,0 +1,97 @@
+{
+    "items" : [{
+                "text" : "What forms of identification are considered valid?",
+                "items" : [{
+                            "text" : "Residents of the United States and Puerto Rico must show state or federal government-issued photo identification, such as a driver’s license, DMV photo ID, or passport. Non-US residents, including Canadian residents, are required to show a valid passport (except residents of Puerto Rico, see above).",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "My friends and I linked together to ride as a group.  Can I pick up their packets at the Expo?",
+                "items" : [{
+                            "text" : "Yes. Registered friends and family can pick up Rider Packets for all linked group members. Whoever is picking up the packets for the group must bring the signed Proxy Packet Pickup form along with each group member's confirmation e-mail, rider number/barcode email, and a photocopy of each group member's photo ID. Visit www.bikenewyork.org for the Proxy Packet Pickup form.",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "Can I pick up someone else’s rider packet for them?",
+                "items" : [{
+                            "text" : "Yes. Anyone picking up a Rider Packet for someone else must come to the Expo with the signed Proxy Packet Pickup form (available at www.bikenewyork.org) as well as a copy of the participant’s confirmation e-mail and a photocopy of his/her valid photo ID. Individuals picking up for a group must bring the signed Proxy form along with each group member's rider number/barcode email and photocopies of each member's photo ID.",
+                            "leaf" : true
+                        }]
+            }, {
+                "text" : "My child is riding with me, but cannot attend the Expo. Can I pick up his/her packet?",
+                "items" : [{
+                            "text" : "In order to pick up a child’s Rider Packet without the child present, the registered guardian must bring his/her valid photo identification and the child's rider number/barcode email. You do not need to provide identification for the registered child. Note that adults may only pick up the Rider Packet for the child registered under their name.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I pick up the TD Five Boro Bike Tour registration jersey at Bike Expo New York?",
+                "items" : [{
+                            "text" : "Tour registration jerseys are only available during the online registration process.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I am late to my designated staggered start time?",
+                "items" : [{
+                            "text" : "Simply depart at the following start time. Please let a marshal know that you have entered at a different time.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Will I be allowed to bring a bag on the Tour?",
+                "items" : [{
+                            "text" : "Backpacks, hydration packs, panniers, and bags over 420 cubic inches are PROHIBITED. Fanny packs, water bottles, saddle bags, bike baskets, and bags under 420 cubic inches are PERMITTED. Visit www.bikenewyork.org to learn more.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I wear headphones/earbuds while I ride?",
+                "items" : [{
+                            "text" : "In accordance with New York State law, cyclists may ride with only one earbud in.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if the weather looks bad?",
+                "items" : [{
+                            "text" : "This is a rain or shine event. Be sure to dress appropriately.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I bring a pet on my bike?",
+                "items" : [{
+                            "text" : "No. Pets are not permitted on the Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I don’t have a bike?",
+                "items" : [{
+                            "text" : "We’ve partnered with Bike and Roll to arrange for bike rental pick-up right at the start of the ride and drop-off at the finish. Visit www.bikenewyorkcity.com to reserve your bike.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Can I start at an earlier start time?",
+                "items" : [{
+                            "text" : "No, you can only fall back into a later start time.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Do I need a helmet for the ride?",
+                "items" : [{
+                            "text" : "Yes. Helmets are required to participate in all Bike New York rides. For the TD Five Boro Bike Tour, you must also wear all three components of the Rider Identification Kit, a.k.a. RIK (helmet cover, bib, and bike plate), for the duration of the ride.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What should I bring on the ride?",
+                "items" : [{
+                            "text" : "While the Tour provides snacks and water at all Rest Areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
+                            "leaf" : true
+                        }]
+            }]
+}

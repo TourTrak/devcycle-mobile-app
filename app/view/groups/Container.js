@@ -22,7 +22,7 @@ Ext.define('DevCycleMobile.view.groups.Container', {
 
 		items: [
             {
-                xtype: 'main',
+                xtype: 'groups',
             }
         ]
 	}

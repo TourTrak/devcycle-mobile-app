@@ -1,0 +1,58 @@
+{
+    "items" : [{
+                "text" : "Are there any shortcuts on the Tour?",
+                "items" : [{
+                            "text" : "Riders in the rear of the Tour may be directed to a shortened route that bypasses the Astoria Park Rest Area and leads directly to the Con Ed Learning Center Rest Area, a shortcut of 4 miles. Due to the street closure schedule, all riders must be on the Brooklyn-Queens Expressway (BQE) by 2:10PM, otherwise, your Tour will end in Brooklyn at approximately mile 27.5. Please be mindful of the amount of time you spend at Rest Areas.",
+                            "leaf" : true
+                        }]
+            }, 
+            {
+                "text" : "Are there recycling receptacles available on the Tour?",
+                "items" : [{
+                            "text" : "All Rest Areas will have designated recycling receptacles. Find a GREEN TEAM volunteer if you have any questions. Please avail yourself of these and help Bike New York in our efforts to secure sustainability certification from the Council for Responsible Sport. Visit www.bikenewyork.org to learn more about our green goals.",
+                            "leaf" : true
+                        }]
+            }, 
+            {
+                "text" : "What do I need to know about the Safety Marshals and NYPD on the Tour?",
+                "items" : [{
+                            "text" : "Volunteers will be riding with you and/or stationed along the route providing directions to keep the Tour running safely and smoothly.  Here’s a breakdown of who to look for: Rider Assist Marshals ride in yellow vests alongside Tour participants. They help participants with flat tires and minor bike repair, assist with the flow of the Tour, and provide information and encouragement. Course Marshals are stationed along the route in orange vests. They give route directions and alert you to road conditions ahead. New York Police Department officers are also on the route to manage car traffic.  Please follow all instructions given by Marshals and NYPD officers.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What emergency medical services are available?",
+                "items" : [{
+                            "text" : "Emergency medical technicians and paramedics from the Jamaica Hospital Medical Center Medical Bike Unit are available to attend to medical needs, as are ambulances from the Fire Department of New York’s Emergency Medical Service. Ask any Tour Marshal or police officer to get you medical assistance if you need it. There are also EMTs at each rest area. If it is an emergency, call 911 and tell the operator that you are a part of the TD Five Boro Bike Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Where can I find toilets when on the Tour?",
+                "items" : [{
+                            "text" : "Hundreds of toilets are available throughout the Tour, including wheelchair-accessible facilities at all Rest Areas, water stations, and the Finish Festival.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Will there be photos being taken during the Tour?",
+                "items" : [{
+                            "text" : "Photographers from MarathonFoto will automatically take your photo as you ride. For identification purposes, ensure that your bib and bike plate are clearly visible. After the Tour, MarathonFoto will contact you via e-mail so you can view and purchase your photos.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Where should I go if need more information during the Tour?",
+                "items" : [{
+                            "text" : "Got a question? Stop by one of the information tents at Rest Areas and the Finish Festival, and we’ll do our best to answer it. Information Centers are also great rendezvous points for folks riding in groups. Note: Do not stop in Central Park, on any of the bridges, or in the middle of the road to wait for friends. This is unsafe and impedes the flow of the Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Will I be able to take the Staten Island Ferry back to Manhattan after the Tour?",
+                "items" : [{
+                            "text" : "At the end of the Tour, ferries will return riders to Manhattan on a first-come, first-served basis. Four ferries will run per hour, but lines will likely be long. Please take the time to enjoy free snacks and entertainment while you wait. Toilets and water will be available while waiting for the ferry back to Manhattan.",
+                            "leaf" : true
+                        }]
+            }]
+}

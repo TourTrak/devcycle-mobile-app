@@ -1,0 +1,26 @@
+$base-color: #2E2E2E;
+$neutral-color: #FAFAFA; 
+$page-bg-color: #eee !default;
+$active-color: #7DF9FF;
+$toolbar-base-color: #2E2E2E;
+
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+
+.start_btn {
+	background-color:#2E2E2E !important;
+	background-image: none;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+.start_btn_label {
+	color:white;
+	font-size: 100%;
+	margin: auto;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}

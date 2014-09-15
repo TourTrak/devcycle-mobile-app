@@ -1,0 +1,51 @@
+{
+    "items" : [{
+                "text" : "Is lunch provided for riders at the Finish Festival?",
+                "items" : [{
+                            "text" : "Riders can purchase food from a variety of vendors at the Finish Festival. Water provided by NYC Water, Del Monte bananas, KIND Bars, and--at Brooklyn Bridge Park--tacos from Chipotle, will be available at Rest Areas along the Route.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Will there be refreshments along the Tour route?",
+                "items" : [{
+                            "text" : "Yes. Each Rest Area will have all sorts of nutritious snacks and refreshments to keep you going strong.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "How can I find out where rest stops, water stations, and bike maintenance hubs are located along the Tour route?",
+                "items" : [{
+                            "text" : "Rest Areas are located at the FDR Drive and 116th Street in Manhattan, Astoria Park in Queens, the Con Ed Learning Center in Queens, and Brooklyn Bridge Park. Water and bike repair is available at all Rest Areas, and at other locations as well. Visit www.bikenewyork.org to download the Ride Guide for more detailed information, or simply check out the map on this app.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I lose track of my friends/family during the Tour?",
+                "items" : [{
+                            "text" : "Make a plan in advance with your friends/family in case you get split up. Rest Areas are a good place to meet up with friends. Do not stop in the following locations: Central Park, on any of the bridges, or on the Brooklyn-Queens Expressway (BQE). Out of courtesy for other riders, do not stop in the middle of the roadway; always signal and pull over to the right side of the road if you need to stop for any reason. There will also be an Information Center at the Finish Festival where riders can rendezvous.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What should I bring on the ride?",
+                "items" : [{
+                            "text" : "While the Tour provides snacks and water at all Rest Areas, don’t forget to bring two bottles of water, some snacks, sunscreen, and a spare tube in case you get a flat. You will want to pump your tires full of air the day before. Also, you will want your camera and fully charged cell phone.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What emergency medical services are available?",
+                "items" : [{
+                            "text" : "Emergency medical technicians and paramedics from the Jamaica Hospital Medical Center Medical Bike Unit are available to attend to medical needs, as are ambulances from the Fire Department of New York’s Emergency Medical Service. Ask any Tour Marshal or police officer to get you medical assistance if you need it. There are also EMTs at each rest area. If it is an emergency, call 911 and tell the operator that you are a part of the TD Five Boro Bike Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Where can I find toilets when on the Tour?",
+                "items" : [{
+                            "text" : "Hundreds of toilets are available throughout the Tour, including wheelchair-accessible facilities at all Rest Areas, water stations, and the Finish Festival.",
+                            "leaf" : true
+                        }]
+            }]
+}

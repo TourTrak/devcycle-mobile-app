@@ -1,0 +1,73 @@
+{
+    "items" : [
+            {
+                "text" : "What if I am late to my designated staggered start time?",
+                "items" : [{
+                            "text" : "Simply depart at the following start time. Please let a marshal know that you have entered at a different time.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if the weather looks bad?",
+                "items" : [{
+                            "text" : "This is a rain or shine event. Be sure to dress appropriately.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What happens if I start the ride, but cannot finish it due to unforeseen circumstances?",
+                "items" : [{
+                            "text" : "You can leave the ride at any time. Note that if you leave the Tour, you will be riding in traffic and will have to watch for cars and road hazards. Once you leave the Tour route you will no longer have access to Tour services, including rest areas and SAG. If you need to depart, we recommend the following locations: mile 14, York Avenue and 63rd Street, Manhattan. This is your last chance to exit the Tour in Manhattan. If you don’t want to go to Queens, travel straight on 63rd Street after the Tour exits the FDR Drive. Do not take the left-hand turn onto the ramp of the Queensboro (59th Street) Bridge. You can also exit the Tour at approximately mile 27, at the Brooklyn Bridge. Just before the Tour enters the Brooklyn-Queens Expressway (BQE), you can leave the Tour and take the Brooklyn Bridge bike path into downtown Manhattan. Marshals on the Brooklyn side will direct you. (This exit is recommended for those traveling with children.) Note: You can also take a SAG vehicle to the Finish Festival.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Is bike repair offered along the Tour route?",
+                "items" : [{
+                            "text" : "Each rest area will have a bicycle mechanic station for minor repairs. Rider Assist marshals should be able to offer some assistance for minor repairs while on the route. If your bike needs maintenance, stop at a repair tent. Labor is free, but there is a charge for parts. Be sure to bring a spare tube. Flat tires are the most common problem, and marshals are more likely to be able to help you if you have a tube. Repair services can be found in these locations: Near the start area, in Bowling Green and Zuccotti Park, Manhattan; 110th Street and Adam Clayton Powell Jr. Boulevard, just north of Central Park, Manhattan; All rest areas (FDR Drive at 116th Street in Manhattan, Astoria Park in Queens, the Con Ed Learning Center in Queens, and Brooklyn Bridge Park); Finish Festival - Fort Wadsworth, Staten Island.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What do I do if I lose one of my possessions while riding?",
+                "items" : [{
+                            "text" : "We ask all riders who find lost possessions on the route to hand them in to a staff member and let him/her know where the item was found. If you lost something, ask a representative at the Information Center at the Finish Festival if anybody turned it in. You can also email Bike New York with a description of the item and a note about where you think you lost it. When all items are turned in, we will contact you if we find it. The TD Five Boro Bike Tour and Bike New York are not responsible for lost or stolen items. Check at Information Tents at Rest Areas for items lost along the way.  After May 4th, call 212-870-2080 or email info@bikenewyork.org in case your lost items were brought to the Tour office.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I lose track of my friends/family during the Tour?",
+                "items" : [{
+                            "text" : "Make a plan in advance with your friends/family in case you get split up. Rest Areas are a good place to meet up with friends. Do not stop in the following locations: Central Park, on any of the bridges, or on the Brooklyn-Queens Expressway (BQE). Out of courtesy for other riders, do not stop in the middle of the roadway; always signal and pull over to the right side of the road if you need to stop for any reason. There will also be an Information Center at the Finish Festival where riders can rendezvous.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Are there any shortcuts on the Tour?",
+                "items" : [{
+                            "text" : "Riders in the rear of the Tour may be directed to a shortened route that bypasses the Astoria Park Rest Area and leads directly to the Con Ed Learning Center Rest Area, a shortcut of 4 miles. Due to the street closure schedule, all riders must be on the Brooklyn-Queens Expressway (BQE) by 2:10PM, otherwise, your Tour will end in Brooklyn at approximately mile 27.5. Please be mindful of the amount of time you spend at Rest Areas.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What emergency medical services are available?",
+                "items" : [{
+                            "text" : "Emergency medical technicians and paramedics from the Jamaica Hospital Medical Center Medical Bike Unit are available to attend to medical needs, as are ambulances from the Fire Department of New York’s Emergency Medical Service. Ask any Tour Marshal or police officer to get you medical assistance if you need it. There are also EMTs at each rest area. If it is an emergency, call 911 and tell the operator that you are a part of the TD Five Boro Bike Tour.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "Where can I find toilets when on the Tour?",
+                "items" : [{
+                            "text" : "Hundreds of toilets are available throughout the Tour, including wheelchair-accessible facilities at all Rest Areas, water stations, and the Finish Festival.",
+                            "leaf" : true
+                        }]
+            },
+            {
+                "text" : "What if I need SAG (Support and Gear)?",
+                "items" : [{
+                            "text" : "Trucks and buses provide transportation to the Finish Festival for cyclists who, for whatever reason, are unable to complete the Tour. If you need assistance, simply pull off the road and wait for the SAG buses and trucks that follow the Tour. Make sure your bike plate is attached to the handlebars so that we can reunite you with your bike at the Finish Festival. Your bib will serve as your bike-retrieval ticket. If you do not pick up your bicycle on Staten Island, you may claim it by contacting Bike New York. After May 8, unclaimed bicycles will be donated to Recycle-A-Bicycle. Call 212-870-2080 for more information.",
+                            "leaf" : true
+                        }]
+            }]
+}
