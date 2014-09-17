@@ -206,7 +206,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 			mapContainerView,
 			faqContainerView,
      		aboutContainerView,
-			//groupsContainerView
+			groupsContainerView
 		] // End tab panel items
 
 		// Add tab panel to component
