@@ -1,13 +1,20 @@
 Ext.define('DevCycleMobile.view.Groups', {
-    extend: 'Ext.form.Panel',
+    extend: 'Ext.tab.Panel',
     xtype: 'groups',
     requires: [
         'Ext.TitleBar',
+        'Ext.SegmentedButton',
+        'Ext.ux.AccordionList',
         'Ext.plugin.ListPaging',
         'Ext.plugin.PullRefresh'
     ],
     config: {
-        items:[{
+        tabBarPosition: 'top',
+        tabBar: {
+            scrollable : 'horizontal'
+        },
+        items: [
+            {
                 xtype: 'titlebar',
                 title: 'TourTrak TD Five Boro Bike Tour',
                 docked: 'top',
@@ -15,44 +22,37 @@ Ext.define('DevCycleMobile.view.Groups', {
                     backgroundImage: 'url(resources/images/carbon_fibre.png)'
                 }
             },
-			{
-				title: 'Create Affinity Group',
-                xtype: 'fieldset',
-                items:[{
-                    xtype: 'textfield',
-                    name: 'groupname',
-                    label: 'Group name:'
-                },
-				{
-					xtype: 'textfield',
-					readOnly: true,
-                    name: 'groupcode',
-                    label: 'Group code:'
-				}]
-			},
-			{
-                xtype: 'button',
-                itemId: 'generate',
-                width: '100%',
-                text: 'Generate Code'
+            {
+                title: 'Join Group',
+                layout: 'vbox',
+                items: [
+					{height: '25px'},
+                    {html: 'Enter your group code (i.e. BIKE1234)'},
+					{xtype: 'textfield', name: 'group_code', label: 'Code'},
+					{xtype: 'button', itemId: 'join', text: 'Join'}
+                ]
             },
 			{
-				title: 'Join Affinity Group',
-                xtype: 'fieldset',
-                items:{
-                    xtype: 'textfield',
-                    name: 'joingroup',
-                    label: 'Join group:'
-                }
-			},
+                title: 'Create Group',
+                layout: 'vbox',
+                items: [
+					{height: '25px'},
+                    {html: 'Enter the name of your riding group'},
+					{xtype: 'textfield', name: 'group_name', label: 'Name'},
+					{xtype: 'button', itemId: 'create', text: 'Create'}
+                ]
+            },
 			{
-                xtype: 'button',
-                itemId: 'generate',
-                width: '100%',
-                text: 'Join Group'
-            }]
-		},
-	}
-);
-
+                title: 'My Groups',
+                layout: 'vbox',
+                items: [
+					{height: '25px'},
+                    {html: 'Enter the name of your riding group'},
+					{xtype: 'textfield', name: 'group_name', label: 'Name'},
+					{xtype: 'button', itemId: 'create', text: 'Create'}
+                ]
+            }
+        ]
+    }
+});
 
