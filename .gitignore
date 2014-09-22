@@ -13,3 +13,4 @@ cordova/
 .sencha/app/cordova-impl.xml
 config.xml
 cordova.local.properties
+.sencha_backup/
