@@ -52,6 +52,7 @@ Ext.application({
     ],
 
     controllers: [
+		'Groups',
         'Map',
         'Home',
         'Answer',

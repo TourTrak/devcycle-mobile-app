@@ -5,10 +5,11 @@ Ext.Loader.setConfig({
 
 Ext.require(['Ext.Leaflet', 'Ext.Menu', 'Ext.dataview.List']);
 
-/**
+/*
 * Defines the custom map container component for holding
 * everything necessary in the map tab view.
-**/
+* @wlodarczyk
+*/
 Ext.define('DevCycleMobile.view.map.Container', {
     extend: 'Ext.Container',
     xtype: 'mapContainer',

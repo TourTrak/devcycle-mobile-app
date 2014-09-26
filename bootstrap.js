@@ -51,6 +51,7 @@ Ext.Loader.addClassPathMappings({
 Ext.ClassManager.addNameAlternateMappings({
   "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.FilterMarkers": [],
+  "DevCycleMobile.controller.Groups": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
   "DevCycleMobile.model.Answer": [],
@@ -716,6 +717,7 @@ Ext.ClassManager.addNameAlternateMappings({
 Ext.ClassManager.addNameAliasMappings({
   "DevCycleMobile.controller.Answer": [],
   "DevCycleMobile.controller.FilterMarkers": [],
+  "DevCycleMobile.controller.Groups": [],
   "DevCycleMobile.controller.Home": [],
   "DevCycleMobile.controller.Map": [],
   "DevCycleMobile.model.Answer": [],

@@ -7,7 +7,7 @@ Ext.require(['Ext.Leaflet']);
 *
 * If geolocation fails, it retries until successful.
 *
-* @tofferrosen
+* @tofferrosen, @wlodarczyk
 */
 
 var filter = [];
@@ -21,12 +21,14 @@ Ext.define('DevCycleMobile.controller.Map', {
 			'#mapview': {
 				maprender: 'onMapRender',
 			},
+			// Action listener for handling filters
 			'button[action=toggleMapFilter]': {
 				tap: 'toggleFilter',
 			},
 		}
 	},
 
+	// Controls the toggling of filter icon markers on leaflet map 
 	toggleFilter: function(filterType) {	
 		if (filter.indexOf(filterType.id) == -1) {
 			filter.push(filterType.id);
