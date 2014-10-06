@@ -48,7 +48,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var code = Ext.getCmp('create_group_code').getValue();
 		if(name != '' && name.length <= NAME_MAX) {
 			if(code == '') {
-				// generate random code and add group to database
+				// generate random code and add group to database				
+				Ext.getCmp('load-indicator').show();
 			}
 			else if(code.length >= CODE_MIN && code.length <= CODE_MAX) {
 				// add group to database

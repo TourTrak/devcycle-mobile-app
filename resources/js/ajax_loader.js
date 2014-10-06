@@ -3,7 +3,7 @@
 	var cHeight=128;
 	var cTotalFrames=16;
 	var cFrameWidth=128;
-	var cImageSrc='images/sprites.gif';
+	var cImageSrc='resources/images/loading.gif';
 	
 	var cImageTimeout=false;
 	var cIndex=0;

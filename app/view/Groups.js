@@ -1,19 +1,16 @@
 /*
 * View for the groups component; users have the option to join or create
 * a riding group and can view a list of groups they are currently in and
-have the option to remove themselves.
-* Every time the map is rendered, we check if the user is within the tour area.
-* If the user is, his or her location is pulsed on the map.
-*
-* If geolocation fails, it retries until successful.
+* have the option to remove themselves.
 *
 * @wlodarczyk
 */
-
 Ext.define('DevCycleMobile.view.Groups', {
     extend: 'Ext.tab.Panel',
     xtype: 'groups',
     requires: [
+		'Ext.dataview.List',
+		'Ext.data.Store',
         'Ext.TitleBar',
         'Ext.SegmentedButton',
         'Ext.ux.AccordionList',
@@ -48,25 +45,36 @@ Ext.define('DevCycleMobile.view.Groups', {
                 title: 'Create Group',
                 layout: 'vbox',
                 items: [
-					{height: '25px'},
                     {html: '<p><b>Enter the name of your riding group:</b></p>'},
-					{xtype: 'textfield', id: 'group_name', label: 'Name'},
-					{html: '<p><b>Group reference code:</b></p><p>Enter a alphanumeric code to represent your group. This code will need to be given to those who want to join the group. <i>(Leave blank for a code to be generated for you)</i>'},
-					{xtype: 'textfield', id: 'create_group_code', label: 'Code'},
-					{xtype: 'button', itemId: 'create_group', text: 'Create', action: 'create'}
+					{flex: 2, xtype: 'textfield', id: 'group_name', label: 'Name'},
+					{flex: 4, html: '<p><b>Group reference code:</b></p><p>Enter a alphanumeric code to represent your group. This code will need to be given to those who want to join the group. <i>(Leave blank for a code to be generated for you)</i>'},
+					{flex: 2, xtype: 'textfield', id: 'create_group_code', label: 'Code'},
+					{flex: 1, xtype: 'button', itemId: 'create_group', text: 'Create', action: 'create'},
+					{xtype: 'loadmask', id: 'load-indicator', indicator: true, hidden: true, target: this}
                 ]
             },
 			{
                 title: 'My Groups',
-                layout: 'vbox',
-                items: [
-					{height: '25px'},
-                    {html: 'Enter the name of your riding group'},
-					{xtype: 'textfield', name: 'group_name', label: 'Name'},
-					{xtype: 'button', itemId: 'remove_group', text: 'Create'}
-                ]
+				layout: 'vbox',
+                items: [					
+                    {flex: 2, html: '<b>Your riding groups:</b>'},
+					{
+						flex: 10,
+						xtype: 'list',
+						itemTpl: '{title}',
+						data: [{
+							title: 'Item 1'
+						}, {
+							title: 'Item 2'
+						}, {
+							title: 'Item 3'
+						}, {
+							title: 'Item 4'
+						}]
+					},
+					{flex: 1, xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'},
+				],
             }
         ]
     }
 });
-

@@ -19,10 +19,6 @@
             "path": "resources/js/sencha-touch.js",
             "x-bootstrap": true
         },
-		{
-            "path": "resources/js/ajax_loader.js",
-            "x-bootstrap": true
-        },
         {
             "path": "bootstrap.js",
             "x-bootstrap": true
