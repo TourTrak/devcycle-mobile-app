@@ -7,6 +7,12 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 
 [TourTrak server repository]: https://github.com/tofferrosen/devcycle-server.git
 
+###Special Notes Before Setting Up Your Environment
+* <b>Cordova versions</b> can be very touchy. Install the <b>exact version</b> on this guide in order to obtain complete functionatliy. 
+Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cordova versions that did not work with the TourTrak app. We found this by issue by browsing to the app's "About" section, clicking on "Tracking", and then clicking the "Pause/Resume" button. Upon clicking the button, there was no response by the UI. The ideal response would be a call to the backend through a cordova/phonegap plugin which would change the red "Pause" button, to a green "Resume" button. 
+
+	To see if the Cordova/Phonegap plugins are being called by the app, open `index.html` in the devcycle-mobile-app root after running `sencha app build native`. Upon hitting the Pause button, a popup dialog will show the Cordova/Phonegap call and finally the Pause button would go to a Resume button state. If it doesn't work, it is likely that Cordova is not working properly with the project.
+
 ###Dependencies Required for Building Project
 * Git 
 * NodeJS (Current Version)
@@ -18,10 +24,11 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 * Ant
 	* (Windows) [https://code.google.com/p/winant/](https://code.google.com/p/winant/)
 	* (Mac/Linux/Unix) See [http://ant.apache.org/manual/install.html](http://ant.apache.org/manual/install.html)
-* Cordova 3.3.1-0.1.2
+* Cordova 3.6.3-0.2.13 (This version addressed security issues that Google flagged and resulted in removal from the Google Play Store)
 	* Install this version by typing in the terminal 
-		* (Windows) `npm install -g cordova@3.3.1-0.1.2`
-		* (Mac/Linux/Unix) `sudo npm install -g cordova@3.3.1-0.1.2`
+		* (Windows) `npm install -g cordova@3.6.3-0.2.13`
+		* (Mac/Linux/Unix) `sudo npm install -g 3.6.3-0.2.13`
+	* Next, run this command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
 * Sencha Command Line Tools (Current Version)
 * SASS (Ruby Gem)
 	* Type `gem install sass` after ruby has been installed
@@ -33,6 +40,7 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 		* platform-tools
 		* tools
 * iOS SDK (if building native iOS)
+
 
 ###Debugging Development Environment Issues (Tips)
 1. Check that all tool dependencies can be ran from the command line (Environment variables set correctly)
