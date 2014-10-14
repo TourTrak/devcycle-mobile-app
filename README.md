@@ -257,6 +257,9 @@ Here, the prefix we use is bikeny.  Please keep the documentation up to date wit
 
 [leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
 
+### Versions
+<b>Sencha Touch: </b>2.3.1 -> <b>ExtJs:</b> </b>4.1.0
+
 ### More
 We have included some system diagrams and the offline map architecture under the references folder.
 

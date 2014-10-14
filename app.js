@@ -63,13 +63,17 @@ Ext.application({
         'Rider',
         'MapData',
         'Tour',
-        'Answer'
+        'Answer',
+        'Group',
+        'GroupRider'
     ],
 
     stores: [
         'RiderInfo',
         'MapInfo',
-        'TourInfo'
+        'TourInfo',
+        'GroupInfo',
+        'GroupRiderInfo'
     ],
 
     icon: {
