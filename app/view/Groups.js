@@ -1,10 +1,3 @@
-var dataSet;
-
-Ext.onReady(function(){
-	dataSet = 	{groupName: 'RIT', groupCode: 'RIT1'},
-				{groupName: 'Red Cross', groupCode: 'RX911'}
-});
-
 /*
 * View for the groups component; users have the option to join or create
 * a riding group and can view a list of groups they are currently in and
@@ -68,15 +61,16 @@ Ext.define('DevCycleMobile.view.Groups', {
 					{
 						flex: 10,
 						xtype: 'list',
-						itemTpl: '<p>{groupName} - {groupCode}</p>',
-						data: (function() {
-							var data = [];
-							data.push(
-								{groupName: 'RIT', groupCode: 'RIT1'},
-								{groupName: 'Red Cross', groupCode: 'RX911'}								
-							);
-							return data;
-							})()
+						itemTpl: '{title}',
+						data: [{
+							title: 'Item 1'
+						}, {
+							title: 'Item 2'
+						}, {
+							title: 'Item 3'
+						}, {
+							title: 'Item 4'
+						}]
 					},
 					{flex: 1, xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'},
 				],

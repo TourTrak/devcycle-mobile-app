@@ -40,13 +40,12 @@ Ext.define('DevCycleMobile.controller.Groups', {
 				method: 'POST',
 				scope: this,
 				params: {				
-					riderId: this.riderInfo.get('riderId'),
+					riderId: this.riderInfo.get('riderId')
 					code: groupCode
 				},
 				success: function(response){
 					alert('Joined group successfully!');
 				}
-			});
 		}
 		else {
 			alert('Error: The group does not exist.');
@@ -76,18 +75,17 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			if (canCreateGroup)
 			{
 				Ext.Ajax.request({
-					url: this.tourInfo.data.dcs_url + '/create_group/',// need to define
-					method: 'POST',
-					scope: this,
-					params: {				
-						riderId: this.riderInfo.get('riderId'),
-						group: groupName,
-						code: code
-					},
-					success: function(response){
-						alert('Group successfully created!');
-					}
-				});				
+				url: this.tourInfo.data.dcs_url + '/create_group/',// need to define
+				method: 'POST',
+				scope: this,
+				params: {				
+					riderId: this.riderInfo.get('riderId')
+					group: groupName,
+					code: code
+				},
+				success: function(response){
+					alert('Group successfully created!');
+				}			
 			}			
 		}
 		else {
