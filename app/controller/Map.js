@@ -55,27 +55,20 @@ Ext.define('DevCycleMobile.controller.Map', {
 	*/
 	mapGroups: function () {
 		var map = Ext.getCmp('mapview').map;
-
-		// refresh the map
+		//Ensure the map has been loaded
 		if (map != undefined) {
 
 			this.groupStore = Ext.getStore("GroupInfo");
 			this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+			var riderPos = new L.latLng(40.7127837, -74.00594130000002);
 
-			var records = this.groupRiderStore;
-			var counter = 1;
-			records.each(function (record){
-				console.log("Group Rider Entry " + counter + " Code: " + record.get('groupCode') + " Rider Id" + record.get('riderId'));
-				counter++;
-			});
-			
+				// Create rider marker
+				this.riderPosMarker = L.userMarker(riderPos, {
+					accuracy: 10,
+					pulsing: true
+				});
 
-			records = this.groupStore;
-			counter = 1;
-			records.each(function (record){
-				console.log("Group Entry " + counter + " Code: "+ record.get('groupCode') + " Name: " + record.get('groupName'));
-				counter++;
-			});
+				this.riderPosMarker.addTo(map); // add to map
 		}
 	},
 
