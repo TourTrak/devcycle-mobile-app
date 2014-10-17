@@ -126,6 +126,7 @@
         "resources/data",
         "third_party_libraries/Awesome-markers/dist/images",
         "third_party_libraries/Leaflet/dist/images",
+        "third_party_libraries/leaflet-usermarker/src/img",
         "resources/map_tiles",
         "config.json",
         "resources/data.kml",
