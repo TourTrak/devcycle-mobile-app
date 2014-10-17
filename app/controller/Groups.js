@@ -5,7 +5,7 @@ Ext.require(['Ext.Leaflet']);
 * Users can join, create, or view/remove themselves from a specified
 * tour group (aka, affinity group).
 *
-* @wlodarczyk
+* @wlodarczyk, @eklundjoshua
 */
 
 var CODE_MIN = 3;
@@ -29,13 +29,86 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			}
 		}
 	},
-		
+
+	/**
+	* function: cacheGroup
+	* Description: This function will cache a group on the clients device
+	* 
+	* @param code : The group code for the group you'd like to cache
+	* @param name : The name of the group you'd like to cache
+	*/
+	cacheGroup: function(code, name) {
+		this.groupStore = Ext.getStore("GroupInfo");
+		var newGroup = new DevCycleMobile.model.Group({
+			groupCode: code,
+			groupName: name
+		});
+
+		this.groupStore.filter('groupCode', code);
+		if(this.groupStore.getCount() == 0)
+		{
+			this.groupStore.add(newGroup);
+			this.groupStore.sync();
+		}
+		else
+		{
+			console.log("Group already exists");
+		}
+		this.groupStore.clearFilter(true);
+	},
+
+	/**
+	* function: cacheGroupRiders
+	* Description: This function will cache riders that are associated 
+	* with a group on the local clients store.
+	* 
+	* @param code : The group code for the group you'd like to cache
+	* @param ridersArray : an array consisting of all riders that you want
+	* to be associated with that group
+	*/
+	cacheGroupRiders: function(code, ridersArray) {
+		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+		var arrayLength = ridersArray.length;
+
+		for(var i = 0; i<arrayLength; i++) 
+		{
+			var id = ridersArray[i];
+			var newGroupRider = new DevCycleMobile.model.GroupRider({
+				groupCode: code,
+				riderId: id
+			});
+
+			this.groupRiderStore.add(newGroupRider);
+
+		}
+		this.groupRiderStore.sync();
+	},
+
+	/**
+	* function clearStore
+	* Description: Clears a specified store
+	*
+	*/
+	clearStore: function(store_name) {
+		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+		this.groupStore = Ext.getStore("GroupInfo");
+
+		if(store_name == "group") 
+		{
+			this.groupStore.removeAll(true);
+		}
+		else if(store_name == "groupRider")
+		{
+			this.groupRiderStore.removeAll(true);
+		}
+	},
+	
 	// Adds user to specified group
 	joinGroup: function() {
 		var groupCode = Ext.getCmp('join_group_code').getValue();
 		if(groupCode != '' && groupCode.length >=CODE_MIN && groupCode.length <=CODE_MAX)
 		{
-			Ext.Ajax.request({
+			/*Ext.Ajax.request({
 				url: this.tourInfo.data.dcs_url + '/join_group/',
 				method: 'POST',
 				scope: this,
@@ -46,7 +119,16 @@ Ext.define('DevCycleMobile.controller.Groups', {
 				success: function(response){
 					alert('Joined group successfully!');
 				}
-			});
+			});*/
+			
+			this.clearStore("group");
+			this.clearStore("groupRider");
+
+			var riderArray = new Array(1,2,3,4,5);
+			this.cacheGroupRiders("RMCD", riderArray);
+			this.cacheGroup("NEWG", "This is a new group");
+			DevCycleMobile.app.getController('Map').mapGroups();
+
 		}
 		else {
 			alert('Error: The group does not exist.');

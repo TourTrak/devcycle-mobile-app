@@ -7,7 +7,7 @@ Ext.require(['Ext.Leaflet']);
 *
 * If geolocation fails, it retries until successful.
 *
-* @tofferrosen, @wlodarczyk
+* @tofferrosen, @wlodarczyk, @eklundjoshua
 */
 
 var filter = [];
@@ -48,6 +48,37 @@ Ext.define('DevCycleMobile.controller.Map', {
 	init: function() {
 		this.riderPosMarker = null; // user's position marker
 	},
+
+	/**
+	* This function will be called whenever the filter for a group is selected 
+	* All users in that group will be plotted on the map through this function.
+	*/
+	mapGroups: function () {
+		var map = Ext.getCmp('mapview').map;
+
+		// refresh the map
+		if (map != undefined) {
+
+			this.groupStore = Ext.getStore("GroupInfo");
+			this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+
+			var records = this.groupRiderStore;
+			var counter = 1;
+			records.each(function (record){
+				console.log("Group Rider Entry " + counter + " Code: " + record.get('groupCode') + " Rider Id" + record.get('riderId'));
+				counter++;
+			});
+			
+
+			records = this.groupStore;
+			counter = 1;
+			records.each(function (record){
+				console.log("Group Entry " + counter + " Code: "+ record.get('groupCode') + " Name: " + record.get('groupName'));
+				counter++;
+			});
+		}
+	},
+
 
 	/**
 	* Called when a user's location/position is successfully found.
