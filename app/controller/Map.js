@@ -19,12 +19,12 @@ Ext.define('DevCycleMobile.controller.Map', {
 		control: {
 			// Reference to the Leaflet Custom Component
 			'#mapview': {
-				maprender: 'onMapRender',
+				maprender: 'onMapRender'
 			},
 			// Action listener for handling filters
 			'button[action=toggleMapFilter]': {
-				tap: 'toggleFilter',
-			},
+				tap: 'toggleFilter'
+			}
 		}
 	},
 

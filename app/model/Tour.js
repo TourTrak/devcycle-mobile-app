@@ -15,6 +15,6 @@ Ext.define('DevCycleMobile.model.Tour', {
 			'tour_end_beta_time',
 			'reg_retry_init',
 			'reg_retry_after'
-		],
+		]
 	}
 });

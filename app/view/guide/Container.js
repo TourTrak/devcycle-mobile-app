@@ -22,7 +22,7 @@ Ext.define('DevCycleMobile.view.guide.Container', {
 
 		items: [
             {
-                xtype: 'main',
+                xtype: 'main'
             }
         ]
 	}

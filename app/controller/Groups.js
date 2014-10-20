@@ -19,13 +19,13 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		control: {
 			// Reference to the Leaflet Custom Component
 			'button[action=join]': {
-				tap: 'joinGroup',
+				tap: 'joinGroup'
 			},
 			'button[action=create]': {
-				tap: 'createGroup',
+				tap: 'createGroup'
 			},
 			'button[action=remove]': {
-				tap: 'removeGroup',
+				tap: 'removeGroup'
 			}
 		}
 	},
