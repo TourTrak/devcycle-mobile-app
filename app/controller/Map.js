@@ -63,12 +63,13 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var riderPos = new L.latLng(40.7127837, -74.00594130000002);
 
 				// Create rider marker
-				this.riderPosMarker = L.userMarker(riderPos, {
+				/*this.riderPosMarker = L.userMarker(riderPos, {
 					accuracy: 10,
 					pulsing: true
 				});
 
-				this.riderPosMarker.addTo(map); // add to map
+				this.riderPosMarker.addTo(map);*/ 
+				// add to map
 		}
 	},
 
