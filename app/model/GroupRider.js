@@ -4,6 +4,6 @@ Ext.define('DevCycleMobile.model.GroupRider', {
 		fields: [
 			'groupCode',
 			'riderId'
-		]
+		],
 	}
 });

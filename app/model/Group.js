@@ -4,6 +4,6 @@ Ext.define('DevCycleMobile.model.Group', {
 		fields: [
 			'groupCode',
 			'groupName'
-		]
-	}
+		],
+	},
 });

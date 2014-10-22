@@ -9,7 +9,8 @@ Ext.define('DevCycleMobile.view.Home', {
 	id: 'home',
 	config: {
 		id: 'home',
-		tabBarPosition: 'bottom'        
+		tabBarPosition: 'bottom',
+        
 	},
 
 	// Fires when the Panel is initialized

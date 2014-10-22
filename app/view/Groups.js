@@ -61,24 +61,19 @@ Ext.define('DevCycleMobile.view.Groups', {
 					{
 						flex: 10,
 						xtype: 'list',
-						itemTpl: 'Group: {groupName} - Code: {groupCode}',
-						data: (function() {
-							riderId = this.riderInfo.get('riderId');
-							Ext.Ajax.request({
-								url: this.tourInfo.data.dcs_url + '/list_group/' + riderId + '/',
-								method: 'POST',
-								scope: this,
-								success: function(response){
-									alert('Group successfully created!');
-								}			
-							});
-						
-							var data = [{groupName: 'Rochester', groupCode: 'RIT1'},{groupName: 'Red Cross', groupCode: 'RedX911'}];
-							return data;
-							})()
+						itemTpl: '{title}',
+						data: [{
+							title: 'Item 1'
+						}, {
+							title: 'Item 2'
+						}, {
+							title: 'Item 3'
+						}, {
+							title: 'Item 4'
+						}]
 					},
-					{flex: 1, xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'}
-				]
+					{flex: 1, xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'},
+				],
             }
         ]
     }

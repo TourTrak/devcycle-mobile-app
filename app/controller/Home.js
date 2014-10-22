@@ -16,8 +16,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 	config: {
 		control: {
 			'#home':{
-				initialize: 'onTabpanelInitialize'
-			}
+				initialize: 'onTabpanelInitialize',
+			},
 		}
 	},
 
@@ -231,5 +231,5 @@ Ext.define('DevCycleMobile.controller.Home', {
 	// init and set variables.
 	init:function(){
 		this.callParent(arguments);
-	}
+	},
 });

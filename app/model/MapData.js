@@ -16,6 +16,6 @@ Ext.define('DevCycleMobile.model.MapData', {
 			'template',
 			'version',
 			'minzoom'
-		]
+		],
 	}
 });

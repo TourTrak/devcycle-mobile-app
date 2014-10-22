@@ -12,7 +12,7 @@ Ext.define('DevCycleMobile.store.TourInfo', {
 
 		proxy: {
 			type: 'ajax',
-			url: 'config.json'
+			url: 'config.json',
 		},
 		
 		listeners: {
