@@ -69,14 +69,36 @@ Ext.define('DevCycleMobile.controller.Map', {
 			this.groupRiderStore = Ext.getStore("GroupRiderInfo");
 			var riderPos = new L.latLng(40.7127837, -74.00594130000002);
 
-				// Create rider marker
-				/*this.riderPosMarker = L.userMarker(riderPos, {
-					accuracy: 10,
-					pulsing: true
-				});
+			var riderRecords = this.groupRiderStore;
+			var groupRecords = this.groupStore;
 
-				this.riderPosMarker.addTo(map);*/ 
-				// add to map
+			var groupRiderArray = new Array(5);
+
+			//groupCode
+			//riderId
+
+			//Iterate over every group in the store
+			groupRecords.each(function (groupRecord) {
+				console.log("Parsing map group " + groupRecord.get('groupName'));
+
+				//Filter the riderRecords by the current group code
+				riderRecords.filter('groupCode', groupRecord.get('groupCode'));
+				riderRecords.each(function (riderRecord) {
+					
+
+				});
+				riderRecords.clearFilter(true);
+
+			});
+				
+			
+			// Create rider marker
+			this.riderPosMarker = L.userMarker(riderPos, {
+				accuracy: 10,
+				pulsing: true
+			});
+			this.riderPosMarker.addTo(map);
+
 		}
 	},
 
