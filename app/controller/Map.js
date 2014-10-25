@@ -28,18 +28,25 @@ Ext.define('DevCycleMobile.controller.Map', {
 		}
 	},
 
-	// Controls the toggling of filter icon markers on leaflet map 
+	/**
+	Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
+	an asynchronous call so that the UI doesnt freeze when loading markers
+	**/ 
+
 	toggleFilter: function(filterType) {	
-		if (filter.indexOf(filterType.id) == -1) {
-			filter.push(filterType.id);
-			filterType.setText('<img src="resources/icons/filters/enabled/'+filterType.id+'.png"/>');
-			DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
-		}
-		else {
-			filter.splice(filter.indexOf(filterType.id), 1);
-			filterType.setText('<img src="resources/icons/filters/disabled/'+filterType.id+'.png"/>');
-			DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
-		}				
+		setTimeout(function() 
+		{
+			if (filter.indexOf(filterType.id) == -1) {
+				filter.push(filterType.id);
+				filterType.setText('<img src="resources/icons/filters/enabled/'+filterType.id+'.png"/>');
+				DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
+			}
+			else {
+				filter.splice(filter.indexOf(filterType.id), 1);
+				filterType.setText('<img src="resources/icons/filters/disabled/'+filterType.id+'.png"/>');
+				DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
+			}	
+		},50);			
 	},
 
 	/**
