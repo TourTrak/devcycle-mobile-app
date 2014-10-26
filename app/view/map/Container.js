@@ -34,6 +34,8 @@ Ext.define('DevCycleMobile.view.map.Container', {
                     [
                         {
                             xtype: 'button',
+                            width: 55,
+                            height: 55,
                             iconCls: 'list',
                             handler: function () {
                                 if (Ext.Viewport.getMenus().left.isHidden())
