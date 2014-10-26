@@ -66,16 +66,21 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	* @param ridersArray : an array consisting of all riders that you want
 	* to be associated with that group
 	*/
-	cacheGroupRiders: function(code, ridersArray) {
+	cacheGroupRiders: function(code, ridersArray, latArray, longArray) {
 		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
 		var arrayLength = ridersArray.length;
 
 		for(var i = 0; i<arrayLength; i++) 
 		{
 			var id = ridersArray[i];
+			var myLat = latArray[i];
+			var myLong = longArray[i];
+			
 			var newGroupRider = new DevCycleMobile.model.GroupRider({
 				groupCode: code,
-				riderId: id
+				riderId: id,
+				latitude: myLat,
+				longitude: myLong
 			});
 
 			this.groupRiderStore.add(newGroupRider);
@@ -124,9 +129,31 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			this.clearStore("group");
 			this.clearStore("groupRider");
 
+			/**
+			* 40.614014, -73.993263
+			* 40.620008, -73.971977
+			* 40.619226, -73.954468
+			* 40.630691, -73.979530
+			* 40.633557, -74.004936
+			* 40.633036, -73.941765
+			* 40.642676, -73.950005
+			* 40.650751, -73.973351
+			* 40.650490, -73.918419
+			* 40.663253, -73.943481
+			*/
+			var lats = new Array(40.614014, 40.620008, 40.619226, 40.630691, 40.663253);
+			var longs = new Array(-73.993263, -73.971977, -73.954468, -73.979530, -74.004936);
+			var lats2 = new Array(40.633557, 40.633036, 40.642676, 40.650751, 40.650490);
+			var longs2 = new Array(-73.941765, -73.950005, -73.973351, -73.918419, -73.943481);
 			var riderArray = new Array(1,2,3,4,5);
-			this.cacheGroupRiders("RMCD", riderArray);
-			this.cacheGroup("NEWG", "This is a new group");
+			var riderArray2 = new Array(6,7,8,9,10);
+
+			this.cacheGroup("RMCD", "The Ronald McDonald Playhouse");
+			this.cacheGroupRiders("RMCD", riderArray, lats, longs);
+
+			this.cacheGroup("TOUR", "Tour Trak Riding Group")
+			this.cacheGroupRiders("TOUR", riderArray2, lats2, longs2);
+			
 			DevCycleMobile.app.getController('Map').mapGroups();
 
 		}

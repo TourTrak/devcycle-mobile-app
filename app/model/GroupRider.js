@@ -3,7 +3,9 @@ Ext.define('DevCycleMobile.model.GroupRider', {
 	config: {
 		fields: [
 			'groupCode',
-			'riderId'
+			'riderId',
+			'latitude',
+			'longitude'
 		],
 	}
 });
