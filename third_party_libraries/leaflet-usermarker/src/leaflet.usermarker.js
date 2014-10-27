@@ -93,7 +93,7 @@
         setColor: function(color) {
 
             //Default color is blue so don't need to do anything
-            if(color != blue)
+            if(color != "blue")
             {       
                 icon = L.divIcon({
                     className: "leaflet-usermarker-" + color,
