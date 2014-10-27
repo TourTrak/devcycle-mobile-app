@@ -145,14 +145,21 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			var longs = new Array(-73.993263, -73.971977, -73.954468, -73.979530, -74.004936);
 			var lats2 = new Array(40.633557, 40.633036, 40.642676, 40.650751, 40.650490);
 			var longs2 = new Array(-73.941765, -73.950005, -73.973351, -73.918419, -73.943481);
+			var lats3 = new Array(40.697950, 40.696063, 40.691702, 40.703220, 40.687602);
+			var longs3 = new Array(-73.961935, -73.965068, -73.975196, -73.960261, -73.987985);
 			var riderArray = new Array(1,2,3,4,5);
 			var riderArray2 = new Array(6,7,8,9,10);
+			var riderArray3 = new Array(11,12,13,14,15);
+
 
 			this.cacheGroup("RMCD", "The Ronald McDonald Playhouse");
 			this.cacheGroupRiders("RMCD", riderArray, lats, longs);
 
 			this.cacheGroup("TOUR", "Tour Trak Riding Group")
 			this.cacheGroupRiders("TOUR", riderArray2, lats2, longs2);
+
+			this.cacheGroup("RIT", "The RIT Riders");
+			this.cacheGroupRiders("RIT", riderArray3, lats3, longs3);
 			
 			DevCycleMobile.app.getController('Map').mapGroups();
 

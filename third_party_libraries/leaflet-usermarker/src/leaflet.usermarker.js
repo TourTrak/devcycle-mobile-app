@@ -2,6 +2,12 @@
  * Leaflet.UserMarker v1.0
  * 
  * Author: Jonatan Heyman <http://heyman.info>
+ * 
+ * Change Notes: 
+ * Edited: Team Centri-Pedal Motion RIT 2014
+ *         added other supported colors defined in leaflet.usermarker.css 
+ *         for leaflet-usermarkers
+ *
  */
 
 (function(window) {
@@ -87,8 +93,8 @@
         /**
         * setColor function added by Team Centri-Pedal RIT 2014
         *
-        * Description: This function will dynamically set colors 
-        * for leaflet-usermarkers
+        * Description: This function will set other preset colors 
+        * defined in leaflet.usermarker.css for leaflet-usermarkers
         */
         setColor: function(color) {
 

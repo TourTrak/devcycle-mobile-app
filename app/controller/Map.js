@@ -74,7 +74,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var groupRecords = this.groupStore;
 
 			var groupRiderArray = new Array(5);
-			var varColor = 'blue';
+			var varColor = ['blue', 'red', 'green'];
+			var countThis = 0;
 			//var markersArray = [];
 
 			//groupCode
@@ -92,17 +93,17 @@ Ext.define('DevCycleMobile.controller.Map', {
 					  'latitude',
 		 	          'longitude'
 		 	        */
-		 	        console.log("Rider " + riderRecord.get('riderId'));
+		 	        console.log("Rider " + riderRecord.get('riderId') + " for group " + groupRecord.get('groupName'));
 		 	        riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
 		 	      
 		 	        riderMarker = L.userMarker(riderPos, {
-		 	        	color: varColor,
+		 	        	color: varColor[countThis],
 						accuracy: 10,
 						pulsing: true,
 						smallIcon: true
 					});
 		 	 
-					riderMarker.bindPopup("Rider ID " + riderRecord.get('riderId'));
+					riderMarker.bindPopup("Rider ID " + riderRecord.get('riderId') + " for group " + groupRecord.get('groupName'));
 					riderMarker.addTo(map);
 					//markersArray.push(riderMarker);
 					//L.layerGroup(markersArray);
@@ -110,7 +111,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 				});
 				riderRecords.clearFilter(true);
-				varColor = 'red';
+				countThis++;
 
 			});
 				
