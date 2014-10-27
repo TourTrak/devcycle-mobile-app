@@ -53,7 +53,8 @@
             pulsing: false,
             smallIcon: false,
             accuracy: 0,
-            circleOpts: circleStyle
+            circleOpts: circleStyle,
+            color: 'blue'
         },
 
         initialize: function(latlng, options) {
@@ -83,20 +84,62 @@
             }
         },
 
+        /**
+        * setColor function added by Team Centri-Pedal RIT 2014
+        *
+        * Description: This function will dynamically set colors 
+        * for leaflet-usermarkers
+        */
         setColor: function(color) {
-            this._color = color;
-            console.log("Color is " + color);
-            if(color == "red")
-            {
-                  icon.className="leaflet-usermarker-red";
-                  iconPulsing.className="leaflet-usermarker-red";
-                  iconSmall.className="leaflet-usermarker-small-red";
-                  iconPulsingSmall.className="leaflet-usermarker-small-red";
-                  circleStyle.color = "#08f";
-                  circleStyle.fillColor = "#08f";
-            }
-            console.log("Color was set " + color);
 
+            //Default color is blue so don't need to do anything
+            if(color != blue)
+            {       
+                icon = L.divIcon({
+                    className: "leaflet-usermarker-" + color,
+                    iconSize: [34, 34],
+                    iconAnchor: [17, 17],
+                    popupAnchor: [0, -20],
+                    labelAnchor: [11, -3],
+                    html: ''
+                });
+                
+                iconPulsing = L.divIcon({
+                    className: "leaflet-usermarker-" + color,
+                    iconSize: [34, 34],
+                    iconAnchor: [17, 17],
+                    popupAnchor: [0, -20],
+                    labelAnchor: [11, -3],
+                    html: '<i class="pulse"></i>'
+                });
+                            
+                iconSmall = L.divIcon({
+                    className: "leaflet-usermarker-small-" + color,
+                    iconSize: [17, 17],
+                    iconAnchor: [9, 9],
+                    popupAnchor: [0, -10],
+                    labelAnchor: [3, -4],
+                    html: ''
+                });
+
+                iconPulsingSmall = L.divIcon({
+                    className: "leaflet-usermarker-small-" + color,
+                    iconSize: [17, 17],
+                    iconAnchor: [9, 9],
+                    popupAnchor: [0, -10],
+                    labelAnchor: [3, -4],
+                    html: '<i class="pulse"></i>'
+                            });
+                circleStyle = {
+                    stroke: true,
+                    color: "#03f",
+                    weight: 3,
+                    opacity: 0.5,
+                    fillOpacity: 0.15,
+                    fillColor: "#03f",
+                    clickable: false
+                };
+            }  
         },
     
         setAccuracy: function(accuracy)	{
