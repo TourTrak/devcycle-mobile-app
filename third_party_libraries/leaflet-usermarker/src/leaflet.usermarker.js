@@ -62,6 +62,7 @@
             this.setPulsing(this.options.pulsing);
             this._accMarker = L.circle(latlng, this.options.accuracy, this.options.circleOpts);
         
+            this.setColor(this.options.color);
             // call super
             L.Marker.prototype.initialize.call(this, latlng, this.options);
         
@@ -80,6 +81,22 @@
             } else {
                 this.setIcon(!!this._pulsing ? iconPulsing : icon);
             }
+        },
+
+        setColor: function(color) {
+            this._color = color;
+            console.log("Color is " + color);
+            if(color == "red")
+            {
+                  icon.className="leaflet-usermarker-red";
+                  iconPulsing.className="leaflet-usermarker-red";
+                  iconSmall.className="leaflet-usermarker-small-red";
+                  iconPulsingSmall.className="leaflet-usermarker-small-red";
+                  circleStyle.color = "#08f";
+                  circleStyle.fillColor = "#08f";
+            }
+            console.log("Color was set " + color);
+
         },
     
         setAccuracy: function(accuracy)	{

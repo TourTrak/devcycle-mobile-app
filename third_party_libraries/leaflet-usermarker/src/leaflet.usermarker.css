@@ -80,3 +80,46 @@
     width: 31px !important;
     margin: -7px 0 0 -7px;
 }
+
+/*
+* For red
+*/
+.leaflet-usermarker-red,
+.leaflet-usermarker-small-red {
+    width: 34px;
+    height: 34px;
+    background: url(img/reddot.png);
+    background-size: 100%;
+}
+.leaflet-usermarker-small-red {
+    width: 17px;
+    height: 17px;
+}
+
+.leaflet-usermarker-red i.pulse,
+.leaflet-usermarker-small-red i.pulse {
+    display: block;
+
+    -moz-animation: leaflet-usermarker-pulsate 1.5s ease-in-out infinite;
+    -webkit-animation: leaflet-usermarker-pulsate 1.5s ease-in-out infinite;
+    animation: leaflet-usermarker-pulsate 1.5s ease-in-out infinite;
+    border:1pt solid #fff;
+    /* make a circle */
+    -moz-border-radius:51px;
+    -webkit-border-radius:51px;
+    border-radius:51px;
+    /* multiply the shadows, inside and outside the circle */
+    -moz-box-shadow:inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    -webkit-box-shadow:inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    box-shadow:inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    /* set the ring's new dimension and re-center it */
+    height:61px!important;
+    margin:-14px 0 0 -14px;
+    width:61px!important;
+}
+
+.leaflet-usermarker-small-red i.pulse {
+    height: 31px !important;
+    width: 31px !important;
+    margin: -7px 0 0 -7px;
+}
