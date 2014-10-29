@@ -77,19 +77,12 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			//groupCode
 		    //riderId
-
-			//var firstRun = false; //used for testing
-			//var newGroup = L.layerGroup(); //First group
-			//var newGroup2 = L.layerGroup(); //Second group
-			var count = 0; //Counter for number of groups
-		    //Create an overlay
+            //Create an overlay
 			var groupsOverlay ={};
 			//Iterate over every group in the store
 			groupRecords.each(function (groupRecord) {
 				console.log("Parsing map group " + groupRecord.get('groupName'));
-
 			    //Filter the riderRecords by the current group code
-			    //var thisGroup = new Array(5);
 				var newGroup = L.layerGroup(); //Create a layer group
 				var groupName = groupRecord.get('groupName'); //Get the group code
 				riderRecords.filter('groupCode', groupRecord.get('groupCode'));
@@ -101,65 +94,19 @@ Ext.define('DevCycleMobile.controller.Map', {
 		 	        */
 		 	        console.log("Rider " + riderRecord.get('riderId'));
 		 	        riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
-                    //Create a marker- hardcoded currently
-		 	        /*if (firstRun) {
-		 	            riderMarker = L.userMarker(riderPos, {
-		 	                accuracy: 10,
-		 	                pulsing: true,
-		 	                smallIcon: true
-		 	            });
-		 	        }
-		 	        else {
-		 	            riderMarker = L.userMarker(riderPos, {
-		 	                accuracy: 10,
-		 	                pulsing: false,
-		 	                smallIcon: true
-		 	            });
-		 	            
-                        
-		 	        }*/
                     //Create the marker
 		 	        riderMarker = L.userMarker(riderPos, {
 		 	            accuracy: 10,
 		 	            pulsing: true,
 		 	            smallIcon: true
 		 	        });
-		 	        newGroup.addLayer(riderMarker);//Add markers to a group		 	        
-                    /*
-		 	        if (firstRun) {
-		 	            newGroup2.addLayer(riderMarker);
-		 	        }
-		 	        else {
-		 	            newGroup.addLayer(riderMarker);
-
-		 	        };
-                    */
-				    //riderMarker.addTo(map);
-					
-
-				});
-                
-                
+		 	        newGroup.addLayer(riderMarker);//Add markers to a group		 	                      		
+				});        
 				riderRecords.clearFilter(true);
-			    //firstRun = true;
 				groupsOverlay[groupName] = newGroup; //Add to overlay
-				count++;
 			});
-		    //Create an overlay
-            /*
-			var groupsOverlay =
-            {
-                "Tour": newGroup,
-                "RMD": newGroup2
-            };*/
-			L.control.layers(groupsOverlay).addTo(map); //Add overlay to map
+			L.control.layers(null, groupsOverlay).addTo(map); //Add overlay to map (to get checkboxes) without a base layer (radio buttons)
 			map._onResize();
-			// Create rider marker
-			/*this.riderPosMarker = L.userMarker(riderPos, {
-				accuracy: 10,
-				pulsing: true
-			});*/
-			//this.riderPosMarker.addTo(map);
 
 		}
 	},
