@@ -74,6 +74,9 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var groupRecords = this.groupStore;
 
 			var groupRiderArray = new Array(5);
+			var varColor = ['blue', 'red', 'green'];
+			var countThis = 0;
+			//var markersArray = [];
 
 			//groupCode
 		    //riderId
@@ -92,10 +95,11 @@ Ext.define('DevCycleMobile.controller.Map', {
 					  'latitude',
 		 	          'longitude'
 		 	        */
-		 	        console.log("Rider " + riderRecord.get('riderId'));
+		 	        console.log("Rider " + riderRecord.get('riderId') + " for group " + groupRecord.get('groupName'));
 		 	        riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
                     //Create the marker
 		 	        riderMarker = L.userMarker(riderPos, {
+		 	        	color: varColor[countThis],
 		 	            accuracy: 10,
 		 	            pulsing: true,
 		 	            smallIcon: true
@@ -103,6 +107,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 		 	        newGroup.addLayer(riderMarker);//Add markers to a group		 	                      		
 				});        
 				riderRecords.clearFilter(true);
+				countThis++;
+
 				groupsOverlay[groupName] = newGroup; //Add to overlay
 			});
 			L.control.layers(null, groupsOverlay).addTo(map); //Add overlay to map (to get checkboxes) without a base layer (radio buttons)

@@ -2,6 +2,12 @@
  * Leaflet.UserMarker v1.0
  * 
  * Author: Jonatan Heyman <http://heyman.info>
+ * 
+ * Change Notes: 
+ * Edited: Team Centri-Pedal Motion RIT 2014
+ *         added other supported colors defined in leaflet.usermarker.css 
+ *         for leaflet-usermarkers
+ *
  */
 
 (function(window) {
@@ -53,7 +59,8 @@
             pulsing: false,
             smallIcon: false,
             accuracy: 0,
-            circleOpts: circleStyle
+            circleOpts: circleStyle,
+            color: 'blue'
         },
 
         initialize: function(latlng, options) {
@@ -62,6 +69,7 @@
             this.setPulsing(this.options.pulsing);
             this._accMarker = L.circle(latlng, this.options.accuracy, this.options.circleOpts);
         
+            this.setColor(this.options.color);
             // call super
             L.Marker.prototype.initialize.call(this, latlng, this.options);
         
@@ -80,6 +88,112 @@
             } else {
                 this.setIcon(!!this._pulsing ? iconPulsing : icon);
             }
+        },
+
+        /**
+        * setColor function added by Team Centri-Pedal RIT 2014
+        *
+        * Description: This function will set other preset colors 
+        * defined in leaflet.usermarker.css for leaflet-usermarkers
+        */
+        setColor: function(color) {
+
+            //Default color is blue so don't need to do anything
+            if(color != "blue")
+            {       
+                icon = L.divIcon({
+                    className: "leaflet-usermarker-" + color,
+                    iconSize: [34, 34],
+                    iconAnchor: [17, 17],
+                    popupAnchor: [0, -20],
+                    labelAnchor: [11, -3],
+                    html: ''
+                });
+                
+                iconPulsing = L.divIcon({
+                    className: "leaflet-usermarker-" + color,
+                    iconSize: [34, 34],
+                    iconAnchor: [17, 17],
+                    popupAnchor: [0, -20],
+                    labelAnchor: [11, -3],
+                    html: '<i class="pulse"></i>'
+                });
+                            
+                iconSmall = L.divIcon({
+                    className: "leaflet-usermarker-small-" + color,
+                    iconSize: [17, 17],
+                    iconAnchor: [9, 9],
+                    popupAnchor: [0, -10],
+                    labelAnchor: [3, -4],
+                    html: ''
+                });
+
+                iconPulsingSmall = L.divIcon({
+                    className: "leaflet-usermarker-small-" + color,
+                    iconSize: [17, 17],
+                    iconAnchor: [9, 9],
+                    popupAnchor: [0, -10],
+                    labelAnchor: [3, -4],
+                    html: '<i class="pulse"></i>'
+                            });
+                circleStyle = {
+                    stroke: true,
+                    color: "#03f",
+                    weight: 3,
+                    opacity: 0.5,
+                    fillOpacity: 0.15,
+                    fillColor: "#03f",
+                    clickable: false
+                };
+            }
+            else 
+            {
+                icon = L.divIcon({
+                    className: "leaflet-usermarker",
+                    iconSize: [34, 34],
+                    iconAnchor: [17, 17],
+                    popupAnchor: [0, -20],
+                    labelAnchor: [11, -3],
+                    html: ''
+            });
+                
+            iconPulsing = L.divIcon({
+                className: "leaflet-usermarker",
+                iconSize: [34, 34],
+                iconAnchor: [17, 17],
+                popupAnchor: [0, -20],
+                labelAnchor: [11, -3],
+                html: '<i class="pulse"></i>'
+            });
+                            
+           iconSmall = L.divIcon({
+                className: "leaflet-usermarker-small-" + color,
+                iconSize: [17, 17],
+                iconAnchor: [9, 9],
+                popupAnchor: [0, -10],
+                labelAnchor: [3, -4],
+                html: ''
+           });
+
+           iconPulsingSmall = L.divIcon({
+                className: "leaflet-usermarker-small-" + color,
+                iconSize: [17, 17],
+                iconAnchor: [9, 9],
+                popupAnchor: [0, -10],
+                labelAnchor: [3, -4],
+                html: '<i class="pulse"></i>'
+                            });
+                circleStyle = {
+                    stroke: true,
+                    color: "#03f",
+                    weight: 3,
+                    opacity: 0.5,
+                    fillOpacity: 0.15,
+                    fillColor: "#03f",
+                    clickable: false
+                };
+                }
+            }  
         },
     
         setAccuracy: function(accuracy)	{
