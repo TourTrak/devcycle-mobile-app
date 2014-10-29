@@ -103,7 +103,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 						smallIcon: true
 					});
 		 	 
-					riderMarker.bindPopup("Rider ID " + riderRecord.get('riderId') + " for group " + groupRecord.get('groupName'));
+					riderMarker.bindPopup("<h1>Rider ID " + riderRecord.get('riderId') + " for group " + groupRecord.get('groupName') + "</h1>");
 					riderMarker.addTo(map);
 					//markersArray.push(riderMarker);
 					//L.layerGroup(markersArray);
