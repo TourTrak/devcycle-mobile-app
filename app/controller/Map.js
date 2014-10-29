@@ -104,13 +104,13 @@ Ext.define('DevCycleMobile.controller.Map', {
 		 	            pulsing: true,
 		 	            smallIcon: true
 		 	        });
+		 	        riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <p><b>Riding Group:</b> " + groupRecord.get('groupName') + "</p>");
 		 	        newGroup.addLayer(riderMarker);//Add markers to a group		 	                      		
-				});        
+				}); //End of Rider Records Each Loop 
+				groupsOverlay[groupName] = newGroup; //Add to overlay     
 				riderRecords.clearFilter(true);
 				countThis++;
-
-				groupsOverlay[groupName] = newGroup; //Add to overlay
-			});
+			}); // End of Group Records Each Loop
 			L.control.layers(null, groupsOverlay).addTo(map); //Add overlay to map (to get checkboxes) without a base layer (radio buttons)
 			map._onResize();
 

@@ -182,7 +182,7 @@
                 popupAnchor: [0, -10],
                 labelAnchor: [3, -4],
                 html: '<i class="pulse"></i>'
-                            });
+            });
                 circleStyle = {
                     stroke: true,
                     color: "#03f",
@@ -192,8 +192,7 @@
                     fillColor: "#03f",
                     clickable: false
                 };
-                }
-            }  
+            }
         },
     
         setAccuracy: function(accuracy)	{
