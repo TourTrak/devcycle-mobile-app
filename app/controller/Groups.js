@@ -112,20 +112,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	joinGroup: function() {
 		var groupCode = Ext.getCmp('join_group_code').getValue();
 		if(groupCode != '' && groupCode.length >=CODE_MIN && groupCode.length <=CODE_MAX)
-		{
-			/*Ext.Ajax.request({
-				url: this.tourInfo.data.dcs_url + '/join_group/',
-				method: 'POST',
-				scope: this,
-				params: {				
-					riderId: this.riderInfo.get('riderId'),
-					code: groupCode
-				},
-				success: function(response){
-					alert('Joined group successfully!');
-				}
-			});*/
-			
+		{			
 			this.clearStore("group");
 			this.clearStore("groupRider");
 
@@ -198,19 +185,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			
 			if (canCreateGroup)
 			{
-				Ext.Ajax.request({
-				url: this.tourInfo.data.dcs_url + '/create_group/',// need to define
-				method: 'POST',
-				scope: this,
-				params: {				
-					riderId: this.riderInfo.get('riderId'),
-					group: groupName,
-					code: code
-				},
-				success: function(response){
-					alert('Group successfully created!');
-				}			
-				});
+
 			}			
 		}
 		else {
@@ -221,6 +196,28 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		
 	// Removes user from specified group 
 	removeGroup: function(groupName) {
-		alert(groupName);
+		Ext.data.JsonP.request({
+			url: "http://http://centri-pedal2.se.rit.edu/list_group/3",
+			type: "GET",
+			callbackKey: "callback",
+			callback: function(data, result){
+    			//var result = Ext.decode(result.responseText);
+				console.log("got to callback");
+				console.log("data: " + data);
+				console.log("result: " + result);
+			}
+		});
+		/*Ext.Ajax.request({
+			url: this.tourInfo.data.dcs_url + '/join_group/',
+			method: 'POST',
+			scope: this,
+			params: {				
+				riderId: this.riderInfo.get('riderId'),
+				code: groupCode
+			},
+			success: function(response){
+				alert('Joined group successfully!');
+			}
+		});*/
 	}
 });
