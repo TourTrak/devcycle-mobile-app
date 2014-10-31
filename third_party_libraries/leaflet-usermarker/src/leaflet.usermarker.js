@@ -146,6 +146,8 @@
                     clickable: false
                 };
             }
+            // If a color that is not supported is specified
+            // OR if it is specified as "blue", then set it to blue
             else 
             {
                 icon = L.divIcon({
@@ -167,7 +169,7 @@
             });
                             
            iconSmall = L.divIcon({
-                className: "leaflet-usermarker-small-" + color,
+                className: "leaflet-usermarker-small",
                 iconSize: [17, 17],
                 iconAnchor: [9, 9],
                 popupAnchor: [0, -10],
@@ -176,7 +178,7 @@
            });
 
            iconPulsingSmall = L.divIcon({
-                className: "leaflet-usermarker-small-" + color,
+                className: "leaflet-usermarker-small",
                 iconSize: [17, 17],
                 iconAnchor: [9, 9],
                 popupAnchor: [0, -10],
