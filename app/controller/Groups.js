@@ -197,14 +197,23 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	// Removes user from specified group 
 	removeGroup: function(groupName) {
 		Ext.data.JsonP.request({
-			url: "http://http://centri-pedal2.se.rit.edu/list_group/3",
+			url: "http://centri-pedal2.se.rit.edu/list_group/3",
 			type: "GET",
 			callbackKey: "callback",
 			callback: function(data, result){
-    			//var result = Ext.decode(result.responseText);
-				console.log("got to callback");
-				console.log("data: " + data);
-				console.log("result: " + result);
+    			//Data is true if can get, else false
+    			if(data)
+    			{
+					for(var i = 0; i<result.length; i++)
+					{
+						console.log("Rider 3 is part of Group: " + result[i].name);
+					}
+    			}
+    			else
+    			{
+    				console.log("Could not connect to server to get group data")
+    			}
+				
 			}
 		});
 		/*Ext.Ajax.request({
