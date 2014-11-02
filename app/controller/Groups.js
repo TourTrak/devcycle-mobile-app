@@ -172,8 +172,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		if(groupName != '' && groupName.length <= NAME_MAX) {
 			if(groupCode == '') {
 				// generate random code 
-				groupCode = Math.random().toString(36).slice(2).substring(0,6);
-				console.log(groupCode);
+				groupCode = Math.random().toString(36).slice(2).substring(0,7);
+				Ext.getCmp('create_group_code').setValue(groupCode.toUpperCase());
 				canCreateGroup = true;
 			}
 			else if(groupCode.length >= CODE_MIN && groupCode.length <= CODE_MAX) {
@@ -194,7 +194,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 					params: {
 						name: groupName,
 						rider_id: '1',
-						aff_code: groupCode
+						aff_code: groupCode.toUpperCase(),
 					},
 					success: function(response){
 		    			//groupStore.add({groupName:result[i].name})
@@ -214,16 +214,30 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		
 	// Removes user from specified group 
 	removeGroup: function() {
-		var myGroupsStore = Ext.getStore("MyGroups");
-		var groupList = Ext.getCmp('myGroupsList').getSelection();
-		var selectedGroup = groupList[0].get("name");	
-		console.log("removing from list... " + selectedGroup);
+		var groupInfoStore = Ext.getStore("GroupInfo");
+		var groupRiderInfoStore = Ext.getStore("GroupRiderInfo");
+
+		// Gets group that is highlighted within my groups list
+		var selectedGroup = Ext.getCmp('myGroupsList').getSelection();
+
+		 //Need to be placed inside of SUCCESS function of AJAX call!!!
+		groupInfoStore.remove(selectedGroup[0])
+		console.log("count before filter: " + groupRiderInfoStore.getCount())
+		groupRiderInfoStore.filter("groupCode", selectedGroup[0].get("groupCode"));
+		groupRiderInfoStore.removeAll();
+		groupRiderInfoStore.clearFilter(true);
+		groupInfoStore.sync();		
+	 	Ext.getCmp('myGroupsList').refresh();
+		console.log("count after filter: " + groupRiderInfoStore.getCount())
+
+
+		console.log("removing from list... " + selectedGroup[0].get("groupName"));
 		// var aff_id = groupList[0].get("id");	
 		// console.log("aff_id: " + aff_id);		
 		// console.log("id: " + selectegroupList.dGroup.get("name"));
 
 		Ext.Ajax.request({
-			url: "http://centri-pedal2.se.rit.edu/leave_group/ ", //aff_id/rider_id",
+			url: "http://centri-pedal2.se.rit.edu/leave_group/" + selectedGroup[0].get("groupCode"), //aff_id/rider_id",
 			method: "POST",
 			scope: this,
 			params: {
@@ -239,10 +253,5 @@ Ext.define('DevCycleMobile.controller.Groups', {
 				console.log("Failed removing group")	
 			}
 		});
-
-		 //Need to be placed inside of AJAX call later!!!
-		 myGroupsStore.remove(groupList[0]);
-		 myGroupsStore.sync();
-		 Ext.getCmp('myGroupsList').refresh();
 	}
 });

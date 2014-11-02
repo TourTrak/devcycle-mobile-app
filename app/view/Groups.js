@@ -62,16 +62,16 @@ Ext.define('DevCycleMobile.view.Groups', {
 						flex: 10,
 						xtype: 'list',
                         id: 'myGroupsList',
-                        store: 'MyGroups',
-						itemTpl: '{name}'
+                        store: 'GroupInfo',
+						itemTpl: '{groupCode}: {groupName}'
 					},
 					{flex: 1, xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'}
                 ],              
                 listeners: {
                     painted: function() {
                         //Ext.getCmp('load-indicator').show();
-                        var myGroupsStore = Ext.getStore('MyGroups');
-                        myGroupsStore.removeAll(true);
+                        var groupInfoStore = Ext.getStore('GroupInfo');
+                        groupInfoStore.removeAll(true);
                         Ext.data.JsonP.request({
                             url: "http://centri-pedal2.se.rit.edu/list_group/1", //REPLACE RIDER_ID
                             type: "GET",
@@ -84,8 +84,8 @@ Ext.define('DevCycleMobile.view.Groups', {
                                     for(var i = 0; i<result.length; i++)
                                     {
                                         console.log("trying to set store...");
-                                        myGroupsStore.add({name:result[i].name});
-                                        console.log("Rider 1 is part of Group: " + result[i].name);
+                                        groupInfoStore.add({groupCode:result[i].code, groupName:result[i].name});
+                                        console.log("Rider 1 is part of Group: " + result[i].name + result[i].code);
                                     }
                                 }
                                 else
