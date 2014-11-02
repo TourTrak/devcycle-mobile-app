@@ -164,58 +164,83 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	},
 	
 	// Handles creating a group based on provided user input, sends it off to postGroup 
-	createGroup: function() {
-		Ext.getCmp('load-indicator').show();	
+	createGroup: function() {			
+		//Ext.getCmp('load-indicator').show();
 		var groupName = Ext.getCmp('group_name').getValue();
 		var groupCode = Ext.getCmp('create_group_code').getValue();
 		var canCreateGroup = false;
 		if(groupName != '' && groupName.length <= NAME_MAX) {
 			if(groupCode == '') {
-				// generate random code
-				groupCode = Math.random().toString(36).slice(2);
-				alert('Group Code: ' + groupCode);
+				// generate random code 
+				groupCode = Math.random().toString(36).slice(2).substring(0,6);
+				console.log(groupCode);
 				canCreateGroup = true;
 			}
-			else if(code.length >= CODE_MIN && code.length <= CODE_MAX) {
+			else if(groupCode.length >= CODE_MIN && groupCode.length <= CODE_MAX) {
 				canCreateGroup = true;
 			}
 			else {
 				alert('Error: Customized group code must be between 3 to 7 characters');
 			}
+
+			//name/rider_id/aff_code
 			
 			if (canCreateGroup)
 			{
-
+				Ext.Ajax.request({
+					url: "http://centri-pedal2.se.rit.edu/create_group",
+					method: "POST",
+					scope: this,
+					params: {
+						name: groupName,
+						rider_id: '1',
+						aff_code: groupCode
+					},
+					success: function(response){
+		    			//groupStore.add({groupName:result[i].name})
+						console.log("Successfully created group");
+					},
+	    			failure: function(response){
+						console.log("Failed creating group")	
+					}
+				});
 			}			
 		}
 		else {
 			alert('Error: Please enter a group name (MAX: 30 characters)');
-		}
-		Ext.getCmp('load-indicator').hide();
+		}		
+		//Ext.getCmp('load-indicator').hide();
 	},
 		
 	// Removes user from specified group 
-	removeGroup: function(groupName) {
-		Ext.data.JsonP.request({
-			url: "http://centri-pedal2.se.rit.edu/list_group/3",
-			type: "GET",
-			callbackKey: "callback",
-			callback: function(data, result){
-    			//Data is true if can get, else false
-    			if(data)
-    			{
-					for(var i = 0; i<result.length; i++)
-					{
-						console.log("Rider 3 is part of Group: " + result[i].name);
-					}
-    			}
-    			else
-    			{
-    				console.log("Could not connect to server to get group data")
-    			}
-				
+	removeGroup: function() {
+		var myGroupsStore = Ext.getStore("MyGroups");
+		var aff_id = myGroupsStore.getAt(0);
+		var groupList = Ext.getCmp('myGroupsList');
+		var selectedGroup = groupList.getActiveItem().getSelection();
+		console.log("name: " + selectedGroup);		
+		console.log("id: " + selectedGroup.get("name"));
+
+		Ext.Ajax.request({
+			url: "http://centri-pedal2.se.rit.edu/leave_group/ ", //aff_id/rider_id",
+			method: "POST",
+			scope: this,
+			params: {
+				//name: groupName,
+				//rider_id: '1',
+				//aff_code: groupCode
+			},
+			success: function(response){
+    			//groupStore.add({groupName:result[i].name})
+				console.log("Successfully created group");
+			},
+			failure: function(response){
+				console.log("Failed creating group")	
 			}
 		});
+		/*
+		var groupStore = Ext.getStore('GroupInfo');
+
 		/*Ext.Ajax.request({
 			url: this.tourInfo.data.dcs_url + '/join_group/',
 			method: 'POST',

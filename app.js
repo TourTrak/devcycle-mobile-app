@@ -36,7 +36,8 @@ Ext.application({
         'DevCycleMobile.store.Equipment',
         'DevCycleMobile.store.Misc',
         'DevCycleMobile.store.Credits',
-        'DevCycleMobile.store.AboutTracking'
+        'DevCycleMobile.store.AboutTracking',
+		'DevCycleMobile.store.MyGroups'
     ],
 
     views: [
@@ -65,7 +66,8 @@ Ext.application({
         'Tour',
         'Answer',
         'Group',
-        'GroupRider'
+        'GroupRider',
+		'MyGroup'
     ],
 
     stores: [
@@ -73,7 +75,8 @@ Ext.application({
         'MapInfo',
         'TourInfo',
         'GroupInfo',
-        'GroupRiderInfo'
+        'GroupRiderInfo',
+		'MyGroups'
     ],
 
     icon: {

@@ -61,13 +61,43 @@ Ext.define('DevCycleMobile.view.Groups', {
 					{
 						flex: 10,
 						xtype: 'list',
-                        store: 'GroupInfo',
-						itemTpl: '{groupName}'
+                        id: 'myGroupsList',
+                        store: 'MyGroups',
+						itemTpl: '{name}'
 					},
-					{flex: 1, xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'},
-				],              
+					{flex: 1, xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'}
+                ],              
                 listeners: {
-                    
+                    painted: function() {
+                        //Ext.getCmp('load-indicator').show();
+                        var myGroupsStore = Ext.getStore('MyGroups');
+                        myGroupsStore.removeAll(true);
+                        Ext.data.JsonP.request({
+                            url: "http://centri-pedal2.se.rit.edu/list_group/1", //REPLACE RIDER_ID
+                            type: "GET",
+                            callbackKey: "callback",
+                            callback: function(data, result){
+                                //Data is true if can get, else false
+                                if(data)
+                                {
+                                    //console.log(result[i]);
+                                    for(var i = 0; i<result.length; i++)
+                                    {
+                                        console.log("trying to set store...");
+                                        myGroupsStore.add({name:result[i].name});
+                                        console.log("Rider 1 is part of Group: " + result[i].name);
+                                    }
+                                }
+                                else
+                                {                                    
+                                    console.log("Could not connect to server to get group data");
+                                    alert("You are not a member of a group.");
+                                }
+                                
+                            }
+                        });                        
+                        //Ext.getCmp('load-indicator').hide();
+                    }
                 }
             }
         ]
