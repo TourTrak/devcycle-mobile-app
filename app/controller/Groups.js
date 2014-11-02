@@ -215,11 +215,12 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	// Removes user from specified group 
 	removeGroup: function() {
 		var myGroupsStore = Ext.getStore("MyGroups");
-		var aff_id = myGroupsStore.getAt(0);
-		var groupList = Ext.getCmp('myGroupsList');
-		var selectedGroup = groupList.getActiveItem().getSelection();
-		console.log("name: " + selectedGroup);		
-		console.log("id: " + selectedGroup.get("name"));
+		var groupList = Ext.getCmp('myGroupsList').getSelection();
+		var selectedGroup = groupList[0].get("name");	
+		console.log("removing from list... " + selectedGroup);
+		// var aff_id = groupList[0].get("id");	
+		// console.log("aff_id: " + aff_id);		
+		// console.log("id: " + selectegroupList.dGroup.get("name"));
 
 		Ext.Ajax.request({
 			url: "http://centri-pedal2.se.rit.edu/leave_group/ ", //aff_id/rider_id",
@@ -235,23 +236,13 @@ Ext.define('DevCycleMobile.controller.Groups', {
 				console.log("Successfully created group");
 			},
 			failure: function(response){
-				console.log("Failed creating group")	
+				console.log("Failed removing group")	
 			}
 		});
-		/*
-		var groupStore = Ext.getStore('GroupInfo');
 
-		/*Ext.Ajax.request({
-			url: this.tourInfo.data.dcs_url + '/join_group/',
-			method: 'POST',
-			scope: this,
-			params: {				
-				riderId: this.riderInfo.get('riderId'),
-				code: groupCode
-			},
-			success: function(response){
-				alert('Joined group successfully!');
-			}
-		});*/
+		 //Need to be placed inside of AJAX call later!!!
+		 myGroupsStore.remove(groupList[0]);
+		 myGroupsStore.sync();
+		 Ext.getCmp('myGroupsList').refresh();
 	}
 });
