@@ -188,7 +188,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			if (canCreateGroup)
 			{
 				Ext.Ajax.request({
-					url: "http://centri-pedal2.se.rit.edu/create_group",
+					url: "http://centri-pedal2.se.rit.edu/create_group/",
 					method: "POST",
 					scope: this,
 					params: {
