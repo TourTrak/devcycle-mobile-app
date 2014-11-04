@@ -75,26 +75,26 @@ Ext.define('DevCycleMobile.view.map.Container', {
     createMenu: function (side) {
         var items = [               
            {
-			   id: 'bathrooms',
+			         id: 'bathrooms',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/bathrooms.png"/>',
                cls: 'img_left',
-			   action: 'toggleMapFilter',
+			         action: 'toggleMapFilter',
                width: 55,
                height: 55,		   
            },
            {
-			   id: 'food2',
+			         id: 'food2',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/food2.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 
            {
-		       id: 'lost_child',
+		           id: 'lost_child',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/lost_child.png"/>',
                cls: 'img_left',
@@ -104,90 +104,90 @@ Ext.define('DevCycleMobile.view.map.Container', {
            },
 
            {
-		       id: 'mechanic2',
+		           id: 'mechanic2',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/mechanic2.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 
           {
-		       id: 'info-tent',
+		           id: 'info-tent',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/info-tent.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 		   
-			{
-		       id: 'picture',
+			     {
+		           id: 'picture',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/picture.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 		   
-		   {
-		       id: 'ferry',
+	        {
+		           id: 'ferry',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/ferry.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 
            {
-		       id: 'medical',
+		           id: 'medical',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/medical.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 
           {
-		       id: 'sagtruck',
+		           id: 'sagtruck',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/sagtruck.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 
             {
-			   id: 'music',
+			         id: 'music',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/music.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
            },
 
            {
-		       id: 'rest_area',
-               xtype: 'button',
-               text: '<img src="resources/icons/filters/disabled/rest_area.png"/>',
-			   cls: 'img_left',
-               action: 'toggleMapFilter',
-               width: 55,
-               height: 55,
+	            id: 'rest_area',
+              xtype: 'button',
+              text: '<img src="resources/icons/filters/disabled/rest_area.png"/>',
+		          cls: 'img_left',
+              action: 'toggleMapFilter',
+              width: 55,
+              height: 55,
            },
 
             {
-			   id: 'water',
+			         id: 'water',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/water.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
@@ -197,7 +197,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
 		       id: 'subway',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/subway.png"/>',
-			   cls: 'img_left',
+			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
@@ -205,12 +205,17 @@ Ext.define('DevCycleMobile.view.map.Container', {
         ];
 
         return Ext.create('Ext.Menu', {
+            cls: 'filterMenu',
+            layout: {
+              type: 'vbox',
+              align: 'center',
+            },
             style: 'padding: 0',
             xtype: 'menu',
             itemTpl: '{title}',
-            width: '71px',
+            width: '80px',
             height: '100%',
-            scrollable: true,
+            scrollable: 'vertical',
             items: items,
             });
     }

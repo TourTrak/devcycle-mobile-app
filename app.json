@@ -67,6 +67,11 @@
 		{
 		  "path": "resources/css/filter-menu.css"
 		},
+		
+		/* CSS for groups view */
+		{
+		  "path": "resources/css/groups.css"
+		},
 
         /* CSS for the font awesome typefont */
         {
