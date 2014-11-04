@@ -3,7 +3,8 @@ Ext.define('DevCycleMobile.model.Group', {
 	config: {
 		fields: [
 			'groupCode',
-			'groupName'
+			'groupName',
+			'groupColor'
 		],
 	},
 });
