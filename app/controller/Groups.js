@@ -1,13 +1,14 @@
 Ext.require(['Ext.Leaflet']);
 
 /*
-* Controller for the Groups component
-* Users can join, create, or view/remove themselves from a specified
-* tour group (aka, affinity group).
-*
-* @wlodarczyk, @eklundjoshua
+ * Controller for the Groups component
+ * Users can join, create, or view/remove themselves from a specified
+ * tour group (aka, affinity group).
+ *
+ * @ WLODARCZYK, @ EKLUND
 */
 
+// CONSTANTS
 var CODE_MIN = 3;
 var CODE_MAX = 7;
 var NAME_MAX = 30;
@@ -16,16 +17,19 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	extend: 'Ext.app.Controller',
 
 	config: {
+		// ACTION HANDLERS
 		control: {
-			// Reference to the Leaflet Custom Component
 			'button[action=join]': {
-				tap: 'joinGroup',
+				tap: 'joinGroup'
 			},
 			'button[action=create]': {
-				tap: 'createGroup',
+				tap: 'createGroup'
 			},
 			'button[action=remove]': {
-				tap: 'removeGroup',
+				tap: 'removeGroup'
+			},
+			'button[action=suggest]': {
+				tap: 'suggestCode'
 			}
 		}
 	},
@@ -197,7 +201,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 						aff_code: groupCode.toUpperCase(),
 					},
 					success: function(response){
-		    			//groupStore.add({groupName:result[i].name})
 						console.log("Successfully created group");
 					},
 	    			failure: function(response){
