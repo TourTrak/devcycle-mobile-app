@@ -11,6 +11,14 @@ Ext.require(['Ext.Leaflet']);
 */
 
 var filter = [];
+var firstRun = 0;
+
+Ext.define('DevCycleMobile.Map.LayerControl', {
+	singleton: true,
+	lc: null,
+	groupsOverlay: [],
+	layerRef: []
+});
 
 Ext.define('DevCycleMobile.controller.Map', {
 	extend: 'Ext.app.Controller',
@@ -27,6 +35,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 			},
 		}
 	},
+
+	requires:['DevCycleMobile.Map.LayerControl'],
 
 	/**
 	Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
@@ -54,69 +64,118 @@ Ext.define('DevCycleMobile.controller.Map', {
 	**/
 	init: function() {
 		this.riderPosMarker = null; // user's position marker
+		//var groupsOverlay = {};
+		//var layerControl = null;
+		//this.layerControl.addTo(Ext.getCmp('mapview').map);
+
 	},
 
 	/**
+	* Function addGroup
 	* This function will be called whenever the filter for a group is selected 
 	* All users in that group will be plotted on the map through this function.
 	*/
-	mapGroups: function () {
+	addGroup: function (groupCode, groupName) {
 		var map = Ext.getCmp('mapview').map;
 		//Ensure the map has been loaded
-		if (map != undefined) {
-
-			this.groupStore = Ext.getStore("GroupInfo");
-			this.groupRiderStore = Ext.getStore("GroupRiderInfo");
-			var riderPos = new L.latLng(40.7127837, -74.00594130000002);
+		if (map != undefined) 
+		{
+			/**
+			* Import the Rider Store - Holds this device's rider id
+			* Fields:
+			*	riderId
+			*
+			* Import the Group Store - Holds all groups that this device's rider is a part of
+			* Fields: 
+			* 	groupName
+			*	groupCode
+			*
+			* Import the GroupRider Store - Holds all the riders, locations, groups
+			*	groupCode
+			*	riderId
+			*	latitude
+			*	longitude
+			**/
+			//var riderStore = Ext.getStore("RiderInfo");
+			var groupRiderStore = Ext.getStore("GroupRiderInfo");
+			var groupStore = Ext.getStore("GroupInfo");
+			var riderPos;
 			var riderMarker;
+			var newGroup = L.layerGroup(); //Create a layer group
+			//groupsOverlay = {};
+	
+			groupStore.filter('groupCode', groupCode);
+			var groupRecord = groupStore.getAt(0);
 
-			var riderRecords = this.groupRiderStore;
-			var groupRecords = this.groupStore;
+			groupRiderStore.filter('groupCode', groupCode);
+			groupRiderStore.each(function (riderRecord) 
+			{
+				console.log("" + riderRecord.get('latitude') + "" +  riderRecord.get('longitude') + "" + groupRecord.get('groupColor') + "" +  groupRecord.get('groupCode'))
+	 			riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
+	 	    	riderMarker = L.userMarker(riderPos, {
+	 	       		color: groupRecord.get('groupColor'),
+	 	        	accuracy: 10,
+	 	        	pulsing: true,
+	 	        	smallIcon: true
+	 	    	});
+	 	    	riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <h2><b>Group: </b> " + groupRecord.get('groupCode') + "</h2>", {offset: new L.Point(0,-20)});
+	 	    	newGroup.addLayer(riderMarker);	 	                      		
+			}); 
 
-			var groupRiderArray = new Array(5);
-			var varColor = ['blue', 'red', 'green'];
-			var countThis = 0;
-			//var markersArray = [];
+			DevCycleMobile.Map.LayerControl.groupsOverlay.push(newGroup); //Add to overlay   
+			DevCycleMobile.Map.LayerControl.layerRef.push(groupCode);  
+			groupRiderStore.clearFilter(true);
+			groupStore.clearFilter(true);
 
-			//groupCode
-		    //riderId
-            //Create an overlay
-			var groupsOverlay ={};
-			//Iterate over every group in the store
-			groupRecords.each(function (groupRecord) {
-				console.log("Parsing map group " + groupRecord.get('groupName'));
-			    //Filter the riderRecords by the current group code
-				var newGroup = L.layerGroup(); //Create a layer group
-				var groupName = groupRecord.get('groupName'); //Get the group code
-				riderRecords.filter('groupCode', groupRecord.get('groupCode'));
-				riderRecords.each(function (riderRecord) {
-					/*'groupCode',
-					  'riderId',
-					  'latitude',
-		 	          'longitude'
-		 	        */
-		 	        console.log("Rider " + riderRecord.get('riderId') + " for group " + groupRecord.get('groupName'));
-		 	        riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
-                    //Create the marker
-		 	        riderMarker = L.userMarker(riderPos, {
-		 	        	color: varColor[countThis],
-		 	            accuracy: 10,
-		 	            pulsing: true,
-		 	            smallIcon: true
-		 	        });
-		 	        riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <p><b>Riding Group:</b> " + groupRecord.get('groupName') + "</p>");
-		 	        newGroup.addLayer(riderMarker);//Add markers to a group		 	                      		
-				}); //End of Rider Records Each Loop 
-				groupsOverlay[groupName] = newGroup; //Add to overlay     
-				riderRecords.clearFilter(true);
-				countThis++;
-			}); // End of Group Records Each Loop
-			L.control.layers(null, groupsOverlay).addTo(map); //Add overlay to map (to get checkboxes) without a base layer (radio buttons)
+			if(!DevCycleMobile.Map.LayerControl.lc)
+			{
+				DevCycleMobile.Map.LayerControl.lc = new L.control.layers(null, null);
+				DevCycleMobile.Map.LayerControl.lc.addOverlay(newGroup, groupName);
+				DevCycleMobile.Map.LayerControl.lc.addTo(map); 
+			}
+			else
+			{
+				DevCycleMobile.Map.LayerControl.lc.addOverlay(newGroup, groupName);
+				DevCycleMobile.Map.LayerControl.lc._update();
+			}
+
 			map._onResize();
-
 		}
 	},
 
+	/**
+	* Function: removeGroup
+	* Description: remove group takes the group code as a parameter
+	* and removes the current group from the map and the layer control
+	**/
+	removeGroup: function (code) {
+		var map = Ext.getCmp('mapview').map;
+		//Ensure the map has been loaded
+		if (map != undefined) {
+			
+			var groupArray = DevCycleMobile.Map.LayerControl.groupsOverlay;
+			var refArray = DevCycleMobile.Map.LayerControl.layerRef;
+			var index = 0;
+
+			for(var i = 0; i < refArray.length; i++)
+			{
+				if(refArray == code)
+				{
+					index = i;
+					break;
+				}
+			}
+
+			var removeThis = groupArray[index];
+			DevCycleMobile.Map.LayerControl.groupsOverlay.splice(index, 1);
+			DevCycleMobile.Map.LayerControl.layerRef.splice(index, 1);
+
+			DevCycleMobile.Map.LayerControl.lc.removeLayer(removeThis);
+			DevCycleMobile.Map.LayerControl.lc._update();
+			map.removeLayer(removeThis);
+			map._onResize();
+		}
+	},
 
 	/**
 	* Called when a user's location/position is successfully found.

@@ -12,6 +12,15 @@ Ext.require(['Ext.Leaflet']);
 var CODE_MIN = 3;
 var CODE_MAX = 7;
 var NAME_MAX = 30;
+var numGroups = 0;
+var colorArray = ["blue", "red", "green", "orange", "purple"];
+
+
+Ext.define('Group', {
+	singleton: true,
+	currentColorIndex: null,
+	joinedGroups: ["init"]
+});
 
 Ext.define('DevCycleMobile.controller.Groups', {
 	extend: 'Ext.app.Controller',
@@ -41,11 +50,12 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	* @param code : The group code for the group you'd like to cache
 	* @param name : The name of the group you'd like to cache
 	*/
-	cacheGroup: function(code, name) {
+	cacheGroup: function(code, name, color) {
 		this.groupStore = Ext.getStore("GroupInfo");
 		var newGroup = new DevCycleMobile.model.Group({
 			groupCode: code,
-			groupName: name
+			groupName: name,
+			groupColor: color
 		});
 
 		this.groupStore.filter('groupCode', code);
@@ -70,26 +80,20 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	* @param ridersArray : an array consisting of all riders that you want
 	* to be associated with that group
 	*/
-	cacheGroupRiders: function(code, ridersArray, latArray, longArray) {
+	cacheGroupRiders: function(code, rider, latitude, longitude) {
 		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
-		var arrayLength = ridersArray.length;
+	
+		var newGroupRider = new DevCycleMobile.model.GroupRider({
+			groupCode: code,
+			riderId: rider,
+			latitude: latitude,
+			longitude: longitude
+		});
+		console.log("Count of store" + this.groupRiderStore.getCount());
+		console.log("Caching " + code + " " +  rider + " " + latitude + " " + longitude + " ");
 
-		for(var i = 0; i<arrayLength; i++) 
-		{
-			var id = ridersArray[i];
-			var myLat = latArray[i];
-			var myLong = longArray[i];
-			
-			var newGroupRider = new DevCycleMobile.model.GroupRider({
-				groupCode: code,
-				riderId: id,
-				latitude: myLat,
-				longitude: myLong
-			});
+		this.groupRiderStore.add(newGroupRider);
 
-			this.groupRiderStore.add(newGroupRider);
-
-		}
 		this.groupRiderStore.sync();
 	},
 
@@ -105,65 +109,115 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		if(store_name == "group") 
 		{
 			this.groupStore.removeAll(true);
+			this.groupStore.sync();
 		}
 		else if(store_name == "groupRider")
 		{
 			this.groupRiderStore.removeAll(true);
+			this.groupRiderStore.sync();
 		}
+	},
+
+	// Populates the group rider store which 
+	// holds all the riders from the server
+	populateGroupRiderStore: function(group_code) {
+		var groupRiderStore = Ext.getStore("GroupRiderInfo");
+
+		//Send a get request to the server which will join the given group
+		Ext.data.JsonP.request({
+	        url: "http://centri-pedal2.se.rit.edu/get_location_data/" + group_code + "/",
+	        type: "GET",
+	        callbackKey: "callback",
+	        callback: function(data, result)
+	        {
+	        	if(data)
+	        	{
+	        		for(var i = 0; i<result.length; i++)
+                    {
+                    	console.log("Populating " + group_code + " " +  result[i].riderId + " " + result[i].latitude + " " + result[i].longitude + " ");
+	        			//groupRiderStore.add({groupCode: group_code, riderId:result[i].riderId, latitude:result[i].latitude, longitude: result[i].longitude});
+						DevCycleMobile.app.getController('Groups').cacheGroupRiders(group_code, result[i].riderId, result[i].latitude, result[i].longitude);	        			
+	        		}
+	        	}
+	        	else
+	        	{
+	        		alert("Could not connect to server to join a group");
+	        	}
+
+	        }
+	    });
 	},
 	
 	// Adds user to specified group
 	joinGroup: function() {
+		
+		var groupRiderStore = Ext.getStore("GroupRiderInfo");
+		var groupStore = Ext.getStore("GroupInfo");
+		var riderStore = Ext.getStore("RiderInfo");
+		//var riderRecord = riderStore.first();
+		//var thisRiderId = riderRecord.get("riderId");
+		var thisRiderId = 1;		
+
 		var groupCode = Ext.getCmp('join_group_code').getValue();
 		if(groupCode != '' && groupCode.length >=CODE_MIN && groupCode.length <=CODE_MAX)
-		{			
-			this.clearStore("group");
-			this.clearStore("groupRider");
+		{
 
-			/**
-			* 40.614014, -73.993263
-			* 40.620008, -73.971977
-			* 40.619226, -73.954468
-			* 40.630691, -73.979530
-			* 40.633557, -74.004936
-			* 40.633036, -73.941765
-			* 40.642676, -73.950005
-			* 40.650751, -73.973351
-			* 40.650490, -73.918419
-			* 40.663253, -73.943481
-			*/
-			/*var lats = new Array(40.614014, 40.620008, 40.619226, 40.630691, 40.663253);
-			var longs = new Array(-73.993263, -73.971977, -73.954468, -73.979530, -74.004936);
-			var lats2 = new Array(40.633557, 40.633036, 40.642676, 40.650751, 40.650490);
-			var longs2 = new Array(-73.941765, -73.950005, -73.973351, -73.918419, -73.943481);
-			var lats3 = new Array(40.697950, 40.696063, 40.691702, 40.703220, 40.687602);
-			var longs3 = new Array(-73.961935, -73.965068, -73.975196, -73.960261, -73.987985);*/
+			if(Group.joinedGroups.indexOf(groupCode) == -1)
+			{
+				//Send a get request to the server which will join the given group
+				Ext.data.JsonP.request({
+	                url: "http://centri-pedal2.se.rit.edu/join_group/" + groupCode + "/" + thisRiderId + "/",
+	                type: "GET",
+	                callbackKey: "callback",
+	                callback: function(data, result)
+	                {
+	                  	// Successful response from the server
+	               		if(data)
+	                    {
+	                       	// If the name was returned from the server
+	                       	// We know there were no errors.
+	                   		if(result[0].name)
+	                   		{
+	                   	   		/*if(Group.currentColorIndex == (colorArray.length-1))
+								{
+									Group.currentColorIndex = 0;
+								}
+								var groupColor = colorArray[Group.currentColorIndex];*/
+								var groupColor = "blue";
 
-			var lats = new Array(40.771204, 40.614803, 40.773647, 40.798215, 40.802060);
-			var longs = new Array(-73.972337, -74.064370,-73.959856, -73.952367,  -73.949755);
-			var lats2 = new Array(40.814068, 40.813048, 40.634108, 40.804380, 40.798643, 40.807290);
-			var longs2 = new Array(-73.940801, -73.92976, -74.074115, -73.937406, -73.941612, -73.933377);
-			var lats3 = new Array(40.785882, 40.635535, 40.769785, 40.810752, 40.761991);
-			var longs3 = new Array(-73.950930, -74.074035, -73.917716, -73.943303, -73.925004);
-			var riderArray = new Array(1,2,3,4,5);
-			var riderArray2 = new Array(6,7,8,9,10);
-			var riderArray3 = new Array(11,12,13,14,15);
+								// Cache the group in local storage
+								DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, groupColor);
 
+								// Keep track of all groups the current user is a part of
+								Group.joinedGroups.push(groupCode);
 
-			this.cacheGroup("RMCD", "The Ronald McDonald Playhouse");
-			this.cacheGroupRiders("RMCD", riderArray, lats, longs);
+								//Get all the riders in the group and populate them in the store
+								DevCycleMobile.app.getController('Groups').populateGroupRiderStore(groupCode);
 
-			this.cacheGroup("TOUR", "Tour Trak Riding Group")
-			this.cacheGroupRiders("TOUR", riderArray2, lats2, longs2);
-
-			this.cacheGroup("RIT", "The RIT Riders");
-			this.cacheGroupRiders("RIT", riderArray3, lats3, longs3);
-			
-			DevCycleMobile.app.getController('Map').mapGroups();
-
+								//Add the group to the map
+								DevCycleMobile.app.getController('Map').addGroup(groupCode, result[0].name);
+	                   	   	}
+                   	   		else
+                   	   		{
+                   	   			//Result from server
+                   	   			alert(result);
+                   	   		}
+	                	}
+	                	else
+	                	{                                    
+	 	               		alert("Could not connect to server to join a group");
+	                	}                                
+	             	} 
+	            	}); //End of JSONP Request
+	            }
+	            else
+	            {
+	            	alert('You are already part of this group');
+	            }           				
 		}
-		else {
-			alert('Error: The group does not exist.');
+		else 
+		{
+			alert('Error: Invalid Group Format (Must be 3-7 characters)');
 		}
 	},
 	
@@ -207,7 +261,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 						console.log("Failed creating group")	
 					}
 				});
-			}			
+			}		
 		}
 		else {
 			alert('Error: Please enter a group name (MAX: 30 characters)');
@@ -219,6 +273,9 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	removeGroup: function() {
 		var groupInfoStore = Ext.getStore("GroupInfo");
 		var groupRiderInfoStore = Ext.getStore("GroupRiderInfo");
+		var riderStore = Ext.getStore("RiderInfo");
+		var riderRecord = riderStore.first();
+		var thisRiderId = riderRecord.get("riderId");		
 
 		// Gets group that is highlighted within my groups list
 		var selectedGroup = Ext.getCmp('myGroupsList').getSelection();
@@ -231,30 +288,24 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		groupRiderInfoStore.clearFilter(true);
 		groupInfoStore.sync();		
 	 	Ext.getCmp('myGroupsList').refresh();
-		console.log("count after filter: " + groupRiderInfoStore.getCount())
 
+		//Send a get request to the server which will join the given group
+		Ext.data.JsonP.request({
+	    	url: "http://centri-pedal2.se.rit.edu/leave_group/" + groupCode + "/" + thisRiderId + "/",
+	        type: "GET",
+	        callbackKey: "callback",
+	        callback: function(data, result)
+	        {
+	        	if(data)
+	        	{
 
-		console.log("removing from list... " + selectedGroup[0].get("groupName"));
-		// var aff_id = groupList[0].get("id");	
-		// console.log("aff_id: " + aff_id);		
-		// console.log("id: " + selectegroupList.dGroup.get("name"));
+	        	}
+	        	else
+	        	{
+	        		alert(result);
+	        	}
 
-		Ext.Ajax.request({
-			url: "http://centri-pedal2.se.rit.edu/leave_group/" + selectedGroup[0].get("groupCode"), //aff_id/rider_id",
-			method: "POST",
-			scope: this,
-			params: {
-				//name: groupName,
-				//rider_id: '1',
-				//aff_code: groupCode
-			},
-			success: function(response){
-    			//groupStore.add({groupName:result[i].name})
-				console.log("Successfully created group");
-			},
-			failure: function(response){
-				console.log("Failed removing group")	
-			}
-		});
+	        }
+	    }); //End of JSONP Request
 	}
 });
