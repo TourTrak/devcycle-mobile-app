@@ -106,8 +106,14 @@ Ext.define('DevCycleMobile.controller.Map', {
 	
 			groupStore.filter('groupCode', groupCode);
 			var groupRecord = groupStore.getAt(0);
+			console.log("Add Group" + groupCode + " " + groupName);
+			console.log("Group Store Count " + groupStore.getCount());
+			console.log("Group Rider Store Count " + groupRiderStore.getCount());
+
 
 			groupRiderStore.filter('groupCode', groupCode);
+			console.log("Group Store Count After " + groupStore.getCount());
+			console.log("Group Rider Store Count After " + groupRiderStore.getCount());
 			groupRiderStore.each(function (riderRecord) 
 			{
 				console.log("" + riderRecord.get('latitude') + "" +  riderRecord.get('longitude') + "" + groupRecord.get('groupColor') + "" +  groupRecord.get('groupCode'))

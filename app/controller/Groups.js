@@ -50,7 +50,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	* @param code : The group code for the group you'd like to cache
 	* @param name : The name of the group you'd like to cache
 	*/
-	cacheGroup: function(code, name, color) {
+	cacheGroup: function(code, name, color, action) {
 		this.groupStore = Ext.getStore("GroupInfo");
 		var newGroup = new DevCycleMobile.model.Group({
 			groupCode: code,
@@ -69,6 +69,12 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			console.log("Group already exists");
 		}
 		this.groupStore.clearFilter(true);
+
+		if(action == "join")
+		{
+			//Get all the riders in the group and populate them in the store
+			DevCycleMobile.app.getController('Groups').populateGroupRiderStore(code, name);
+		}
 	},
 
 	/**
@@ -120,7 +126,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 	// Populates the group rider store which 
 	// holds all the riders from the server
-	populateGroupRiderStore: function(group_code) {
+	populateGroupRiderStore: function(group_code, group_name) {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 
 		//Send a get request to the server which will join the given group
@@ -138,6 +144,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	        			//groupRiderStore.add({groupCode: group_code, riderId:result[i].riderId, latitude:result[i].latitude, longitude: result[i].longitude});
 						DevCycleMobile.app.getController('Groups').cacheGroupRiders(group_code, result[i].riderId, result[i].latitude, result[i].longitude);	        			
 	        		}
+	        		DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);	
+
 	        	}
 	        	else
 	        	{
@@ -146,6 +154,10 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 	        }
 	    });
+	},
+
+	processSynchroniously: function () {
+
 	},
 	
 	// Adds user to specified group
@@ -156,7 +168,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var riderStore = Ext.getStore("RiderInfo");
 		//var riderRecord = riderStore.first();
 		//var thisRiderId = riderRecord.get("riderId");
-		var thisRiderId = 1;		
+		var thisRiderId = 1;
 
 		var groupCode = Ext.getCmp('join_group_code').getValue();
 		if(groupCode != '' && groupCode.length >=CODE_MIN && groupCode.length <=CODE_MAX)
@@ -171,31 +183,28 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                callbackKey: "callback",
 	                callback: function(data, result)
 	                {
+	                	console.log("cb was successful");
+
 	                  	// Successful response from the server
 	               		if(data)
 	                    {
+	                    	console.log("data was successful");
 	                       	// If the name was returned from the server
 	                       	// We know there were no errors.
 	                   		if(result[0].name)
 	                   		{
-	                   	   		/*if(Group.currentColorIndex == (colorArray.length-1))
-								{
-									Group.currentColorIndex = 0;
-								}
-								var groupColor = colorArray[Group.currentColorIndex];*/
-								var groupColor = "blue";
+								requestResult = result[0].name;
+									/*if(Group.currentColorIndex == (colorArray.length-1))
+									{
+										Group.currentColorIndex = 0;
+									}
+									var groupColor = colorArray[Group.currentColorIndex];*/
+									var groupColor = "blue";
 
-								// Cache the group in local storage
-								DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, groupColor);
-
-								// Keep track of all groups the current user is a part of
-								Group.joinedGroups.push(groupCode);
-
-								//Get all the riders in the group and populate them in the store
-								DevCycleMobile.app.getController('Groups').populateGroupRiderStore(groupCode);
-
-								//Add the group to the map
-								DevCycleMobile.app.getController('Map').addGroup(groupCode, result[0].name);
+									// Keep track of all groups the current user is a part of
+									Group.joinedGroups.push(groupCode);
+									// Cache the group in local storage
+									DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, groupColor, "join");
 	                   	   	}
                    	   		else
                    	   		{
@@ -218,7 +227,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		else 
 		{
 			alert('Error: Invalid Group Format (Must be 3-7 characters)');
-		}
+		}		
 	},
 	
 	// Handles creating a group based on provided user input, sends it off to postGroup 
