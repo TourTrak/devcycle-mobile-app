@@ -42,7 +42,35 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			}
 		}
 	},
+	/**
+	* Chooses a color based on what colors have already been used.
+	*/
+	chooseAColor: function(){
+		var color;
+		/*Ext.define('Group', {
+			singleton: true,
+			currentColorIndex: null,
+			joinedGroups: ["init"]
+		});*/
+		console.log("Group " + Group.currentColorIndex);
+		console.log("Color Array length " + colorArray.length);
 
+		if(Group.currentColorIndex != null)
+		{
+			if(Group.currentColorIndex == (colorArray.length-1))
+			{
+				Group.currentColorIndex = 0;
+			}
+			color = colorArray[Group.currentColorIndex];
+			Group.currentColorIndex = Group.currentColorIndex + 1;
+		}
+		else
+		{
+			Group.currentColorIndex = 0;
+			color = "blue";
+		}
+		return color;
+	},
 	/**
 	* function: cacheGroup
 	* Description: This function will cache a group on the clients device
@@ -50,18 +78,22 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	* @param code : The group code for the group you'd like to cache
 	* @param name : The name of the group you'd like to cache
 	*/
-	cacheGroup: function(code, name, color, action) {
+	cacheGroup: function(code, name, action) {
 		this.groupStore = Ext.getStore("GroupInfo");
+		var groupColor = this.chooseAColor();
+
 		var newGroup = new DevCycleMobile.model.Group({
 			groupCode: code,
 			groupName: name,
-			groupColor: color
+			groupColor: groupColor
 		});
 
 		this.groupStore.filter('groupCode', code);
 		if(this.groupStore.getCount() == 0)
 		{
 			this.groupStore.add(newGroup);
+			Group.joinedGroups.push(code);
+
 			this.groupStore.sync();
 		}
 		else
@@ -95,11 +127,10 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			latitude: latitude,
 			longitude: longitude
 		});
-		console.log("Count of store" + this.groupRiderStore.getCount());
+		//console.log("Count of store" + this.groupRiderStore.getCount());
 		console.log("Caching " + code + " " +  rider + " " + latitude + " " + longitude + " ");
 
 		this.groupRiderStore.add(newGroupRider);
-
 		this.groupRiderStore.sync();
 	},
 
@@ -156,10 +187,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	    });
 	},
 
-	processSynchroniously: function () {
-
-	},
-	
 	// Adds user to specified group
 	joinGroup: function() {
 		
@@ -170,6 +197,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		//var thisRiderId = riderRecord.get("riderId");
 		var thisRiderId = 1;
 
+	
 		var groupCode = Ext.getCmp('join_group_code').getValue();
 		if(groupCode != '' && groupCode.length >=CODE_MIN && groupCode.length <=CODE_MAX)
 		{
@@ -199,12 +227,10 @@ Ext.define('DevCycleMobile.controller.Groups', {
 										Group.currentColorIndex = 0;
 									}
 									var groupColor = colorArray[Group.currentColorIndex];*/
-									var groupColor = "blue";
+									//var groupColor = "blue";
 
-									// Keep track of all groups the current user is a part of
-									Group.joinedGroups.push(groupCode);
 									// Cache the group in local storage
-									DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, groupColor, "join");
+									DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, "join");
 	                   	   	}
                    	   		else
                    	   		{

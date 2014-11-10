@@ -185,6 +185,38 @@ Ext.define('DevCycleMobile.controller.Home', {
 	},
 
 	/**
+	* Initiates the group store and group rider store upon loading the app
+	*/
+	initGroup: function() {
+		var groupRiderStore = Ext.getStore("GroupRiderInfo");
+		var groupStore = Ext.getStore("GroupInfo");
+		//var riderRecord = riderStore.first();
+		//var thisRiderId = riderRecord.get("riderId");
+		var thisRiderId = 1;
+
+		Ext.data.JsonP.request({
+                url: "http://centri-pedal2.se.rit.edu/list_group/"+ thisRiderId, 
+                type: "GET",
+                callbackKey: "callback",
+                callback: function(data, result){
+                if(data)
+                {
+                    for(var i = 0; i<result.length; i++)
+                    {
+                        groupStore.add({groupCode:result[i].code, groupName:result[i].name});
+	         			DevCycleMobile.app.getController('Groups').cacheGroup(result[i].code, result[i].name, "join");
+                    }
+                }
+                else
+                {                                    
+                    console.log("Could not connect to server to get group data");
+        	        alert("You are not a member of a group.");
+                }                                
+            }
+        });                        
+	},
+
+	/**
 	* Called when the tab is initalized, sets up all the tabs
 	* in the home view.
 	* @private
@@ -193,6 +225,16 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
 		this.riderStore = Ext.getStore("RiderInfo"); // reference to the rider store
+		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+		this.groupStore = Ext.getStore("GroupInfo");
+
+		// Clear the group stores upon starting the app so we can get
+		// fresh data
+		this.groupStore.removeAll(true);
+		this.groupStore.sync();
+		this.groupRiderStore.removeAll(true);
+		this.groupRiderStore.sync();
+
 		this.regAttempts = 1; // # of registration attempts.
 
 		// Initalize all necessary views for tabs
@@ -214,6 +256,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		// Set active item to the map view
 		component.setActiveItem(0);
+		this.initGroup();
 
 		try{
 			this.registerRider();

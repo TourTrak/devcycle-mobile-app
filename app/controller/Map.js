@@ -102,7 +102,6 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var riderPos;
 			var riderMarker;
 			var newGroup = L.layerGroup(); //Create a layer group
-			//groupsOverlay = {};
 	
 			groupStore.filter('groupCode', groupCode);
 			var groupRecord = groupStore.getAt(0);
@@ -127,6 +126,10 @@ Ext.define('DevCycleMobile.controller.Map', {
 	 	    	riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <h2><b>Group: </b> " + groupRecord.get('groupCode') + "</h2>", {offset: new L.Point(0,-20)});
 	 	    	newGroup.addLayer(riderMarker);	 	                      		
 			}); 
+
+			newGroup.eachLayer(function (layer){
+				console.log(newGroup);
+			});
 
 			DevCycleMobile.Map.LayerControl.groupsOverlay.push(newGroup); //Add to overlay   
 			DevCycleMobile.Map.LayerControl.layerRef.push(groupCode);  

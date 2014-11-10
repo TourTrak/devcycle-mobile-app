@@ -41,11 +41,11 @@ Ext.define('DevCycleMobile.view.Groups', {
                     {flex: 4, xtype: 'list', id: 'myGroupsList', store: 'GroupInfo', itemTpl: '{groupCode}: {groupName}'},
                     {xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'}
                 ],              
-                listeners: {
+                /*listeners: {
                     /*
                      *  REFRESHES MY GROUPS LIST; ONLOAD
                      */
-                    painted: function() {
+                    /*painted: function() {
                         Ext.getCmp('load-indicator').show();
                         var groupInfoStore = Ext.getStore('GroupInfo');
                         groupInfoStore.removeAll(true);
@@ -58,9 +58,7 @@ Ext.define('DevCycleMobile.view.Groups', {
                                 {
                                     for(var i = 0; i<result.length; i++)
                                     {
-                                        console.log("trying to set store...");
                                         groupInfoStore.add({groupCode:result[i].code, groupName:result[i].name});
-                                        console.log("Rider 1 is part of Group: " + result[i].name + result[i].code);
                                     }
                                 }
                                 else
@@ -70,9 +68,9 @@ Ext.define('DevCycleMobile.view.Groups', {
                                 }                                
                             }
                         });                        
-                        Ext.getCmp('load-indicator').hide();
+                        //Ext.getCmp('load-indicator').hide();
                     }
-                }
+                }*/
             },
             {
                 // JOIN GROUP View
