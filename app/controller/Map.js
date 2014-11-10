@@ -102,12 +102,14 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var riderPos;
 			var riderMarker;
 			var newGroup = L.layerGroup(); //Create a layer group
-	
-			groupStore.filter('groupCode', groupCode);
-			var groupRecord = groupStore.getAt(0);
+
+			
 			console.log("Add Group" + groupCode + " " + groupName);
 			console.log("Group Store Count " + groupStore.getCount());
 			console.log("Group Rider Store Count " + groupRiderStore.getCount());
+	
+			groupStore.filter('groupCode', groupCode);
+			var groupRecord = groupStore.getAt(0);
 
 
 			groupRiderStore.filter('groupCode', groupCode);

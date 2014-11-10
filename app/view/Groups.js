@@ -40,7 +40,15 @@ Ext.define('DevCycleMobile.view.Groups', {
                     {html: '<b>Your riding groups:</b>'},                    
                     {flex: 4, xtype: 'list', id: 'myGroupsList', store: 'GroupInfo', itemTpl: '{groupCode}: {groupName}'},
                     {xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'}
-                ],              
+                ],      
+                listeners: {
+                    painted: function() {
+                        var groupInfoStore = Ext.getStore('GroupInfo');
+                        var count = groupInfoStore.getCount();
+                        groupInfoStore.add({groupCode: 'Loading...', groupName: ''});
+                        groupInfoStore.removeAt(count);
+                    }
+                }        
                 /*listeners: {
                     /*
                      *  REFRESHES MY GROUPS LIST; ONLOAD

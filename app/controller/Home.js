@@ -203,7 +203,7 @@ Ext.define('DevCycleMobile.controller.Home', {
                 {
                     for(var i = 0; i<result.length; i++)
                     {
-                        groupStore.add({groupCode:result[i].code, groupName:result[i].name});
+                        //groupStore.add({groupCode:result[i].code, groupName:result[i].name});
 	         			DevCycleMobile.app.getController('Groups').cacheGroup(result[i].code, result[i].name, "join");
                     }
                 }
