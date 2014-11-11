@@ -85,14 +85,13 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		{
 			this.groupStore.add(newGroup);
 			Group.joinedGroups.push(code);
-
-			this.groupStore.sync();
 		}
 		else
 		{
 			console.log("Group already exists");
 		}
 		this.groupStore.clearFilter(true);
+		this.groupStore.sync();
 		
 		if(action == "join")
 		{
