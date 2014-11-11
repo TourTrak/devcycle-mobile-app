@@ -39,10 +39,9 @@ Ext.define('DevCycleMobile.controller.Map', {
 	requires:['DevCycleMobile.Map.LayerControl'],
 
 	/**
-	Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
-	an asynchronous call so that the UI doesnt freeze when loading markers
+	* Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
+	* an asynchronous call so that the UI doesnt freeze when loading markers
 	**/ 
-
 	toggleFilter: function(filterType) {	
 		setTimeout(function() 
 		{
@@ -60,20 +59,20 @@ Ext.define('DevCycleMobile.controller.Map', {
 	},
 
 	/**
-	Called when controller is initalize - setup all variables
+	Called when controller is initalized - setup all variables
 	**/
 	init: function() {
 		this.riderPosMarker = null; // user's position marker
-		//var groupsOverlay = {};
-		//var layerControl = null;
-		//this.layerControl.addTo(Ext.getCmp('mapview').map);
-
 	},
 
 	/**
 	* Function addGroup
-	* This function will be called whenever the filter for a group is selected 
-	* All users in that group will be plotted on the map through this function.
+	* This function will be called from the Group.js controller and
+	* will be responsible for taking the values that were cached in
+	* the GroupInfo and GroupRiderInfo store and plotting them
+	* on the leaflet map. GroupInfo holds all groups that a user is
+	* part of and GroupRiderInfo holds all the riders that are in the
+	* associated groups that the user is a part of
 	*/
 	addGroup: function (groupCode, groupName) {
 		var map = Ext.getCmp('mapview').map;
@@ -99,26 +98,31 @@ Ext.define('DevCycleMobile.controller.Map', {
 			//var riderStore = Ext.getStore("RiderInfo");
 			var groupRiderStore = Ext.getStore("GroupRiderInfo");
 			var groupStore = Ext.getStore("GroupInfo");
-			var riderPos;
-			var riderMarker;
 			var newGroup = L.layerGroup(); //Create a layer group
 	
 			groupStore.filter('groupCode', groupCode);
 			var groupRecord = groupStore.getAt(0);
-			console.log("Add Group" + groupCode + " " + groupName);
-			console.log("Group Store Count " + groupStore.getCount());
-			console.log("Group Rider Store Count " + groupRiderStore.getCount());
 
+			var col = groupRecord.get('groupColor');
 
+			var riderMarker = L.userMarker();
 			groupRiderStore.filter('groupCode', groupCode);
-			console.log("Group Store Count After " + groupStore.getCount());
-			console.log("Group Rider Store Count After " + groupRiderStore.getCount());
+
 			groupRiderStore.each(function (riderRecord) 
 			{
-				console.log("" + riderRecord.get('latitude') + "" +  riderRecord.get('longitude') + "" + groupRecord.get('groupColor') + "" +  groupRecord.get('groupCode'))
-	 			riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
-	 	    	riderMarker = L.userMarker(riderPos, {
-	 	       		color: groupRecord.get('groupColor'),
+				/**
+				* NOTE: This line needed to be added in in order to correctly
+				* get the color set for the rider markers. L.userMarker holds onto
+				* the previous instance for the riderRecord object in each group and then
+				* gets set to the correct color "color". Adding this line forces the color 
+				* to be correctly set for every riderRecord, not just every record after the first
+				*/
+	 		    riderMarker.setColor(col);
+
+	 		    // Create the rider marker
+	 			var riderPos = L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
+	 			riderMarker = L.userMarker(riderPos, {
+	 	       		color: col,
 	 	        	accuracy: 10,
 	 	        	pulsing: true,
 	 	        	smallIcon: true
@@ -127,15 +131,20 @@ Ext.define('DevCycleMobile.controller.Map', {
 	 	    	newGroup.addLayer(riderMarker);	 	                      		
 			}); 
 
-			newGroup.eachLayer(function (layer){
-				console.log(newGroup);
-			});
-
-			DevCycleMobile.Map.LayerControl.groupsOverlay.push(newGroup); //Add to overlay   
+			/**
+			* These parallel arrays hold reference to the group layers added so 
+			* they can be later removed if a user leaves that group
+			**/
+			DevCycleMobile.Map.LayerControl.groupsOverlay.push(newGroup); 
 			DevCycleMobile.Map.LayerControl.layerRef.push(groupCode);  
 			groupRiderStore.clearFilter(true);
 			groupStore.clearFilter(true);
 
+			/**
+			* If the user joined their first group, then add the layer control icon
+			* to the map, otherwise, just update the current layer control with a new
+			* Group
+			*/
 			if(!DevCycleMobile.Map.LayerControl.lc)
 			{
 				DevCycleMobile.Map.LayerControl.lc = new L.control.layers(null, null);
@@ -162,6 +171,10 @@ Ext.define('DevCycleMobile.controller.Map', {
 		//Ensure the map has been loaded
 		if (map != undefined) {
 			
+			/**
+			* These parallel arrays hold reference to all the groups added
+			* to the map. They should be indexed to find the group you want
+			**/
 			var groupArray = DevCycleMobile.Map.LayerControl.groupsOverlay;
 			var refArray = DevCycleMobile.Map.LayerControl.layerRef;
 			var index = 0;
@@ -176,9 +189,11 @@ Ext.define('DevCycleMobile.controller.Map', {
 			}
 
 			var removeThis = groupArray[index];
+			// Remove the group from the arrays 
 			DevCycleMobile.Map.LayerControl.groupsOverlay.splice(index, 1);
 			DevCycleMobile.Map.LayerControl.layerRef.splice(index, 1);
 
+			// Remove the group from the leaflet layer control
 			DevCycleMobile.Map.LayerControl.lc.removeLayer(removeThis);
 			DevCycleMobile.Map.LayerControl.lc._update();
 			map.removeLayer(removeThis);

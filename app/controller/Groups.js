@@ -18,7 +18,7 @@ var colorArray = ["blue", "red", "green", "orange", "purple"];
 
 Ext.define('Group', {
 	singleton: true,
-	currentColorIndex: null,
+	currentColorIndex: 0,
 	joinedGroups: ["init"]
 });
 
@@ -52,23 +52,15 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			currentColorIndex: null,
 			joinedGroups: ["init"]
 		});*/
-		console.log("Group " + Group.currentColorIndex);
-		console.log("Color Array length " + colorArray.length);
+		console.log("Group Current Color Index " + Group.currentColorIndex);
 
-		if(Group.currentColorIndex != null)
-		{
-			if(Group.currentColorIndex == (colorArray.length-1))
-			{
-				Group.currentColorIndex = 0;
-			}
-			color = colorArray[Group.currentColorIndex];
-			Group.currentColorIndex = Group.currentColorIndex + 1;
-		}
-		else
+		if(Group.currentColorIndex == (colorArray.length))
 		{
 			Group.currentColorIndex = 0;
-			color = "blue";
 		}
+		color = colorArray[Group.currentColorIndex];
+		Group.currentColorIndex = Group.currentColorIndex + 1;
+		
 		return color;
 	},
 	/**
@@ -101,7 +93,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			console.log("Group already exists");
 		}
 		this.groupStore.clearFilter(true);
-
+		
 		if(action == "join")
 		{
 			//Get all the riders in the group and populate them in the store
@@ -171,8 +163,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	        	{
 	        		for(var i = 0; i<result.length; i++)
                     {
-                    	console.log("Populating " + group_code + " " +  result[i].riderId + " " + result[i].latitude + " " + result[i].longitude + " ");
-	        			//groupRiderStore.add({groupCode: group_code, riderId:result[i].riderId, latitude:result[i].latitude, longitude: result[i].longitude});
+                    	//console.log("Populating " + group_code + " " +  result[i].riderId + " " + result[i].latitude + " " + result[i].longitude + " ");
 						DevCycleMobile.app.getController('Groups').cacheGroupRiders(group_code, result[i].riderId, result[i].latitude, result[i].longitude);	        			
 	        		}
 	        		DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);	
@@ -180,7 +171,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	        	}
 	        	else
 	        	{
-	        		alert("Could not connect to server to join a group");
+	        		alert(result);
 	        	}
 
 	        }
@@ -221,16 +212,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                       	// We know there were no errors.
 	                   		if(result[0].name)
 	                   		{
-								requestResult = result[0].name;
-									/*if(Group.currentColorIndex == (colorArray.length-1))
-									{
-										Group.currentColorIndex = 0;
-									}
-									var groupColor = colorArray[Group.currentColorIndex];*/
-									//var groupColor = "blue";
-
-									// Cache the group in local storage
-									DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, "join");
+								// Cache the group in local storage
+								DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, "join");
 	                   	   	}
                    	   		else
                    	   		{
@@ -240,7 +223,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                	}
 	                	else
 	                	{                                    
-	 	               		alert("Could not connect to server to join a group");
+	 	               		alert(result);
 	                	}                                
 	             	} 
 	            	}); //End of JSONP Request
