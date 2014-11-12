@@ -201,16 +201,22 @@ Ext.define('DevCycleMobile.controller.Home', {
                 callback: function(data, result){
                 if(data)
                 {
-                    for(var i = 0; i<result.length; i++)
-                    {
-                        //groupStore.add({groupCode:result[i].code, groupName:result[i].name});
-	         			DevCycleMobile.app.getController('Groups').cacheGroup(result[i].code, result[i].name, "join");
-                    }
+                	if(result[0].success == "true")
+	                {
+	                    for(var i = 1; i<result.length; i++)
+	                    {
+	                        //groupStore.add({groupCode:result[i].code, groupName:result[i].name});
+		         			DevCycleMobile.app.getController('Groups').cacheGroup(result[i].code, result[i].name, "join");
+	                    }
+	                }
+	                else
+	                {
+	                	alert(result[0].message);
+	                }	
                 }
                 else
                 {                                    
-                    console.log("Could not connect to server to get group data");
-        	        alert("You are not a member of a group.");
+                   	alert("Could not reach the server. Please check your connection");
                 }                                
             }
         });                        

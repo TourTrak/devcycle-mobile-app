@@ -169,8 +169,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 	removeGroup: function (code) {
 		var map = Ext.getCmp('mapview').map;
 		//Ensure the map has been loaded
+		console.log("code is" + code);
 		if (map != undefined) {
-			
 			/**
 			* These parallel arrays hold reference to all the groups added
 			* to the map. They should be indexed to find the group you want
@@ -181,7 +181,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			for(var i = 0; i < refArray.length; i++)
 			{
-				if(refArray == code)
+				if(refArray[i] == code)
 				{
 					index = i;
 					break;
@@ -189,6 +189,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 			}
 
 			var removeThis = groupArray[index];
+			console.log("remove this index " + index);
 			// Remove the group from the arrays 
 			DevCycleMobile.Map.LayerControl.groupsOverlay.splice(index, 1);
 			DevCycleMobile.Map.LayerControl.layerRef.splice(index, 1);

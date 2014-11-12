@@ -146,6 +146,42 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		}
 	},
 
+	clearGroupStore: function(group_code) {
+		var groupStore = Ext.getStore("GroupInfo");
+
+		var match = groupStore.find("groupCode", group_code);
+		groupStore.removeAt(match);
+		groupStore.sync();
+		
+		var joinArray = Group.joinedGroups;
+		var index = 0;
+
+		for(var i = 0; i < joinArray.length; i++)
+		{
+			if(joinArray[i] == group_code)
+			{
+				index = i;
+				break;
+			}
+		}
+		Group.joinedGroups.splice(index, 1);
+		DevCycleMobile.app.getController('Groups').clearGroupRiderStore(group_code);	
+
+	},
+
+	clearGroupRiderStore: function(group_code) {
+		var groupRiderStore = Ext.getStore("GroupRiderInfo");
+
+		groupRiderStore.filter("groupCode", group_code);
+
+		groupRiderStore.removeAll();
+		groupRiderStore.clearFilter(true);
+		groupRiderStore.sync();
+		//groupRiderStore.reload();
+		Ext.getCmp('myGroupsList').refresh();
+		DevCycleMobile.app.getController('Map').removeGroup(group_code);
+	},
+
 	// Populates the group rider store which 
 	// holds all the riders from the server
 	populateGroupRiderStore: function(group_code, group_name) {
@@ -160,17 +196,24 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	        {
 	        	if(data)
 	        	{
-	        		for(var i = 0; i<result.length; i++)
-                    {
-                    	//console.log("Populating " + group_code + " " +  result[i].riderId + " " + result[i].latitude + " " + result[i].longitude + " ");
-						DevCycleMobile.app.getController('Groups').cacheGroupRiders(group_code, result[i].riderId, result[i].latitude, result[i].longitude);	        			
-	        		}
-	        		DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);	
+	        		if(result[0].success == "true")
+	                {
+		        		for(var i = 1; i<result.length; i++)
+	                    {
+	                    	//console.log("Populating " + group_code + " " +  result[i].riderId + " " + result[i].latitude + " " + result[i].longitude + " ");
+							DevCycleMobile.app.getController('Groups').cacheGroupRiders(group_code, result[i].riderId, result[i].latitude, result[i].longitude);	        			
+		        		}
+		        		DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);
+		        	}
+		        	else
+		        	{
+		        		alert(result.message);
+		        	}	
 
 	        	}
 	        	else
 	        	{
-	        		alert(result);
+	        		alert("Could not reach the server. Please check your connection");
 	        	}
 
 	        }
@@ -201,28 +244,30 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                callbackKey: "callback",
 	                callback: function(data, result)
 	                {
-	                	console.log("cb was successful");
+	                	/*console.log("Data " + data)
+	                	console.log("Result " + result);
+   		                console.log("Result succ " + result.success);
+   		                console.log("Result mess" + result.message);
+	                	console.log("Result [0] " + result[0]);
+		                console.log("Result [0] sucss" + result[0].success);
+		                console.log("Result [0] mess" + result[0].message);*/
 
 	                  	// Successful response from the server
 	               		if(data)
 	                    {
-	                    	console.log("data was successful");
-	                       	// If the name was returned from the server
-	                       	// We know there were no errors.
-	                   		if(result[0].name)
-	                   		{
+		                    if(result[0].success == "true")
+		                    {
 								// Cache the group in local storage
-								DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[0].name, "join");
-	                   	   	}
-                   	   		else
-                   	   		{
-                   	   			//Result from server
-                   	   			alert(result);
-                   	   		}
+								DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[1].name, "join");
+							}
+							else
+							{
+								alert(result.message);
+							}
 	                	}
 	                	else
 	                	{                                    
-	 	               		alert(result);
+	 	               		alert("Could not reach the server. Please check your connection");
 	                	}                                
 	             	} 
 	            	}); //End of JSONP Request
@@ -290,22 +335,19 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	removeGroup: function() {
 		var groupInfoStore = Ext.getStore("GroupInfo");
 		var groupRiderInfoStore = Ext.getStore("GroupRiderInfo");
-		var riderStore = Ext.getStore("RiderInfo");
-		var riderRecord = riderStore.first();
-		var thisRiderId = riderRecord.get("riderId");		
-
+		//var riderStore = Ext.getStore("RiderInfo");
+		//var riderRecord = riderStore.first();
+		//var thisRiderId = riderRecord.get("riderId");
+		var thisRiderId = 1;
+		
 		// Gets group that is highlighted within my groups list
 		var selectedGroup = Ext.getCmp('myGroupsList').getSelection();
-
-		 //Need to be placed inside of SUCCESS function of AJAX call!!!
-		groupInfoStore.remove(selectedGroup[0])
-		console.log("count before filter: " + groupRiderInfoStore.getCount())
-		groupRiderInfoStore.filter("groupCode", selectedGroup[0].get("groupCode"));
-		groupRiderInfoStore.removeAll();
-		groupRiderInfoStore.clearFilter(true);
-		groupInfoStore.sync();		
-	 	Ext.getCmp('myGroupsList').refresh();
-
+		var groupCode = selectedGroup[0].get("groupCode");
+		//console.log("groupCode: " + groupCode);
+		//console.log("selectedGroup[0]: " + selectedGroup[0]);
+		//console.log("selectedGroup: " + selectedGroup);
+		//console.log("selectedGroup[1]: " + selectedGroup[1]);
+	
 		//Send a get request to the server which will join the given group
 		Ext.data.JsonP.request({
 	    	url: "http://centri-pedal2.se.rit.edu/leave_group/" + groupCode + "/" + thisRiderId + "/",
@@ -315,11 +357,18 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	        {
 	        	if(data)
 	        	{
-
+	        		if(result.success == "true")
+	        		{
+	        			DevCycleMobile.app.getController('Groups').clearGroupStore(groupCode);	
+	        		}
+	        		else
+	        		{
+	        			alert(result.message);
+	        		}
 	        	}
 	        	else
 	        	{
-	        		alert(result);
+	        		alert("Could not reach the server. Please check your connection");
 	        	}
 
 	        }
