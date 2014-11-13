@@ -207,7 +207,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		        	}
 		        	else
 		        	{
-		        		alert(result.message);
+		        		alert(result[0].message);
 		        	}	
 
 	        	}
@@ -255,14 +255,14 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                  	// Successful response from the server
 	               		if(data)
 	                    {
-		                    if(result[0].success == "true")
-		                    {
-								// Cache the group in local storage
-								DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[1].name, "join");
+			                if(result[0].success == "true")
+			                {
+									// Cache the group in local storage
+									DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[1].name, "join");
 							}
 							else
 							{
-								alert(result.message);
+								alert(result[0].message);
 							}
 	                	}
 	                	else
@@ -357,13 +357,13 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	        {
 	        	if(data)
 	        	{
-	        		if(result.success == "true")
+	        		if(result[0].success == "true")
 	        		{
 	        			DevCycleMobile.app.getController('Groups').clearGroupStore(groupCode);	
 	        		}
 	        		else
 	        		{
-	        			alert(result.message);
+	        			alert(result[0].message);
 	        		}
 	        	}
 	        	else
