@@ -195,7 +195,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		var thisRiderId = 1;
 
 		Ext.data.JsonP.request({
-                url: "http://centri-pedal2.se.rit.edu/list_group/"+ thisRiderId, 
+                url: this.tourInfo.data.dcs_url + "/list_group/"+ thisRiderId, 
                 type: "GET",
                 callbackKey: "callback",
                 callback: function(data, result){
@@ -219,7 +219,28 @@ Ext.define('DevCycleMobile.controller.Home', {
                    	alert("Could not reach the server. Please check your connection");
                 }                                
             }
-        });                        
+        }); 
+	},
+
+	timerTask: function() {
+		if(this.timerStart == false)
+		{
+			this.timerStart = true;
+			var runner = new Ext.util.TaskRunner();
+        	var task = runner.start(this.updateGroupLocationTask);
+        }
+	},
+
+	updateGroupLocations: function() {
+		if(this.firstUpdateLocations){
+			console.log("Will update in 10 minutes");
+			this.firstUpdateLocations = false;
+		}
+		else
+		{
+			console.log("Calling update Groups in Home.js line 241");
+			DevCycleMobile.app.getController('Groups').updateGroups();
+		}
 	},
 
 	/**
@@ -233,6 +254,15 @@ Ext.define('DevCycleMobile.controller.Home', {
 		this.riderStore = Ext.getStore("RiderInfo"); // reference to the rider store
 		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
 		this.groupStore = Ext.getStore("GroupInfo");
+
+		// Task to check the server for updates to rider positions (if in group)
+		// 600,000 ms = 10 mins
+		this.updateGroupLocationTask = {
+			run: this.updateGroupLocations,
+			//interval: 600000, 
+			interval: 60000,
+			scope: this
+		};
 
 		// Clear the group stores upon starting the app so we can get
 		// fresh data
@@ -263,6 +293,9 @@ Ext.define('DevCycleMobile.controller.Home', {
 		// Set active item to the map view
 		component.setActiveItem(0);
 		this.initGroup();
+		//this.timerTask();
+		//var runner = new Ext.util.TaskRunner();
+        //var task = runner.start(this.updateGroupLocationTask);
 
 		try{
 			this.registerRider();
@@ -279,6 +312,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 	// init and set variables.
 	init:function(){
+		this.timerStart = false;
+		this.firstUpdateLocations = true;
 		this.callParent(arguments);
 	},
 });

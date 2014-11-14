@@ -120,8 +120,9 @@ Ext.define('DevCycleMobile.controller.Map', {
 	 		    riderMarker.setColor(col);
 
 	 		    // Create the rider marker
-	 			var riderPos = L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
-	 			riderMarker = L.userMarker(riderPos, {
+	 			var riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
+	 			riderPos
+	 			riderMarker = new L.userMarker(riderPos, {
 	 	       		color: col,
 	 	        	accuracy: 10,
 	 	        	pulsing: true,
@@ -150,6 +151,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 				DevCycleMobile.Map.LayerControl.lc = new L.control.layers(null, null);
 				DevCycleMobile.Map.LayerControl.lc.addOverlay(newGroup, groupName);
 				DevCycleMobile.Map.LayerControl.lc.addTo(map); 
+
+				DevCycleMobile.app.getController('Home').timerTask();
 			}
 			else
 			{
@@ -166,7 +169,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 	* Description: remove group takes the group code as a parameter
 	* and removes the current group from the map and the layer control
 	**/
-	removeGroup: function (code) {
+	removeGroup: function (code, name, action) {
 		var map = Ext.getCmp('mapview').map;
 		//Ensure the map has been loaded
 		console.log("code is" + code);
@@ -199,6 +202,12 @@ Ext.define('DevCycleMobile.controller.Map', {
 			DevCycleMobile.Map.LayerControl.lc._update();
 			map.removeLayer(removeThis);
 			map._onResize();
+
+			if(action == "update")
+			{
+				DevCycleMobile.app.getController('Groups').updateJSONPRequest(code, name);
+
+			}
 		}
 	},
 

@@ -42,6 +42,10 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			}
 		}
 	},
+
+	/*init: function() {
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+	},*/
 	/**
 	* Chooses a color based on what colors have already been used.
 	*/
@@ -179,17 +183,19 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		groupRiderStore.sync();
 		//groupRiderStore.reload();
 		Ext.getCmp('myGroupsList').refresh();
-		DevCycleMobile.app.getController('Map').removeGroup(group_code);
+		DevCycleMobile.app.getController('Map').removeGroup(group_code, null, null);
 	},
 
 	// Populates the group rider store which 
 	// holds all the riders from the server
 	populateGroupRiderStore: function(group_code, group_name) {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
 
 		//Send a get request to the server which will join the given group
 		Ext.data.JsonP.request({
-	        url: "http://centri-pedal2.se.rit.edu/get_location_data/" + group_code + "/",
+	        url: this.tourInfo.data.dcs_url + "/get_location_data/" + group_code + "/",
 	        type: "GET",
 	        callbackKey: "callback",
 	        callback: function(data, result)
@@ -200,7 +206,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                {
 		        		for(var i = 1; i<result.length; i++)
 	                    {
-	                    	//console.log("Populating " + group_code + " " +  result[i].riderId + " " + result[i].latitude + " " + result[i].longitude + " ");
 							DevCycleMobile.app.getController('Groups').cacheGroupRiders(group_code, result[i].riderId, result[i].latitude, result[i].longitude);	        			
 		        		}
 		        		DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);
@@ -220,12 +225,86 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	    });
 	},
 
+	updateGroups: function() {
+		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+		this.groupStore = Ext.getStore("GroupInfo");
+
+		this.groupStore.each(function (record) {
+
+		var group_code = record.get("groupCode");
+		var group_name = record.get("groupName");
+
+		console.log("Going to update " + group_code + " " + group_name);
+		DevCycleMobile.app.getController('Map').removeGroup(group_code, group_name, "update");
+		
+		}); //End of this.groupStore each method
+
+	},
+
+	updateJSONPRequest: function(group_code, group_name) {
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
+		Ext.data.JsonP.request({
+		        url: this.tourInfo.data.dcs_url + "/get_location_data/" + group_code + "/",
+		        type: "GET",
+		        callbackKey: "callback",
+		        callback: function(data, result)
+		        {
+		        	if(data)
+		        	{
+		        		if(result[0].success == "true")
+		                {
+			        		for(var i = 1; i<result.length; i++)
+		                    {
+		                    	console.log("Processing " + group_code + " with " + result[i].riderId);
+								DevCycleMobile.app.getController('Groups').updateGroupRiderStore(group_code, group_name, result[i].riderId, result[i].latitude, result[i].longitude);	        			
+			        		}
+			        	}
+			        	else
+			        	{
+			        		alert(result[0].message);
+			        	}	
+
+		        	}
+		        	else
+		        	{
+		        		alert("Could not reach the server. Please check your connection");
+		        	}
+
+		        }
+		    });
+		 DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);
+
+	},
+	// DevCycleMobile.app.getController('Groups').updateGroupRiderStore
+	// Whenever the timer task needs to update rider's positions
+	// This function will get called. 
+	updateGroupRiderStore: function(code, name, rider, latitude, longitude) {
+		var groupRiderStore = Ext.getStore("GroupRiderInfo");
+
+
+		groupRiderStore.filter("groupCode", code);
+		groupRiderStore.filter("riderId", rider);
+
+		console.log(groupRiderStore.getAt(0));
+		var record = groupRiderStore.getAt(0);
+		console.log("Updating Record " + record.get("riderId") + " from " + record.get('latitude') + " " + record.get('longitude') + " to " + latitude + " " + longitude);
+		record.set('latitude', latitude);
+		record.set('longitude', longitude);
+		record.dirty = true; 
+
+		groupRiderStore.clearFilter(true);
+		groupRiderStore.sync(); 
+	},
+
 	// Adds user to specified group
 	joinGroup: function() {
 		
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 		var groupStore = Ext.getStore("GroupInfo");
 		var riderStore = Ext.getStore("RiderInfo");
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
 		//var riderRecord = riderStore.first();
 		//var thisRiderId = riderRecord.get("riderId");
 		var thisRiderId = 1;
@@ -239,7 +318,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			{
 				//Send a get request to the server which will join the given group
 				Ext.data.JsonP.request({
-	                url: "http://centri-pedal2.se.rit.edu/join_group/" + groupCode + "/" + thisRiderId + "/",
+	                url: this.tourInfo.data.dcs_url + "/join_group/" + groupCode + "/" + thisRiderId + "/",
 	                type: "GET",
 	                callbackKey: "callback",
 	                callback: function(data, result)
@@ -285,9 +364,12 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	
 	// Handles creating a group based on provided user input, sends it off to postGroup 
 	createGroup: function() {			
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
 		//Ext.getCmp('load-indicator').show();
 		var groupName = Ext.getCmp('group_name').getValue();
 		var groupCode = Ext.getCmp('create_group_code').getValue();
+
 		var canCreateGroup = false;
 		if(groupName != '' && groupName.length <= NAME_MAX) {
 			if(groupCode == '') {
@@ -308,7 +390,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			if (canCreateGroup)
 			{
 				Ext.Ajax.request({
-					url: "http://centri-pedal2.se.rit.edu/create_group/",
+					url: this.tourInfo.data.dcs_url + "/create_group/",
 					method: "POST",
 					scope: this,
 					params: {
@@ -333,6 +415,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		
 	// Removes user from specified group 
 	removeGroup: function() {
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
 		var groupInfoStore = Ext.getStore("GroupInfo");
 		var groupRiderInfoStore = Ext.getStore("GroupRiderInfo");
 		//var riderStore = Ext.getStore("RiderInfo");
@@ -350,7 +434,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	
 		//Send a get request to the server which will join the given group
 		Ext.data.JsonP.request({
-	    	url: "http://centri-pedal2.se.rit.edu/leave_group/" + groupCode + "/" + thisRiderId + "/",
+	    	url: this.tourInfo.data.dcs_url + "/leave_group/" + groupCode + "/" + thisRiderId + "/",
 	        type: "GET",
 	        callbackKey: "callback",
 	        callback: function(data, result)
