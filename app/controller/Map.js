@@ -106,6 +106,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var col = groupRecord.get('groupColor');
 
 			var riderMarker = L.userMarker();
+			var riderPos;
+
 			groupRiderStore.filter('groupCode', groupCode);
 
 			groupRiderStore.each(function (riderRecord) 
@@ -120,9 +122,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 	 		    riderMarker.setColor(col);
 
 	 		    // Create the rider marker
-	 			var riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
-	 			riderPos
-	 			riderMarker = new L.userMarker(riderPos, {
+	 			riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
+	 			riderMarker = L.userMarker(riderPos, {
 	 	       		color: col,
 	 	        	accuracy: 10,
 	 	        	pulsing: true,
