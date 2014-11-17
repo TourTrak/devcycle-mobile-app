@@ -49,15 +49,9 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	/**
 	* Chooses a color based on what colors have already been used.
 	*/
-	chooseAColor: function(){
+	chooseAColor: function() {
 		var color;
-		/*Ext.define('Group', {
-			singleton: true,
-			currentColorIndex: null,
-			joinedGroups: ["init"]
-		});*/
-		console.log("Group Current Color Index " + Group.currentColorIndex);
-
+	
 		if(Group.currentColorIndex == (colorArray.length))
 		{
 			Group.currentColorIndex = 0;
@@ -122,9 +116,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			latitude: latitude,
 			longitude: longitude
 		});
-		//console.log("Count of store" + this.groupRiderStore.getCount());
-		console.log("Caching " + code + " " +  rider + " " + latitude + " " + longitude + " ");
-
 		this.groupRiderStore.add(newGroupRider);
 		this.groupRiderStore.sync();
 	},
@@ -233,18 +224,19 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		var group_code = record.get("groupCode");
 		var group_name = record.get("groupName");
-
-		console.log("Going to update " + group_code + " " + group_name);
-		//DevCycleMobile.app.getController('Map').removeGroup(group_code, group_name, "update");
+		console.log("Going to update " + group_code);
 		DevCycleMobile.app.getController('Groups').updateJSONPRequest(group_code, group_name);
 
 		
 		}); //End of this.groupStore each method
+		DevCycleMobile.app.getController('Map').updateMap();
+
 	},
 
 	updateJSONPRequest: function(group_code, group_name) {
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
 
+		console.log("Updating JSONP Request for " + group_code);
 		Ext.data.JsonP.request({
 		        url: this.tourInfo.data.dcs_url + "/get_location_data/" + group_code + "/",
 		        type: "GET",
@@ -278,32 +270,24 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	updateGroupRiderStore: function(group_code, group_name, result) {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 
-		//result[i].riderId, result[i].latitude, result[i].longitude);	        			
-
 		groupRiderStore.filter("groupCode", group_code);
-		console.log("Result is " + result);
-		console.log("Result size " + result.length);
-
 		for(var i = 1; i<result.length; i++)
 		{
 			var rider = result[i].riderId;
 			var latitude = result[i].latitude;
 			var longitude = result[i].longitude;
 
-			groupRiderStore.filter("riderId", rider);
+			var recordIndex = groupRiderStore.find('riderId', rider);
+			var record = groupRiderStore.getAt(recordIndex);
+			//console.log("Lat and long for rider " + rider + " is " + latitude + " " + longitude);
 
-			console.log(groupRiderStore.getAt(0));
-			var record = groupRiderStore.getAt(0);
-			console.log("Updating Record " + record.get("riderId") + " from " + record.get('latitude') + " " + record.get('longitude') + " to " + latitude + " " + longitude);
 			record.set('latitude', latitude);
 			record.set('longitude', longitude);
 			record.dirty = true; 
 
-			groupRiderStore.clearFilter(true);
 			groupRiderStore.sync(); 
 		}
-		DevCycleMobile.app.getController('Map').updateMap();
-
+		groupRiderStore.clearFilter(true);
 	},
 
 	// Adds user to specified group
@@ -332,14 +316,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                callbackKey: "callback",
 	                callback: function(data, result)
 	                {
-	                	/*console.log("Data " + data)
-	                	console.log("Result " + result);
-   		                console.log("Result succ " + result.success);
-   		                console.log("Result mess" + result.message);
-	                	console.log("Result [0] " + result[0]);
-		                console.log("Result [0] sucss" + result[0].success);
-		                console.log("Result [0] mess" + result[0].message);*/
-
 	                  	// Successful response from the server
 	               		if(data)
 	                    {
@@ -436,10 +412,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		// Gets group that is highlighted within my groups list
 		var selectedGroup = Ext.getCmp('myGroupsList').getSelection();
 		var groupCode = selectedGroup[0].get("groupCode");
-		//console.log("groupCode: " + groupCode);
-		//console.log("selectedGroup[0]: " + selectedGroup[0]);
-		//console.log("selectedGroup: " + selectedGroup);
-		//console.log("selectedGroup[1]: " + selectedGroup[1]);
+	
 	
 		//Send a get request to the server which will join the given group
 		Ext.data.JsonP.request({

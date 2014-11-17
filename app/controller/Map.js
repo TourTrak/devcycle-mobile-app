@@ -183,30 +183,36 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var groupStore = Ext.getStore("GroupInfo");
 			var groupRiderStore = Ext.getStore("GroupRiderInfo");
 
-			console.log("Group Store count " + groupStore.getCount());
-			groupStore.each(function (groupRecord) {
-				var group_code = groupRecord.get('groupCode');
-				var index = refArray.indexOf(group_code);
-				var groupLayer = groupLayers[index];
-				console.log("groupLayer " + groupLayer);
-				console.log(group_code);
-				groupRiderStore.filter('groupCode', group_code);
-				console.log("Group rider store count " + groupRiderStore.getCount());
+			for(var i = 0; i<groupLayers.length; i++) {
+				//var group_code = groupRecord.get('groupCode');
+				//var index = refArray.indexOf(group_code);
+				//var groupLayer = groupLayers[index];
+
+				var group_code = refArray[i];
+				//var index = refArray.indexOf(group_code);
+				var groupLayer = groupLayers[i];
+
+				console.log("Filtering on group " + group_code + " found at index " + i);
 
 				//Each rider is a layer in the group layer
 				groupLayer.eachLayer(function (riderRecord){
-					console.log("Rider options rider id " + riderRecord.options.riderId);
+					groupRiderStore.filter('groupCode', group_code);
+					console.log("Rider id " + riderRecord.options.riderId);
+					console.log("Group Layer is " + groupLayer);
+					//console.log("Rider lat and long " + riderRecord.getLatLng().toString());
+					var recordToUpdate = null;
+					var recordToUpdateIndex = null;
 					var recordToUpdateIndex = groupRiderStore.find('riderId', riderRecord.options.riderId);
 					var recordToUpdate = groupRiderStore.getAt(recordToUpdateIndex);
-					console.log("Record to update is ");
-					var latlng = L.latLng(recordToUpdate.get('latitude'), recordToUpdate.get('longitude'));
-					console.log("The lat and long is " + latlng.toString());
-					riderRecord.setLatLng(latlng).update();
-					//groupLayer.removeLayer(riderRecord);
-					//groupLayer.addLayer(riderRecord);
+					console.log(recordToUpdate);
+					console.log("Record to update code " + riderRecord.options.groupCode);
+					//var latlng = L.latLng(recordToUpdate.get('latitude'), recordToUpdate.get('longitude'));
+					console.log("Setting " + riderRecord.options.riderId + " in group " + recordToUpdate.get('latitude') + " " + recordToUpdate.get('longitude'));
+					riderRecord.setLatLng([recordToUpdate.get('latitude'), recordToUpdate.get('longitude')]).update();
+					console.log("Updated " + riderRecord.options.riderId + " in group " + riderRecord.options.groupCode + " to location " + riderRecord.getLatLng().toString());
 				});
 				groupRiderStore.clearFilter(true);
-			});
+			}
 			map._onResize();
 		}
 	},
@@ -219,7 +225,6 @@ Ext.define('DevCycleMobile.controller.Map', {
 	removeGroup: function (code, name, action) {
 		var map = Ext.getCmp('mapview').map;
 		//Ensure the map has been loaded
-		console.log("code is" + code);
 		if (map != undefined) {
 			/**
 			* These parallel arrays hold reference to all the groups added
@@ -239,7 +244,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 			}
 
 			var removeThis = groupArray[index];
-			console.log("remove this index " + index);
+
 			// Remove the group from the arrays 
 			DevCycleMobile.Map.LayerControl.groupsOverlay.splice(index, 1);
 			DevCycleMobile.Map.LayerControl.layerRef.splice(index, 1);
