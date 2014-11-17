@@ -182,36 +182,43 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			var groupStore = Ext.getStore("GroupInfo");
 			var groupRiderStore = Ext.getStore("GroupRiderInfo");
+			
+			var currLayer;
+			var currLayerCode;
+			var currRider;
+			var currGroup;
+			var riderLat;
+			var riderLong;
+			var riderId;
+			var record;
+			var index;
 
-			for(var i = 0; i<groupLayers.length; i++) {
-				//var group_code = groupRecord.get('groupCode');
-				//var index = refArray.indexOf(group_code);
-				//var groupLayer = groupLayers[index];
+			var riderLatLong;
+			for(var i = 0; i<groupLayers.length; i++) 
+			{
+				currLayer = groupLayers[i];
+				currLayerCode = refArray[i];
 
-				var group_code = refArray[i];
-				//var index = refArray.indexOf(group_code);
-				var groupLayer = groupLayers[i];
+				console.log("Updating map for " + currLayerCode);
+				groupRiderStore.filter('groupCode', currLayerCode);
 
-				console.log("Filtering on group " + group_code + " found at index " + i);
+				currLayer.eachLayer(function (riderRecord) 
+				{
+					riderId = riderRecord.options.riderId;
+					//riderLat = riderRecord.latitude;
+					//riderLong = riderRecord.longitude;
+					riderLatLong = riderRecord.getLatLng().toString();
+					console.log("Iterated over " + riderId + " for group code " + currLayerCode + " latlong: " + riderLatLong);
+					index = groupRiderStore.findExact('riderId', riderId);
+					record = groupRiderStore.getAt(index);
+					riderLat = record.get('latitude');
+					riderLong = record.get('longitude');
+					console.log("The lat and long from the store for riderId " + riderId + " and group code " + currLayerCode + " is " + riderLat + " " + riderLong);
+					riderRecord.setLatLng([riderLat, riderLong]).update();
 
-				//Each rider is a layer in the group layer
-				groupLayer.eachLayer(function (riderRecord){
-					groupRiderStore.filter('groupCode', group_code);
-					console.log("Rider id " + riderRecord.options.riderId);
-					console.log("Group Layer is " + groupLayer);
-					//console.log("Rider lat and long " + riderRecord.getLatLng().toString());
-					var recordToUpdate = null;
-					var recordToUpdateIndex = null;
-					var recordToUpdateIndex = groupRiderStore.find('riderId', riderRecord.options.riderId);
-					var recordToUpdate = groupRiderStore.getAt(recordToUpdateIndex);
-					console.log(recordToUpdate);
-					console.log("Record to update code " + riderRecord.options.groupCode);
-					//var latlng = L.latLng(recordToUpdate.get('latitude'), recordToUpdate.get('longitude'));
-					console.log("Setting " + riderRecord.options.riderId + " in group " + recordToUpdate.get('latitude') + " " + recordToUpdate.get('longitude'));
-					riderRecord.setLatLng([recordToUpdate.get('latitude'), recordToUpdate.get('longitude')]).update();
-					console.log("Updated " + riderRecord.options.riderId + " in group " + riderRecord.options.groupCode + " to location " + riderRecord.getLatLng().toString());
 				});
 				groupRiderStore.clearFilter(true);
+			
 			}
 			map._onResize();
 		}
