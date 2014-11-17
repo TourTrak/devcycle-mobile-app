@@ -127,7 +127,9 @@ Ext.define('DevCycleMobile.controller.Map', {
 	 	       		color: col,
 	 	        	accuracy: 10,
 	 	        	pulsing: true,
-	 	        	smallIcon: true
+	 	        	smallIcon: true,
+	 	        	riderId: riderRecord.get('riderId'),
+	 	        	groupCode: groupCode
 	 	    	});
 	 	    	riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <h2><b>Group: </b> " + groupRecord.get('groupCode') + "</h2>", {offset: new L.Point(0,-20)});
 	 	    	newGroup.addLayer(riderMarker);	 	                      		
@@ -161,6 +163,50 @@ Ext.define('DevCycleMobile.controller.Map', {
 				DevCycleMobile.Map.LayerControl.lc._update();
 			}
 
+			//this.updateMap();
+			map._onResize();
+		}
+	},
+
+	/**
+	* Function: updateMap
+	* Description:  
+	*/
+	updateMap: function() {
+		var map = Ext.getCmp('mapview').map;
+
+		if(map != undefined)
+		{
+			var groupLayers = DevCycleMobile.Map.LayerControl.groupsOverlay;
+			var refArray = DevCycleMobile.Map.LayerControl.layerRef;
+
+			var groupStore = Ext.getStore("GroupInfo");
+			var groupRiderStore = Ext.getStore("GroupRiderInfo");
+
+			console.log("Group Store count " + groupStore.getCount());
+			groupStore.each(function (groupRecord) {
+				var group_code = groupRecord.get('groupCode');
+				var index = refArray.indexOf(group_code);
+				var groupLayer = groupLayers[index];
+				console.log("groupLayer " + groupLayer);
+				console.log(group_code);
+				groupRiderStore.filter('groupCode', group_code);
+				console.log("Group rider store count " + groupRiderStore.getCount());
+
+				//Each rider is a layer in the group layer
+				groupLayer.eachLayer(function (riderRecord){
+					console.log("Rider options rider id " + riderRecord.options.riderId);
+					var recordToUpdateIndex = groupRiderStore.find('riderId', riderRecord.options.riderId);
+					var recordToUpdate = groupRiderStore.getAt(recordToUpdateIndex);
+					console.log("Record to update is ");
+					var latlng = L.latLng(recordToUpdate.get('latitude'), recordToUpdate.get('longitude'));
+					console.log("The lat and long is " + latlng.toString());
+					riderRecord.setLatLng(latlng).update();
+					//groupLayer.removeLayer(riderRecord);
+					//groupLayer.addLayer(riderRecord);
+				});
+				groupRiderStore.clearFilter(true);
+			});
 			map._onResize();
 		}
 	},

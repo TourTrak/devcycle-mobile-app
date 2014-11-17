@@ -235,10 +235,11 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var group_name = record.get("groupName");
 
 		console.log("Going to update " + group_code + " " + group_name);
-		DevCycleMobile.app.getController('Map').removeGroup(group_code, group_name, "update");
+		//DevCycleMobile.app.getController('Map').removeGroup(group_code, group_name, "update");
+		DevCycleMobile.app.getController('Groups').updateJSONPRequest(group_code, group_name);
+
 		
 		}); //End of this.groupStore each method
-
 	},
 
 	updateJSONPRequest: function(group_code, group_name) {
@@ -254,11 +255,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		        	{
 		        		if(result[0].success == "true")
 		                {
-			        		for(var i = 1; i<result.length; i++)
-		                    {
-		                    	console.log("Processing " + group_code + " with " + result[i].riderId);
-								DevCycleMobile.app.getController('Groups').updateGroupRiderStore(group_code, group_name, result[i].riderId, result[i].latitude, result[i].longitude);	        			
-			        		}
+			        		DevCycleMobile.app.getController('Groups').updateGroupRiderStore(group_code, group_name, result);	        			
 			        	}
 			        	else
 			        	{
@@ -272,29 +269,41 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		        	}
 
 		        }
-		    });
-		 DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);
-
+		});
+		//DevCycleMobile.app.getController('Map').updateMap();
 	},
 	// DevCycleMobile.app.getController('Groups').updateGroupRiderStore
 	// Whenever the timer task needs to update rider's positions
 	// This function will get called. 
-	updateGroupRiderStore: function(code, name, rider, latitude, longitude) {
+	updateGroupRiderStore: function(group_code, group_name, result) {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 
+		//result[i].riderId, result[i].latitude, result[i].longitude);	        			
 
-		groupRiderStore.filter("groupCode", code);
-		groupRiderStore.filter("riderId", rider);
+		groupRiderStore.filter("groupCode", group_code);
+		console.log("Result is " + result);
+		console.log("Result size " + result.length);
 
-		console.log(groupRiderStore.getAt(0));
-		var record = groupRiderStore.getAt(0);
-		console.log("Updating Record " + record.get("riderId") + " from " + record.get('latitude') + " " + record.get('longitude') + " to " + latitude + " " + longitude);
-		record.set('latitude', latitude);
-		record.set('longitude', longitude);
-		record.dirty = true; 
+		for(var i = 1; i<result.length; i++)
+		{
+			var rider = result[i].riderId;
+			var latitude = result[i].latitude;
+			var longitude = result[i].longitude;
 
-		groupRiderStore.clearFilter(true);
-		groupRiderStore.sync(); 
+			groupRiderStore.filter("riderId", rider);
+
+			console.log(groupRiderStore.getAt(0));
+			var record = groupRiderStore.getAt(0);
+			console.log("Updating Record " + record.get("riderId") + " from " + record.get('latitude') + " " + record.get('longitude') + " to " + latitude + " " + longitude);
+			record.set('latitude', latitude);
+			record.set('longitude', longitude);
+			record.dirty = true; 
+
+			groupRiderStore.clearFilter(true);
+			groupRiderStore.sync(); 
+		}
+		DevCycleMobile.app.getController('Map').updateMap();
+
 	},
 
 	// Adds user to specified group
