@@ -172,7 +172,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 	* Function: updateMap
 	* Description:  
 	*/
-	updateMap: function() {
+	updateMap: function(group_code) {
 		var map = Ext.getCmp('mapview').map;
 
 		if(map != undefined)
@@ -184,9 +184,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var groupRiderStore = Ext.getStore("GroupRiderInfo");
 			
 			var currLayer;
-			var currLayerCode;
 			var currRider;
-			var currGroup;
 			var riderLat;
 			var riderLong;
 			var riderId;
@@ -194,13 +192,15 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var index;
 
 			var riderLatLong;
-			for(var i = 0; i<groupLayers.length; i++) 
+			/*for(var i = 0; i<groupLayers.length; i++) 
 			{
 				currLayer = groupLayers[i];
-				currLayerCode = refArray[i];
+				currLayerCode = refArray[i];*/
+				index = refArray.indexOf(group_code);
+				currLayer = groupLayers[index];
 
-				console.log("Updating map for " + currLayerCode);
-				groupRiderStore.filter('groupCode', currLayerCode);
+				console.log("Updating map for " + group_code);
+				groupRiderStore.filter('groupCode', group_code);
 
 				currLayer.eachLayer(function (riderRecord) 
 				{
@@ -208,18 +208,19 @@ Ext.define('DevCycleMobile.controller.Map', {
 					//riderLat = riderRecord.latitude;
 					//riderLong = riderRecord.longitude;
 					riderLatLong = riderRecord.getLatLng().toString();
-					console.log("Iterated over " + riderId + " for group code " + currLayerCode + " latlong: " + riderLatLong);
+					console.log("Iterated over " + riderId + " for group code " + group_code + " latlong: " + riderLatLong);
 					index = groupRiderStore.findExact('riderId', riderId);
 					record = groupRiderStore.getAt(index);
 					riderLat = record.get('latitude');
 					riderLong = record.get('longitude');
-					console.log("The lat and long from the store for riderId " + riderId + " and group code " + currLayerCode + " is " + riderLat + " " + riderLong);
+					console.log("The lat and long from the store for riderId " + riderId + " and group code " + group_code + " is " + riderLat + " " + riderLong);
 					riderRecord.setLatLng([riderLat, riderLong]).update();
-
+					//riderRecord.update();
 				});
 				groupRiderStore.clearFilter(true);
 			
-			}
+			//}
+			DevCycleMobile.Map.LayerControl.lc._update();
 			map._onResize();
 		}
 	},

@@ -260,7 +260,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		this.updateGroupLocationTask = {
 			run: this.updateGroupLocations,
 			//interval: 600000, 
-			interval: 60000,
+			interval: 20000,
 			scope: this
 		};
 

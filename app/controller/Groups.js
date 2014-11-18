@@ -144,7 +144,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	clearGroupStore: function(group_code) {
 		var groupStore = Ext.getStore("GroupInfo");
 
-		var match = groupStore.find("groupCode", group_code);
+		var match = groupStore.findExact("groupCode", group_code);
 		groupStore.removeAt(match);
 		groupStore.sync();
 		
@@ -229,8 +229,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		
 		}); //End of this.groupStore each method
-		DevCycleMobile.app.getController('Map').updateMap();
-
+		//DevCycleMobile.app.getController('Map').updateMap();
 	},
 
 	updateJSONPRequest: function(group_code, group_name) {
@@ -271,23 +270,31 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 
 		groupRiderStore.filter("groupCode", group_code);
+
+		var rider;
+		var latitude;
+		var longitude;
+		var record;
+		var recordIndex;
+
 		for(var i = 1; i<result.length; i++)
 		{
-			var rider = result[i].riderId;
-			var latitude = result[i].latitude;
-			var longitude = result[i].longitude;
+			rider = result[i].riderId;
+			latitude = result[i].latitude;
+			longitude = result[i].longitude;
 
-			var recordIndex = groupRiderStore.find('riderId', rider);
-			var record = groupRiderStore.getAt(recordIndex);
-			//console.log("Lat and long for rider " + rider + " is " + latitude + " " + longitude);
+			recordIndex = groupRiderStore.findExact('riderId', rider);
+			record = groupRiderStore.getAt(recordIndex);
+			console.log("Updating group " + group_code + " rider " + rider + " to " + latitude + " " + longitude);
 
 			record.set('latitude', latitude);
 			record.set('longitude', longitude);
 			record.dirty = true; 
-
-			groupRiderStore.sync(); 
+			record.commit();
 		}
 		groupRiderStore.clearFilter(true);
+		DevCycleMobile.app.getController('Map').updateMap(group_code);
+
 	},
 
 	// Adds user to specified group
