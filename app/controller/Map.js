@@ -7,7 +7,7 @@ Ext.require(['Ext.Leaflet']);
 *
 * If geolocation fails, it retries until successful.
 *
-* @tofferrosen
+* @tofferrosen, @wlodarczyk, @eklundjoshua
 */
 
 var filter = [];
@@ -21,23 +21,32 @@ Ext.define('DevCycleMobile.controller.Map', {
 			'#mapview': {
 				maprender: 'onMapRender',
 			},
+			// Action listener for handling filters
 			'button[action=toggleMapFilter]': {
 				tap: 'toggleFilter',
 			},
 		}
 	},
 
+	/**
+	Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
+	an asynchronous call so that the UI doesnt freeze when loading markers
+	**/ 
+
 	toggleFilter: function(filterType) {	
-		if (filter.indexOf(filterType.id) == -1) {
-			filter.push(filterType.id);
-			filterType.setText('<img src="resources/icons/filters/enabled/'+filterType.id+'.png"/>');
-			DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
-		}
-		else {
-			filter.splice(filter.indexOf(filterType.id), 1);
-			filterType.setText('<img src="resources/icons/filters/disabled/'+filterType.id+'.png"/>');
-			DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
-		}				
+		setTimeout(function() 
+		{
+			if (filter.indexOf(filterType.id) == -1) {
+				filter.push(filterType.id);
+				filterType.setText('<img src="resources/icons/filters/enabled/'+filterType.id+'.png"/>');
+				DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
+			}
+			else {
+				filter.splice(filter.indexOf(filterType.id), 1);
+				filterType.setText('<img src="resources/icons/filters/disabled/'+filterType.id+'.png"/>');
+				DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
+			}	
+		},50);			
 	},
 
 	/**
@@ -46,6 +55,30 @@ Ext.define('DevCycleMobile.controller.Map', {
 	init: function() {
 		this.riderPosMarker = null; // user's position marker
 	},
+
+	/**
+	* This function will be called whenever the filter for a group is selected 
+	* All users in that group will be plotted on the map through this function.
+	*/
+	mapGroups: function () {
+		var map = Ext.getCmp('mapview').map;
+		//Ensure the map has been loaded
+		if (map != undefined) {
+
+			this.groupStore = Ext.getStore("GroupInfo");
+			this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+			var riderPos = new L.latLng(40.7127837, -74.00594130000002);
+
+				// Create rider marker
+				/*this.riderPosMarker = L.userMarker(riderPos, {
+					accuracy: 10,
+					pulsing: true
+				});
+				this.riderPosMarker.addTo(map);*/ 
+				// add to map
+		}
+	},
+
 
 	/**
 	* Called when a user's location/position is successfully found.
