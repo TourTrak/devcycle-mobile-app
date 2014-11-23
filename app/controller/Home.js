@@ -185,6 +185,65 @@ Ext.define('DevCycleMobile.controller.Home', {
 	},
 
 	/**
+	* Initiates the group store and group rider store upon loading the app
+	*/
+	initGroup: function() {
+		var groupRiderStore = Ext.getStore("GroupRiderInfo");
+		var groupStore = Ext.getStore("GroupInfo");
+		//var riderRecord = riderStore.first();
+		//var thisRiderId = riderRecord.get("riderId");
+		var thisRiderId = 1;
+
+		Ext.data.JsonP.request({
+                url: this.tourInfo.data.dcs_url + "/list_group/"+ thisRiderId, 
+                type: "GET",
+                callbackKey: "callback",
+                callback: function(data, result){
+                if(data)
+                {
+                	if(result[0].success == "true")
+	                {
+	                    for(var i = 1; i<result.length; i++)
+	                    {
+	                        //groupStore.add({groupCode:result[i].code, groupName:result[i].name});
+		         			DevCycleMobile.app.getController('Groups').cacheGroup(result[i].code, result[i].name, "join");
+	                    }
+	                }
+	                else
+	                {
+	                	alert(result[0].message);
+	                }	
+                }
+                else
+                {                                    
+                   	alert("Could not reach the server. Please check your connection");
+                }                                
+            }
+        }); 
+	},
+
+	timerTask: function() {
+		if(this.timerStart == false)
+		{
+			this.timerStart = true;
+			var runner = new Ext.util.TaskRunner();
+        	var task = runner.start(this.updateGroupLocationTask);
+        }
+	},
+
+	updateGroupLocations: function() {
+		if(this.firstUpdateLocations){
+			console.log("Will update in 10 minutes");
+			this.firstUpdateLocations = false;
+		}
+		else
+		{
+			console.log("Calling update Groups in Home.js line 241");
+			DevCycleMobile.app.getController('Groups').updateGroups();
+		}
+	},
+
+	/**
 	* Called when the tab is initalized, sets up all the tabs
 	* in the home view.
 	* @private
@@ -193,6 +252,25 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
 		this.riderStore = Ext.getStore("RiderInfo"); // reference to the rider store
+		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+		this.groupStore = Ext.getStore("GroupInfo");
+
+		// Task to check the server for updates to rider positions (if in group)
+		// 600,000 ms = 10 mins
+		this.updateGroupLocationTask = {
+			run: this.updateGroupLocations,
+			//interval: 600000, 
+			interval: 20000,
+			scope: this
+		};
+
+		// Clear the group stores upon starting the app so we can get
+		// fresh data
+		this.groupStore.removeAll(true);
+		this.groupStore.sync();
+		this.groupRiderStore.removeAll(true);
+		this.groupRiderStore.sync();
+
 		this.regAttempts = 1; // # of registration attempts.
 
 		// Initalize all necessary views for tabs
@@ -214,6 +292,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		// Set active item to the map view
 		component.setActiveItem(0);
+		this.initGroup();
+		//this.timerTask();
+		//var runner = new Ext.util.TaskRunner();
+        //var task = runner.start(this.updateGroupLocationTask);
 
 		try{
 			this.registerRider();
@@ -230,6 +312,8 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 	// init and set variables.
 	init:function(){
+		this.timerStart = false;
+		this.firstUpdateLocations = true;
 		this.callParent(arguments);
 	},
 });

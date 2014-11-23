@@ -11,6 +11,14 @@ Ext.require(['Ext.Leaflet']);
 */
 
 var filter = [];
+var firstRun = 0;
+
+Ext.define('DevCycleMobile.Map.LayerControl', {
+	singleton: true,
+	lc: null,
+	groupsOverlay: [],
+	layerRef: []
+});
 
 Ext.define('DevCycleMobile.controller.Map', {
 	extend: 'Ext.app.Controller',
@@ -28,11 +36,12 @@ Ext.define('DevCycleMobile.controller.Map', {
 		}
 	},
 
-	/**
-	Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
-	an asynchronous call so that the UI doesnt freeze when loading markers
-	**/ 
+	requires:['DevCycleMobile.Map.LayerControl'],
 
+	/**
+	* Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
+	* an asynchronous call so that the UI doesnt freeze when loading markers
+	**/ 
 	toggleFilter: function(filterType) {	
 		setTimeout(function() 
 		{
@@ -50,73 +59,217 @@ Ext.define('DevCycleMobile.controller.Map', {
 	},
 
 	/**
-	Called when controller is initalize - setup all variables
+	Called when controller is initalized - setup all variables
 	**/
 	init: function() {
 		this.riderPosMarker = null; // user's position marker
 	},
 
 	/**
-	* This function will be called whenever the filter for a group is selected 
-	* All users in that group will be plotted on the map through this function.
+	* Function addGroup
+	* This function will be called from the Group.js controller and
+	* will be responsible for taking the values that were cached in
+	* the GroupInfo and GroupRiderInfo store and plotting them
+	* on the leaflet map. GroupInfo holds all groups that a user is
+	* part of and GroupRiderInfo holds all the riders that are in the
+	* associated groups that the user is a part of
 	*/
-	mapGroups: function () {
+	addGroup: function (groupCode, groupName) {
 		var map = Ext.getCmp('mapview').map;
 		//Ensure the map has been loaded
-		if (map != undefined) {
+		if (map != undefined) 
+		{
+			/**
+			* Import the Rider Store - Holds this device's rider id
+			* Fields:
+			*	riderId
+			*
+			* Import the Group Store - Holds all groups that this device's rider is a part of
+			* Fields: 
+			* 	groupName
+			*	groupCode
+			*
+			* Import the GroupRider Store - Holds all the riders, locations, groups
+			*	groupCode
+			*	riderId
+			*	latitude
+			*	longitude
+			**/
+			//var riderStore = Ext.getStore("RiderInfo");
+			var groupRiderStore = Ext.getStore("GroupRiderInfo");
+			var groupStore = Ext.getStore("GroupInfo");
+			var newGroup = L.layerGroup(); //Create a layer group
+	
+			groupStore.filter('groupCode', groupCode);
+			var groupRecord = groupStore.getAt(0);
 
-			this.groupStore = Ext.getStore("GroupInfo");
-			this.groupRiderStore = Ext.getStore("GroupRiderInfo");
-			var riderPos = new L.latLng(40.7127837, -74.00594130000002);
-			var riderMarker;
+			var col = groupRecord.get('groupColor');
 
-			var riderRecords = this.groupRiderStore;
-			var groupRecords = this.groupStore;
+			var riderMarker = L.userMarker();
+			var riderPos;
 
-			var groupRiderArray = new Array(5);
-			var varColor = ['blue', 'red', 'green'];
-			var countThis = 0;
-			//var markersArray = [];
+			groupRiderStore.filter('groupCode', groupCode);
 
-			//groupCode
-		    //riderId
-            //Create an overlay
-			var groupsOverlay ={};
-			//Iterate over every group in the store
-			groupRecords.each(function (groupRecord) {
-				console.log("Parsing map group " + groupRecord.get('groupName'));
-			    //Filter the riderRecords by the current group code
-				var newGroup = L.layerGroup(); //Create a layer group
-				var groupName = groupRecord.get('groupName'); //Get the group code
-				riderRecords.filter('groupCode', groupRecord.get('groupCode'));
-				riderRecords.each(function (riderRecord) {
-					/*'groupCode',
-					  'riderId',
-					  'latitude',
-		 	          'longitude'
-		 	        */
-		 	        console.log("Rider " + riderRecord.get('riderId') + " for group " + groupRecord.get('groupName'));
-		 	        riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
-                    //Create the marker
-		 	        riderMarker = L.userMarker(riderPos, {
-		 	        	color: varColor[countThis],
-		 	            accuracy: 10,
-		 	            pulsing: true,
-		 	            smallIcon: true
-		 	        });
-		 	        riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <p><b>Riding Group:</b> " + groupRecord.get('groupName') + "</p>");
-		 	        newGroup.addLayer(riderMarker);//Add markers to a group		 	                      		
-				}); //End of Rider Records Each Loop 
-				groupsOverlay[groupName] = newGroup; //Add to overlay     
-				riderRecords.clearFilter(true);
-				countThis++;
-			}); // End of Group Records Each Loop
-			L.control.layers(null, groupsOverlay).addTo(map); //Add overlay to map (to get checkboxes) without a base layer (radio buttons)
+			groupRiderStore.each(function (riderRecord) 
+			{
+				/**
+				* NOTE: This line needed to be added in in order to correctly
+				* get the color set for the rider markers. L.userMarker holds onto
+				* the previous instance for the riderRecord object in each group and then
+				* gets set to the correct color "color". Adding this line forces the color 
+				* to be correctly set for every riderRecord, not just every record after the first
+				*/
+	 		    riderMarker.setColor(col);
+
+	 		    // Create the rider marker
+	 			riderPos = new L.latLng(riderRecord.get('latitude'), riderRecord.get('longitude'));
+	 			riderMarker = L.userMarker(riderPos, {
+	 	       		color: col,
+	 	        	accuracy: 10,
+	 	        	pulsing: true,
+	 	        	smallIcon: true,
+	 	        	riderId: riderRecord.get('riderId'),
+	 	        	groupCode: groupCode
+	 	    	});
+	 	    	riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <h2><b>Group: </b> " + groupRecord.get('groupCode') + "</h2>", {offset: new L.Point(0,-20)});
+	 	    	newGroup.addLayer(riderMarker);	 	                      		
+			}); 
+
+			/**
+			* These parallel arrays hold reference to the group layers added so 
+			* they can be later removed if a user leaves that group
+			**/
+			DevCycleMobile.Map.LayerControl.groupsOverlay.push(newGroup); 
+			DevCycleMobile.Map.LayerControl.layerRef.push(groupCode);  
+			groupRiderStore.clearFilter(true);
+			groupStore.clearFilter(true);
+
+			/**
+			* If the user joined their first group, then add the layer control icon
+			* to the map, otherwise, just update the current layer control with a new
+			* Group
+			*/
+			if(!DevCycleMobile.Map.LayerControl.lc)
+			{
+				DevCycleMobile.Map.LayerControl.lc = new L.control.layers(null, null);
+				DevCycleMobile.Map.LayerControl.lc.addOverlay(newGroup, groupName);
+				DevCycleMobile.Map.LayerControl.lc.addTo(map); 
+
+				DevCycleMobile.app.getController('Home').timerTask();
+			}
+			else
+			{
+				DevCycleMobile.Map.LayerControl.lc.addOverlay(newGroup, groupName);
+				DevCycleMobile.Map.LayerControl.lc._update();
+			}
+
+			//this.updateMap();
 			map._onResize();
-
 		}
 	},
 
+	/**
+	* Function: updateMap
+	* Description:  
+	*/
+	updateMap: function(group_code) {
+		var map = Ext.getCmp('mapview').map;
+
+		if(map != undefined)
+		{
+			var groupLayers = DevCycleMobile.Map.LayerControl.groupsOverlay;
+			var refArray = DevCycleMobile.Map.LayerControl.layerRef;
+
+			var groupStore = Ext.getStore("GroupInfo");
+			var groupRiderStore = Ext.getStore("GroupRiderInfo");
+			
+			var currLayer;
+			var currRider;
+			var riderLat;
+			var riderLong;
+			var riderId;
+			var record;
+			var index;
+
+			var riderLatLong;
+			/*for(var i = 0; i<groupLayers.length; i++) 
+			{
+				currLayer = groupLayers[i];
+				currLayerCode = refArray[i];*/
+				index = refArray.indexOf(group_code);
+				currLayer = groupLayers[index];
+
+				console.log("Updating map for " + group_code);
+				groupRiderStore.filter('groupCode', group_code);
+
+				currLayer.eachLayer(function (riderRecord) 
+				{
+					riderId = riderRecord.options.riderId;
+					//riderLat = riderRecord.latitude;
+					//riderLong = riderRecord.longitude;
+					riderLatLong = riderRecord.getLatLng().toString();
+					console.log("Iterated over " + riderId + " for group code " + group_code + " latlong: " + riderLatLong);
+					index = groupRiderStore.findExact('riderId', riderId);
+					record = groupRiderStore.getAt(index);
+					riderLat = record.get('latitude');
+					riderLong = record.get('longitude');
+					console.log("The lat and long from the store for riderId " + riderId + " and group code " + group_code + " is " + riderLat + " " + riderLong);
+					riderRecord.setLatLng([riderLat, riderLong]).update();
+					//riderRecord.update();
+				});
+				groupRiderStore.clearFilter(true);
+			
+			//}
+			DevCycleMobile.Map.LayerControl.lc._update();
+			map._onResize();
+		}
+	},
+
+	/**
+	* Function: removeGroup
+	* Description: remove group takes the group code as a parameter
+	* and removes the current group from the map and the layer control
+	**/
+	removeGroup: function (code, name, action) {
+		var map = Ext.getCmp('mapview').map;
+		//Ensure the map has been loaded
+		if (map != undefined) {
+			/**
+			* These parallel arrays hold reference to all the groups added
+			* to the map. They should be indexed to find the group you want
+			**/
+			var groupArray = DevCycleMobile.Map.LayerControl.groupsOverlay;
+			var refArray = DevCycleMobile.Map.LayerControl.layerRef;
+			var index = 0;
+
+			for(var i = 0; i < refArray.length; i++)
+			{
+				if(refArray[i] == code)
+				{
+					index = i;
+					break;
+				}
+			}
+
+			var removeThis = groupArray[index];
+
+			// Remove the group from the arrays 
+			DevCycleMobile.Map.LayerControl.groupsOverlay.splice(index, 1);
+			DevCycleMobile.Map.LayerControl.layerRef.splice(index, 1);
+
+			// Remove the group from the leaflet layer control
+			DevCycleMobile.Map.LayerControl.lc.removeLayer(removeThis);
+			DevCycleMobile.Map.LayerControl.lc._update();
+			map.removeLayer(removeThis);
+			map._onResize();
+
+			if(action == "update")
+			{
+				DevCycleMobile.app.getController('Groups').updateJSONPRequest(code, name);
+
+			}
+		}
+	},
 
 	/**
 	* Called when a user's location/position is successfully found.

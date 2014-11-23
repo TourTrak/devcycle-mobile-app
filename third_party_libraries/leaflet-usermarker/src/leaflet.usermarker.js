@@ -60,7 +60,9 @@
             smallIcon: false,
             accuracy: 0,
             circleOpts: circleStyle,
-            color: 'blue'
+            color: 'blue',
+            riderId: null,
+            groupCode: null
         },
 
         initialize: function(latlng, options) {
