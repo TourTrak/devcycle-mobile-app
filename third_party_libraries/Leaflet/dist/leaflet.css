@@ -293,6 +293,7 @@
 .leaflet-control-layers .leaflet-control-layers-list,
 .leaflet-control-layers-expanded .leaflet-control-layers-toggle {
 	display: none;
+	font-size:18px; /*Change text box text size*/
 	}
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
 	display: block;

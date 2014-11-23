@@ -15,10 +15,6 @@
 			"path": "cordova.js",
 			"remote": true
 		},
-		{
-			"path": "cordova.js",
-			"remote": true
-		},
         {
             "path": "resources/js/sencha-touch.js",
             "x-bootstrap": true
@@ -128,8 +124,6 @@
 
     "resources": [
 		"config.xml",
-		"config.xml",
-		    "config.xml",
         "resources/images",
         "resources/icons",
         "resources/startup",
