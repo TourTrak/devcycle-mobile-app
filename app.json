@@ -119,8 +119,7 @@
 
     "resources": [
 		"config.xml",
-		    "config.xml",
-        "resources/images",
+		        "resources/images",
         "resources/icons",
         "resources/startup",
         "resources/data",
