@@ -37,7 +37,7 @@ Ext.define('DevCycleMobile.view.Groups', {
                 title: 'My Groups',
                 layout: 'vbox',
                 items: [                    
-                    {html: '<b>Your riding groups:</b>'},                    
+                    {html: '<br><b>Your riding groups:</b><br>'},                    
                     {flex: 4, xtype: 'list', id: 'myGroupsList', store: 'GroupInfo', itemTpl: '{groupCode}: {groupName}'},
                     {xtype: 'button', itemId: 'remove_group', text: 'Remove', action: 'remove'}
                 ],      
@@ -85,7 +85,7 @@ Ext.define('DevCycleMobile.view.Groups', {
                 title: 'Join Group',
                 layout: 'vbox',
                 items: [
-                    {html: '<p><b>Enter your group code (e.g. BNY123):</b></p><p>If a member has already created created a group, enter the associated code.</p>'},
+                    {html: '<br><p><b>Enter your group code (e.g. BNY123):</b></p>'},
 					{xtype: 'textfield', id: 'join_group_code', label: 'Code'},
 					{xtype: 'button', itemId: 'join_group', text: 'Join', action: 'join'}
                 ]
@@ -95,7 +95,7 @@ Ext.define('DevCycleMobile.view.Groups', {
                 title: 'Create Group',
                 layout: 'vbox',
                 items: [
-                    {html: '<p><b>Enter the name of your riding group:</b></p>'},
+                    {html: '<br><p><b>Enter the name of your riding group:</b></p>'},
 					{xtype: 'textfield', id: 'group_name', label: 'Name'},
 					{xtype: 'textfield', id: 'create_group_code', label: 'Code'},
                     {xtype: 'button', itemId: 'suggest_groupCode', text: 'Suggest', action:'suggest'},
