@@ -50,6 +50,9 @@ Ext.define('DevCycleMobile.controller.Home', {
 	    		"riderId": rider_id
 	   		}]
 	    	);
+
+		// Initialize the Rider's Groups
+		this.initGroup(rider_id);
 	},
 
 	/**
@@ -180,6 +183,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 				} else {
 					// already registered so no need to re-register
 					this.startTracking(riderInfo.data.riderId);
+
 				}
 			}
 	},
@@ -187,12 +191,16 @@ Ext.define('DevCycleMobile.controller.Home', {
 	/**
 	* Initiates the group store and group rider store upon loading the app
 	*/
-	initGroup: function() {
+	initGroup: function(rider_id) {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 		var groupStore = Ext.getStore("GroupInfo");
+		var riderStore = Ext.getStore("GroupInfo");
+
 		//var riderRecord = riderStore.first();
 		//var thisRiderId = riderRecord.get("riderId");
-		var thisRiderId = 1;
+		//var thisRiderId = 1;
+
+		var thisRiderId = rider_id;
 
 		Ext.data.JsonP.request({
                 url: this.tourInfo.data.dcs_url + "/list_group/"+ thisRiderId, 
@@ -205,7 +213,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 	                {
 	                    for(var i = 1; i<result.length; i++)
 	                    {
-	                        //groupStore.add({groupCode:result[i].code, groupName:result[i].name});
+	                    	console.log("CACHING " + i);
 		         			DevCycleMobile.app.getController('Groups').cacheGroup(result[i].code, result[i].name, "join");
 	                    }
 	                }
@@ -233,12 +241,11 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 	updateGroupLocations: function() {
 		if(this.firstUpdateLocations){
-			console.log("Will update in 10 minutes");
+			console.log("Will update groups in 1 minute");
 			this.firstUpdateLocations = false;
 		}
 		else
 		{
-			console.log("Calling update Groups in Home.js line 241");
 			DevCycleMobile.app.getController('Groups').updateGroups();
 		}
 	},
@@ -260,7 +267,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		this.updateGroupLocationTask = {
 			run: this.updateGroupLocations,
 			//interval: 600000, 
-			interval: 20000,
+			interval: 60000,
 			scope: this
 		};
 
@@ -292,7 +299,6 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		// Set active item to the map view
 		component.setActiveItem(0);
-		this.initGroup();
 		//this.timerTask();
 		//var runner = new Ext.util.TaskRunner();
         //var task = runner.start(this.updateGroupLocationTask);

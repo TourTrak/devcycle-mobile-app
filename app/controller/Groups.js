@@ -69,6 +69,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	* @param name : The name of the group you'd like to cache
 	*/
 	cacheGroup: function(code, name, action) {
+		console.log("Made it into cache group");
 		this.groupStore = Ext.getStore("GroupInfo");
 		var groupColor = this.chooseAColor();
 
@@ -110,6 +111,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	cacheGroupRiders: function(code, rider, latitude, longitude) {
 		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
 	
+		console.log("Caching rider" + rider + "for code " + code);
 		var newGroupRider = new DevCycleMobile.model.GroupRider({
 			groupCode: code,
 			riderId: rider,
@@ -174,7 +176,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		groupRiderStore.sync();
 		//groupRiderStore.reload();
 		Ext.getCmp('myGroupsList').refresh();
-		DevCycleMobile.app.getController('Map').removeGroup(group_code, null, null);
+		DevCycleMobile.app.getController('Map').removeGroup(group_code);
 	},
 
 	// Populates the group rider store which 
@@ -182,6 +184,12 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	populateGroupRiderStore: function(group_code, group_name) {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
+		var riderStore = Ext.getStore("RiderInfo");
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
+		var riderRecord = riderStore.first();
+		var thisRiderId = riderRecord.get("riderId");
 
 
 		//Send a get request to the server which will join the given group
@@ -197,13 +205,17 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	                {
 		        		for(var i = 1; i<result.length; i++)
 	                    {
+	                    	console.log("in populate result[i].riderId " + result[i].riderId);
 							DevCycleMobile.app.getController('Groups').cacheGroupRiders(group_code, result[i].riderId, result[i].latitude, result[i].longitude);	        			
 		        		}
 		        		DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);
 		        	}
 		        	else
 		        	{
-		        		alert(result[0].message);
+		        		// Alert there is no location data to get and add that group to the 
+		        		// layer control
+		        		console.log("No location data to get yet");
+		        		DevCycleMobile.app.getController('Map').addGroup(group_code, group_name);
 		        	}	
 
 	        	}
@@ -250,7 +262,10 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			        	}
 			        	else
 			        	{
-			        		alert(result[0].message);
+			        		// No need to do anything here, if there is no location data for any users no need to
+			        		// update the map
+			        		console.log("No location data for group yet" + group_code);
+			        		//alert(result[0].message);
 			        	}	
 
 		        	}
@@ -284,9 +299,13 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			longitude = result[i].longitude;
 
 			recordIndex = groupRiderStore.findExact('riderId', rider);
+			if(recordIndex == -1)
+			{
+				this.cacheGroupRiders(group_code, rider, latitude, longitude); 
+				recordIndex = groupRiderStore.findExact('riderId', rider);
+			}
 			record = groupRiderStore.getAt(recordIndex);
-			console.log("Updating group " + group_code + " rider " + rider + " to " + latitude + " " + longitude);
-
+			
 			record.set('latitude', latitude);
 			record.set('longitude', longitude);
 			record.dirty = true; 
@@ -305,10 +324,11 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var riderStore = Ext.getStore("RiderInfo");
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
 
-		//var riderRecord = riderStore.first();
-		//var thisRiderId = riderRecord.get("riderId");
-		var thisRiderId = 1;
+		var riderRecord = riderStore.first();
+		var thisRiderId = riderRecord.get("riderId");
+		//var thisRiderId = 1;
 
+		console.log("THE RIDER ID IS " + thisRiderId);
 	
 		var groupCode = Ext.getCmp('join_group_code').getValue();
 		if(groupCode != '' && groupCode.length >=CODE_MIN && groupCode.length <=CODE_MAX)
@@ -373,6 +393,11 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		//Ext.getCmp('load-indicator').show();
 		var groupName = Ext.getCmp('group_name').getValue();
 		var groupCode = Ext.getCmp('create_group_code').getValue();
+		
+		var riderStore = Ext.getStore("RiderInfo");
+		var riderRecord = riderStore.first();
+		var thisRiderId = riderRecord.get("riderId");
+
 
 		var canCreateGroup = false;
 		if(groupName != '' && groupName.length <= NAME_MAX) {
@@ -399,11 +424,15 @@ Ext.define('DevCycleMobile.controller.Groups', {
 					scope: this,
 					params: {
 						name: groupName,
-						rider_id: '1',
+						rider_id: thisRiderId,
 						aff_code: groupCode.toUpperCase(),
 					},
 					success: function(response){
 						console.log("Successfully created group");
+						// The server takes care of joining it automatically for the user
+						// Now the client side must cache this.
+						var upperGroupCode = groupCode.toUpperCase();
+						DevCycleMobile.app.getController('Groups').cacheGroup(upperGroupCode, groupName, "join");
 					},
 	    			failure: function(response){
 						console.log("Failed creating group")	
@@ -423,10 +452,10 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		var groupInfoStore = Ext.getStore("GroupInfo");
 		var groupRiderInfoStore = Ext.getStore("GroupRiderInfo");
-		//var riderStore = Ext.getStore("RiderInfo");
-		//var riderRecord = riderStore.first();
-		//var thisRiderId = riderRecord.get("riderId");
-		var thisRiderId = 1;
+		var riderStore = Ext.getStore("RiderInfo");
+		var riderRecord = riderStore.first();
+		var thisRiderId = riderRecord.get("riderId");
+		//var thisRiderId = 1;
 		
 		// Gets group that is highlighted within my groups list
 		var selectedGroup = Ext.getCmp('myGroupsList').getSelection();
