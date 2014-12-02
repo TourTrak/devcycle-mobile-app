@@ -52,12 +52,14 @@ Ext.define('DevCycleMobile.view.map.Container', {
                     ],
             },
             {
+				
+				html: '<div id="mapLabel">Rider markers will refresh every 10 minutes</div>',
                 xtype: 'leaflet',
                 useCurrentLocation: true,
 				handler: function(){
 					//Empty Handler
-				}	
-            },
+				}
+            }
 
         ], // End items
         listeners:
