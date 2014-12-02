@@ -354,6 +354,18 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		}		
 	},
 	
+	suggestCode: function() {
+		var groupName = Ext.getCmp('group_name').getValue();
+		var groupCode;
+		if (groupName.length < 3) {
+			groupCode = 'BNY';
+		} else {
+			groupCode = groupName.replace(/\s/g, '').substring(0,3);
+		}		
+		var randomCode = Math.floor(Math.random() * (9999 - 1000)) + 1000;
+		Ext.getCmp('create_group_code').setValue(groupCode.toUpperCase() + randomCode);
+	},
+	
 	// Handles creating a group based on provided user input, sends it off to postGroup 
 	createGroup: function() {			
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
@@ -366,7 +378,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		if(groupName != '' && groupName.length <= NAME_MAX) {
 			if(groupCode == '') {
 				// generate random code 
-				groupCode = Math.random().toString(36).slice(2).substring(0,7);
+				groupCode = Math.random().toString(36).slice(2).substring(0,3);
 				Ext.getCmp('create_group_code').setValue(groupCode.toUpperCase());
 				canCreateGroup = true;
 			}
