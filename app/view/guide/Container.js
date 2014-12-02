@@ -9,6 +9,9 @@ Ext.define('DevCycleMobile.view.guide.Container', {
         'Ext.plugin.PullRefresh'
     ],
 	config: {
+	style: {
+					backgroundImage: 'url(resources/images/carbon_fibre.png)'
+				},
         
         layout: 'fit',
 		tab: {
@@ -23,6 +26,9 @@ Ext.define('DevCycleMobile.view.guide.Container', {
 		items: [
             {
                 xtype: 'main',
+				style: {
+					backgroundImage: 'url(resources/images/carbon_fibre.png)'
+				}
             }
         ]
 	}
