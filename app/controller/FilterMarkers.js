@@ -48,16 +48,17 @@ Ext.define('DevCycleMobile.controller.FilterMarkers', {
     		}
     	});
 
-		//Remove all markers that do not match the filter criteria
+		// Remove all markers that do not match the filter criteria
+		// but keep all undefined markers as this is the tour route (blue line on map)
 		console.log("Filtering the markers based on toggled criteria");
 		markerCluster.eachLayer(function (layer) {
 	       	for(var i = 0; i<filter.length; i++) {
-	           	if((filter.indexOf(layer.options.markerType)) == -1) {
+	           	if(((filter.indexOf(layer.options.markerType)) == -1) && !(typeof layer.options.markerType === "undefined") ) {
 	           		//console.log("Removing layer: " + layer.options.markerType);
 	           		markerCluster.removeLayer(layer); 
 	           	}
 	       	}
-	    }); 
+	    });  
 			
     	// Re-render the map after filtering
 		if (map != undefined){
