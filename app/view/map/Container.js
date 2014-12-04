@@ -56,8 +56,8 @@ Ext.define('DevCycleMobile.view.map.Container', {
                 useCurrentLocation: true,
 				handler: function(){
 					//Empty Handler
-				}	
-            },
+				}
+            }
 
         ], // End items
         listeners:
@@ -192,7 +192,16 @@ Ext.define('DevCycleMobile.view.map.Container', {
                width: 55,
                height: 55,
            },
-
+		   
+		   {
+		       id: 'car',
+               xtype: 'button',
+               text: '<img src="resources/icons/filters/disabled/car.png"/>',
+			         cls: 'img_left',
+               action: 'toggleMapFilter',
+               width: 55,
+               height: 55,
+           },
            {
 		       id: 'subway',
                xtype: 'button',

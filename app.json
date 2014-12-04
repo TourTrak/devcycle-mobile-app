@@ -48,7 +48,7 @@
 
     "css": [
         {
-            "path": "resources/css/app.css",
+            "path": "resources/css/mountainview.css",
             "platform": ["desktop", "chrome", "safari", "firefox"],
             "update": "delta"
         },
@@ -93,7 +93,7 @@
             "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css"
         },
         {
-            "path": "resources/css/cupertino.css",
+            "path": "resources/css/mountainview.css",
             "platform": ["ios"],
             "update": "delta"
         },
