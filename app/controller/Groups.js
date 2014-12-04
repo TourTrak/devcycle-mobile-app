@@ -330,7 +330,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		console.log("THE RIDER ID IS " + thisRiderId);
 	
-		var groupCode = Ext.getCmp('join_group_code').getValue();
+		var groupCode = Ext.getCmp('join_group_code').getValue().toUpperCase();
 		if(groupCode != '' && groupCode.length >=CODE_MIN && groupCode.length <=CODE_MAX)
 		{
 
@@ -350,6 +350,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			                {
 									// Cache the group in local storage
 									DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[1].name, "join");
+									alert("Joined group successfully!");
 							}
 							else
 							{
@@ -433,6 +434,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 						// Now the client side must cache this.
 						var upperGroupCode = groupCode.toUpperCase();
 						DevCycleMobile.app.getController('Groups').cacheGroup(upperGroupCode, groupName, "join");
+						alert("Joined group successfully!");
 					},
 	    			failure: function(response){
 						console.log("Failed creating group")	
