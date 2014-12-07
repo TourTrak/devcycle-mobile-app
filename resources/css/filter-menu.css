@@ -24,7 +24,7 @@
 	z-index: 1000;
 	position: absolute;
 	width: 100%;
-	height: 100%;
+	height: 12px;
 	font-size: 10px;
 	vertical-align: text-bottom;
 }
