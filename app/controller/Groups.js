@@ -351,6 +351,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 									// Cache the group in local storage
 									DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, result[1].name, "join");
 									alert("Joined group successfully!");
+									Ext.getCmp('join_group_code').setValue("");
 							}
 							else
 							{
@@ -415,39 +416,119 @@ Ext.define('DevCycleMobile.controller.Groups', {
 				alert('Error: Customized group code must be between 3 to 7 characters');
 			}
 
-			//name/rider_id/aff_code
-			
 			if (canCreateGroup)
 			{
-				Ext.Ajax.request({
-					url: this.tourInfo.data.dcs_url + "/create_group/",
-					method: "POST",
-					scope: this,
-					params: {
-						name: groupName,
-						rider_id: thisRiderId,
-						aff_code: groupCode.toUpperCase(),
-					},
-					success: function(response){
-						console.log("Successfully created group");
-						// The server takes care of joining it automatically for the user
-						// Now the client side must cache this.
-						var upperGroupCode = groupCode.toUpperCase();
-						DevCycleMobile.app.getController('Groups').cacheGroup(upperGroupCode, groupName, "join");
-						alert("Joined group successfully!");
-					},
-	    			failure: function(response){
-						console.log("Failed creating group")	
-					}
+				
+				// Check the code to see if it's in use first
+				groupCode = groupCode.toUpperCase();
+				Ext.data.JsonP.request({
+		    	url: this.tourInfo.data.dcs_url + "/check_code/" + groupCode + "/",
+		        type: "GET",
+		        callbackKey: "callback",
+		        callback: function(data, result)
+			    {
+			          	// Successful response from the server
+			        	if(data)
+			            {
+			            	// True means that it's avail
+					        if(result[0].success == "true")
+					        {
+					        	var upperGroupCode = groupCode.toUpperCase();
+					        	// Create the group now. This was placed in another funciton
+					        	// otherwise javascript will run it asynchronously
+					        	DevCycleMobile.app.getController('Groups').createGroupAction(upperGroupCode, groupName);
+					        }
+							else
+							{
+								var upperGroupCode = groupCode.toUpperCase();
+								alert("Code " + upperGroupCode + " already exists");
+							}
+						}
+						else
+						{
+							alert("Could not reach the server. Please check your connection");
+						}
+				}
 				});
-			}		
+			}
+
+			
 		}
 		else {
-			alert('Error: Please enter a group name (MAX: 30 characters)');
+			alert('Error: Please enter a valid group name (MAX: 30 characters)');
 		}		
 		//Ext.getCmp('load-indicator').hide();
 	},
+
+	/**
+	* funciton created outside of createGroup because
+	* of javascript asynchronously checking the code and
+	* creating the group.
+	*/
+	createGroupAction: function(groupCode, groupName) {
+
+		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
+
+		var riderStore = Ext.getStore("RiderInfo");
+		var riderRecord = riderStore.first();
+		var thisRiderId = riderRecord.get("riderId");
+
+		 // Create the group if it is an avail code
+		 Ext.Ajax.request({
+		 	url: this.tourInfo.data.dcs_url + "/create_group/",
+			method: "POST",
+			scope: this,
+			params: {
+				name: groupName,
+				rider_id: thisRiderId,
+				aff_code: groupCode,
+			},
+			success: function(response){
+				DevCycleMobile.app.getController('Groups').cacheGroup(groupCode, groupName, "join");
+				alert("Succesfully Created & Joined Group!\n"+groupCode+": "+groupName+"\nPlease see the My Groups tab");
+				Ext.getCmp('create_group_code').setValue("");
+				Ext.getCmp('group_name').setValue("");
+			},
+			failure: function(response){
+				console.log("Failed creating group")	
+			},
+		});
+
+	},
+
+	checkCode: function(groupCode) {
+		console.log("In check code");
+		var returnStatus = false;
+		groupCode = groupCode.toUpperCase();
+		//Check the group code with the server to ensure it can exist
+		Ext.data.JsonP.request({
+	    	url: this.tourInfo.data.dcs_url + "/check_code/" + groupCode + "/",
+	        type: "GET",
+	        callbackKey: "callback",
+	        callback: function(data, result)
+	        {
+	          	// Successful response from the server
+	        	if(data)
+	            {
+			        if(result[0].success == "true")
+			        {
+			        	returnStatus = true;
+			        }
+					else
+					{
+						alert(result[0].message);
+					}
+				}
+				else
+				{
+					alert("Could not reach the server. Please check your connection");
+				}
+				console.log("Returning " + returnStatus);
+				return returnStatus;
+			}
+		});
 		
+	},	
 	// Removes user from specified group 
 	removeGroup: function() {
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
