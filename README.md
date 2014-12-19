@@ -21,6 +21,7 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 	* (Windows) During installation, Ensure to select "Add Ruby Executables to your PATH"
 * Java Runtime Environment > 1.7
 * Java Development Kit 7
+* Python (Latest version)
 * Ant
 	* (Windows) [https://code.google.com/p/winant/](https://code.google.com/p/winant/)
 	* (Mac/Linux/Unix) See [http://ant.apache.org/manual/install.html](http://ant.apache.org/manual/install.html)
@@ -28,8 +29,7 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 	* Install this version by typing in the terminal 
 		* (Windows) `npm install -g cordova@3.6.3-0.2.13`
 		* (Mac/Linux/Unix) `sudo npm install -g 3.6.3-0.2.13`
-	* Next, run this command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
-* Sencha Command Line Tools (Current Version)
+* Sencha Command Line Tools 5.0.0.160 http://www.sencha.com/products/sencha-cmd/download/sencha-cmd-5.0.0
 * SASS (Ruby Gem)
 	* Type `gem install sass` after ruby has been installed
 * Compass (Ruby Gem)
@@ -73,8 +73,9 @@ Below is a list of the required plugins. We have included a script that will fet
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
 5. Add all the required plugins for this project by going into the application root folder and running the plugin script. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows.
 5. If you need to add in any other plugins you can do so by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. 
-6. Go back to the application root folder and run `sencha app build native` to build the native applications.
-7. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
+6. Run this command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
+7. Go back to the application root folder and run `sencha app build native` to build the native applications.
+8. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 
 ###Adding custom splashscreen for Android to app
 1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin. Please see Android plugin repository.
