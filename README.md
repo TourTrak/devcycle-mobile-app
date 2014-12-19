@@ -52,7 +52,7 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 	3. From the project root directory: `sencha cordova remove`
 	4. `npm install -g cordova@VERSION_HERE`
 	5. Reinitialize the project with `sencha cordova init edu.rit.se.tourtrak TourTrak` and follow the "Set up" instructions again.
-4. If you ever retrieve the following errors while running `sencha app build native`, run the command again. 
+4. If you ever receive the following errors while running `sencha app build native`, run the command again. 
 	`[ERR] The following error occurred while executing this line:
 	\.sencha\app\build-impl.xml:427: 
 	\.sencha\app\cordova-impl.xml:118: 
