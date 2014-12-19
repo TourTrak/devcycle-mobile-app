@@ -51,6 +51,11 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 	3. From the project root directory: `sencha cordova remove`
 	4. `npm install -g cordova@VERSION_HERE`
 	5. Reinitialize the project with `sencha cordova init edu.rit.se.tourtrak TourTrak` and follow the "Set up" instructions again.
+4. If you ever receive the following errors while running `sencha app build native`, run the command again. 
+	`[ERR] The following error occurred while executing this line:
+	\.sencha\app\build-impl.xml:427: 
+	\.sencha\app\cordova-impl.xml:118: 
+	antlib.xml:584: shellscript returned: 1`
 
 ###Required Cordova Plugins
 Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py` for mac, or `python fetchPluginsWindows.py` for Windows. This assumes that the locations of these repos are still as written below.
