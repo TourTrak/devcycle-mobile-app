@@ -7,6 +7,12 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 
 [TourTrak server repository]: https://github.com/tofferrosen/devcycle-server.git
 
+###Special Notes Before Setting Up Your Environment
+* <b>Cordova versions</b> can be very touchy. Install the <b>exact version</b> on this guide in order to obtain complete functionatliy. 
+Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cordova versions that did not work with the TourTrak app. We found this by issue by browsing to the app's "About" section, clicking on "Tracking", and then clicking the "Pause/Resume" button. Upon clicking the button, there was no response by the UI. The ideal response would be a call to the backend through a cordova/phonegap plugin which would change the red "Pause" button, to a green "Resume" button. 
+
+	To see if the Cordova/Phonegap plugins are being called by the app, open `index.html` in the devcycle-mobile-app root after running `sencha app build native`. Upon hitting the Pause button, a popup dialog will show the Cordova/Phonegap call and finally the Pause button would go to a Resume button state. If it doesn't work, it is likely that Cordova is not working properly with the project.
+	
 ###Dependencies Required for Building Project
 * Git 
 * NodeJS (Current Version)
@@ -15,6 +21,7 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 	* (Windows) During installation, Ensure to select "Add Ruby Executables to your PATH"
 * Java Runtime Environment > 1.7
 * Java Development Kit 7
+* Python (Latest version)
 * Ant
 	* (Windows) [https://code.google.com/p/winant/](https://code.google.com/p/winant/)
 	* (Mac/Linux/Unix) See [http://ant.apache.org/manual/install.html](http://ant.apache.org/manual/install.html)
@@ -22,7 +29,7 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 	* Install this version by typing in the terminal 
 		* (Windows) `npm install -g cordova@3.3.1-0.1.2`
 		* (Mac/Linux/Unix) `sudo npm install -g cordova@3.3.1-0.1.2`
-* Sencha Command Line Tools (Current Version)
+* Sencha Command Line Tools 5.0.0.160 http://www.sencha.com/products/sencha-cmd/download/sencha-cmd-5.0.0
 * SASS (Ruby Gem)
 	* Type `gem install sass` after ruby has been installed
 * Compass (Ruby Gem)
@@ -65,8 +72,9 @@ Below is a list of the required plugins. We have included a script that will fet
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
 5. Add all the required plugins for this project by going into the application root folder and running the plugin script. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows.
 5. If you need to add in any other plugins you can do so by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. 
-6. Go back to the application root folder and run `sencha app build native` to build the native applications.
-7. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
+6. Run this command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
+7. Go back to the application root folder and run `sencha app build native` to build the native applications.
+8. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 
 ###Adding custom splashscreen for Android to app
 1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin. Please see Android plugin repository.
