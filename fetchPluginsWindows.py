@@ -19,7 +19,8 @@ os.system("cordova -d plugin add https://github.com/apache/cordova-plugin-device
 #os.system("cordova -d plugin add https://github.com/phonegap-build/PushPlugin")
 
 # Add the tourtrak iOS plugin
-os.system("cordova -d plugin add https://github.com/cck9672/geolocation-ios-noapp.git")
+os.system("cordova -d plugin add https://github.com/LeeFischman/tourtrak-ios-plugin.git")
+# Original os.system("cordova -d plugin add https://github.com/cck9672/geolocation-ios-noapp.git")
 
 # Add the tourtrak android plugin
 os.system("cordova -d plugin add https://github.com/tofferrosen/tourtrak-android-plugin.git")

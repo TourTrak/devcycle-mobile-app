@@ -8,7 +8,7 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 [TourTrak server repository]: https://github.com/tofferrosen/devcycle-server.git
 
 ###Special Notes Before Setting Up Your Environment
-* <b>Cordova versions</b> can be very touchy. Install the <b>exact version</b> on this guide in order to obtain complete functionatliy. 
+* <b>Cordova versions</b> can be very touchy. Install the <b>exact version</b> on this guide in order to obtain complete functionality. 
 Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cordova versions that did not work with the TourTrak app. We found this by issue by browsing to the app's "About" section, clicking on "Tracking", and then clicking the "Pause/Resume" button. Upon clicking the button, there was no response by the UI. The ideal response would be a call to the backend through a cordova/phonegap plugin which would change the red "Pause" button, to a green "Resume" button. 
 
 	To see if the Cordova/Phonegap plugins are being called by the app, open `index.html` in the devcycle-mobile-app root after running `sencha app build native`. Upon hitting the Pause button, a popup dialog will show the Cordova/Phonegap call and finally the Pause button would go to a Resume button state. If it doesn't work, it is likely that Cordova is not working properly with the project.
@@ -67,7 +67,7 @@ Below is a list of the required plugins. We have included a script that will fet
 * [Cordova Geolocation Plugin]
 
 [Cordova Device Plugin]: https://github.com/apache/cordova-plugin-device.git
-[The TourTrak iOS Plugin]: https://github.com/cck9672/geolocation-ios-noapp.git
+[The TourTrak iOS Plugin]: https://github.com/LeeFischman/tourtrak-ios-plugin
 [The TourTrak Android Plugin]: https://github.com/tofferrosen/tourtrak-android-plugin.git
 [Cordova Geolocation Plugin]: https://github.com/apache/cordova-plugin-geolocation.git
 
@@ -86,6 +86,12 @@ Below is a list of the required plugins. We have included a script that will fet
 1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin. Please see Android plugin repository.
 2. In the TourTrak.java file, insert the following line of code between super.OnCreate() and super.init():
   super.setIntegerProperty("splashscreen", R.drawable.splash);
+
+###Setting up Location Services on iOS 8
+1. In the Tourtrak-Info.plist, change `NSLocationWhenInUseUsageDescription` to `NSLocationAlwaysUsageDescription`
+2. In CDVLocation.m, add `[self.locationManager requestAlwaysAuthorization];` in the startLocation method after `#ifdef_PHONE_8.X `
+
+Please see the Apple Development Guide in the reference folder for more details and pictures.
 
 ###Adding/Modifying FAQ tags and questions
 ####Adding/modifying  questions for a tag
@@ -268,4 +274,3 @@ Here, the prefix we use is bikeny.  Please keep the documentation up to date wit
 
 ### More
 We have included some system diagrams and the offline map architecture under the references folder.
-
