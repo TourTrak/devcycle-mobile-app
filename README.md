@@ -29,7 +29,7 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 	* Install this version by typing in the terminal 
 		* (Windows) `npm install -g cordova@3.6.3-0.2.13`
 		* (Mac/Linux/Unix) `sudo npm install -g 3.6.3-0.2.13`
-* Sencha Command Line Tools 5.0.0.160 http://www.sencha.com/products/sencha-cmd/download/sencha-cmd-5.0.0
+* Sencha Command Line Tools 6.0.2.14 available [here](https://www.sencha.com/products/extjs/cmd-download/)
 * SASS (Ruby Gem)
 	* Type `gem install sass` after ruby has been installed
 * Compass (Ruby Gem)
