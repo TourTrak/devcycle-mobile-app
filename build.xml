@@ -6,7 +6,6 @@
     limit your changes to this file.
     -->
     <import file="${basedir}/.sencha/app/cordova-impl.xml"/>
-<import file="${basedir}/.sencha/app/cordova-impl.xml"/>
 <import file="${basedir}/.sencha/app/build-impl.xml"/>
 
     <!--
