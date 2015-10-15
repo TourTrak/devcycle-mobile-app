@@ -245,6 +245,11 @@ Ext.define('Ext.Leaflet', {
     setMapCenter: function(coordinates) {
         var me = this,
             map = me.getMap();
+            
+        if (!map) {
+            me.renderMap();
+            map = me.getMap();
+        }
 
         if (map && coordinates) {
             if (!me.isPainted()) {
