@@ -265,6 +265,28 @@ Ext.define('DevCycleMobile.controller.Map', {
 			map._onResize();
 		}
 	},
+	/*
+	* This function will be called whenever the filter for a group is selected 
+	* All users in that group will be plotted on the map through this function.
+	*/
+	mapGroups: function () {
+		var map = Ext.getCmp('mapview').map;
+		//Ensure the map has been loaded
+		if (map != undefined) {
+
+			this.groupStore = Ext.getStore("GroupInfo");
+			this.groupRiderStore = Ext.getStore("GroupRiderInfo");
+			var riderPos = new L.latLng(40.7127837, -74.00594130000002);
+
+				// Create rider marker
+				/*this.riderPosMarker = L.userMarker(riderPos, {
+					accuracy: 10,
+					pulsing: true
+				});
+				this.riderPosMarker.addTo(map);*/ 
+				// add to map
+		}
+	},
 
 	/**
 	* Called when a user's location/position is successfully found.

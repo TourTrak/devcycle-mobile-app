@@ -204,7 +204,6 @@ Ext.define('DevCycleMobile.view.map.Container', {
                width: 55,
                height: 55,
            },  
-
            {
 		       id: 'subway',
                xtype: 'button',
