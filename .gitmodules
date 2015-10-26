@@ -1,0 +1,3 @@
+[submodule "third_party_libraries/leaflet-usermarker"]
+	path = third_party_libraries/leaflet-usermarker
+	url = https://github.com/heyman/leaflet-usermarker.git
