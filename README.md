@@ -78,9 +78,10 @@ Below is a list of the required plugins. We have included a script that will fet
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
 5. Add all the required plugins for this project by going into the application root folder and running the plugin script. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows. If python cannot be found, Go to the Windows 'System' Environment variables and add the python directory to the 'Path'
 6. If you need to add in any other plugins you can do so by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`.
-7. 'cd' to the 'cordova' directory and then run the following command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
-8. Go back to the application root folder and run `sencha app build native` to build the native applications.
-9. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
+7. Execute `git submodule update --recursive` in order to pull down leaflet-usermarker into the third party libraries
+8. 'cd' to the 'cordova' directory and then run the following command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
+9. Go back to the application root folder and run `sencha app build native` to build the native applications.
+10. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 
 ###Adding custom splashscreen for Android to app
 1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin. Please see Android plugin repository.
