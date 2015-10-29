@@ -5,7 +5,6 @@ Requires sudo access. Mac/Linux support only
 
 Usage: sudo python fetchPlugins.py
 Author: Christoffer Rosen <cbr4830@rit.edu>
-Editted By: Conor Wright <cgw5994@rit.edu>
 '''
 
 import os

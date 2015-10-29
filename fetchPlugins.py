@@ -13,20 +13,16 @@ import os
 os.chdir("cordova")
 
 # Add the cordova device plugin
-os.system("sudo cordova -d plugin add https://github.com/apache/cordova-plugin-device.git")
-
-# Add the cordova push notification plugin
-#os.system("sudo cordova -d plugin add https://github.com/phonegap-build/PushPlugin")
+os.system("sudo cordova plugin add https://github.com/apache/cordova-plugin-device.git")
 
 # Add the tourtrak iOS plugin
-os.system("sudo cordova -d plugin add https://github.com/LeeFischman/tourtrak-ios-plugin.git")
-# Original- os.system("sudo cordova -d plugin add https://github.com/cck9672/geolocation-ios-noapp.git")
+os.system("sudo cordova plugin add https://github.com/TourTrak/tourtrak-ios-plugin.git")
 
 # Add the tourtrak android plugin
-os.system("sudo cordova -d plugin add https://github.com/tofferrosen/tourtrak-android-plugin.git")
+os.system("sudo cordova plugin add https://github.com/TourTrak/tourtrak-android-plugin.git")
 
 # Add the cordova geolocation plugin
-os.system("sudo cordova -d plugin add https://github.com/apache/cordova-plugin-geolocation.git")
+os.system("sudo cordova plugin add https://github.com/apache/cordova-plugin-geolocation.git")
 
 # Print out all the plugins installed for the user
-os.system("sudo cordova -d plugin ls")
+os.system("sudo cordova plugin ls")
