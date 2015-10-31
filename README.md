@@ -67,8 +67,8 @@ Below is a list of the required plugins. We have included a script that will fet
 * [Cordova Geolocation Plugin]
 
 [Cordova Device Plugin]: https://github.com/apache/cordova-plugin-device.git
-[The TourTrak iOS Plugin]: https://github.com/LeeFischman/tourtrak-ios-plugin
-[The TourTrak Android Plugin]: https://github.com/tofferrosen/tourtrak-android-plugin.git
+[The TourTrak iOS Plugin]: https://github.com/TourTrak/tourtrak-ios-plugin
+[The TourTrak Android Plugin]: https://github.com/TourTrak/tourtrak-android-plugin.git
 [Cordova Geolocation Plugin]: https://github.com/apache/cordova-plugin-geolocation.git
 
 ###Set up
