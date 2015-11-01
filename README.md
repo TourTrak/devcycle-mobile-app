@@ -59,7 +59,7 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 	antlib.xml:584: shellscript returned: 1`
 
 ###Required Cordova Plugins
-Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py` for mac, or `python fetchPluginsWindows.py` for Windows. This assumes that the locations of these repos are still as written below.
+Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py`. This assumes that the locations of these repos are still as written below.
 
 * [Cordova Device Plugin]
 * [The TourTrak iOS Plugin]
@@ -67,8 +67,8 @@ Below is a list of the required plugins. We have included a script that will fet
 * [Cordova Geolocation Plugin]
 
 [Cordova Device Plugin]: https://github.com/apache/cordova-plugin-device.git
-[The TourTrak iOS Plugin]: https://github.com/LeeFischman/tourtrak-ios-plugin
-[The TourTrak Android Plugin]: https://github.com/tofferrosen/tourtrak-android-plugin.git
+[The TourTrak iOS Plugin]: https://github.com/TourTrak/tourtrak-ios-plugin.git
+[The TourTrak Android Plugin]: https://github.com/TourTrak/tourtrak-android-plugin.git
 [Cordova Geolocation Plugin]: https://github.com/apache/cordova-plugin-geolocation.git
 
 ###Set up
