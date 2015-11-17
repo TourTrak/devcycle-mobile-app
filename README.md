@@ -25,16 +25,10 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 * Ant
 	* (Windows) [https://code.google.com/p/winant/](https://code.google.com/p/winant/)
 	* (Mac/Linux/Unix) See [http://ant.apache.org/manual/install.html](http://ant.apache.org/manual/install.html)
-* Cordova 3.6.3-0.2.13 (This version addressed security issues that Google flagged and resulted in removal from the Google Play Store)
+* Cordova 5.4+
 	* Install this version by typing in the terminal 
-		* (Windows) `npm install -g cordova@3.6.3-0.2.13`
-		* (Mac/Linux/Unix) `sudo npm install -g 3.6.3-0.2.13`
+		* `[sudo] npm install -g cordova@5.4`
 * Sencha Command Line Tools 6.0.2.14 available [here](https://www.sencha.com/products/extjs/cmd-download/)
-* SASS (Ruby Gem)
-	* Type `gem install sass` after ruby has been installed
-* Compass (Ruby Gem)
-	* Type `gem install compass` after ruby has been installed
-	*
 * Android SDK (if building native Android)
 	* Ensure that you add the Android SDK to the PATH with access to the following directories:
 		* platform-tools
@@ -50,7 +44,7 @@ Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cor
 	1. `npm remove -g cordova`
 	2. To view a list of cordova versions: `npm view cordova versions`
 	3. From the project root directory: `sencha cordova remove`
-	4. `npm install -g cordova@VERSION_HERE`
+	4. `npm install -g cordova@5.4`
 	5. Reinitialize the project with `sencha cordova init edu.rit.se.tourtrak TourTrak` and follow the "Set up" instructions again.
 4. If you ever receive the following errors while running `sencha app build native`, run the command again. 
 	`[ERR] The following error occurred while executing this line:
@@ -79,7 +73,7 @@ Below is a list of the required plugins. We have included a script that will fet
 5. Add all the required plugins for this project by going into the application root folder and running the plugin script. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows. If python cannot be found, Go to the Windows 'System' Environment variables and add the python directory to the 'Path'
 6. If you need to add in any other plugins you can do so by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`.
 7. Execute `git submodule update --init --recursive` in order to pull down leaflet-usermarker into the third party libraries
-8. 'cd' to the 'cordova' directory and then run the following command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
+8. 'cd' to the 'cordova' directory and then run the following command to update the Android Platform to address further security issues: `cordova platform add android@4.1.1 --usenpm`
 9. Go back to the application root folder and run `sencha app build native` to build the native applications.
 10. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 
@@ -271,7 +265,8 @@ Here, the prefix we use is bikeny.  Please keep the documentation up to date wit
 [leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
 
 ### Versions
-<b>Sencha Touch: </b>2.3.1 -> <b>ExtJs:</b> </b>4.1.0
+* Sencha Touch: 2.3.1 
+* ExtJs: 4.1.0
 
 ### More
 We have included some system diagrams and the offline map architecture under the references folder.
