@@ -6,9 +6,9 @@ and Cordova for the TD Five Boro Bike Tour. To setup the dashboard/server that
 is used alongside this application, please refer first to our [TourTrak server
 repository].
 
-![screenshot](https://raw.githubusercontent.com/tofferrosen/devcycle-mobile-app/master/preview.png)
+![screenshot](https://raw.githubusercontent.com/TourTrak/devcycle-mobile-app/master/preview.png)
 
-[TourTrak server repository]: https://github.com/tofferrosen/devcycle-server.git
+[TourTrak server repository]: https://github.com/TourTrak/devcycle-server.git
 
 ###Special Notes Before Setting Up Your Environment
 * <b>Cordova versions</b> can be very touchy. Install the <b>exact version</b>
@@ -251,7 +251,7 @@ GMT time, before converting that to the unix timestamp.
 To generate a new set of tiles, please refer to our [BikeNY-red] repository
 which includes instructions for setup.
 
-[BikeNY-red]: https://github.com/tofferrosen/bikeNY-red.git
+[BikeNY-red]: https://github.com/TourTrak/bikeNY-red.git
 
 ###Modifying the Points of Interests
 All points of interested are parsed from a KML file located under
@@ -269,7 +269,7 @@ The locations themselves are parsed in the kml.js file inside
 third_party_libraries folder, which needs to be modified if new types of icons
 are desired. 
 
-[Map Marker Icon Area Tags]: https://github.com/tofferrosen/devcycle-mobile-app/raw/master/reference/Map%20Marker%20Icon%20Area%20Tags.docx
+[Map Marker Icon Area Tags]: https://github.com/TourTrak/devcycle-mobile-app/raw/master/reference/Map%20Marker%20Icon%20Area%20Tags.docx
 
 [Google Earth]: http://www.google.com/earth/
 
