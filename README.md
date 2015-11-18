@@ -10,27 +10,8 @@ repository].
 
 [TourTrak server repository]: https://github.com/TourTrak/devcycle-server.git
 
-###Special Notes Before Setting Up Your Environment
-* <b>Cordova versions</b> can be very touchy. Install the <b>exact version</b>
-  on this guide in order to obtain complete functionality. 
-
-Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few
-Cordova versions that did not work with the TourTrak app. We found this by issue
-by browsing to the app's "About" section, clicking on "Tracking", and then
-clicking the "Pause/Resume" button. Upon clicking the button, there was no
-response by the UI. The ideal response would be a call to the backend through a
-cordova/phonegap plugin which would change the red "Pause" button, to a green
-"Resume" button. 
-
-To see if the Cordova/Phonegap plugins are being called by the app, open
-`index.html` in the devcycle-mobile-app root after running `sencha app build
-native`. Upon hitting the Pause button, a popup dialog will show the
-Cordova/Phonegap call and finally the Pause button would go to a Resume button
-state. If it doesn't work, it is likely that Cordova is not working properly
-with the project.
-
-###Dependencies Required for Building Project
-* Git 
+## Dependencies Required for Building Project
+* Git
 * NodeJS (Current Version)
 	* [http://nodejs.org/](http://nodejs.org/ "NodeJS Site")
 * Ruby 1.9.3
@@ -43,7 +24,7 @@ with the project.
 	* (Windows) [https://code.google.com/p/winant/](https://code.google.com/p/winant/)
 	* (Mac/Linux/Unix) See [http://ant.apache.org/manual/install.html](http://ant.apache.org/manual/install.html)
 * Cordova 5.4+
-	* Install this version by typing in the terminal 
+	* Install this version by typing in the terminal
 		* `[sudo] npm install -g cordova@5.4`
 * Sencha Command Line Tools 6.0.2.14 available [here](https://www.sencha.com/products/extjs/cmd-download/)
 * Android SDK (if building native Android)
@@ -52,28 +33,7 @@ with the project.
 		* tools
 * iOS SDK (if building native iOS)
 
-
-###Debugging Development Environment Issues (Tips)
-1. Check that all tool dependencies can be ran from the command line
-   (Environment variables set correctly)
-   * Ex: cordova, ant, sencha, etc.
-2. Upon running sencha commands like `sencha app build native`, use the -d debug
-   flag: `sencha -d app build native`. If your command prompt buffer overflows,
-   redirect the ouput to a text file: `sencha -d app build native > Debug.txt`
-3. If you feel that Cordova is not working properly, you can remove the current
-   version and try it with a different one with the following steps:
-   1. `npm remove -g cordova`
-   2. To view a list of cordova versions: `npm view cordova versions`
-   3. From the project root directory: `sencha cordova remove`
-   4. `npm install -g cordova@5.4`
-   5. Reinitialize the project with `sencha cordova init edu.rit.se.tourtrak TourTrak` and follow the "Set up" instructions again.
-4. If you ever receive the following errors while running `sencha app build native`, run the command again. 
-	`[ERR] The following error occurred while executing this line:
-	\.sencha\app\build-impl.xml:427: 
-	\.sencha\app\cordova-impl.xml:118: 
-	antlib.xml:584: shellscript returned: 1`
-
-###Required Cordova Plugins
+### Required Cordova Plugins
 Below is a list of the required plugins. We have included a script that will
 fetch these automatically by simply running `python fetchPlugins.py`. This
 assumes that the locations of these repos are still as written below.
@@ -114,6 +74,27 @@ assumes that the locations of these repos are still as written below.
     can open the Android project in Eclipse as an existing android project, and
     the iOS project in XCode.
 
+###Debugging Development Environment Issues (Tips)
+1. Check that all tool dependencies can be ran from the command line
+   (Environment variables set correctly)
+   * Ex: cordova, ant, sencha, etc.
+2. Upon running sencha commands like `sencha app build native`, use the -d debug
+   flag: `sencha -d app build native`. If your command prompt buffer overflows,
+   redirect the ouput to a text file: `sencha -d app build native > Debug.txt`
+3. If you feel that Cordova is not working properly, you can remove the current
+   version and try it with a different one with the following steps:
+   1. `npm remove -g cordova`
+   2. To view a list of cordova versions: `npm view cordova versions`
+   3. From the project root directory: `sencha cordova remove`
+   4. `npm install -g cordova@5.4`
+   5. Reinitialize the project with `sencha cordova init edu.rit.se.tourtrak TourTrak` and follow the "Set up" instructions again.
+4. If you ever receive the following errors while running `sencha app build native`, run the command again.
+	`[ERR] The following error occurred while executing this line:
+	\.sencha\app\build-impl.xml:427:
+	\.sencha\app\cordova-impl.xml:118:
+	antlib.xml:584: shellscript returned: 1`
+
+
 ###Adding custom splashscreen for Android to app
 1. Ensure your splashscreen .png file is being passed along by the TourTrak
    Android cordova plugin. Please see Android plugin repository.
@@ -137,7 +118,7 @@ and pictures.
    tags they represent.
 2. Open the tag's json file in the text editor of your choice. All json files
    used by the AccordionList that powers the FAQ follow the same format, seen
-   below: 
+   below:
 ```
 {
     "items" : [{
@@ -258,7 +239,7 @@ All points of interested are parsed from a KML file located under
 resources/data.kml. To modify this file in a GUI-like way, you can open it
 directly in [Google Earth] where you are free to add new markers or modify any
 existing markers. Re-extract the KML file, saving it as data.kml, and replace
-the previous one. 
+the previous one.
 
 To get the appropriate marker icons, please refer to our [Map Marker Icon Area
 Tags] document under the reference directory, In the description for each
@@ -267,7 +248,7 @@ Instructions are included in the aformentioned document.
 
 The locations themselves are parsed in the kml.js file inside
 third_party_libraries folder, which needs to be modified if new types of icons
-are desired. 
+are desired.
 
 [Map Marker Icon Area Tags]: https://github.com/TourTrak/devcycle-mobile-app/raw/master/reference/Map%20Marker%20Icon%20Area%20Tags.docx
 
@@ -279,7 +260,7 @@ below I have written a guide on how  on how to do it! All icons are scalable
 vector icons that can easily though CSS be customize in nearly any way
 imaginable. It's completely scalable and look great on even retina displays.
 Below I'll go through how to create new, custom icon font using your very own
-vector images. 
+vector images.
 
 ##### Create new icon font
 I used and recommend [IcoMoon] for creating your own icon font. This is an
@@ -297,7 +278,7 @@ bottom of the screen.
 If you have codes that conflict, you need to reset them. Before you downloaded
 the icon font, you can click on the letter+number combination below the name of
 the icon, an arrow will appear on its right -> clicking this will give you an
-option to reset the code to start with something new. 
+option to reset the code to start with something new.
 
 ##### Using the new icon font
 Extract the downloaded zip files and you should have a style.css and a fonts
@@ -307,7 +288,7 @@ Rename the font folder as well, such as "MyRadNewIcons". Copy the
 folder of the mobile application. Next, copy the "MyRadNewIcons.css" (previously
 known as style.css) file to resources/css. You need to slight modify this file,
 so open it up in your text editor. The first thing you should see is something
-akin to.. 
+akin to..
 
 ```
 @font-face {
@@ -324,7 +305,7 @@ akin to..
 
 You need to change the src:url for all of them by removing fonts/ and then
 prepending "../fonts/MyRadNewIcons(previously known as fonts)/". The above now
-looks something like this.. 
+looks something like this..
 
 ```
 @font-face {
@@ -340,11 +321,11 @@ looks something like this..
 ```
 
 Please ignore that there are some slight more differences in the endings as it's
-a simply copy and paste of two differnt things. 
+a simply copy and paste of two differnt things.
 
 [IcoMoon]: http://icomoon.io/
 
-##### Updating the KML parser to include your new icons as new area tags. 
+##### Updating the KML parser to include your new icons as new area tags.
 Now, you are ready to use your new icon font. In the KML parser under
 third_party_libraries/kml.js, find the function createCustomMarker. Create a new
 if block with the name of the area tag you want to associate this icon with when
@@ -379,7 +360,7 @@ contribute more marker icons. Thanks!
 [leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
 
 ### Versions
-* Sencha Touch: 2.3.1 
+* Sencha Touch: 2.3.1
 * ExtJs: 4.1.0
 
 ### More
