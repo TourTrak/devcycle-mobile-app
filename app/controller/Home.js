@@ -99,23 +99,7 @@ Ext.define('DevCycleMobile.controller.Home', {
           self.startTracking(rider_id);
         },
         failure: function (response, options) {
-          console.error('Registration Failure');
-          console.error(response);
-          console.error('retry attempts: ' + self.regAttempts);
-
-          // if less than 10 attempts at made, use the reg retry init limit
-          if (self.regAttempts < 10) {
-            setTimeout(function () {
-              self.registerRider();
-            }, self.tourInfo.data.reg_retry_init * 1000);
-          } else {
-            // otherwise, use the reg retry after limit
-            setTimeout(function () {
-              self.registerRider();
-            }, self.tourInfo.data.reg_retry_after * 1000);
-          }
-
-          self.regAttempts++;
+          failedResponse(response, options);
         }
       });
     } else {
@@ -147,23 +131,7 @@ Ext.define('DevCycleMobile.controller.Home', {
             self.startTracking(rider_id);
           },
           failure: function (response, options) {
-            console.error('Registration Failure');
-            console.error(response);
-            console.error('retry attempts: ' + self.regAttempts);
-
-            // if less than 10 attempts at made, use the reg retry init limit
-            if (self.regAttempts < 10) {
-              setTimeout(function () {
-                self.registerRider();
-              }, self.tourInfo.data.reg_retry_init * 1000);
-            } else {
-              // otherwise, use the reg retry after limit
-              setTimeout(function () {
-                self.registerRider();
-              }, self.tourInfo.data.reg_retry_after * 1000);
-            }
-
-            self.regAttempts++;
+            failedResponse(response, options);
           }
         });
       } else {
@@ -296,3 +264,23 @@ Ext.define('DevCycleMobile.controller.Home', {
     this.callParent(arguments);
   }
 });
+
+function failedResponse (response, options) {
+  console.error('Registration Failure');
+  console.error(response);
+  console.error('retry attempts: ' + self.regAttempts);
+
+  // if less than 10 attempts at made, use the reg retry init limit
+  if (self.regAttempts < 10) {
+    setTimeout(function () {
+      self.registerRider();
+    }, self.tourInfo.data.reg_retry_init * 1000);
+  } else {
+    // otherwise, use the reg retry after limit
+    setTimeout(function () {
+      self.registerRider();
+    }, self.tourInfo.data.reg_retry_after * 1000);
+  }
+
+  self.regAttempts++;
+}
