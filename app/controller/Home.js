@@ -71,10 +71,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 	registerRider: function(){
 
 		var self = this;
+		var rider_id = Ext.device.Device.uuid; 
 
 		// If we haven't registered yet, get rider id from server
 		if(this.riderStore.getCount() == 0){ //& Ext.browser.is.PhoneGap){
-			var rider_id = null; // rider_id to get from ajax response
 
 	  		// Register rider
 	  		Ext.Ajax.request({
@@ -84,12 +84,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 					params: {
 						os: Ext.os.name + " " + Ext.os.version,
 						device: Ext.os.name,
-						tourId: this.tourInfo.data.tour_id
+						tourId: this.tourInfo.data.tour_id,
+                        id: rider_id
 					},
 					success: function(response){
-
-						var decodedResponse = Ext.JSON.decode(response.responseText);
-						rider_id = decodedResponse.rider_id;
 
 						var newRider = new DevCycleMobile.model.Rider({
 							riderId: rider_id,
@@ -141,12 +139,11 @@ Ext.define('DevCycleMobile.controller.Home', {
 							params: {
 								os: Ext.os.name + " " + Ext.os.version,
 								device: Ext.os.name,
-								tourId: this.tourInfo.data.tour_id
+								tourId: this.tourInfo.data.tour_id,
+                                id: rider_id
 							},
 							success: function(response){
 								var riderInfo = self.riderStore.first();
-								var decodedResponse = Ext.JSON.decode(response.responseText);
-								rider_id = decodedResponse.rider_id;
 
 								// Update the rider info (id) from the production server
 								riderInfo.set('riderId', rider_id);
