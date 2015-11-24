@@ -5,8 +5,11 @@ build/
 # sass cache folder
 resources/sass/.sass-cache
 
-# .DS_Store
+# Temp Files
 .DS_Store
+*.swp
+*.swo
+*~
 
 # Cordova folder
 cordova/
