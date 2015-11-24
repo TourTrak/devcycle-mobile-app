@@ -72,7 +72,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		var rider_id = Ext.device.Device.uuid;
 
 		// If we haven't registered yet, get rider id from server
-		if (this.riderStore.getCount() === 0) { // & Ext.browser.is.PhoneGap) {
+		if (this.riderStore.getCount() === 0) {
 
 			// Register rider
 			Ext.Ajax.request({
@@ -148,10 +148,6 @@ Ext.define('DevCycleMobile.controller.Home', {
 		var groupRiderStore = Ext.getStore('GroupRiderInfo');
 		var groupStore = Ext.getStore('GroupInfo');
 		var riderStore = Ext.getStore('GroupInfo');
-
-		// var riderRecord = riderStore.first();
-		// var thisRiderId = riderRecord.get('riderId');
-		// var thisRiderId = 1;
 
 		var thisRiderId = rider_id;
 		DevCycleMobile.app.getController('Groups').clearStore('Group');
@@ -242,9 +238,6 @@ Ext.define('DevCycleMobile.controller.Home', {
 
 		// Set active item to the map view
 		component.setActiveItem(0);
-		// this.timerTask();
-		// var runner = new Ext.util.TaskRunner();
-		// var task = runner.start(this.updateGroupLocationTask);
 
 		try {
 			this.registerRider();
