@@ -17,7 +17,8 @@ well as the actual build process.
 
 ### Dependencies
 The following lists of dependencies *must* be installed prior to building the
-application.
+application.  Executables for each dependency must be accessible through your
+`PATH`.
 
 * [Git](https://git-scm.com)
 * NodeJS (Current Version)
@@ -46,8 +47,7 @@ application.
 * iOS SDK (if building native iOS)
 
 #### Required Cordova Plugins
-Several cordova plugins are required to build the app.  Running `python
-fetchPlugins.py` from the root directory will install all dependencies.  The
+ from the root directory will install all dependencies.  The
 full list of requirements can be found by opening that script.
 
 ### Building the Project
@@ -56,14 +56,14 @@ full list of requirements can be found by opening that script.
    devcycle-mobile-app`
 2. Run the command `sencha cordova init edu.rit.se.tourtrak TourTrak`.  This
    will initialize the cordova project within the `cordova` directory.
-3. Install the required plugins as discussed in the [previous section][plugins].
+3. Install the required plugins by running `python fetchPlugins.py` from the
+   terminal
 4. Execute `git submodule update --init --recursive` in order to pull down
    [leaflet-usermarker] into the third party libraries
-5. Run `sencha app build native` build the native applications.  By default,
-   this will build both the Android and iOS applications.  If you are unable to
-   build the iOS application (i.e. not on a Mac), you must first update
-   [this line][native-build-line] to remove `ios`.  This will build the
-   applications into `cordova/platforms/PLATFORM`.
+5. If you are not planning on building both Android and iOS apps, you should
+   update [this line][native-build-line] to include only the platform you wish
+   to build for.
+6. Run `sencha app build native` build the apps into `cordova/platforms/`.
 
 #### Debugging Development Environment Issues (Tips)
 * Sencha commands can be run with the flag `-d`, you will see the full debug
