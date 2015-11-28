@@ -1,16 +1,17 @@
 /**
 * Custom tab bar component for displaying the
-* the tabs dynamically through the Home contoller
+* the tabs dynamically through the Home controller
 **/
 
 Ext.define('DevCycleMobile.view.Home', {
 	extend: 'Ext.tab.Panel',
 	xtype: 'home',
 	id: 'home',
+
 	config: {
 		id: 'home',
-		tabBarPosition: 'bottom',
-        
+		tabBarPosition: 'bottom', 
+		
 	},
 
 	// Fires when the Panel is initialized

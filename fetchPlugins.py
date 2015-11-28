@@ -1,31 +1,28 @@
 '''
 This script fetches all the required plugins automatically.
 Assumes cordova has been added successfully to the project.
-Requires sudo access. Mac/Linux support only
 
-Usage: sudo python fetchPlugins.py
-Author: Christoffer Rosen <cbr4830@rit.edu>
+Usage: python fetchPlugins.py
 '''
 
+import subprocess
 import os
 
 # Change to the cordova directory
 os.chdir("cordova")
 
 # Add the cordova device plugin
-os.system("sudo cordova -d plugin add https://github.com/apache/cordova-plugin-device.git")
-
-# Add the cordova push notification plugin
-#os.system("sudo cordova -d plugin add https://github.com/phonegap-build/PushPlugin")
+subprocess.call("cordova -d plugin add https://github.com/apache/cordova-plugin-device.git", shell=True)
 
 # Add the tourtrak iOS plugin
-os.system("sudo cordova -d plugin add https://github.com/cck9672/geolocation-ios-noapp.git")
+subprocess.call("cordova -d plugin add https://github.com/TourTrak/tourtrak-ios-plugin.git", shell=True)
 
 # Add the tourtrak android plugin
-os.system("sudo cordova -d plugin add https://github.com/tofferrosen/tourtrak-android-plugin.git")
+subprocess.call("cordova -d plugin add https://github.com/TourTrak/tourtrak-android-plugin.git", shell=True)
 
 # Add the cordova geolocation plugin
-os.system("sudo cordova -d plugin add https://github.com/apache/cordova-plugin-geolocation.git")
+subprocess.call("cordova -d plugin add https://github.com/apache/cordova-plugin-geolocation.git", shell=True)
 
 # Print out all the plugins installed for the user
-os.system("sudo cordova -d plugin ls")
+subprocess.call("cordova -d plugin ls", shell=True)
+

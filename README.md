@@ -1,4 +1,4 @@
-devcycle-mobile-app
+TourTrak (devcycle-mobile-app)
 ===================
 
 devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch and Cordova for the TD Five Boro Bike Tour. To setup the dashboard/server that is used alongside this application, please refer first to our [TourTrak server repository].
@@ -7,18 +7,59 @@ devcycle-mobile-app is a hybrid iOS/Android application built using Sencha Touch
 
 [TourTrak server repository]: https://github.com/tofferrosen/devcycle-server.git
 
+###Special Notes Before Setting Up Your Environment
+* <b>Cordova versions</b> can be very touchy. Install the <b>exact version</b> on this guide in order to obtain complete functionality. 
+Team Centri-Pedal Motion (RIT 2014) ran into an issue where there were a few Cordova versions that did not work with the TourTrak app. We found this by issue by browsing to the app's "About" section, clicking on "Tracking", and then clicking the "Pause/Resume" button. Upon clicking the button, there was no response by the UI. The ideal response would be a call to the backend through a cordova/phonegap plugin which would change the red "Pause" button, to a green "Resume" button. 
+
+	To see if the Cordova/Phonegap plugins are being called by the app, open `index.html` in the devcycle-mobile-app root after running `sencha app build native`. Upon hitting the Pause button, a popup dialog will show the Cordova/Phonegap call and finally the Pause button would go to a Resume button state. If it doesn't work, it is likely that Cordova is not working properly with the project.
+
 ###Dependencies Required for Building Project
+* Git 
+* NodeJS (Current Version)
+	* [http://nodejs.org/](http://nodejs.org/ "NodeJS Site")
 * Ruby 1.9.3
+	* (Windows) During installation, Ensure to select "Add Ruby Executables to your PATH"
 * Java Runtime Environment > 1.7
-* Cordova > 3.2.0
-* Sencha Command Line Tools > 4.0.1.45
+* Java Development Kit 7
+* Python (Latest version)
+* Ant
+	* (Windows) [https://code.google.com/p/winant/](https://code.google.com/p/winant/)
+	* (Mac/Linux/Unix) See [http://ant.apache.org/manual/install.html](http://ant.apache.org/manual/install.html)
+* Cordova 3.6.3-0.2.13 (This version addressed security issues that Google flagged and resulted in removal from the Google Play Store)
+	* Install this version by typing in the terminal 
+		* (Windows) `npm install -g cordova@3.6.3-0.2.13`
+		* (Mac/Linux/Unix) `sudo npm install -g 3.6.3-0.2.13`
+* Sencha Command Line Tools 6.0.2.14 available [here](https://www.sencha.com/products/extjs/cmd-download/)
 * SASS (Ruby Gem)
+	* Type `gem install sass` after ruby has been installed
 * Compass (Ruby Gem)
+	* Type `gem install compass` after ruby has been installed
+	*
 * Android SDK (if building native Android)
+	* Ensure that you add the Android SDK to the PATH with access to the following directories:
+		* platform-tools
+		* tools
 * iOS SDK (if building native iOS)
 
+
+###Debugging Development Environment Issues (Tips)
+1. Check that all tool dependencies can be ran from the command line (Environment variables set correctly)
+  Ex: cordova, ant, sencha, etc.
+2. Upon running sencha commands like `sencha app build native`, use the -d debug flag: `sencha -d app build native`. If your command prompt buffer overflows, redirect the ouput to a text file: `sencha -d app build native > Debug.txt`
+3. If you feel that Cordova is not working properly, you can remove the current version and try it with a different one with the following steps:
+	1. `npm remove -g cordova`
+	2. To view a list of cordova versions: `npm view cordova versions`
+	3. From the project root directory: `sencha cordova remove`
+	4. `npm install -g cordova@VERSION_HERE`
+	5. Reinitialize the project with `sencha cordova init edu.rit.se.tourtrak TourTrak` and follow the "Set up" instructions again.
+4. If you ever receive the following errors while running `sencha app build native`, run the command again. 
+	`[ERR] The following error occurred while executing this line:
+	\.sencha\app\build-impl.xml:427: 
+	\.sencha\app\cordova-impl.xml:118: 
+	antlib.xml:584: shellscript returned: 1`
+
 ###Required Cordova Plugins
-Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py` for mac, or `python fetchPluginsWindows.py` for Windows. This assumes that the locations of these repos are still as written below.
+Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py`. This assumes that the locations of these repos are still as written below.
 
 * [Cordova Device Plugin]
 * [The TourTrak iOS Plugin]
@@ -26,8 +67,8 @@ Below is a list of the required plugins. We have included a script that will fet
 * [Cordova Geolocation Plugin]
 
 [Cordova Device Plugin]: https://github.com/apache/cordova-plugin-device.git
-[The TourTrak iOS Plugin]: https://github.com/cck9672/geolocation-ios-noapp.git
-[The TourTrak Android Plugin]: https://github.com/tofferrosen/tourtrak-android-plugin.git
+[The TourTrak iOS Plugin]: https://github.com/TourTrak/tourtrak-ios-plugin.git
+[The TourTrak Android Plugin]: https://github.com/TourTrak/tourtrak-android-plugin.git
 [Cordova Geolocation Plugin]: https://github.com/apache/cordova-plugin-geolocation.git
 
 ###Set up
@@ -35,15 +76,23 @@ Below is a list of the required plugins. We have included a script that will fet
 2. Clone this repository and move into this folder.
 3. Run the command `sencha cordova init edu.rit.se.tourtrak TourTrak`
 4. Open the cordova.local.properties file with your favorite text editor and type the platform you intend to build i.e. android or ios or both.
-4. Go into your cordova folder
-5. If you did not run our script, add all the required plugins in the order specified above by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`. We have also included a handy script to automate this for you if you have Python installed. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows!
-6. Go back to the application root folder and run `sencha app build native` to build the native applications.
-7. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
+5. Add all the required plugins for this project by going into the application root folder and running the plugin script. Just run `python fetchPlugins.py` for mac or `python fetchPluginsWindows.py` for Windows. If python cannot be found, Go to the Windows 'System' Environment variables and add the python directory to the 'Path'
+6. If you need to add in any other plugins you can do so by running `cordova plugin add {git-url}`. For example, one valid command would be `cordova plugin add https://github.com/apache/cordova-plugin-device.git`.
+7. Execute `git submodule update --init --recursive` in order to pull down leaflet-usermarker into the third party libraries
+8. 'cd' to the 'cordova' directory and then run the following command to update the Android Platform to address further security issues: `cordova platform add android@3.5.1 --usenpm`
+9. Go back to the application root folder and run `sencha app build native` to build the native applications.
+10. The native apps will be in the cordova/platform/{ios or android} folder. You can open the Android project in Eclipse as an existing android project, and the iOS project in XCode.
 
 ###Adding custom splashscreen for Android to app
 1. Ensure your splashscreen .png file is being passed along by the TourTrak Android cordova plugin. Please see Android plugin repository.
 2. In the TourTrak.java file, insert the following line of code between super.OnCreate() and super.init():
   super.setIntegerProperty("splashscreen", R.drawable.splash);
+
+###Setting up Location Services on iOS 8
+1. In the Tourtrak-Info.plist, change `NSLocationWhenInUseUsageDescription` to `NSLocationAlwaysUsageDescription`
+2. In CDVLocation.m, add `[self.locationManager requestAlwaysAuthorization];` in the startLocation method after `#ifdef_PHONE_8.X `
+
+Please see the Apple Development Guide in the reference folder for more details and pictures.
 
 ###Adding/Modifying FAQ tags and questions
 ####Adding/modifying  questions for a tag
@@ -221,6 +270,8 @@ Here, the prefix we use is bikeny.  Please keep the documentation up to date wit
 
 [leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
 
+### Versions
+<b>Sencha Touch: </b>2.3.1 -> <b>ExtJs:</b> </b>4.1.0
+
 ### More
 We have included some system diagrams and the offline map architecture under the references folder.
-

@@ -36,7 +36,8 @@ Ext.application({
         'DevCycleMobile.store.Equipment',
         'DevCycleMobile.store.Misc',
         'DevCycleMobile.store.Credits',
-        'DevCycleMobile.store.AboutTracking'
+        'DevCycleMobile.store.AboutTracking',
+		'DevCycleMobile.store.MyGroups'
     ],
 
     views: [
@@ -46,26 +47,36 @@ Ext.application({
         'map.Container',
         'guide.Container',
         'guide.ListItem',
-        'about.Container'
+        'about.Container',
+		'Groups',
+		'groups.Container'
     ],
 
     controllers: [
+		'Groups',
         'Map',
         'Home',
-        'Answer'
+        'Answer',
+		'FilterMarkers'
     ],
 
     models: [
         'Rider',
         'MapData',
         'Tour',
-        'Answer'
+        'Answer',
+        'Group',
+        'GroupRider',
+		'MyGroup'
     ],
 
     stores: [
         'RiderInfo',
         'MapInfo',
-        'TourInfo'
+        'TourInfo',
+        'GroupInfo',
+        'GroupRiderInfo',
+		'MyGroups'
     ],
 
     icon: {
