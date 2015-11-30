@@ -368,7 +368,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	            else
 	            {
 	            	alert('You are already part of this group');
-	            }           				
+	            }
 		}
 		else 
 		{
@@ -407,8 +407,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 				groupCode = Math.random().toString(36).slice(2).substring(0,3);
 				Ext.getCmp('create_group_code').setValue(groupCode.toUpperCase());
 				canCreateGroup = true;
-			} else if((new RegExp("\\\w{"+CODE_MIN+","+CODE_MAX+"}$")).test(groupCode)) {
-                // A valid code was entered
+			} else if((new RegExp('\w{' + CODE_MIN + ',' + CODE_MAX + '}$')).test(groupCode)) {
+				// A valid code was entered
 				canCreateGroup = true;
 			} else {
 				alert('Error: Customized group code must be between 3 to 7 Alphanumeric characters');
