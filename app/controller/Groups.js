@@ -368,7 +368,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	            else
 	            {
 	            	alert('You are already part of this group');
-	            }           				
+	            }
 		}
 		else 
 		{
@@ -400,25 +400,21 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var riderRecord = riderStore.first();
 		var thisRiderId = riderRecord.get("riderId");
 
-
 		var canCreateGroup = false;
-		if(groupName != '' && groupName.length <= NAME_MAX) {
-			if(groupCode == '') {
-				// generate random code 
+		if(groupName !== '' && groupName.length <= NAME_MAX) {
+			var validCode = (new RegExp('\w{' + CODE_MIN + ',' + CODE_MAX + '}$')).test(groupCode);
+			if(groupCode === '') {
+				// generate random code
 				groupCode = Math.random().toString(36).slice(2).substring(0,3);
 				Ext.getCmp('create_group_code').setValue(groupCode.toUpperCase());
 				canCreateGroup = true;
-			}
-			else if(groupCode.length >= CODE_MIN && groupCode.length <= CODE_MAX) {
+			} else if(validCode) {
 				canCreateGroup = true;
-			}
-			else {
-				alert('Error: Customized group code must be between 3 to 7 characters');
+			} else {
+				alert('Error: Customized group code must be between 3 and 7 alphanumeric characters');
 			}
 
-			if (canCreateGroup)
-			{
-				
+			if (canCreateGroup) {
 				// Check the code to see if it's in use first
 				groupCode = groupCode.toUpperCase();
 				Ext.data.JsonP.request({
@@ -572,3 +568,4 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	    }); //End of JSONP Request
 	}
 });
+
