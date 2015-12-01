@@ -415,8 +415,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			}
 
 			if (canCreateGroup) {
-			{
-				
 				// Check the code to see if it's in use first
 				groupCode = groupCode.toUpperCase();
 				Ext.data.JsonP.request({
