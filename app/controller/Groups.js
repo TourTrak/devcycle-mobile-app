@@ -402,16 +402,16 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		var canCreateGroup = false;
 		if(groupName !== '' && groupName.length <= NAME_MAX) {
+			var validCode = (new RegExp('\w{' + CODE_MIN + ',' + CODE_MAX + '}$')).test(groupCode);
 			if(groupCode === '') {
 				// generate random code
 				groupCode = Math.random().toString(36).slice(2).substring(0,3);
 				Ext.getCmp('create_group_code').setValue(groupCode.toUpperCase());
 				canCreateGroup = true;
-			} else if((new RegExp('\w{' + CODE_MIN + ',' + CODE_MAX + '}$')).test(groupCode)) {
-				// A valid code was entered
+			} else if(validCode) {
 				canCreateGroup = true;
 			} else {
-				alert('Error: Customized group code must be between 3 to 7 Alphanumeric characters');
+				alert('Error: Customized group code must be between 3 and 7 alphanumeric characters');
 			}
 
 			if (canCreateGroup) {
