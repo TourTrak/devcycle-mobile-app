@@ -3,7 +3,7 @@
 /***
 * Plugin by shramov
 * http://psha.org.ru/b/leaflet-plugins.html
-* 
+*
 * Modifications to work w/ Sencha and custom parsing
 * of KML files by @tofferrosen
 *
@@ -96,7 +96,7 @@ L.Util.extend(L.KML, {
 			if (l) { layers.push(l); }
 		}
 		el = xml.getElementsByTagName('Placemark');
-		console.log("Number of Placemarks: " + el.length); 
+		console.log("Number of Placemarks: " + el.length);
 		var counter = 0;
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j])) { continue; }
@@ -232,272 +232,7 @@ L.Util.extend(L.KML, {
 	createCustomMarker: function(area) {
 
 		area = area.toLowerCase(); // change so that the casing doesn't matter
-
-		if (area == "medical") {
-			return L.AwesomeMarkers.icon({
-					icon: 'medkit',
-					markerColor: 'red',
-					prefix: 'fa'
-			});
-		}
-
-		else if (area == "food") {
-			return L.AwesomeMarkers.icon({
-					icon: 'cutlery',
-					markerColor: 'blue',
-					prefix: 'fa'
-			});
-		}
-
-		else if (area == "music") {
-			return L.AwesomeMarkers.icon({
-					icon: 'music',
-					markerColor: 'cadetblue',
-					prefix: 'fa'
-			});
-		}
-
-		else if (area == "sagtruck") {
-			return L.AwesomeMarkers.icon({
-				icon: 'truck',
-				markerColor: 'red',
-				prefix: 'fa'
-			});
-		}
-
-		else if (area == "warning") {
-			return L.AwesomeMarkers.icon({
-				icon: 'warning',
-				markerColor: 'red',
-				prefix: 'fa'
-			});
-		}
-
-		else if (area == "mechanics") {
-			return L.AwesomeMarkers.icon({
-				icon: 'wrench',
-				markerColor: 'orange',
-				prefix: 'fa'
-			});
-		}
-
-		else if (area == 'bathrooms') {
-			return L.AwesomeMarkers.icon({
-				icon: 'service',
-				prefix: 'flaticon',
-				markerColor: 'blue'
-			});
-		}
-
-		else if (area == 'rest_area') {
-			return L.AwesomeMarkers.icon({
-				icon: 'rest',
-				prefix: 'flaticon',
-				markerColor: 'green'
-			});
-		}
-
-		else if (area == 'rendesvous_spot') {
-			return L.AwesomeMarkers.icon({
-				icon: 'man41',
-				prefix: 'flaticon',
-				markerColor: 'orange'
-			});
-		}
-
-		else if (area == 'Rendezvous_spot'){
-			return L.AwesomeMarkers.icon({
-				icon: 'man41',
-				prefix: 'flaticon',
-				markerColor: 'orange'
-			});
-		}
-
-		else if (area == 'lost_child') {
-			return L.AwesomeMarkers.icon({
-				icon: 'standing25',
-				prefix: 'flaticon',
-				markerColor: 'red'
-			});
-		}
-
-		else if (area == 'subway') {
-			return L.AwesomeMarkers.icon({
-				icon: 'train5',
-				prefix: 'flaticon',
-				markerColor: 'cardetblue'
-			});
-		}
-
-		else if (area == 'timed_ride') {
-			return L.AwesomeMarkers.icon({
-				icon: 'finish1',
-				prefix: 'flaticon',
-				markerColor: 'green'
-			});
-		}
-
-		else if (area == 'vest') {
-			return L.AwesomeMarkers.icon({
-				icon: 'vest',
-				prefix: 'bikeny',
-				markerColor: 'orange'
-			});
-		}
-
-		else if (area == 'trash') {
-			return L.AwesomeMarkers.icon({
-				icon: 'trash',
-				prefix: 'bikeny',
-				markerColor: 'green'
-			});
-		}
-
-		else if (area == 'picture') {
-			return L.AwesomeMarkers.icon({
-				icon: 'picture',
-				prefix: 'bikeny',
-				markerColor: 'purple'
-			});
-		}
-
-		else if (area == 'award') {
-			return L.AwesomeMarkers.icon({
-				icon: 'victory',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'ferry') {
-			return L.AwesomeMarkers.icon({
-				icon: 'ferry',
-				markerColor: 'cadetblue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'car') {
-			return L.AwesomeMarkers.icon({
-				icon: 'car',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'food2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'food',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'tshirt') {
-			return L.AwesomeMarkers.icon({
-				icon: 'tshirt',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'mechanics2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'mechanic',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'mechanic2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'mechanic',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'ribbon') {
-			return L.AwesomeMarkers.icon({
-				icon: 'ribbon',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'recycle') {
-			return L.AwesomeMarkers.icon({
-				icon: 'recycle',
-				markerColor: 'green',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'tshirt2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'tshirt2',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'search') {
-			return L.AwesomeMarkers.icon({
-				icon: 'search',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'license') {
-			return L.AwesomeMarkers.icon({
-				icon: 'license',
-				markerColor: 'green',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'info-tent') {
-			return L.AwesomeMarkers.icon({
-				icon: 'info4',
-				markerColor: 'green',
-				prefix: 'flaticon'
-			});
-		}
-
-		else if (area == 'info_tent') {
-			return L.AwesomeMarkers.icon({
-				icon: 'info-tent',
-				markerColor: 'green',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'helmet') {
-			return L.AwesomeMarkers.icon({
-				icon: 'helmet',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'train2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'train',
-				markerColor: 'cadetblue',
-				prefix: 'bikeny'
-			});
-		}
-
-		// Area not found...
-
-		else {
-			
-			return L.AwesomeMarkers.icon({
-				markerColor: 'blue'
-			});
-		}
-
+		return areaMappings[area] ? areaMappings[area]() : areaMappings['DEFAULT'];
 
 	},
 
@@ -583,12 +318,26 @@ L.Util.extend(L.KML, {
 			}
 		}
 
+		//Purely POC code, needs refinement
+		//TODO: Implement this method
+		var areas = [];
+		var data = place.getElementsByTagName('Data');
+		var dataValues = data[0].children;
+		for (i = 0; i < dataValues.length; i++) {
+			var currentArea = dataValues[i].textContent;
+			areas.push(currentArea);
+		}
+		for (area in areas) {
+			alert("Area: " + areas[area]);
+		}
+
+
 		if (area != null) {
 			layer.options.icon = this.createCustomMarker(area);
 			//use the [AREA] tag found in resources/data.kml to different layer types
-			layer.options.markerType = area.toLowerCase(); 
+			layer.options.markerType = area.toLowerCase();
 		}
- 
+
 		if (name) {
 			layer.bindPopup("<h1>" + name + "</h1><b1>" + descr + "</b1>", {offset: new L.Point(0,-20)});
 		}
@@ -715,6 +464,6 @@ L.KMLMarker = L.Marker.extend({
 		* which can be found in the [AREA] tags
 		* in the data.kml file
 		*/
-		markerType: String 
+		markerType: String
 	}
 });
