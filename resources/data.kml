@@ -182,14 +182,11 @@
 			<ExtendedData>
 				<Data name="areas">
 					<value>Bathrooms</value>
-					<value>Food2</value>
 					<value>Food</value>
-					<value>ferry</value>
-					<value>mechanics</value>
-					<value>mechanics2</value>
+					<value>Food2</value>
 				</Data>
 			</ExtendedData>
-			<description>[AREA]Bathrooms[/AREA][AREA]Food2[/AREA][AREA]Food[/AREA][AREA]ferry[/AREA][AREA]mechanics[/AREA][AREA]medical[/AREA]</description>
+			<description>This POI has multiple areas!</description>
 			<LookAt>
 				<gx:TimeSpan>
 					<begin>2014-03-31T20:02:29.780136028Z</begin>
