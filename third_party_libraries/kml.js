@@ -103,10 +103,7 @@ L.Util.extend(L.KML, {
 			for (lay in this.parsePlacemark(el[j], xml, style)) {
 				layers.push(lay);
 			}
-			//l = this.parsePlacemark(el[j], xml, style);
-			//if (l) { layers.push(l); }
 		}
-		//console.log(layers);
 		return layers;
 	},
 
