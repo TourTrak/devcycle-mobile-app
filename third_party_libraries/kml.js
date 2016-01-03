@@ -222,15 +222,6 @@ L.Util.extend(L.KML, {
 		}
 		if (!layers.length) { return; }
 		if (layers.length === 1) { return layers[0]; }
-		var test = new L.FeatureGroup(layers);
-		for (lay in layers) {
-			if(!test.hasLayer(layers[lay])) {
-				test.addLayer(layers[lay]);
-			}
-		}
-		var t = test.getLayers();
-		for (item in t) {
-		}
 		return new L.FeatureGroup(layers);
 		//return layers;
 	},
