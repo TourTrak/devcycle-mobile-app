@@ -503,62 +503,32 @@ L.Util.extend(L.KML, {
 
 	},
 
+	/**
+	 * Goes through a placemark kml element and generates a leaflet marker, based
+	 *		based on how many areas each placemark has
+	 *
+	 * @param {kml Element} place A placemark kml element
+	 * @param {xml} xml Xml data related to the placemark
+   * @param {path} style Style options for the placemark
+	 * @return {layer[]} layerArray An array of layers that contain leaflet
+	 * 		markers
+	 */
 	parsePlacemark: function (place, xml, style) {
 		var layerArray = [];
 		var areas = this.parseExtendedData(place);
 
 	 	for (area in areas) {
-			var i, j, el, options = {};
-			el = place.getElementsByTagName('styleUrl');
+			var options = this.getOptions(place, style)
+			var layer = this.initializeLayer(place, options, xml);
+			var name = this.parseName(place);
+			var description = this.parseDescription(place);
 
-			for (i = 0; i < el.length; i++) {
-				var url = el[i].childNodes[0].nodeValue;
-				for (var a in style[url])
-				{
-					options[a] = style[url][a];
-				}
+			if (layer) {
+				layer.bindPopup("<h1>" + name + "</h1><b1>" + description + "</b1>", {offset: new L.Point(0,-20)});
+				layer.options.icon = this.createCustomMarker(areas[area]);
+				layer.options.markerType = areas[area].toLowerCase();
+				layerArray.push(layer);
 			}
-			var layers = [];
-
-			var parse = ['LineString', 'Polygon', 'Point'];
-			for (j in parse) {
-				// for jshint
-				var tag = parse[j];
-				el = place.getElementsByTagName(tag);
-
-				for (i = 0; i < el.length; i++) {
-					var l = this["parse" + tag](el[i], xml, options);
-					if (l) { layers.push(l); }
-				}
-			}
-
-			if (!layers.length) {
-				return;
-			}
-			var layer = layers[0];
-			if (layers.length > 1) {
-				layer = new L.FeatureGroup(layers);
-			}
-
-			var name, descr = "";
-			el = place.getElementsByTagName('name');
-			if (el.length && el[0].childNodes.length) {
-				name = el[0].childNodes[0].nodeValue;
-			}
-
-			el = place.getElementsByTagName('description');
-			for (i = 0; i < el.length; i++) {
-				for (j = 0; j < el[i].childNodes.length; j++) {
-							descr = descr + el[i].childNodes[j].nodeValue;
-				}
-			}
-
-			if (name) {
-					layer.bindPopup("<h1>" + name + "</h1><b1>" + descr + "</b1>", {offset: new L.Point(0,-20)});
-			}
-			layer.options.icon = this.createCustomMarker(areas[area]);
-			layer.options.markerType = areas[area].toLowerCase();
-			layerArray.push(layer);
 		}
 
 		return layerArray;
@@ -567,7 +537,7 @@ L.Util.extend(L.KML, {
 	/**
 	 * Reads the values for the data inside an Extended Data kml tag
 	 *
-	 * @param {xml Element} place A placemark XML element
+	 * @param {kml Element} place A placemark XML element
 	 * @return {string[]} dataValueStrings An array of the strings of values
 	 */
 	parseExtendedData: function (place) {
@@ -579,6 +549,38 @@ L.Util.extend(L.KML, {
 			dataValueStrings.push(dataValueString);
 		}
 		return dataValueStrings;
+	},
+
+	/**
+	 * Reads the description element for a placemark KML element
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @return {string} description The string of the description value
+	 */
+	parseDescription: function (place) {
+		var description = "";
+		var el = place.getElementsByTagName('description');
+		for (i = 0; i < el.length; i++) {
+			for (j = 0; j < el[i].childNodes.length; j++) {
+						description = description + el[i].childNodes[j].nodeValue;
+			}
+		}
+		return description;
+	},
+
+	/**
+	 * Reads the name element for a placemark KML element
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @return {string} name The string of the name value
+	 */
+	parseName: function (place) {
+		var name = "";
+		var el = place.getElementsByTagName('name');
+		if (el.length && el[0].childNodes.length) {
+			name = el[0].childNodes[0].nodeValue;
+		}
+		return name;
 	},
 
 	parseCoords: function (xml) {
@@ -643,6 +645,62 @@ L.Util.extend(L.KML, {
 			coords = coords.concat(this._read_coords(el[j]));
 		}
 		return coords;
+	},
+
+
+	/**
+	 * Gets the style options for the placemarks leaflet marker
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @param {path} style Style options for the placemark
+	 * @return {path[]} options The style options for the placemark
+	 */
+	getOptions: function (place, style) {
+		var i, j, el, options = {};
+		el = place.getElementsByTagName('styleUrl');
+
+		for (i = 0; i < el.length; i++) {
+			var url = el[i].childNodes[0].nodeValue;
+			for (var a in style[url])
+			{
+				options[a] = style[url][a];
+			}
+		}
+
+		return options;
+	},
+
+	/**
+	 * Creates a base layergroup element for the placemarks leaflet icon
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @param {path[]} options The style options for the placemark
+	 * @param {xml} xml Xml data related to the placemark
+	 * @return {FeatureGroup} layer Basic location and style data pertaining to
+	 * 		the placemark
+	 */
+	initializeLayer: function (place, options, xml) {
+		var layers = [];
+		var parse = ['LineString', 'Polygon', 'Point'];
+		for (j in parse) {
+			var tag = parse[j];
+			el = place.getElementsByTagName(tag);
+
+			for (i = 0; i < el.length; i++) {
+				var l = this["parse" + tag](el[i], xml, options);
+				if (l) { layers.push(l); }
+			}
+		}
+
+		if (!layers.length) {
+			return null;
+		}
+		var layer = layers[0];
+		if (layers.length > 1) {
+			layer = new L.FeatureGroup(layers);
+		}
+
+		return layer;
 	},
 
 	_read_coords: function (el) {
