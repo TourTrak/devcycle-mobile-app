@@ -100,8 +100,9 @@ L.Util.extend(L.KML, {
 		var counter = 0;
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j])) { continue; }
-			for (lay in this.parsePlacemark(el[j], xml, style)) {
-				layers.push(lay);
+			var parsedLayers = this.parsePlacemark(el[j], xml, style)
+			for (layer in parsedLayers) {
+				layers.push(parsedLayers[layer]);
 			}
 		}
 		return layers;
@@ -212,9 +213,9 @@ L.Util.extend(L.KML, {
 		el = xml.getElementsByTagName('Placemark');
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j], xml)) { continue; }
-			var lays = this.parsePlacemark(el[j], xml, style);
-			for (lay in lays) {
-				layers.push(lays[lay]);
+			var parsedLayers = this.parsePlacemark(el[j], xml, style);
+			for (layer in parsedLayers) {
+				layers.push(parsedLayers[layer]);
 			}
 		}
 		if (!layers.length) { return; }
