@@ -100,7 +100,7 @@ L.Util.extend(L.KML, {
 		var counter = 0;
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j])) { continue; }
-			var parsedLayers = this.parsePlacemark(el[j], xml, style)
+			var parsedLayers = this.parsePlacemark(el[j], xml, style);
 			for (layer in parsedLayers) {
 				layers.push(parsedLayers[layer]);
 			}
