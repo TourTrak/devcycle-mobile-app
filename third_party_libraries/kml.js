@@ -563,7 +563,7 @@ L.Util.extend(L.KML, {
 		var el = place.getElementsByTagName('description');
 		for (i = 0; i < el.length; i++) {
 			for (j = 0; j < el[i].childNodes.length; j++) {
-						description = description + el[i].childNodes[j].nodeValue;
+				description = description + el[i].childNodes[j].nodeValue;
 			}
 		}
 		return description;
@@ -662,8 +662,7 @@ L.Util.extend(L.KML, {
 
 		for (i = 0; i < el.length; i++) {
 			var url = el[i].childNodes[0].nodeValue;
-			for (var a in style[url])
-			{
+			for (var a in style[url]) {
 				options[a] = style[url][a];
 			}
 		}
