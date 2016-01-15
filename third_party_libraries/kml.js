@@ -100,10 +100,7 @@ L.Util.extend(L.KML, {
 		var counter = 0;
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j])) { continue; }
-			var parsedLayers = this.parsePlacemark(el[j], xml, style);
-			for (layer in parsedLayers) {
-				layers.push(parsedLayers[layer]);
-			}
+			layers = this.populateLayers(layers, el[j], xml, style);
 		}
 		return layers;
 	},
@@ -213,15 +210,29 @@ L.Util.extend(L.KML, {
 		el = xml.getElementsByTagName('Placemark');
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j], xml)) { continue; }
-			var parsedLayers = this.parsePlacemark(el[j], xml, style);
-			for (layer in parsedLayers) {
-				layers.push(parsedLayers[layer]);
-			}
+			layers = this.populateLayers(layers, el[j], xml, style);
 		}
 		if (!layers.length) { return; }
 		if (layers.length === 1) { return layers[0]; }
 		return new L.FeatureGroup(layers);
 		//return layers;
+	},
+
+	/**
+	 * Pushes newly created placemark layers into a layer array
+	 *
+	 * @param {layer[]} layers An array of FeatureGroup objects
+	 * @param {xml Element} element The Placemark to parse
+	 * @param {xml} xml Xml data related to the placemark
+   * @param {path} style Style options for the placemark
+ 	 * @return {layer[]} layers Updated array of FeatureGroup objects
+	 */
+	populateLayers: function (layers, element, xml, style) {
+		var parsedLayers = this.parsePlacemark(element, xml, style);
+		for (layer in parsedLayers) {
+			layers.push(parsedLayers[layer]);
+		}
+		return layers;
 	},
 
 
