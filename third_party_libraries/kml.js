@@ -243,6 +243,7 @@ L.Util.extend(L.KML, {
 	for areas not found, simply places a plain blue marker.
 	*/
 	createCustomMarker: function(area) {
+	var areaMappings = window.areaMappings;
 
 		area = area.toLowerCase(); // change so that the casing doesn't matter
 

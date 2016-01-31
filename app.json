@@ -49,6 +49,9 @@
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
         },
         {
+            "path": "resources/areaMappings.js"
+        },
+        {
             "path": "third_party_libraries/kml.js"
         },
         {
