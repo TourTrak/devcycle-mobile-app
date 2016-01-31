@@ -533,7 +533,9 @@ L.Util.extend(L.KML, {
 			var options = this.getOptions(place, style)
 			var layer = this.initializeLayer(place, options, xml);
 			var name = this.parseName(place);
+			name = this.sanitizeHtml(name);
 			var description = this.parseDescription(place);
+			description = this.sanitizeHtml(description);
 
 			if (layer) {
 				layer.bindPopup("<h1>" + name + "</h1><b1>" + description + "</b1>", {offset: new L.Point(0,-20)});
@@ -713,6 +715,19 @@ L.Util.extend(L.KML, {
 
 		return layer;
 	},
+
+
+		/**
+		 * Replaces open/close tags with safe strings
+		 * @param {string} String to sanitize
+		 * @return {string} Sanitized string
+		 */
+		 sanitizeHtml: function (string) {
+			 var string = string.replace(/</g, "&lt;");
+			 var string = string.replace(/>/g, "&gt;");
+			 return string;
+		 },
+
 
 	_read_coords: function (el) {
 		var text = "", coords = [], i;
