@@ -246,7 +246,6 @@ L.Util.extend(L.KML, {
 	var areas = window.areaMapping;
 
 		area = area.toLowerCase(); // change so that the casing doesn't matter
-		alert(Object.keys(window));
 
     return areas[area] ? areas[area]() : areas['DEFAULT']();
 
