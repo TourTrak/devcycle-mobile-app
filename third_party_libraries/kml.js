@@ -228,7 +228,7 @@ L.Util.extend(L.KML, {
 	 * @param {layer[]} layers An array of FeatureGroup objects
 	 * @param {xml Element} element The Placemark to parse
 	 * @param {xml} xml Xml data related to the placemark
-   * @param {path} style Style options for the placemark
+   	 * @param {path} style Style options for the placemark
  	 * @return {layer[]} layers Updated array of FeatureGroup objects
 	 */
 	populateLayers: function (layers, element, xml, style) {
@@ -261,7 +261,7 @@ L.Util.extend(L.KML, {
 	 *
 	 * @param {kml Element} place A placemark kml element
 	 * @param {xml} xml Xml data related to the placemark
-   * @param {path} style Style options for the placemark
+	 * @param {path} style Style options for the placemark
 	 * @return {layer[]} layerArray An array of layers that contain leaflet
 	 * 		markers
 	 */
