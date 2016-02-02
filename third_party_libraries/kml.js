@@ -10,6 +10,10 @@
 * 2014 Modification to add markerType to layers since each marker
 * is it's own unique layer that is added to a markerCluster
 * usage: layer.options.markerType (which will be a String) by @eklundjoshua
+*
+* 2015-2016 Modifications to allow support for multiple AREA tags for a
+* point of interest and refactoring of the previous teams work.
+* by @cshapleigh and @bbesmanoff
 ***/
 
 L.KML = L.FeatureGroup.extend({
