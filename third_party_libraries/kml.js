@@ -440,8 +440,20 @@ L.Util.extend(L.KML, {
 			el = place.getElementsByTagName(tag);
 
 			for (i = 0; i < el.length; i++) {
-				var l = this["parse" + tag](el[i], xml, options);
-				if (l) { layers.push(l); }
+				switch(tag) {
+					case 'LineString':
+  					var layer = this.parseLineString(el[i], xml, options);
+    				if (l) { layers.push(l); }
+    				break;
+     			case 'Polygon':
+						var l = this.parsePolygon(el[i], xml, options);
+						if (l) { layers.push(l); }
+						break;
+         	case 'Point':
+						var l = this.parsePoint(el[i], xml, options);
+						if (l) { layers.push(l); }
+						break;
+				}
 			}
 		}
 
