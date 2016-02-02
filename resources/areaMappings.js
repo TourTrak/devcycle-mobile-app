@@ -1,4 +1,4 @@
-areaMapping = {
+window.areaMapping = {
   'medical': function() {
     return L.AwesomeMarkers.icon({
         icon: 'medkit',
