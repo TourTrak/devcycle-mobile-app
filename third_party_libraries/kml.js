@@ -467,16 +467,16 @@ L.Util.extend(L.KML, {
 	},
 
 
-		/**
-		 * Replaces open/close tags with safe strings
-		 * @param {string} String to sanitize
-		 * @return {string} Sanitized string
-		 */
-		 sanitizeHtml: function (string) {
-			 var string = string.replace(/</g, "&lt;");
-			 var string = string.replace(/>/g, "&gt;");
-			 return string;
-		 },
+	/**
+	 * Replaces open/close tags with safe strings
+	 * @param {string} String to sanitize
+	 * @return {string} Sanitized string
+	 */
+ 	sanitizeHtml: function (string) {
+		 var string = string.replace(/</g, "&lt;");
+		 var string = string.replace(/>/g, "&gt;");
+		 return string;
+	 },
 
 
 	_read_coords: function (el) {
