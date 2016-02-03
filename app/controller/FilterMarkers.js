@@ -26,7 +26,7 @@ Ext.define('DevCycleMobile.controller.FilterMarkers', {
 		originalCluster = new L.MarkerClusterGroup({maxClusterRadius:40});
 
 	},
-	
+
 	filterMap: function(filter) {
 		var map = Ext.getCmp('mapview').map;
 		//var filter = ['subway', 'music', 'mechanic2'];
@@ -39,7 +39,7 @@ Ext.define('DevCycleMobile.controller.FilterMarkers', {
 			});
     		firstRun = false;
 		}
-		
+
 		//Re-add all the original markers back to the markerCluster
 		console.log("Resetting marker cluster to contain all original markers");
     	originalCluster.eachLayer(function (layer){
@@ -55,11 +55,11 @@ Ext.define('DevCycleMobile.controller.FilterMarkers', {
 	       	for(var i = 0; i<filter.length; i++) {
 	           	if(((filter.indexOf(layer.options.markerType)) == -1) && !(typeof layer.options.markerType === "undefined") ) {
 	           		//console.log("Removing layer: " + layer.options.markerType);
-	           		markerCluster.removeLayer(layer); 
+	           		markerCluster.removeLayer(layer);
 	           	}
 	       	}
-	    }); 
-			
+	    });
+
     	// Re-render the map after filtering
 		if (map != undefined){
 			map._onResize();
@@ -68,5 +68,3 @@ Ext.define('DevCycleMobile.controller.FilterMarkers', {
 
 
 }); //End of FilterMarker.js Controller
-	
-	
