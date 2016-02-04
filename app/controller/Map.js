@@ -311,7 +311,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 				this.riderPosMarker.addTo(map); // add to map
 				// center map on rider's location
 				map.panTo([position.coords.latitude, position.coords.longitude], {duration: 3});
-				alert('6');
+				
 			} else {
 				var currPos = new L.LatLng(position.coords.latitude, position.coords.longitude);
 				this.riderPosMarker.setLatLng(currPos);
