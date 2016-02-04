@@ -41,9 +41,9 @@ Ext.define('DevCycleMobile.controller.Map', {
 	/**
 	* Controls the toggling of filter icon markers on leaflet map, uses a setimte to mimic
 	* an asynchronous call so that the UI doesnt freeze when loading markers
-	**/ 
-	toggleFilter: function(filterType) {	
-		setTimeout(function() 
+	**/
+	toggleFilter: function(filterType) {
+		setTimeout(function()
 		{
 			if (filter.indexOf(filterType.id) == -1) {
 				filter.push(filterType.id);
@@ -54,8 +54,8 @@ Ext.define('DevCycleMobile.controller.Map', {
 				filter.splice(filter.indexOf(filterType.id), 1);
 				filterType.setText('<img src="resources/icons/filters/disabled/'+filterType.id+'.png"/>');
 				DevCycleMobile.app.getController('FilterMarkers').filterMap(filter);
-			}	
-		},50);			
+			}
+		},50);
 	},
 
 	/**
@@ -77,7 +77,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 	addGroup: function (groupCode, groupName) {
 		var map = Ext.getCmp('mapview').map;
 		//Ensure the map has been loaded
-		if (map != undefined) 
+		if (map != undefined)
 		{
 			/**
 			* Import the Rider Store - Holds this device's rider id
@@ -85,7 +85,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 			*	riderId
 			*
 			* Import the Group Store - Holds all groups that this device's rider is a part of
-			* Fields: 
+			* Fields:
 			* 	groupName
 			*	groupCode
 			*
@@ -101,7 +101,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var newGroup = L.layerGroup(); //Create a layer group
 
 			console.log("Going to add group " + groupCode + " to the map");
-	
+
 			groupStore.filter('groupCode', groupCode);
 			var groupRecord = groupStore.getAt(0);
 
@@ -113,13 +113,13 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			groupRiderStore.filter('groupCode', groupCode);
 
-			groupRiderStore.each(function (riderRecord) 
+			groupRiderStore.each(function (riderRecord)
 			{
 				/**
 				* NOTE: This line needed to be added in in order to correctly
 				* get the color set for the rider markers. L.userMarker holds onto
 				* the previous instance for the riderRecord object in each group and then
-				* gets set to the correct color "color". Adding this line forces the color 
+				* gets set to the correct color "color". Adding this line forces the color
 				* to be correctly set for every riderRecord, not just every record after the first
 				*/
 	 		    riderMarker.setColor(col);
@@ -137,15 +137,15 @@ Ext.define('DevCycleMobile.controller.Map', {
 	 	        	groupCode: groupCode
 	 	    	});
 	 	    	riderMarker.bindPopup("<h1>Rider " + riderRecord.get('riderId') + "</h1> <h2><b>Group: </b> " + groupRecord.get('groupCode') + "</h2>", {offset: new L.Point(0,-20)});
-	 	    	newGroup.addLayer(riderMarker);	 	                      		
-			}); 
+	 	    	newGroup.addLayer(riderMarker);
+			});
 
 			/**
-			* These parallel arrays hold reference to the group layers added so 
+			* These parallel arrays hold reference to the group layers added so
 			* they can be later removed if a user leaves that group
 			**/
-			DevCycleMobile.Map.LayerControl.groupsOverlay.push(newGroup); 
-			DevCycleMobile.Map.LayerControl.layerRef.push(groupCode);  
+			DevCycleMobile.Map.LayerControl.groupsOverlay.push(newGroup);
+			DevCycleMobile.Map.LayerControl.layerRef.push(groupCode);
 			groupRiderStore.clearFilter(true);
 			groupStore.clearFilter(true);
 
@@ -158,7 +158,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 			{
 				DevCycleMobile.Map.LayerControl.lc = new L.control.layers(null, null);
 				DevCycleMobile.Map.LayerControl.lc.addOverlay(newGroup, groupName);
-				DevCycleMobile.Map.LayerControl.lc.addTo(map); 
+				DevCycleMobile.Map.LayerControl.lc.addTo(map);
 
 				DevCycleMobile.app.getController('Home').timerTask();
 			}
@@ -175,7 +175,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 	/**
 	* Function: updateMap
-	* Description:  
+	* Description:
 	*/
 	updateMap: function(group_code) {
 		var map = Ext.getCmp('mapview').map;
@@ -187,7 +187,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			var groupStore = Ext.getStore("GroupInfo");
 			var groupRiderStore = Ext.getStore("GroupRiderInfo");
-			
+
 			var currLayer;
 			var currRider;
 			var riderLat;
@@ -197,14 +197,14 @@ Ext.define('DevCycleMobile.controller.Map', {
 			var index;
 
 			//var riderLatLong;
-			
+
 				index = refArray.indexOf(group_code);
 				currLayer = groupLayers[index];
 
 				//console.log("Updating map for " + group_code);
 				groupRiderStore.filter('groupCode', group_code);
 
-				currLayer.eachLayer(function (riderRecord) 
+				currLayer.eachLayer(function (riderRecord)
 				{
 					riderId = riderRecord.options.riderId;
 					//riderLat = riderRecord.latitude;
@@ -220,7 +220,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 					//riderRecord.update();
 				});
 				groupRiderStore.clearFilter(true);
-		
+
 			DevCycleMobile.Map.LayerControl.lc._update();
 			map._onResize();
 		}
@@ -254,7 +254,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			var removeThis = groupArray[index];
 
-			// Remove the group from the arrays 
+			// Remove the group from the arrays
 			DevCycleMobile.Map.LayerControl.groupsOverlay.splice(index, 1);
 			DevCycleMobile.Map.LayerControl.layerRef.splice(index, 1);
 
@@ -266,7 +266,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 		}
 	},
 	/*
-	* This function will be called whenever the filter for a group is selected 
+	* This function will be called whenever the filter for a group is selected
 	* All users in that group will be plotted on the map through this function.
 	*/
 	mapGroups: function () {
@@ -283,7 +283,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 					accuracy: 10,
 					pulsing: true
 				});
-				this.riderPosMarker.addTo(map);*/ 
+				this.riderPosMarker.addTo(map);*/
 				// add to map
 		}
 	},
@@ -293,7 +293,6 @@ Ext.define('DevCycleMobile.controller.Map', {
 	* Adds or updates the user's location on the map.
 	**/
 	locationSuccess: function(position) {
-
 		var map = Ext.getCmp('mapview').map;
 		var riderPos = new L.latLng(position.coords.latitude, position.coords.longitude);
 
@@ -302,24 +301,17 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			// Make sure that rider icon is not already set
 			if(this.riderPosMarker === null || this.riderPosMarker === undefined){
-
 				this.riderPosMarker = L.userMarker();
-
-				this.riderPosMarker.setColor("blue");
-
 				// Create rider marker
 				this.riderPosMarker = L.userMarker(riderPos, {
 					accuracy: position.coords.accuracy,
 					pulsing: true,
 					color: "blue"
 				});
-				this.riderPosMarker.setColor("blue");
-
 				this.riderPosMarker.addTo(map); // add to map
-
 				// center map on rider's location
 				map.panTo([position.coords.latitude, position.coords.longitude], {duration: 3});
-
+				alert('6');
 			} else {
 				var currPos = new L.LatLng(position.coords.latitude, position.coords.longitude);
 				this.riderPosMarker.setLatLng(currPos);
@@ -358,7 +350,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 	**/
 	onMapRender: function() {
 		console.log("On map rendered!");
-	
+
 		var map = Ext.getCmp('mapview').map;
 
 			// refresh the map
@@ -368,7 +360,7 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 		// try to get the user's location
 		navigator.geolocation.getCurrentPosition(this.locationSuccess,
-			this.locationFailure, {timeout: 120});
+			this.locationFailure, {timeout: 120000});
 	}
 
 });
