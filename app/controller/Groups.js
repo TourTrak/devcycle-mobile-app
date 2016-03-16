@@ -402,7 +402,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		var canCreateGroup = false;
 		if(groupName !== '' && groupName.length <= NAME_MAX) {
-			var validCode = (new RegExp('\w{' + CODE_MIN + ',' + CODE_MAX + '}$')).test(groupCode);
+                        var reg = new RegExp('^\\w{' + CODE_MIN + ',' + CODE_MAX + '}$');
+                        var validCode = reg.test(groupCode);
 			if(groupCode === '') {
 				// generate random code
 				groupCode = Math.random().toString(36).slice(2).substring(0,3);
