@@ -115,14 +115,6 @@ Ext.define('DevCycleMobile.controller.Map', {
 
 			groupRiderStore.each(function (riderRecord)
 			{
-				/**
-				* NOTE: This line needed to be added in in order to correctly
-				* get the color set for the rider markers. L.userMarker holds onto
-				* the previous instance for the riderRecord object in each group and then
-				* gets set to the correct color "color". Adding this line forces the color
-				* to be correctly set for every riderRecord, not just every record after the first
-				*/
-	 		    riderMarker.setColor(col);
 	 		    console.log("The lat and long from the store for riderId " + riderRecord.get('riderId') + " and group code " + groupCode + " is " + riderRecord.get('latitude') + " " + riderRecord.get('longitude'));
 
 
