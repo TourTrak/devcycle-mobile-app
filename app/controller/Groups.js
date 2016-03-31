@@ -90,7 +90,9 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			console.log("Group already exists");
 		}
 		this.groupStore.clearFilter(true);
-		this.groupStore.sync();
+		this.groupStore.sync({
+			callback: Ext.getCmp('myGroupsList').refresh
+		});
 		
 		if(action == "join")
 		{
@@ -119,7 +121,9 @@ Ext.define('DevCycleMobile.controller.Groups', {
 			longitude: longitude
 		});
 		this.groupRiderStore.add(newGroupRider);
-		this.groupRiderStore.sync();
+		this.groupRiderStore.sync({
+			callback: Ext.getCmp('myGroupsList').refresh
+		});
 	},
 
 	/**
@@ -134,12 +138,16 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		if(store_name == "group") 
 		{
 			this.groupStore.removeAll(true);
-			this.groupStore.sync();
+			this.groupStore.sync({
+				callback: Ext.getCmp('myGroupsList').refresh
+			});
 		}
 		else if(store_name == "groupRider")
 		{
 			this.groupRiderStore.removeAll(true);
-			this.groupRiderStore.sync();
+			this.groupRiderStore.sync({
+				callback: Ext.getCmp('myGroupsList').refresh
+			});
 		}
 	},
 
@@ -148,7 +156,9 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		var match = groupStore.findExact("groupCode", group_code);
 		groupStore.removeAt(match);
-		groupStore.sync();
+		groupStore.sync({
+			callback: Ext.getCmp('myGroupsList').refresh
+		});
 		
 		var joinArray = Group.joinedGroups;
 		var index = 0;
