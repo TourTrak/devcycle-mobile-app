@@ -185,13 +185,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
 
-		var riderStore = Ext.getStore("RiderInfo");
-		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
-
-		var riderRecord = riderStore.first();
-		var thisRiderId = riderRecord.get("riderId");
-
-
 		//Send a get request to the server which will join the given group
 		Ext.data.JsonP.request({
 	        url: this.tourInfo.data.dcs_url + "/get_location_data/" + group_code + "/",
@@ -321,12 +314,9 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		
 		var groupRiderStore = Ext.getStore("GroupRiderInfo");
 		var groupStore = Ext.getStore("GroupInfo");
-		var riderStore = Ext.getStore("RiderInfo");
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
 
-		var riderRecord = riderStore.first();
-		var thisRiderId = riderRecord.get("riderId");
-		//var thisRiderId = 1;
+		var thisRiderId = Ext.device.Device.uuid;
 
 		console.log("THE RIDER ID IS " + thisRiderId);
 	
@@ -396,10 +386,6 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		var groupName = Ext.getCmp('group_name').getValue();
 		var groupCode = Ext.getCmp('create_group_code').getValue();
 		
-		var riderStore = Ext.getStore("RiderInfo");
-		var riderRecord = riderStore.first();
-		var thisRiderId = riderRecord.get("riderId");
-
 		var canCreateGroup = false;
 		if(groupName !== '' && groupName.length <= NAME_MAX) {
 			var reg = new RegExp('^\\w{' + CODE_MIN + ',' + CODE_MAX + '}$');
@@ -466,9 +452,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		this.tourInfo = Ext.getStore("TourInfo").first();	// tour info
 
-		var riderStore = Ext.getStore("RiderInfo");
-		var riderRecord = riderStore.first();
-		var thisRiderId = riderRecord.get("riderId");
+		var thisRiderId = Ext.device.Device.uuid;
 
 		 // Create the group if it is an avail code
 		 Ext.Ajax.request({
@@ -532,10 +516,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		var groupInfoStore = Ext.getStore("GroupInfo");
 		var groupRiderInfoStore = Ext.getStore("GroupRiderInfo");
-		var riderStore = Ext.getStore("RiderInfo");
-		var riderRecord = riderStore.first();
-		var thisRiderId = riderRecord.get("riderId");
-		//var thisRiderId = 1;
+		var thisRiderId = Ext.device.Device.uuid;
 		
 		// Gets group that is highlighted within my groups list
 		var selectedGroup = Ext.getCmp('myGroupsList').getSelection();
