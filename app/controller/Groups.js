@@ -82,6 +82,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		this.groupStore.filter('groupCode', code);
 		if(this.groupStore.getCount() == 0)
 		{
+                        console.log("Adding " + code + " to groups cache");
 			this.groupStore.add(newGroup);
 			Group.joinedGroups.push(code);
 		}
@@ -111,7 +112,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 	cacheGroupRiders: function(code, rider, latitude, longitude) {
 		this.groupRiderStore = Ext.getStore("GroupRiderInfo");
 	
-		console.log("Caching rider" + rider + "for code " + code);
+		console.log("Caching rider " + rider + " for code " + code);
 		var newGroupRider = new DevCycleMobile.model.GroupRider({
 			groupCode: code,
 			riderId: rider,
@@ -120,6 +121,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		});
 		this.groupRiderStore.add(newGroupRider);
 		this.groupRiderStore.sync();
+                console.log(this.groupRiderStore);
 	},
 
 	/**
@@ -235,6 +237,8 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		
 		}); //End of this.groupStore each method
 		//DevCycleMobile.app.getController('Map').updateMap();
+		Ext.getCmp('myGroupsList').refresh();
+
 	},
 
 	updateJSONPRequest: function(group_code, group_name) {
@@ -363,7 +367,10 @@ Ext.define('DevCycleMobile.controller.Groups', {
 		else 
 		{
 			alert('Error: Invalid Group Format (Must be 3-7 characters)');
-		}		
+		}
+		Ext.getCmp('myGroupsList').refresh();
+
+
 	},
 	
 	suggestCode: function() {
