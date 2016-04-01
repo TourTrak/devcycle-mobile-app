@@ -61,7 +61,6 @@ Ext.application({
     ],
 
     models: [
-        'Rider',
         'MapData',
         'Tour',
         'Answer',
@@ -71,7 +70,6 @@ Ext.application({
     ],
 
     stores: [
-        'RiderInfo',
         'MapInfo',
         'TourInfo',
         'GroupInfo',
@@ -125,13 +123,12 @@ Ext.application({
         
         var mapInfo = Ext.getStore("MapInfo"); // map metadata info
         var tourInfo = Ext.getStore("TourInfo"); //tour info
-        var riderInfo = Ext.getStore("RiderInfo"); // rider info
 
         var self = this; // reference to self
 
         // load all the stores before proceeding
         var handler = setInterval(function(){
-           loaded = self.areStoresLoaded([tourInfo, mapInfo, riderInfo]);
+           loaded = self.areStoresLoaded([tourInfo, mapInfo]);
 
            if (loaded){
                 // cancel interval
