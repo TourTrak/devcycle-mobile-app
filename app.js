@@ -37,7 +37,7 @@ Ext.application({
         'DevCycleMobile.store.Misc',
         'DevCycleMobile.store.Credits',
         'DevCycleMobile.store.AboutTracking',
-	'DevCycleMobile.store.MyGroups',
+        'DevCycleMobile.store.MyGroups',
         'MyApp.util.SizeMonitor', // Fixes Chrome 43 scrolling bugs
         'MyApp.util.PaintMonitor' // Fixes Chrome 43 scrolling bugs
     ],
