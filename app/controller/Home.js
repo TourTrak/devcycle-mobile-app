@@ -72,8 +72,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 		var rider_id = Ext.device.Device.uuid;
 
 		// If we haven't registered yet, get rider id from server
-		if (this.riderStore.getCount() === 0) {
-
+		if (!localStorage.getItem('devcyclemobile-riderid')) {
 			// Register rider
 			Ext.Ajax.request({
 				url: this.tourInfo.data.dcs_url + '/register/',
@@ -86,15 +85,7 @@ Ext.define('DevCycleMobile.controller.Home', {
 					id: rider_id
 				},
 				success: function (response) {
-					var newRider = new DevCycleMobile.model.Rider({
-						riderId: rider_id,
-						prod: 'true'
-					});
-
-					// Save the rider info (id)
-					self.riderStore.add(newRider);
-					self.riderStore.sync();
-
+          localStorage.setItem('devcyclemobile-riderid', rider_id);
 					// start tracking
 					self.startTracking(rider_id);
 				},
@@ -102,44 +93,10 @@ Ext.define('DevCycleMobile.controller.Home', {
 					failedResponse(response, options);
 				}
 			});
-		} else {
-			var riderInfo = this.riderStore.first();
-
-			// check if this was a beta registration - need to register again to the production
-			if (riderInfo.get('prod') === null) {
-				// Get a new rider ID/ new registration!
-				Ext.Ajax.request({
-					url: this.tourInfo.data.dcs_url + '/register/',
-					method: 'POST',
-					scope: this, // set scope of ajax call to this
-					params: {
-						os: Ext.os.name + ' ' + Ext.os.version,
-						device: Ext.os.name,
-						tourId: this.tourInfo.data.tour_id,
-						id: rider_id
-					},
-					success: function (response) {
-						var riderInfo = self.riderStore.first();
-
-						// Update the rider info (id) from the production server
-						riderInfo.set('riderId', rider_id);
-						riderInfo.set('prod', true); // update to signify this is a prod rider id
-						riderInfo.dirty = true; // signify to sencha that this object has been modified and need to be updated
-						self.riderStore.sync(); // sync the store
-
-						// start tracking w/ new rider id!
-						self.startTracking(rider_id);
-					},
-					failure: function (response, options) {
-						failedResponse(response, options);
-					}
-				});
-			} else {
-				// already registered so no need to re-register
-				this.startTracking(riderInfo.data.riderId);
-			}
-		}
-	},
+    } else {
+      this.startTracking(rider_id);
+    }
+  },
 
 	/**
 	* Initiates the group store and group rider store upon loading the app
@@ -147,7 +104,6 @@ Ext.define('DevCycleMobile.controller.Home', {
 	initGroup: function (rider_id) {
 		var groupRiderStore = Ext.getStore('GroupRiderInfo');
 		var groupStore = Ext.getStore('GroupInfo');
-		var riderStore = Ext.getStore('GroupInfo');
 
 		var thisRiderId = rider_id;
 		DevCycleMobile.app.getController('Groups').clearStore('Group');
@@ -197,7 +153,6 @@ Ext.define('DevCycleMobile.controller.Home', {
 	**/
 	onTabpanelInitialize: function (component, options) {
 		this.tourInfo = Ext.getStore('TourInfo').first();	// tour info
-		this.riderStore = Ext.getStore('RiderInfo'); // reference to the rider store
 		this.groupRiderStore = Ext.getStore('GroupRiderInfo');
 		this.groupStore = Ext.getStore('GroupInfo');
 
