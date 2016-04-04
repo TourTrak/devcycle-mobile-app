@@ -175,9 +175,7 @@ Ext.define('DevCycleMobile.controller.Groups', {
 
 		groupRiderStore.removeAll();
 		groupRiderStore.clearFilter(true);
-		groupRiderStore.sync({
-			callback: Ext.getCmp('myGroupsList').refresh
-		});
+		groupRiderStore.sync();
 		DevCycleMobile.app.getController('Map').removeGroup(group_code);
 	},
 
