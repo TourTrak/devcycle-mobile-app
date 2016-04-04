@@ -77,6 +77,48 @@ The above will provide you with a working build of the application that you can
 run.  Below you will find tasks which are someone outside of the normal
 development process, but are documented for future reference.
 
+### Setting up the App Icon
+Using the above instructions, the app will build using the default Cordova app
+icon. To change the app icon, edit `cordova/config.xml`.
+
+In that file, add the following line in the top level of the xml:
+
+```
+<icon src="../resources/icons/Icon@2x.png" />
+```
+
+This may not be the optimal icon for all screen resolutions. If you have
+additional icons for different densities and sizes, you can and should add
+them as well by doing the following.
+
+For the Android app icon, add the following inside the
+`<platform name="android">` section:
+
+```
+        <icon src="../resources/icons/Icon.png" density="ldpi" />
+        <icon src="../resources/icons/Icon@2x.png" density="mdpi" />
+```
+
+Adjust the image paths as necessary for icons. The paths are relative to the
+location of the config.xml file.
+
+For the iOS app icon, add the following inside the
+`<platform name="ios">` section:
+
+```
+        <icon src="../resources/icons/Icon.png" width="57" height="57" />
+        <icon src="../resources/icons/Icon@2x.png" width="114" height="114" />
+```
+
+As before, adjust the paths as necessary. The paths are relative to the
+location of the config.xml file. iOS also requires widths and heights to be
+specified for each icon.
+
+More information can be found at the
+[the Sencha forums](https://www.sencha.com/forum/showthread.php?279722-Sencha-PhoneGap-and-app-s-icon)
+and at
+[the Cordova documentation](https://cordova.apache.org/docs/en/6.x/config_ref/images.html).
+
 ### Adding/Modifying FAQ Questions
 There are three steps in this process:
 
