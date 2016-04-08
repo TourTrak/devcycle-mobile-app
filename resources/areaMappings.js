@@ -15,7 +15,7 @@ window.areaMapping = {
   },
   'music': function() {
     return L.AwesomeMarkers.icon({
-      icon: 'truck',
+      icon: 'music',
       markerColor: 'red',
       prefix: 'fa'
     });
