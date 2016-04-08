@@ -267,18 +267,27 @@ L.Util.extend(L.KML, {
 		var layerArray = [];
 		var areas = this.parseExtendedData(place);
 
-	 	for (area in areas) {
+		if (areas.length !== 0) {
+			for (area in areas) {
+				var options = this.getOptions(place, style)
+				var layer = this.initializeLayer(place, options, xml);
+				var name = this.parseName(place);
+				name = this.sanitizeHtml(name);
+				var description = this.parseDescription(place);
+				description = this.sanitizeHtml(description);
+
+				if (layer) {
+					layer.bindPopup("<h1>" + name + "</h1><b1>" + description + "</b1>", {offset: new L.Point(0,-20)});
+					layer.options.icon = this.createCustomMarker(areas[area]);
+					layer.options.markerType = areas[area].toLowerCase();
+					layerArray.push(layer);
+				}
+			}
+		} else { // parse it anyway
 			var options = this.getOptions(place, style)
 			var layer = this.initializeLayer(place, options, xml);
-			var name = this.parseName(place);
-			name = this.sanitizeHtml(name);
-			var description = this.parseDescription(place);
-			description = this.sanitizeHtml(description);
 
 			if (layer) {
-				layer.bindPopup("<h1>" + name + "</h1><b1>" + description + "</b1>", {offset: new L.Point(0,-20)});
-				layer.options.icon = this.createCustomMarker(areas[area]);
-				layer.options.markerType = areas[area].toLowerCase();
 				layerArray.push(layer);
 			}
 		}
@@ -295,10 +304,12 @@ L.Util.extend(L.KML, {
 	parseExtendedData: function (place) {
 		var dataValueStrings = [];
 		var data = place.getElementsByTagName('Data');
-		var dataValues = data[0].children;
-		for (i = 0; i < dataValues.length; i++) {
-			var dataValueString = dataValues[i].textContent;
-			dataValueStrings.push(dataValueString);
+		if (data[0]) {
+			var dataValues = data[0].children;
+			for (i = 0; i < dataValues.length; i++) {
+				var dataValueString = dataValues[i].textContent;
+				dataValueStrings.push(dataValueString);
+			}
 		}
 		return dataValueStrings;
 	},
@@ -440,7 +451,7 @@ L.Util.extend(L.KML, {
 			for (i = 0; i < el.length; i++) {
 				switch(tag) {
 					case 'LineString':
-  						var layer = this.parseLineString(el[i], xml, options);
+						var l = this.parseLineString(el[i], xml, options);
     						if (l) { layers.push(l); }
     						break;
      					case 'Polygon':
