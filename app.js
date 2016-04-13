@@ -89,12 +89,10 @@ Ext.application({
     isIconPrecomposed: true,
 
     startupImage: {
-        '320x460': 'resources/startup/320x460.jpg',
-        '640x920': 'resources/startup/640x920.png',
-        '768x1004': 'resources/startup/768x1004.png',
-        '748x1024': 'resources/startup/748x1024.png',
-        '1536x2008': 'resources/startup/1536x2008.png',
-        '1496x2048': 'resources/startup/1496x2048.png'
+        '320x480': 'resources/branding/drawable-hdpi/splash.png',
+        '480x800': 'resources/branding/drawable-ldpi/splash.png',
+        '640x960': 'resources/branding/drawable-mdpi/splash.png',
+        '640x1136': 'resources/branding/drawable-xhdpi/splash.png'
     },
 
     /**
