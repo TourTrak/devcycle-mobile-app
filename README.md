@@ -79,6 +79,15 @@ The above will provide you with a working build of the application that you can
 run.  Below you will find tasks which are someone outside of the normal
 development process, but are documented for future reference.
 
+### Configuring the splash screen
+To configure the splash screen properly (to show it for the full loading time
+of the app and to remove the Sencha splash screen), add the following
+line to cordova/config.xml in the top level:
+
+```
+<preference name="AutoHideSplashScreen" value="false" />
+```
+
 ### Setting up the App Icon
 Using the above instructions, the app will build using the default Cordova app
 icon. To change the app icon, edit `cordova/config.xml`.
