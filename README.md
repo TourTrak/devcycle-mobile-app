@@ -59,7 +59,9 @@ full list of requirements can be found by opening that script.
 3. Install the required plugins by running `python fetchPlugins.py` from the
    terminal
 4. Execute `git submodule update --init --recursive` in order to pull down
-   [leaflet-usermarker] into the third party libraries
+   [leaflet-usermarker] into the third party libraries and
+   [resources](https://github.com/tourtrak/resources) into the resources
+   directory.
 5. If you are not planning on building both Android and iOS apps, you should
    update [this line][native-build-line] to include only the platform you wish
    to build for.
