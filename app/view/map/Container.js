@@ -47,12 +47,12 @@ Ext.define('DevCycleMobile.view.map.Container', {
                                     Ext.Viewport.hideMenu('left');
                                 }
                             }
-                            
+
                         }
                     ],
             },
             {
-				
+
 				html: '<div id="mapLabel">Rider markers will refresh every 10 minutes</div>',
                 xtype: 'leaflet',
                 useCurrentLocation: true,
@@ -63,7 +63,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
 
         ], // End items
         listeners:
-        {          
+        {
             initialize: function () {
                 Ext.Viewport.setMenu(this.createMenu('left'),
                     {
@@ -75,7 +75,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
     }, // End config
     //Create slide-out menu
     createMenu: function (side) {
-        var items = [               
+        var items = [
            {
 			         id: 'bathrooms',
                xtype: 'button',
@@ -83,10 +83,10 @@ Ext.define('DevCycleMobile.view.map.Container', {
                cls: 'img_left',
 			         action: 'toggleMapFilter',
                width: 55,
-               height: 55,		   
+               height: 55,
            },
            {
-			         id: 'food2',
+			         id: 'food',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/food2.png"/>',
 			         cls: 'img_left',
@@ -106,7 +106,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
            },
 
            {
-		           id: 'mechanic2',
+		           id: 'mechanics',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/mechanic2.png"/>',
 			         cls: 'img_left',
@@ -124,7 +124,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
                width: 55,
                height: 55,
            },
-		   
+
 			     {
 		           id: 'picture',
                xtype: 'button',
@@ -134,7 +134,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
                width: 55,
                height: 55,
            },
-		   
+
 	        {
 		           id: 'ferry',
                xtype: 'button',
@@ -194,7 +194,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
                width: 55,
                height: 55,
            },
-		   
+
 		   {
 		       id: 'car',
                xtype: 'button',
@@ -203,7 +203,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
-           },  
+           },
            {
 		       id: 'subway',
                xtype: 'button',
@@ -212,7 +212,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
-           }  
+           }
         ];
 
         return Ext.create('Ext.Menu', {
