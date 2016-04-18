@@ -212,6 +212,15 @@ Ext.define('DevCycleMobile.view.map.Container', {
                action: 'toggleMapFilter',
                width: 55,
                height: 55,
+           },
+           {
+           id: 'timed_ride',
+               xtype: 'button',
+               text: '<img src="resources/icons/filters/disabled/timed_ride.png"/>',
+               cls: 'img_left',
+               action: 'toggleMapFilter',
+               width: 55,
+               height: 55,
            }
         ];
 
