@@ -79,42 +79,33 @@ The above will provide you with a working build of the application that you can
 run.  Below you will find tasks which are someone outside of the normal
 development process, but are documented for future reference.
 
-### Setting up the App Icon
-Using the above instructions, the app will build using the default Cordova app
-icon. To change the app icon, edit `cordova/config.xml`.
+### Configuring the Splash Screen and App Icon
 
-In that file, add the following line in the top level of the xml:
+Add the following to the top level of the XML in cordova/config.xml:
 
 ```
-<icon src="../resources/icons/Icon@2x.png" />
+    <icon src="../resources/branding/drawable-ldpi/icon.png" density="ldpi" width="36" height="36" />
+    <icon src="../resources/branding/drawable-mdpi/icon.png" density="mdpi" width="48" height="48" />
+    <icon src="../resources/branding/drawable-hdpi/icon.png" density="hdpi" width="72" height="72" />
+    <icon src="../resources/branding/drawable-xhdpi/icon.png" density="xhdpi" width="96" height="96" />
+    <icon src="../resources/branding/drawable/icon.png" />
+
+    <preference name="AutoHideSplashScreen" value="false" />
+
+    <splash src="../resources/branding/drawable-ldpi/splash.png" density="port-ldpi" width="480" height="800" />
+    <splash src="../resources/branding/drawable-mdpi/splash.png" density="port-mdpi" width="640" height="960" />
+    <splash src="../resources/branding/drawable-hdpi/splash.png" density="port-hdpi" width="320" height="480" />
+    <splash src="../resources/branding/drawable-xhdpi/splash.png" density="port-xhdpi" width="640" height="1136" />
+    <splash src="../resources/branding/drawable/splash.png" />
 ```
 
-This may not be the optimal icon for all screen resolutions. If you have
-additional icons for different densities and sizes, you can and should add
-them as well by doing the following.
-
-For the Android app icon, add the following inside the
-`<platform name="android">` section:
-
-```
-        <icon src="../resources/icons/Icon.png" density="ldpi" />
-        <icon src="../resources/icons/Icon@2x.png" density="mdpi" />
-```
-
-Adjust the image paths as necessary for icons. The paths are relative to the
+Adjust the image paths as necessary. The paths are relative to the
 location of the config.xml file.
 
-For the iOS app icon, add the following inside the
-`<platform name="ios">` section:
-
-```
-        <icon src="../resources/icons/Icon.png" width="57" height="57" />
-        <icon src="../resources/icons/Icon@2x.png" width="114" height="114" />
-```
-
-As before, adjust the paths as necessary. The paths are relative to the
-location of the config.xml file. iOS also requires widths and heights to be
-specified for each icon.
+These set the splash screen and icon for all variants of the app. If you need
+to configure more specialized splashes or icons that are platform-specific,
+add these to the platform defined in the xml that they pertain to and edit
+accordingly.
 
 More information can be found at the
 [the Sencha forums](https://www.sencha.com/forum/showthread.php?279722-Sencha-PhoneGap-and-app-s-icon)

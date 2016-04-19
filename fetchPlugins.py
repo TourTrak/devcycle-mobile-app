@@ -14,6 +14,10 @@ os.chdir("cordova")
 # Add the cordova device plugin
 subprocess.call("cordova -d plugin add https://github.com/apache/cordova-plugin-device.git", shell=True)
 
+# Add the cordova splash screen plugin
+subprocess.call("cordova -d plugin add https://github.com/apache/cordova-plugin-splashscreen.git", shell=True)
+
+
 # Add the tourtrak iOS plugin
 subprocess.call("cordova -d plugin add https://github.com/TourTrak/tourtrak-ios-plugin.git", shell=True)
 
