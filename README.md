@@ -97,6 +97,8 @@ Add the following to the top level of the XML in cordova/config.xml:
     <splash src="../resources/branding/drawable-hdpi/splash.png" density="port-hdpi" width="320" height="480" />
     <splash src="../resources/branding/drawable-xhdpi/splash.png" density="port-xhdpi" width="640" height="1136" />
     <splash src="../resources/branding/drawable/splash.png" />
+    <icon src="../resources/icons/Icon.png" width="57" height="57" />
+    <icon src="../resources/icons/Icon@2x.png" width="114" height="114" />
 ```
 
 Adjust the image paths as necessary. The paths are relative to the
