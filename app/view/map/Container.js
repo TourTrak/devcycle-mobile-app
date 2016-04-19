@@ -88,7 +88,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
            {
 			         id: 'food',
                xtype: 'button',
-               text: '<img src="resources/icons/filters/disabled/food2.png"/>',
+               text: '<img src="resources/icons/filters/disabled/food.png"/>',
 			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
@@ -108,7 +108,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
            {
 		           id: 'mechanics',
                xtype: 'button',
-               text: '<img src="resources/icons/filters/disabled/mechanic2.png"/>',
+               text: '<img src="resources/icons/filters/disabled/mechanics.png"/>',
 			         cls: 'img_left',
                action: 'toggleMapFilter',
                width: 55,
