@@ -92,7 +92,7 @@ Add the following to the top level of the XML in cordova/config.xml:
 
     <preference name="AutoHideSplashScreen" value="false" />
 
-    <splash src="../resources/branding/drawapble-ldpi/splash.png" density="port-ldpi" width="480" height="800" />
+    <splash src="../resources/branding/drawable-ldpi/splash.png" density="port-ldpi" width="480" height="800" />
     <splash src="../resources/branding/drawable-mdpi/splash.png" density="port-mdpi" width="640" height="960" />
     <splash src="../resources/branding/drawable-hdpi/splash.png" density="port-hdpi" width="320" height="480" />
     <splash src="../resources/branding/drawable-xhdpi/splash.png" density="port-xhdpi" width="640" height="1136" />
