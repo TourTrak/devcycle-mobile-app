@@ -156,7 +156,7 @@ Ext.define('DevCycleMobile.view.map.Container', {
            },
 
           {
-		           id: 'sagtruck',
+		           id: 'truck',
                xtype: 'button',
                text: '<img src="resources/icons/filters/disabled/sagtruck.png"/>',
 			         cls: 'img_left',
