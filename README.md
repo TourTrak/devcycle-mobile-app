@@ -46,9 +46,18 @@ application.  Executables for each dependency must be accessible through your
     * tools
 * iOS SDK (if building native iOS)
 
-#### Required Cordova Plugins
- from the root directory will install all dependencies.  The
-full list of requirements can be found by opening that script.
+###Required Cordova Plugins
+Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py`. This assumes that the locations of these repos are still as written below.
+
+* [Cordova Device Plugin]
+* [The TourTrak iOS Plugin]
+* [The TourTrak Android Plugin]
+* [Cordova Geolocation Plugin]
+
+[Cordova Device Plugin]: https://github.com/apache/cordova-plugin-device.git
+[The TourTrak iOS Plugin]: https://github.com/cck9672/geolocation-ios-noapp.git
+[The TourTrak Android Plugin]: https://github.com/tofferrosen/tourtrak-android-plugin.git
+[Cordova Geolocation Plugin]: https://github.com/apache/cordova-plugin-geolocation.git
 
 ### Building the Project
 1. Clone this repository and `cd` into the directory: `git clone
