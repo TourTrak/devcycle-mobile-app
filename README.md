@@ -71,7 +71,7 @@ Below is a list of the required plugins. Following the build instructions in the
    [leaflet-usermarker] into the third party libraries and
    [resources](https://github.com/tourtrak/resources) into the resources
    directory.
-5. Make a copy of "config.json.template" named "config.json" and fill out the app configuration(config.json):
+5. Make a copy of `config.json.template` named `config.json` and fill out the app configuration(`config.json`):
 
   * Config File reference can be found [below](#config-file)
 
@@ -209,7 +209,7 @@ Ext.define('DevCycleMobile.store.<tag_name>', {
             }
 ```
 
-### Config File ###
+### Config File
 The file [config.json](config.json) stores configuration settings for the app.
 The options are described below:
 
