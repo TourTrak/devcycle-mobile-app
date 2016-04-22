@@ -47,7 +47,7 @@ application.  Executables for each dependency must be accessible through your
 * iOS SDK (if building native iOS)
 
 ### Required Cordova Plugins
-Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py`. This assumes that the locations of these repos are still as written below.
+Below is a list of the required plugins. Following the build instructions in the next section, you will install these using our script.
 
 * [Cordova Device Plugin]
 * [The TourTrak iOS Plugin]
@@ -222,8 +222,9 @@ The options are described below:
   end: secs since epoch GMT time)
 * `reg_retry_init`: if registration fails, how often it should retry for the next
   10 tries (in seconds)
-* `reg_retry_after` : if registration is still failing after 10 tries, how often
+* `reg_retry_after`: if registration is still failing after 10 tries, how often
   it should retry (in seconds)
+* `tour_start_time_beta` & `tour_end_time_beta`: these are currently used by the tracking plugins, usually set to 0 and 1. If possible, they should be removed from the plugins in the future.
 
 **Please note, tracking will not start, or will start and immediately stop if
 the `tour_start_time` and `tour_end_time` do not reflect an actual tour.**
