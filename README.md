@@ -212,8 +212,8 @@ The options are described below:
 * `reg_retry_after` : if registration is still failing after 10 tries, how often
   it should retry (in seconds)
 
-***Please note, tracking will not start, or will start and immediately stop if
-the `tour_start_time` and `tour_end_time` do not reflect an actual tour***
+**Please note, tracking will not start, or will start and immediately stop if
+the `tour_start_time` and `tour_end_time` do not reflect an actual tour.**
 
 ### Adding new slippery map tiles
 To generate a new set of tiles, please refer to our [BikeNY-red] repository
