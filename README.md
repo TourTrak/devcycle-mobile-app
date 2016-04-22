@@ -46,7 +46,7 @@ application.  Executables for each dependency must be accessible through your
     * tools
 * iOS SDK (if building native iOS)
 
-###Required Cordova Plugins
+### Required Cordova Plugins
 Below is a list of the required plugins. We have included a script that will fetch these automatically by simply running `python fetchPlugins.py`. This assumes that the locations of these repos are still as written below.
 
 * [Cordova Device Plugin]
