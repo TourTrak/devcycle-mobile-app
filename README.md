@@ -274,7 +274,7 @@ a simply copy and paste of two differnt things.
 
 #### Updating the KML parser to include your new icons as new area tags.
 Now, you are ready to use your new icon font. In the file
-[areaMappings.js](resources/areaMappings.js) in the resources repository; create
+[areaMappings.js](https://github.com/TourTrak/resources/blob/master/areaMappings.js) in the resources repository; create
 a new mapping function with the name of the area tag you want to associate this
 icon with when parsing the kml file. The format is the following:
 
@@ -307,9 +307,9 @@ contribute more marker icons.
 [leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
 
 ### Updating submodules
-For updating submodules such as (resources)[https://github.com/TourTrak/resources]
-and (leaflet-usermarker)[https://github.com/heyman/leaflet-usermarker], do the
-following: 
+For updating submodules such as [resources](https://github.com/TourTrak/resources)
+and [leaflet-usermarker](https://github.com/heyman/leaflet-usermarker), do the
+following:
 * Navigate to `<submodule_directory>`
 * Check out the master branch inside of the directory
 * Pull the latest updates
