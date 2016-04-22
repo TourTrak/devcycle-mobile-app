@@ -62,10 +62,17 @@ full list of requirements can be found by opening that script.
    [leaflet-usermarker] into the third party libraries and
    [resources](https://github.com/tourtrak/resources) into the resources
    directory.
-5. If you are not planning on building both Android and iOS apps, you should
+5. Make a copy of "config.json.template" named "config.json" and change the app configuration:
+
+  * Change "dcs_url" to match the URL used to access the host of [devcycle-server](http://github.com/tourtrak/devcycle-server).
+ * Change "tour_id" to match the Tour Id of the currently active sprint on the server.
+ * Change "tour_start_time" and "tour_end_time" to match the start and end times of the currently active sprint on the server. (This should be in Unix Epoch Time)
+ * If you need to change them, "reg_retry_init" and "reg_retry_after" refer to the delay between retry attempts to register.
+
+6. If you are not planning on building both Android and iOS apps, you should
    update [this line][native-build-line] to include only the platform you wish
    to build for.
-6. Run `sencha app build native` build the apps into `cordova/platforms/`.
+7. Run `sencha app build native` build the apps into `cordova/platforms/`.
 
 #### Debugging Development Environment Issues (Tips)
 * Sencha commands can be run with the flag `-d`, you will see the full debug
