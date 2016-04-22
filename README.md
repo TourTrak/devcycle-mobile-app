@@ -212,6 +212,9 @@ The options are described below:
 * `reg_retry_after` : if registration is still failing after 10 tries, how often
   it should retry (in seconds)
 
+**Please note, tracking will not start, or will start and immediately stop if
+the `tour_start_time` and `tour_end_time` do not reflect an actual tour.**
+
 ### Adding new slippery map tiles
 To generate a new set of tiles, please refer to our [BikeNY-red] repository
 which includes instructions for setup.
@@ -270,20 +273,19 @@ a simply copy and paste of two differnt things.
 [IcoMoon]: http://icomoon.io/
 
 #### Updating the KML parser to include your new icons as new area tags.
-Now, you are ready to use your new icon font. In the KML parser under
-[third_party_libraries/kml.js](third_party_libraries/kml.js) find the function
-createCustomMarker. Create a new if block with the name of the area tag you want
-to associate this icon with when parsing the kml file. The format is the
-following:
+Now, you are ready to use your new icon font. In the file
+[areaMappings.js](https://github.com/TourTrak/resources/blob/master/areaMappings.js) in the resources repository; create
+a new mapping function with the name of the area tag you want to associate this
+icon with when parsing the kml file. The format is the following:
 
 ```
-	else if (area == 'helmet') {
-			return L.AwesomeMarkers.icon({
-				icon: 'helmet',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
+'food': function() {
+    return L.AwesomeMarkers.icon({
+        icon: 'cutlery',
+        markerColor: 'blue',
+        prefix: 'fa'
+    });
+  }
 ```
 
 Icon is the name you gave your custom icon. MarkerColor is which color you want
@@ -303,6 +305,15 @@ with the new icons in this document: [Map Marker Icon Area Tags] if you
 contribute more marker icons.
 
 [leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
+
+### Updating submodules
+For updating submodules such as [resources](https://github.com/TourTrak/resources)
+and [leaflet-usermarker](https://github.com/heyman/leaflet-usermarker), do the
+following:
+* Navigate to `<submodule_directory>`
+* Check out the master branch inside of the directory
+* Pull the latest updates
+* Return to the parent directory and commit the changes
 
 ### Additional Reference Docs
 We have included some system diagrams and the offline map architecture under the
