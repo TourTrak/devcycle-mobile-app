@@ -46,9 +46,18 @@ application.  Executables for each dependency must be accessible through your
     * tools
 * iOS SDK (if building native iOS)
 
-#### Required Cordova Plugins
- from the root directory will install all dependencies.  The
-full list of requirements can be found by opening that script.
+### Required Cordova Plugins
+Below is a list of the required plugins. Following the build instructions in the next section, you will install these using our script.
+
+* [Cordova Device Plugin]
+* [The TourTrak iOS Plugin]
+* [The TourTrak Android Plugin]
+* [Cordova Geolocation Plugin]
+
+[Cordova Device Plugin]: https://github.com/apache/cordova-plugin-device.git
+[The TourTrak iOS Plugin]: https://github.com/cck9672/geolocation-ios-noapp.git
+[The TourTrak Android Plugin]: https://github.com/tofferrosen/tourtrak-android-plugin.git
+[Cordova Geolocation Plugin]: https://github.com/apache/cordova-plugin-geolocation.git
 
 ### Building the Project
 1. Clone this repository and `cd` into the directory: `git clone
@@ -62,10 +71,14 @@ full list of requirements can be found by opening that script.
    [leaflet-usermarker] into the third party libraries and
    [resources](https://github.com/tourtrak/resources) into the resources
    directory.
-5. If you are not planning on building both Android and iOS apps, you should
+5. Make a copy of `config.json.template` named `config.json` and fill out the app configuration(`config.json`):
+
+  * Config File reference can be found [below](#config-file)
+
+6. If you are not planning on building both Android and iOS apps, you should
    update [this line][native-build-line] to include only the platform you wish
    to build for.
-6. Run `sencha app build native` build the apps into `cordova/platforms/`.
+7. Run `sencha app build native` build the apps into `cordova/platforms/`.
 
 #### Debugging Development Environment Issues (Tips)
 * Sencha commands can be run with the flag `-d`, you will see the full debug
@@ -209,8 +222,9 @@ The options are described below:
   end: secs since epoch GMT time)
 * `reg_retry_init`: if registration fails, how often it should retry for the next
   10 tries (in seconds)
-* `reg_retry_after` : if registration is still failing after 10 tries, how often
+* `reg_retry_after`: if registration is still failing after 10 tries, how often
   it should retry (in seconds)
+* `tour_start_time_beta` & `tour_end_time_beta`: these are currently used by the tracking plugins, usually set to 0 and 1. If possible, they should be removed from the plugins in the future.
 
 **Please note, tracking will not start, or will start and immediately stop if
 the `tour_start_time` and `tour_end_time` do not reflect an actual tour.**
