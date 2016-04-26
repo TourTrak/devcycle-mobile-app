@@ -320,7 +320,7 @@ contribute more marker icons.
 
 [leaflet awesome-markers]: https://github.com/lvoogdt/Leaflet.awesome-markers
 
-### Updating submodules
+### Updating Submodules
 For updating submodules such as [resources](https://github.com/TourTrak/resources)
 and [leaflet-usermarker](https://github.com/heyman/leaflet-usermarker), do the
 following:
@@ -329,7 +329,7 @@ following:
 * Pull the latest updates
 * Return to the parent directory and commit the changes
 
-### Updating map tiles
+### Updating Map Tiles
 Once map tiles have been generated, replace the contents of the [resources/map_tiles](https://github.com/TourTrak/resources/tree/master/map_tiles) 
 directory with the newly generated tiles.
 
