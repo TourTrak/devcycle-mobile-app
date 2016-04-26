@@ -1,4 +1,22 @@
 {
+    "builds": {
+        "web": {"default": true},
+        "native": {
+            "packager": "cordova",
+            "cordova" : {
+                "config": {
+                    "platforms": "ios android"
+
+                    // Name and ID properties are only used during app creation
+                    // edit this if you are recreating your cordova app
+                    //"id": "com.domain.DevCycleMobile",
+                    //"name": "DevCycleMobile"
+                }
+            }
+        }
+    },
+
+                
     /**
      * The application's namespace, used by Sencha Command to generate classes
      */
@@ -31,6 +49,9 @@
             "path": "third_party_libraries/Awesome-markers/dist/leaflet.awesome-markers.js"
         },
         {
+            "path": "resources/areaMappings.js"
+        },
+        {
             "path": "third_party_libraries/kml.js"
         },
         {
@@ -44,7 +65,7 @@
 
     "css": [
         {
-            "path": "resources/css/app.css",
+            "path": "resources/css/mountainview.css",
             "platform": ["desktop", "chrome", "safari", "firefox"],
             "update": "delta"
         },
@@ -54,6 +75,16 @@
             "platform": ["desktop", "chrome", "safari", "firefox", "android", "ios"],
             "update": "delta"
         },
+		
+		/* CSS for filter menu */
+		{
+		  "path": "resources/css/filter-menu.css"
+		},
+		
+		/* CSS for groups view */
+		{
+		  "path": "resources/css/groups.css"
+		},
 
         /* CSS for the font awesome typefont */
         {
@@ -84,7 +115,7 @@
             "path": "third_party_libraries/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css"
         },
         {
-            "path": "resources/css/cupertino.css",
+            "path": "resources/css/mountainview.css",
             "platform": ["ios"],
             "update": "delta"
         },
@@ -109,13 +140,13 @@
     },
 
     "resources": [
-		    "config.xml",
-        "resources/images",
+		"resources/images",
         "resources/icons",
         "resources/startup",
         "resources/data",
         "third_party_libraries/Awesome-markers/dist/images",
         "third_party_libraries/Leaflet/dist/images",
+        "third_party_libraries/leaflet-usermarker/src/img",
         "resources/map_tiles",
         "config.json",
         "resources/data.kml",

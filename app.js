@@ -36,7 +36,10 @@ Ext.application({
         'DevCycleMobile.store.Equipment',
         'DevCycleMobile.store.Misc',
         'DevCycleMobile.store.Credits',
-        'DevCycleMobile.store.AboutTracking'
+        'DevCycleMobile.store.AboutTracking',
+        'DevCycleMobile.store.MyGroups',
+        'MyApp.util.SizeMonitor', // Fixes Chrome 43 scrolling bugs
+        'MyApp.util.PaintMonitor' // Fixes Chrome 43 scrolling bugs
     ],
 
     views: [
@@ -46,26 +49,34 @@ Ext.application({
         'map.Container',
         'guide.Container',
         'guide.ListItem',
-        'about.Container'
+        'about.Container',
+		'Groups',
+		'groups.Container'
     ],
 
     controllers: [
+		'Groups',
         'Map',
         'Home',
-        'Answer'
+        'Answer',
+		'FilterMarkers'
     ],
 
     models: [
-        'Rider',
         'MapData',
         'Tour',
-        'Answer'
+        'Answer',
+        'Group',
+        'GroupRider',
+		'MyGroup'
     ],
 
     stores: [
-        'RiderInfo',
         'MapInfo',
-        'TourInfo'
+        'TourInfo',
+        'GroupInfo',
+        'GroupRiderInfo',
+		'MyGroups'
     ],
 
     icon: {
@@ -78,12 +89,10 @@ Ext.application({
     isIconPrecomposed: true,
 
     startupImage: {
-        '320x460': 'resources/startup/320x460.jpg',
-        '640x920': 'resources/startup/640x920.png',
-        '768x1004': 'resources/startup/768x1004.png',
-        '748x1024': 'resources/startup/748x1024.png',
-        '1536x2008': 'resources/startup/1536x2008.png',
-        '1496x2048': 'resources/startup/1496x2048.png'
+        '320x480': 'resources/branding/drawable-hdpi/splash.png',
+        '480x800': 'resources/branding/drawable-ldpi/splash.png',
+        '640x960': 'resources/branding/drawable-mdpi/splash.png',
+        '640x1136': 'resources/branding/drawable-xhdpi/splash.png'
     },
 
     /**
@@ -114,13 +123,12 @@ Ext.application({
         
         var mapInfo = Ext.getStore("MapInfo"); // map metadata info
         var tourInfo = Ext.getStore("TourInfo"); //tour info
-        var riderInfo = Ext.getStore("RiderInfo"); // rider info
 
         var self = this; // reference to self
 
         // load all the stores before proceeding
         var handler = setInterval(function(){
-           loaded = self.areStoresLoaded([tourInfo, mapInfo, riderInfo]);
+           loaded = self.areStoresLoaded([tourInfo, mapInfo]);
 
            if (loaded){
                 // cancel interval

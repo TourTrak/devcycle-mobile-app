@@ -14,5 +14,4 @@ Ext.define('DevCycleMobile.store.Registration', {
             url: 'resources/data/Registration.json'
         }
     }
-
 });

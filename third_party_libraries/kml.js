@@ -1,11 +1,19 @@
 /*global L: true */
 
 /***
-Plugin by shramov
-http://psha.org.ru/b/leaflet-plugins.html
-
-Modifications to work w/ Sencha and custom parsing
-of KML files by @tofferrosen
+* Plugin by shramov
+* http://psha.org.ru/b/leaflet-plugins.html
+*
+* Modifications to work w/ Sencha and custom parsing
+* of KML files by @tofferrosen
+*
+* 2014 Modification to add markerType to layers since each marker
+* is it's own unique layer that is added to a markerCluster
+* usage: layer.options.markerType (which will be a String) by @eklundjoshua
+*
+* 2015-2016 Modifications to allow support for multiple AREA tags for a
+* point of interest and refactoring of the previous teams work.
+* by @cshapleigh and @bbesmanoff
 ***/
 
 L.KML = L.FeatureGroup.extend({
@@ -92,14 +100,12 @@ L.Util.extend(L.KML, {
 			if (l) { layers.push(l); }
 		}
 		el = xml.getElementsByTagName('Placemark');
+		console.log("Number of Placemarks: " + el.length);
+		var counter = 0;
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j])) { continue; }
-			l = this.parsePlacemark(el[j], xml, style);
-			if (l) { 
-				layers.push(l); 
-			}
+			layers = this.populateLayers(layers, el[j], xml, style);
 		}
-		//console.log(layers);
 		return layers;
 	},
 
@@ -208,14 +214,29 @@ L.Util.extend(L.KML, {
 		el = xml.getElementsByTagName('Placemark');
 		for (var j = 0; j < el.length; j++) {
 			if (!this._check_folder(el[j], xml)) { continue; }
-			l = this.parsePlacemark(el[j], xml, style);
-
-			if (l) { layers.push(l); }
+			layers = this.populateLayers(layers, el[j], xml, style);
 		}
 		if (!layers.length) { return; }
 		if (layers.length === 1) { return layers[0]; }
 		return new L.FeatureGroup(layers);
 		//return layers;
+	},
+
+	/**
+	 * Pushes newly created placemark layers into a layer array
+	 *
+	 * @param {layer[]} layers An array of FeatureGroup objects
+	 * @param {xml Element} element The Placemark to parse
+	 * @param {xml} xml Xml data related to the placemark
+   	 * @param {path} style Style options for the placemark
+ 	 * @return {layer[]} layers Updated array of FeatureGroup objects
+	 */
+	populateLayers: function (layers, element, xml, style) {
+		var parsedLayers = this.parsePlacemark(element, xml, style);
+		for (layer in parsedLayers) {
+			layers.push(parsedLayers[layer]);
+		}
+		return layers;
 	},
 
 
@@ -226,368 +247,103 @@ L.Util.extend(L.KML, {
 	for areas not found, simply places a plain blue marker.
 	*/
 	createCustomMarker: function(area) {
-
+		var areas = window.areaMapping;
 		area = area.toLowerCase(); // change so that the casing doesn't matter
-
-		if (area == "medical") {
-			return L.AwesomeMarkers.icon({
-					icon: 'medkit',
-					markerColor: 'red',
-					prefix: 'fa'
-			});
-		}
-
-		else if (area == "food") {
-			return L.AwesomeMarkers.icon({
-					icon: 'cutlery',
-					markerColor: 'blue',
-					prefix: 'fa'
-			});
-		}
-
-		else if (area == "music") {
-			return L.AwesomeMarkers.icon({
-					icon: 'music',
-					markerColor: 'cadetblue',
-					prefix: 'fa'
-			});
-		}
-
-		else if (area == "sagtruck") {
-			return L.AwesomeMarkers.icon({
-				icon: 'truck',
-				markerColor: 'red',
-				prefix: 'fa'
-			});
-		}
-
-		else if (area == "warning") {
-			return L.AwesomeMarkers.icon({
-				icon: 'warning',
-				markerColor: 'red',
-				prefix: 'fa'
-			});
-		}
-
-		else if (area == "mechanics") {
-			return L.AwesomeMarkers.icon({
-				icon: 'wrench',
-				markerColor: 'orange',
-				prefix: 'fa'
-			});
-		}
-
-		else if (area == 'bathrooms') {
-			return L.AwesomeMarkers.icon({
-				icon: 'portable',
-				prefix: 'flaticon',
-				markerColor: 'blue'
-			});
-		}
-
-		else if (area == 'rest_area') {
-			return L.AwesomeMarkers.icon({
-				icon: 'rest',
-				prefix: 'flaticon',
-				markerColor: 'green'
-			});
-		}
-
-		else if (area == 'rendesvous_spot') {
-			return L.AwesomeMarkers.icon({
-				icon: 'man41',
-				prefix: 'flaticon',
-				markerColor: 'orange'
-			});
-		}
-
-		else if (area == 'Rendezvous_spot'){
-			return L.AwesomeMarkers.icon({
-				icon: 'man41',
-				prefix: 'flaticon',
-				markerColor: 'orange'
-			});
-		}
-
-		else if (area == 'lost_child') {
-			return L.AwesomeMarkers.icon({
-				icon: 'standing25',
-				prefix: 'flaticon',
-				markerColor: 'red'
-			});
-		}
-
-		else if (area == 'subway') {
-			return L.AwesomeMarkers.icon({
-				icon: 'train5',
-				prefix: 'flaticon',
-				markerColor: 'cardetblue'
-			});
-		}
-
-		else if (area == 'timed_ride') {
-			return L.AwesomeMarkers.icon({
-				icon: 'finish1',
-				prefix: 'flaticon',
-				markerColor: 'green'
-			});
-		}
-
-		else if (area == 'vest') {
-			return L.AwesomeMarkers.icon({
-				icon: 'vest',
-				prefix: 'bikeny',
-				markerColor: 'orange'
-			});
-		}
-
-		else if (area == 'trash') {
-			return L.AwesomeMarkers.icon({
-				icon: 'trash',
-				prefix: 'bikeny',
-				markerColor: 'green'
-			});
-		}
-
-		else if (area == 'picture') {
-			return L.AwesomeMarkers.icon({
-				icon: 'picture',
-				prefix: 'bikeny',
-				markerColor: 'purple'
-			});
-		}
-
-		else if (area == 'award') {
-			return L.AwesomeMarkers.icon({
-				icon: 'victory',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'ferry') {
-			return L.AwesomeMarkers.icon({
-				icon: 'ferry',
-				markerColor: 'cadetblue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'car') {
-			return L.AwesomeMarkers.icon({
-				icon: 'car',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'food2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'food',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'tshirt') {
-			return L.AwesomeMarkers.icon({
-				icon: 'tshirt',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'mechanics2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'mechanic',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'mechanic2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'mechanic',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'ribbon') {
-			return L.AwesomeMarkers.icon({
-				icon: 'ribbon',
-				markerColor: 'blue',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'recycle') {
-			return L.AwesomeMarkers.icon({
-				icon: 'recycle',
-				markerColor: 'green',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'tshirt2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'tshirt2',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'search') {
-			return L.AwesomeMarkers.icon({
-				icon: 'search',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'license') {
-			return L.AwesomeMarkers.icon({
-				icon: 'license',
-				markerColor: 'green',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'info-tent') {
-			return L.AwesomeMarkers.icon({
-				icon: 'info-tent',
-				markerColor: 'green',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'info_tent') {
-			return L.AwesomeMarkers.icon({
-				icon: 'info-tent',
-				markerColor: 'green',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'helmet') {
-			return L.AwesomeMarkers.icon({
-				icon: 'helmet',
-				markerColor: 'orange',
-				prefix: 'bikeny'
-			});
-		}
-
-		else if (area == 'train2') {
-			return L.AwesomeMarkers.icon({
-				icon: 'train',
-				markerColor: 'cadetblue',
-				prefix: 'bikeny'
-			});
-		}
-
-		// Area not found...
-
-		else {
-			
-			return L.AwesomeMarkers.icon({
-				markerColor: 'blue'
-			});
-		}
-
-
+		
+	 	return areas[area] ? areas[area]() : areas['DEFAULT']();
 	},
 
-
+	/**
+	 * Goes through a placemark kml element and generates a leaflet marker, based
+	 *		based on how many areas each placemark has
+	 *
+	 * @param {kml Element} place A placemark kml element
+	 * @param {xml} xml Xml data related to the placemark
+	 * @param {path} style Style options for the placemark
+	 * @return {layer[]} layerArray An array of layers that contain leaflet
+	 * 		markers
+	 */
 	parsePlacemark: function (place, xml, style) {
-		var i, j, el, options = {};
-		el = place.getElementsByTagName('styleUrl');
+		var layerArray = [];
+		var areas = this.parseExtendedData(place);
 
+		if (areas.length !== 0) {
+			for (area in areas) {
+				var options = this.getOptions(place, style)
+				var layer = this.initializeLayer(place, options, xml);
+				var name = this.parseName(place);
+				name = this.sanitizeHtml(name);
+				var description = this.parseDescription(place);
+				description = this.sanitizeHtml(description);
+
+				if (layer) {
+					layer.bindPopup("<h1>" + name + "</h1><b1>" + description + "</b1>", {offset: new L.Point(0,-20)});
+					layer.options.icon = this.createCustomMarker(areas[area]);
+					layer.options.markerType = areas[area].toLowerCase();
+					layerArray.push(layer);
+				}
+			}
+		} else { // parse it anyway
+			var options = this.getOptions(place, style)
+			var layer = this.initializeLayer(place, options, xml);
+
+			if (layer) {
+				layerArray.push(layer);
+			}
+		}
+
+		return layerArray;
+	},
+
+	/**
+	 * Reads the values for the data inside an Extended Data kml tag
+	 *
+	 * @param {kml Element} place A placemark XML element
+	 * @return {string[]} dataValueStrings An array of the strings of values
+	 */
+	parseExtendedData: function (place) {
+		var dataValueStrings = [];
+		var data = place.getElementsByTagName('Data');
+		if (data[0]) {
+			var dataValues = data[0].children;
+			for (i = 0; i < dataValues.length; i++) {
+				var dataValueString = dataValues[i].textContent;
+				dataValueStrings.push(dataValueString);
+			}
+		}
+		return dataValueStrings;
+	},
+
+	/**
+	 * Reads the description element for a placemark KML element
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @return {string} description The string of the description value
+	 */
+	parseDescription: function (place) {
+		var description = "";
+		var el = place.getElementsByTagName('description');
 		for (i = 0; i < el.length; i++) {
-			var url = el[i].childNodes[0].nodeValue;
-			for (var a in style[url])
-			{
-				// for jshint
-				if (true)
-				{
-					options[a] = style[url][a];
-				}
+			for (j = 0; j < el[i].childNodes.length; j++) {
+				description = description + el[i].childNodes[j].nodeValue;
 			}
 		}
-		var layers = [];
+		return description;
+	},
 
-		var parse = ['LineString', 'Polygon', 'Point'];
-		for (j in parse) {
-			// for jshint
-			if (true)
-			{
-				var tag = parse[j];
-				el = place.getElementsByTagName(tag);
-
-				for (i = 0; i < el.length; i++) {
-					var l = this["parse" + tag](el[i], xml, options);
-					if (l) { layers.push(l); }
-				}
-			}
-		}
-
-		if (!layers.length) {
-			return;
-		}
-		var layer = layers[0];
-		if (layers.length > 1) {
-			layer = new L.FeatureGroup(layers);
-		}
-
-		var name, descr = "";
-		el = place.getElementsByTagName('name');
+	/**
+	 * Reads the name element for a placemark KML element
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @return {string} name The string of the name value
+	 */
+	parseName: function (place) {
+		var name = "";
+		var el = place.getElementsByTagName('name');
 		if (el.length && el[0].childNodes.length) {
 			name = el[0].childNodes[0].nodeValue;
 		}
-
-		el = place.getElementsByTagName('description');
-
-		/*
-		In the description, look for the [AREA][/AREA] tags to determine
-		which type of icon to use. icon type is chosen based on the marker area.
-		*/
-		var area = null;
-		for (i = 0; i < el.length; i++) {
-			for (j = 0; j < el[i].childNodes.length; j++) {
-
-				/*
-				Check to see if we have an AREA tag
-				*/
-				var areaStartIndex = el[i].childNodes[j].nodeValue.indexOf('<AREA>');
-				if (areaStartIndex != -1) // we have an AREA tag here..
-				{
-					var areaEndIndex = el[i].childNodes[j].nodeValue.indexOf('</AREA>');
-					area = el[i].childNodes[j].nodeValue.substring(areaStartIndex+6,areaEndIndex);
-					descr = descr + el[i].childNodes[j].nodeValue.substring(0, areaStartIndex+6);
-				} else {
-					// check for the alternative [AREA][/AREA] tag
-					var areaStartIndex2 = el[i].childNodes[j].nodeValue.indexOf('[AREA]');
-
-					if (areaStartIndex2 != -1){
-						var areaEndIndex = el[i].childNodes[j].nodeValue.indexOf('[/AREA]');
-						area = el[i].childNodes[j].nodeValue.substring(areaStartIndex2+6,areaEndIndex);
-						descr = descr + el[i].childNodes[j].nodeValue.substring(0, areaStartIndex2);
-					}
-					else{
-						descr = descr + el[i].childNodes[j].nodeValue;
-					}
-				}
-			}
-		}
-
-		if (area != null) {
-			layer.options.icon = this.createCustomMarker(area);
-		}
-
-		if (name) {
-			layer.bindPopup("<h1>" + name + "</h1><b1>" + descr + "</b1>", {offset: new L.Point(0,-20)});
-		}
-
-		return layer;
+		return name;
 	},
 
 	parseCoords: function (xml) {
@@ -654,6 +410,86 @@ L.Util.extend(L.KML, {
 		return coords;
 	},
 
+
+	/**
+	 * Gets the style options for the placemarks leaflet marker
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @param {path} style Style options for the placemark
+	 * @return {path[]} options The style options for the placemark
+	 */
+	getOptions: function (place, style) {
+		var i, j, el, options = {};
+		el = place.getElementsByTagName('styleUrl');
+
+		for (i = 0; i < el.length; i++) {
+			var url = el[i].childNodes[0].nodeValue;
+			for (var a in style[url]) {
+				options[a] = style[url][a];
+			}
+		}
+
+		return options;
+	},
+
+	/**
+	 * Creates a base layergroup element for the placemarks leaflet icon
+	 *
+	 * @param {xml Element} place A placemark XML element
+	 * @param {path[]} options The style options for the placemark
+	 * @param {xml} xml Xml data related to the placemark
+	 * @return {FeatureGroup} layer Basic location and style data pertaining to
+	 * 		the placemark
+	 */
+	initializeLayer: function (place, options, xml) {
+		var layers = [];
+		var parse = ['LineString', 'Polygon', 'Point'];
+		for (j in parse) {
+			var tag = parse[j];
+			el = place.getElementsByTagName(tag);
+
+			for (i = 0; i < el.length; i++) {
+				switch(tag) {
+					case 'LineString':
+						var l = this.parseLineString(el[i], xml, options);
+    						if (l) { layers.push(l); }
+    						break;
+     					case 'Polygon':
+						var l = this.parsePolygon(el[i], xml, options);
+						if (l) { layers.push(l); }
+						break;
+         				case 'Point':
+						var l = this.parsePoint(el[i], xml, options);
+						if (l) { layers.push(l); }
+						break;
+				}
+			}
+		}
+
+		if (!layers.length) {
+			return null;
+		}
+		var layer = layers[0];
+		if (layers.length > 1) {
+			layer = new L.FeatureGroup(layers);
+		}
+
+		return layer;
+	},
+
+
+	/**
+	 * Replaces open/close tags with safe strings
+	 * @param {string} String to sanitize
+	 * @return {string} Sanitized string
+	 */
+ 	sanitizeHtml: function (string) {
+		 var string = string.replace(/</g, "&lt;");
+		 var string = string.replace(/>/g, "&gt;");
+		 return string;
+	 },
+
+
 	_read_coords: function (el) {
 		var text = "", coords = [], i;
 		for (i = 0; i < el.childNodes.length; i++) {
@@ -703,6 +539,12 @@ L.KMLIcon = L.Icon.extend({
 
 L.KMLMarker = L.Marker.extend({
 	options: {
-		icon: new L.KMLIcon.Default()
+		icon: new L.KMLIcon.Default(),
+		/*
+		* Marker type for each marker is a string
+		* which can be found in the [AREA] tags
+		* in the data.kml file
+		*/
+		markerType: String
 	}
 });

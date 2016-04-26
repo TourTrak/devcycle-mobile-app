@@ -5,11 +5,15 @@ build/
 # sass cache folder
 resources/sass/.sass-cache
 
-# .DS_Store
+# Temp Files
 .DS_Store
+*.swp
+*.swo
+*~
 
 # Cordova folder
 cordova/
 .sencha/app/cordova-impl.xml
 config.xml
 cordova.local.properties
+.sencha_backup/

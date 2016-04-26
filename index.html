@@ -54,6 +54,13 @@
     </style>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener('deviceready', function() {
+         setTimeout(function() {
+         navigator.splashscreen.hide();
+         }, 1000);
+        });
+</script>
 </head>
 <body>
     <div id="appLoadingIndicator">
